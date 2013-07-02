@@ -78,14 +78,14 @@ Derudover er der lavet en lang række SQL scripts, metatabeller, funktioner mv.,
 I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på -test ikke på en database, som kører produktion.
 
 SQL-scriptene nummereret fra 000 til 999 køres i rækkefølge og databasen som du kører disse på vil derefter være en FKG-database - udover den almindelige databasemodel vil den have indlagte funktioner til at generere databasemodellen. Filen [040_metadata.sql](040_metadata.sql) generes først fra pgModeler, ved at vælge "Files" -> "Export".
-Det er enklest at køre denne proces ved at bruge installations/kompileringsscriptet [make_install.sh](make_install.sh), hvori du bare skal ændre oplysningerne om din lokale *test/build*-database. 
+Det er enklest at køre denne proces ved at bruge installations/kompileringsscriptet [make_install.sh](src/make_install.sh), hvori du bare skal ændre oplysningerne om din lokale *test/build*-database. 
 Dette gøres enklest således:
 
 1. Lav dine ændringer i modellen - fkg.dbm - i PgModeler
-2. Eksportér dine ændringer fra PgModeler til filen [040_metadata.sql](040_metadata.sql)  (gem som PostgreSQL 9.2)
-3. Lav de nødvendige ændringer i [050_coredata.sql](050_coredata.sql) og [060_fkg_utilities.sql](060_fkg_utilities.sql)
-4. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](make_install.sh)
-5. Kør [make_install.sh](make_install.sh) i terminalen 
+2. Eksportér dine ændringer fra PgModeler til filen [040_metadata.sql](src/040_metadata.sql)  (gem som PostgreSQL 9.2)
+3. Lav de nødvendige ændringer i [050_coredata.sql](src/050_coredata.sql) og [060_fkg_utilities.sql](src/060_fkg_utilities.sql)
+4. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](src/make_install.sh)
+5. Kør [make_install.sh](src/make_install.sh) i terminalen 
 6. Dit installationsscript er nu at finde i folderen kaldet INSTALL
 
 En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 + 100 og samle dette i en SQL-fil.
