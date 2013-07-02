@@ -1,0 +1,4474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel author="Septima - see license in LICENSE.txt">
+<schema name="public" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="fkg" fill-color="#e1e1e1">
+</schema>
+
+<database name="data" encoding="UTF8">
+</database>
+
+<table name="d_basis_oprindelse" oids="false">
+	<schema name="fkg"/>
+	<position x="2671.43" y="477.143"/>
+	<column name="oprindkode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="oprindelse" not-null="true">
+		<type name="character varying" length="35"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="bemaerkning">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_oprindelse_pk" type="pk-constr" factor="10" table="fkg.d_basis_oprindelse">
+		<columns names="oprindkode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_status" oids="false">
+	<schema name="fkg"/>
+	<position x="2670" y="375.714"/>
+	<column name="statuskode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<constraint name="d_basis_status_pk" type="pk-constr" factor="10" table="fkg.d_basis_status">
+		<columns names="statuskode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_ansvarlig_myndighed" oids="false">
+	<schema name="fkg"/>
+	<position x="2674.29" y="264.286"/>
+	<column name="cvr_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="cvr_navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="kommunekode">
+		<type name="integer"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<constraint name="d_basis_ansvarlig_myndighed_pk" type="pk-constr" factor="10" table="fkg.d_basis_ansvarlig_myndighed">
+		<columns names="cvr_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="generel" oids="false">
+	<schema name="fkg"/>
+	<position x="2460" y="20"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+		<comment><![CDATA[Unik versions-id databasenøgle]]></comment>
+	</column>
+	<column name="objekt_id" not-null="true">
+		<type name="uuid"/>
+		<comment><![CDATA[Entydig databasenøgle over tid]]></comment>
+	</column>
+	<column name="systid_fra" not-null="true">
+		<type name="timestamptz"/>
+		<comment><![CDATA[Start systemtid]]></comment>
+	</column>
+	<column name="systid_til">
+		<type name="timestamptz"/>
+		<comment><![CDATA[Slut systemtid]]></comment>
+	</column>
+	<column name="oprettet" not-null="true">
+		<type name="timestamptz"/>
+	</column>
+	<column name="cvr_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="bruger_id" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="oprindkode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="statuskode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="generel_pk" type="pk-constr" factor="10" table="fkg.generel">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="generel_d_basis_oprindelse_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_oprindelse" table="fkg.generel">
+		<columns names="oprindkode" ref-type="src-columns"/>
+		<columns names="oprindkode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="generel_d_basis_status_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_status" table="fkg.generel">
+		<columns names="statuskode" ref-type="src-columns"/>
+		<columns names="statuskode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="generel_d_basis_ansvarlig_myndighed_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansvarlig_myndighed" table="fkg.generel">
+		<columns names="cvr_kode" ref-type="src-columns"/>
+		<columns names="cvr_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_generel_d_basis_oprindelse" type="relfk"
+	 src-table="fkg.generel"
+	 dst-table="fkg.d_basis_oprindelse"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_generel_d_basis_status" type="relfk"
+	 src-table="fkg.generel"
+	 dst-table="fkg.d_basis_status"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_generel_d_basis_ansvarlig_myndighed" type="relfk"
+	 src-table="fkg.generel"
+	 dst-table="fkg.d_basis_ansvarlig_myndighed"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_basis_ja_nej" oids="false">
+	<schema name="fkg"/>
+	<position x="1895.71" y="377.143"/>
+	<column name="ja_nej_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ja_nej" not-null="true">
+		<type name="character varying" length="7"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_ja_nej_pk" type="pk-constr" factor="10" table="fkg.d_basis_ja_nej">
+		<columns names="ja_nej_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_ejerstatus" oids="false">
+	<schema name="fkg"/>
+	<position x="1904.29" y="518.571"/>
+	<column name="ejerstatus_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ejerstatus" not-null="true">
+		<type name="character varying" length="34"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_ejerstatus_pk" type="pk-constr" factor="10" table="fkg.d_basis_ejerstatus">
+		<columns names="ejerstatus_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_vejnavn" oids="false">
+	<schema name="fkg"/>
+	<position x="1440" y="120"/>
+	<column name="vejkode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vejnavn" not-null="true">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character varying" length="7"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="kommunekode">
+		<type name="integer"/>
+	</column>
+	<constraint name="d_vejnavn_pk" type="pk-constr" factor="10" table="fkg.d_vejnavn">
+		<columns names="vejkode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_sag_status" oids="false">
+	<schema name="fkg"/>
+	<position x="1480" y="260"/>
+	<column name="sag_status_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="sag_status" not-null="true">
+		<type name="character varying" length="18"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_sag_status_pk" type="pk-constr" factor="10" table="fkg.d_basis_sag_status">
+		<columns names="sag_status_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_dvfi_bedoemmelse" oids="false">
+	<schema name="fkg"/>
+	<position x="1874.29" y="257.143"/>
+	<column name="dvfi_bedoemmelse_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="dvfi_bedoemmelse" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_dvfi_bedoemmelse_pk" type="pk-constr" factor="10" table="fkg.d_basis_dvfi_bedoemmelse">
+		<columns names="dvfi_bedoemmelse_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_trussel_vand" oids="false">
+	<schema name="fkg"/>
+	<position x="1480" y="360"/>
+	<column name="trussel_vand_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="trussel_vand" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_trussel_vand_pk" type="pk-constr" factor="10" table="fkg.d_basis_trussel_vand">
+		<columns names="trussel_vand_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_planstatus" oids="false">
+	<schema name="fkg"/>
+	<position x="1480" y="460"/>
+	<column name="planstatus_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="planstatus" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_planstatus_pk" type="pk-constr" factor="10" table="fkg.d_basis_planstatus">
+		<columns names="planstatus_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_afstemningsomraade" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="40"/>
+	<column name="afstemningsomraade_nr" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="afstemningsomraade_navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="cvr">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_afstemningsomraade_pk" type="pk-constr" factor="10" table="fkg.d_basis_afstemningsomraade">
+		<columns names="afstemningsomraade_nr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_kloak" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="120"/>
+	<column name="kloak_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="kloak" not-null="true">
+		<type name="character varying" length="45"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_kloak_pk" type="pk-constr" factor="10" table="fkg.d_basis_kloak">
+		<columns names="kloak_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_postnr" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="220"/>
+	<column name="postnr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="postnr_by" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<constraint name="d_basis_postnr_pk" type="pk-constr" factor="10" table="fkg.d_basis_postnr">
+		<columns names="postnr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_funktionsstatus" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="280"/>
+	<column name="funktionsstatus_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="funktionsstatus" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_funktionsstatus_pk" type="pk-constr" factor="10" table="fkg.d_basis_funktionsstatus">
+		<columns names="funktionsstatus_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_magasin" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="360"/>
+	<column name="magasin_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="magasin" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_magasin_pk" type="pk-constr" factor="10" table="fkg.d_basis_magasin">
+		<columns names="magasin_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_fors_omr_type" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="440"/>
+	<column name="fors_omr_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="fors_omr_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_fors_omr_type_pk" type="pk-constr" factor="10" table="fkg.d_basis_fors_omr_type">
+		<columns names="fors_omr_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_omraade" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="540"/>
+	<column name="omraade_nr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="omraade" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="cvr_kode">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_omraade_pk" type="pk-constr" factor="10" table="fkg.d_basis_omraade">
+		<columns names="omraade_nr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5000_vandl_type" oids="false">
+	<schema name="fkg"/>
+	<position x="615.714" y="774.286"/>
+	<column name="vandl_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vandl_type" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5000_vandl_type_pk" type="pk-constr" factor="100" table="fkg.d_5000_vandl_type">
+		<columns names="vandl_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5000_maalsaetning" oids="false">
+	<schema name="fkg"/>
+	<position x="615.714" y="874.286"/>
+	<column name="maalsaetning_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="maalsaetning" not-null="true">
+		<type name="character varying" length="60"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5000_maalsaetning_pk" type="pk-constr" factor="100" table="fkg.d_5000_maalsaetning">
+		<columns names="maalsaetning_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5000_klasse" oids="false">
+	<schema name="fkg"/>
+	<position x="615.714" y="974.286"/>
+	<column name="klasse_kode">
+		<type name="integer"/>
+	</column>
+	<column name="klasse" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5000_klasse_pk" type="pk-constr" factor="100" table="fkg.d_5000_klasse">
+		<columns names="klasse_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5000_vandl" oids="false">
+	<schema name="fkg"/>
+	<position x="15.7143" y="776.286"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="dmu_ref">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vandloeb_nr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="maalsaetning_kode">
+		<type name="integer"/>
+	</column>
+	<column name="vandl_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ejerstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="klasse_kode">
+		<type name="integer"/>
+	</column>
+	<column name="tidl_amt_kode">
+		<type name="integer"/>
+	</column>
+	<column name="vedligehold">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="ansvar_vedligehold">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="p3vandloeb_kode">
+		<type name="integer"/>
+	</column>
+	<column name="sejlads">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="dvfi_bedoemmelse_kode">
+		<type name="integer"/>
+	</column>
+	<column name="station_fra">
+		<type name="double precision"/>
+	</column>
+	<column name="station_til">
+		<type name="double precision"/>
+	</column>
+	<column name="vandloebs_bredde">
+		<type name="double precision"/>
+	</column>
+	<column name="vandfoeringsforhold">
+		<type name="integer"/>
+	</column>
+	<column name="maalsaetning_opfyldt_kode">
+		<type name="integer"/>
+	</column>
+	<column name="fot_id">
+		<type name="integer"/>
+	</column>
+	<column name="trussel_vand_kode">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5000_vandl_pk" type="pk-constr" factor="10" table="fkg.t_5000_vandl">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5000_vandl">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_5000_klasse_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_klasse" table="fkg.t_5000_vandl">
+		<columns names="klasse_kode" ref-type="src-columns"/>
+		<columns names="klasse_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_5000_vandl_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_vandl_type" table="fkg.t_5000_vandl">
+		<columns names="vandl_type_kode" ref-type="src-columns"/>
+		<columns names="vandl_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_basis_ejerstatus_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5000_vandl">
+		<columns names="ejerstatus_kode" ref-type="src-columns"/>
+		<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_basis_ja_nej_tidl_amt_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl">
+		<columns names="tidl_amt_kode" ref-type="src-columns"/>
+		<columns names="ja_nej_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl">
+		<columns names="p3vandloeb_kode" ref-type="src-columns"/>
+		<columns names="ja_nej_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_basis_dvfi_bedoemmelse_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_dvfi_bedoemmelse" table="fkg.t_5000_vandl">
+		<columns names="dvfi_bedoemmelse_kode" ref-type="src-columns"/>
+		<columns names="dvfi_bedoemmelse_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl">
+		<columns names="maalsaetning_opfyldt_kode" ref-type="src-columns"/>
+		<columns names="ja_nej_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_basis_trussel_vand_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl">
+		<columns names="trussel_vand_kode" ref-type="src-columns"/>
+		<columns names="ja_nej_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5000_vandl_d_5000_maalsaetning_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_maalsaetning" table="fkg.t_5000_vandl">
+		<columns names="maalsaetning_kode" ref-type="src-columns"/>
+		<columns names="maalsaetning_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5000_vandl_generel" type="relfk"
+	 src-table="fkg.t_5000_vandl"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_d_5000_klasse" type="relfk"
+	 src-table="fkg.t_5000_vandl"
+	 dst-table="fkg.d_5000_klasse"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_d_5000_vandl_type" type="relfk"
+	 src-table="fkg.t_5000_vandl"
+	 dst-table="fkg.d_5000_vandl_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_d_basis_ejerstatus" type="relfk"
+	 src-table="fkg.t_5000_vandl"
+	 dst-table="fkg.d_basis_ejerstatus"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_5000_vandl"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_d_basis_dvfi_bedoemmelse" type="relfk"
+	 src-table="fkg.t_5000_vandl"
+	 dst-table="fkg.d_basis_dvfi_bedoemmelse"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_d_5000_maalsaetning" type="relfk"
+	 src-table="fkg.t_5000_vandl"
+	 dst-table="fkg.d_5000_maalsaetning"
+	 src-required="false" dst-required="false"/>
+
+<table name="temagruppe" oids="false">
+	<schema name="fkg"/>
+	<position x="1280" y="820"/>
+	<column name="temagruppe_id" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<column name="vaerdiomraade_min" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vaerdiomraade_max" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tema_gruppe" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<constraint name="temagruppe_pk" type="pk-constr" factor="10" table="fkg.temagruppe">
+		<columns names="temagruppe_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="temagruppe_vaerdiomraade_min_uc" type="uq-constr" factor="10" table="fkg.temagruppe">
+		<columns names="vaerdiomraade_min" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tema" oids="false">
+	<schema name="fkg"/>
+	<position x="1280" y="1020"/>
+	<column name="tema_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tema_navn" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<column name="geo" not-null="true">
+		<type name="character"/>
+	</column>
+	<column name="udvekslingsnavn" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<column name="temagruppe_id" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<constraint name="tema_pk" type="pk-constr" factor="10" table="fkg.tema">
+		<columns names="tema_kode" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="geo_ck" type="ck-constr" table="fkg.tema">
+			<expression><![CDATA[geo IN ('P', 'L', 'F')]]></expression>
+	</constraint>
+	<constraint name="tema_udvekslingsnavn_uc" type="uq-constr" factor="10" table="fkg.tema">
+		<columns names="udvekslingsnavn" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="tema_temanavn_uc" type="uq-constr" factor="10" table="fkg.tema">
+		<columns names="tema_navn" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="tema_temagruppe_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.temagruppe" table="fkg.tema">
+		<columns names="temagruppe_id" ref-type="src-columns"/>
+		<columns names="temagruppe_id" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_tema_temagruppe" type="relfk"
+	 src-table="fkg.tema"
+	 dst-table="fkg.temagruppe"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_basis_tilstand" oids="false">
+	<schema name="fkg"/>
+	<position x="1080" y="600"/>
+	<column name="tilstand_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tilstand" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_tilstand_pk" type="pk-constr" factor="10" table="fkg.d_basis_tilstand">
+		<columns names="tilstand_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_hastighed" oids="false">
+	<schema name="fkg"/>
+	<position x="1480" y="560"/>
+	<column name="hastighed_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="hastighed" not-null="true">
+		<type name="character varying" length="6"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_hastighed_pk" type="pk-constr" factor="10" table="fkg.d_basis_hastighed">
+		<columns names="hastighed_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_driftniv" oids="false">
+	<schema name="fkg"/>
+	<position x="1760" y="140"/>
+	<column name="driftniv_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="driftniv" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_driftniv_pk" type="pk-constr" factor="10" table="fkg.d_basis_driftniv">
+		<columns names="driftniv_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_ukrudtsbek" oids="false">
+	<schema name="fkg"/>
+	<position x="1480" y="640"/>
+	<column name="ukrudtsbek_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ukrudtsbek" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_ukrudtsbek_pk" type="pk-constr" factor="10" table="fkg.d_basis_ukrudtsbek">
+		<columns names="ukrudtsbek_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_antal" oids="false">
+	<schema name="fkg"/>
+	<position x="1500" y="20"/>
+	<column name="antal_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="antal" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_basis_antal_pk" type="pk-constr" factor="10" table="fkg.d_basis_antal">
+		<columns names="antal_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="asd" font-size="9">
+	<position x="54.2856" y="49.9999"/>
+	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS]]></comment>
+</textbox>
+
+<textbox name="copyright" font-size="9">
+	<position x="62.8571" y="85.7142"/>
+	<comment><![CDATA[(c) 2013 Septima and other contributors]]></comment>
+</textbox>
+
+<table name="d_6100_brandhane" oids="false">
+	<schema name="fkg"/>
+	<position x="3025" y="1460.71"/>
+	<column name="brandhane_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="brandhane_type" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6100_brandhane_pk" type="pk-constr" factor="100" table="fkg.d_6100_brandhane">
+		<columns names="brandhane_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6100_placering" oids="false">
+	<schema name="fkg"/>
+	<position x="3019.29" y="1340.71"/>
+	<column name="placering_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="placering" not-null="true">
+		<type name="character varying" length="12"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6100_placering_pk" type="pk-constr" factor="100" table="fkg.d_6100_placering">
+		<columns names="placering_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_6100_brandhane" oids="false">
+	<schema name="fkg"/>
+	<position x="2553.57" y="1327.86"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="brandhane_id">
+		<type name="integer"/>
+	</column>
+	<column name="brandhane_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ydelse">
+		<type name="integer"/>
+	</column>
+	<column name="placering_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="lokalitet">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character varying" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="funktionsstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="senest_tilsyn">
+		<type name="date"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_6100_brandhane_pk" type="pk-constr" factor="10" table="fkg.t_6100_brandhane">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_6100_brandhane_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6100_brandhane">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_6100_brandhane_d_6100_brandhane_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6100_brandhane" table="fkg.t_6100_brandhane">
+		<columns names="brandhane_type_kode" ref-type="src-columns"/>
+		<columns names="brandhane_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_6100_brandhane_d_6100_placering" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6100_placering" table="fkg.t_6100_brandhane">
+		<columns names="placering_kode" ref-type="src-columns"/>
+		<columns names="placering_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_6100_brandhane_d_basis_funktionsstatus_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_funktionsstatus" table="fkg.t_6100_brandhane">
+		<columns names="funktionsstatus_kode" ref-type="src-columns"/>
+		<columns names="funktionsstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_6100_brandhane_generel" type="relfk"
+	 src-table="fkg.t_6100_brandhane"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6100_brandhane_d_6100_brandhane" type="relfk"
+	 src-table="fkg.t_6100_brandhane"
+	 dst-table="fkg.d_6100_brandhane"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6100_brandhane_d_6100_placering" type="relfk"
+	 src-table="fkg.t_6100_brandhane"
+	 dst-table="fkg.d_6100_placering"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6100_brandhane_d_basis_funktionsstatus" type="relfk"
+	 src-table="fkg.t_6100_brandhane"
+	 dst-table="fkg.d_basis_funktionsstatus"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_6102_redvej_type" oids="false">
+	<schema name="fkg"/>
+	<position x="3029.29" y="1652.14"/>
+	<column name="redvej_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="redvej_type" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6102_redvej_type_pk" type="pk-constr" factor="10" table="fkg.d_6102_redvej_type">
+		<columns names="redvej_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_6102_redn_vej" oids="false">
+	<schema name="fkg"/>
+	<position x="2547.86" y="1600.71"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="redvej_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="redn_underomr">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="bygn_kompleks">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="byg_sag_nr" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character varying" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_6102_redningsvej_pk" type="pk-constr" factor="10" table="fkg.t_6102_redn_vej">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_6102_redningsvej_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6102_redn_vej">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_6102_redningsvej_d_6102_redvej_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6102_redvej_type" table="fkg.t_6102_redn_vej">
+		<columns names="redvej_type_kode" ref-type="src-columns"/>
+		<columns names="redvej_type_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_6102_redningsvej_generel" type="relfk"
+	 src-table="fkg.t_6102_redn_vej"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6102_redningsvej_d_6102_redvej_type" type="relfk"
+	 src-table="fkg.t_6102_redn_vej"
+	 dst-table="fkg.d_6102_redvej_type"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5001_maalest_type" oids="true">
+	<schema name="fkg"/>
+	<position x="500" y="1220"/>
+	<column name="maalest_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="maalest_type" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="varchar"/>
+	</column>
+	<constraint name="d_5001_maalest_type_pk" type="pk-constr" factor="10" table="fkg.d_5001_maalest_type">
+		<columns names="maalest_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5001_maalest" oids="true">
+	<schema name="fkg"/>
+	<position x="20" y="1220"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="stationsnr" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="lokalitet">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="maalest_type_kode">
+		<type name="integer"/>
+	</column>
+	<column name="ejerstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="dvfi_bedoemmelse_kode">
+		<type name="integer"/>
+	</column>
+	<column name="dmu_nr">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5001_maalest_pk" type="pk-constr" factor="10" table="fkg.t_5001_maalest">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5001_maalest_d_5001_maalest_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5001_maalest_type" table="fkg.t_5001_maalest">
+		<columns names="maalest_type_kode" ref-type="src-columns"/>
+		<columns names="maalest_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5001_maalest_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5001_maalest">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5001_maalest_d_basisdvfi_bedoemmelse_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_dvfi_bedoemmelse" table="fkg.t_5001_maalest">
+		<columns names="dvfi_bedoemmelse_kode" ref-type="src-columns"/>
+		<columns names="dvfi_bedoemmelse_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5001_maalest_d_basis_ejerstatus_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5001_maalest">
+		<columns names="ejerstatus_kode" ref-type="src-columns"/>
+		<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5001_maalest_d_5001_maalest_type" type="relfk"
+	 src-table="fkg.t_5001_maalest"
+	 dst-table="fkg.d_5001_maalest_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5001_maalest_generel" type="relfk"
+	 src-table="fkg.t_5001_maalest"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5001_maalest_d_basis_dvfi_bedoemmelse" type="relfk"
+	 src-table="fkg.t_5001_maalest"
+	 dst-table="fkg.d_basis_dvfi_bedoemmelse"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5001_maalest_d_basis_ejerstatus" type="relfk"
+	 src-table="fkg.t_5001_maalest"
+	 dst-table="fkg.d_basis_ejerstatus"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5002_spaerring" oids="true">
+	<schema name="fkg"/>
+	<position x="497" y="1394"/>
+	<column name="spaerring_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="spaerring_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5002_spaerring_pk" type="pk-constr" factor="10" table="fkg.d_5002_spaerring">
+		<columns names="spaerring_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5002_passage" oids="true">
+	<schema name="fkg"/>
+	<position x="503" y="1510"/>
+	<column name="passage_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="passage" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5002_passage_pk" type="pk-constr" factor="10" table="fkg.d_5002_passage">
+		<columns names="passage_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5002_faunasp" oids="true">
+	<schema name="fkg"/>
+	<position x="14" y="1413"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="spaerring_nr">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="spaerring_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="passage_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="lokalitet">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vandloebsystem">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="saneret_aar">
+		<type name="integer"/>
+	</column>
+	<column name="prioritet">
+		<type name="integer"/>
+	</column>
+	<column name="passage_ansvarlig">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5002_faunasp_pk" type="pk-constr" factor="10" table="fkg.t_5002_faunasp">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5002_faunasp_d_5002_spaerring_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5002_spaerring" table="fkg.t_5002_faunasp">
+		<columns names="spaerring_type_kode" ref-type="src-columns"/>
+		<columns names="spaerring_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5002_faunasp_d_5002_passage_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5002_passage" table="fkg.t_5002_faunasp">
+		<columns names="passage_kode" ref-type="src-columns"/>
+		<columns names="passage_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5002_faunasp_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5002_faunasp">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5002_faunasp_d_5002_spaerring" type="relfk"
+	 src-table="fkg.t_5002_faunasp"
+	 dst-table="fkg.d_5002_spaerring"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5002_faunasp_d_5002_passage" type="relfk"
+	 src-table="fkg.t_5002_faunasp"
+	 dst-table="fkg.d_5002_passage"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5002_faunasp_generel" type="relfk"
+	 src-table="fkg.t_5002_faunasp"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5003_ledn_type" oids="true">
+	<schema name="fkg"/>
+	<position x="502" y="1661"/>
+	<column name="ledn_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ledn_type" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5003_ledn_type_pk" type="pk-constr" factor="100" table="fkg.d_5003_ledn_type">
+		<columns names="ledn_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5003_klasse" oids="true">
+	<schema name="fkg"/>
+	<position x="501" y="1764"/>
+	<column name="klasse_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="klasse" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5003_klasse_pk" type="pk-constr" factor="100" table="fkg.d_5003_klasse">
+		<columns names="klasse_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5003_draenledn" oids="true">
+	<schema name="fkg"/>
+	<position x="17.1429" y="1617.86"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="ledn_nr">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="ledn_type_kode">
+		<type name="integer"/>
+	</column>
+	<column name="klasse_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="anlaeg_aar">
+		<type name="integer"/>
+	</column>
+	<column name="dybde">
+		<type name="double precision"/>
+	</column>
+	<column name="dimension">
+		<type name="integer"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5003_draenledn_pk" type="pk-constr" factor="100" table="fkg.t_5003_draenledn">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5003_draenledn_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5003_draenledn">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5003_draenledn_d_5003_ledn_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5003_ledn_type" table="fkg.t_5003_draenledn">
+		<columns names="ledn_type_kode" ref-type="src-columns"/>
+		<columns names="ledn_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5003_draenledn_d_5003_klasse_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5003_klasse" table="fkg.t_5003_draenledn">
+		<columns names="klasse_kode" ref-type="src-columns"/>
+		<columns names="klasse_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5003_draenledn_generel" type="relfk"
+	 src-table="fkg.t_5003_draenledn"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5003_draenledn_d_5003_ledn_type" type="relfk"
+	 src-table="fkg.t_5003_draenledn"
+	 dst-table="fkg.d_5003_ledn_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5003_draenledn_d_5003_klasse" type="relfk"
+	 src-table="fkg.t_5003_draenledn"
+	 dst-table="fkg.d_5003_klasse"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5004_omr_type" oids="true">
+	<schema name="fkg"/>
+	<position x="505" y="1893"/>
+	<column name="omr_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="omr_type" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5004_omr_type_pk" type="pk-constr" factor="100" table="fkg.d_5004_omr_type">
+		<columns names="omr_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5004_draenomr" oids="true">
+	<schema name="fkg"/>
+	<position x="24" y="1825"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="omr_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="omr_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="anlaeg_aar">
+		<type name="integer"/>
+	</column>
+	<column name="projnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5004_draenomr_pk" type="pk-constr" factor="100" table="fkg.t_5004_draenomr">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5004_draenomr_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5004_draenomr">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5004_draenomr_d_5004_omr_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5004_omr_type" table="fkg.t_5004_draenomr">
+		<columns names="omr_type_kode" ref-type="src-columns"/>
+		<columns names="omr_type_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5004_draenomr_generel" type="relfk"
+	 src-table="fkg.t_5004_draenomr"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5004_draenomr_d_5004_omr_type" type="relfk"
+	 src-table="fkg.t_5004_draenomr"
+	 dst-table="fkg.d_5004_omr_type"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5005_maalsaetning" oids="true">
+	<schema name="fkg"/>
+	<position x="497" y="2042"/>
+	<column name="maalsaetning_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="maalsaetning" not-null="true">
+		<type name="character varying" length="60"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5005_maalsaetning_pk" type="pk-constr" factor="100" table="fkg.d_5005_maalsaetning">
+		<columns names="maalsaetning_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5005_soe_type" oids="true">
+	<schema name="fkg"/>
+	<position x="499" y="2147"/>
+	<column name="soe_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="soe_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5005_soe_type_pk" type="pk-constr" factor="100" table="fkg.d_5005_soe_type">
+		<columns names="soe_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5005_habitat_type" oids="true">
+	<schema name="fkg"/>
+	<position x="497" y="2254"/>
+	<column name="habitat_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="habitat_type" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5005_habitat_type_pk" type="pk-constr" factor="100" table="fkg.d_5005_habitat_type">
+		<columns names="habitat_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5005_soe" oids="true">
+	<schema name="fkg"/>
+	<position x="15.2857" y="2025.43"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="soe_navn">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="dmu_ref">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="soe_nr">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="maalsaetning_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="soe_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="habitat_type_kode">
+		<type name="integer"/>
+	</column>
+	<column name="trussel_vand_kode">
+		<type name="integer"/>
+	</column>
+	<column name="sejlads">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="tilstand">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="opholdstid">
+		<type name="double precision"/>
+	</column>
+	<column name="volumen">
+		<type name="double precision"/>
+	</column>
+	<column name="fot_id">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5005_soe_pk" type="pk-constr" factor="100" table="fkg.t_5005_soe">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5005_soe_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5005_soe">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5005_soe_d_5005_maalsaetning_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5005_maalsaetning" table="fkg.t_5005_soe">
+		<columns names="maalsaetning_kode" ref-type="src-columns"/>
+		<columns names="maalsaetning_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5005_soe_d_5005_soe_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5005_soe_type" table="fkg.t_5005_soe">
+		<columns names="soe_type_kode" ref-type="src-columns"/>
+		<columns names="soe_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5005_soe_d_5005_habitat_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5005_habitat_type" table="fkg.t_5005_soe">
+		<columns names="habitat_type_kode" ref-type="src-columns"/>
+		<columns names="habitat_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5005_soe_d_basis_trussel_vand_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_trussel_vand" table="fkg.t_5005_soe">
+		<columns names="trussel_vand_kode" ref-type="src-columns"/>
+		<columns names="trussel_vand_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5005_soe_generel" type="relfk"
+	 src-table="fkg.t_5005_soe"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_d_5005_maalsaetning" type="relfk"
+	 src-table="fkg.t_5005_soe"
+	 dst-table="fkg.d_5005_maalsaetning"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_d_5005_soe_type" type="relfk"
+	 src-table="fkg.t_5005_soe"
+	 dst-table="fkg.d_5005_soe_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_d_5005_habitat_type" type="relfk"
+	 src-table="fkg.t_5005_soe"
+	 dst-table="fkg.d_5005_habitat_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_d_basis_trussel_vand" type="relfk"
+	 src-table="fkg.t_5005_soe"
+	 dst-table="fkg.d_basis_trussel_vand"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5006_dybdekurv" oids="true">
+	<schema name="fkg"/>
+	<position x="15" y="2295.86"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="soe_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="dmu_ref">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="soe_nr">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="dybde" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="lower" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="upper" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="maalt_aar">
+		<type name="integer"/>
+	</column>
+	<column name="opm_metode">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5006_dybdekurv_pk" type="pk-constr" factor="100" table="fkg.t_5006_dybdekurv">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5006_dybdekurv_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5006_dybdekurv">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5005_dybdekurv_generel" type="relfk"
+	 src-table="fkg.t_5006_dybdekurv"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5007_opl" oids="true">
+	<schema name="fkg"/>
+	<position x="500" y="2469.86"/>
+	<column name="opl_nr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="opl_navn" not-null="true">
+		<type name="varchar" length="128"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="varchar"/>
+	</column>
+	<constraint name="d_5007_opl_pk" type="pk-constr" factor="100" table="fkg.d_5007_opl">
+		<columns names="opl_nr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5007_opl_type" oids="true">
+	<schema name="fkg"/>
+	<position x="507" y="2575.86"/>
+	<column name="vandl_opl_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vandl_opl_type" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5007_opl_type_pk" type="pk-constr" factor="100" table="fkg.d_5007_opl_type">
+		<columns names="vandl_opl_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5007_vandl_opl" oids="true">
+	<schema name="fkg"/>
+	<position x="14.5714" y="2515.57"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="vandloeb_nr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="dmu_ref">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vandl_opl_nr">
+		<type name="integer" length="16"/>
+	</column>
+	<column name="opl_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="hydro_ref">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5007_vandl_opl_pk" type="pk-constr" factor="100" table="fkg.t_5007_vandl_opl">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5007_vandl_opl_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5007_vandl_opl">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5007_vandl_opl_d_5007_opl_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5007_opl" table="fkg.t_5007_vandl_opl">
+		<columns names="vandl_opl_nr" ref-type="src-columns"/>
+		<columns names="opl_nr" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5007_vandl_opl_d_5007_opl_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5007_opl_type" table="fkg.t_5007_vandl_opl">
+		<columns names="opl_type_kode" ref-type="src-columns"/>
+		<columns names="vandl_opl_type_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5007_vandl_opl_generel" type="relfk"
+	 src-table="fkg.t_5007_vandl_opl"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5007_vandl_opl_d_5007_opl" type="relfk"
+	 src-table="fkg.t_5007_vandl_opl"
+	 dst-table="fkg.d_5007_opl"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5007_vandl_opl_d_5007_opl_type" type="relfk"
+	 src-table="fkg.t_5007_vandl_opl"
+	 dst-table="fkg.d_5007_opl_type"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5008_opl" oids="true">
+	<schema name="fkg"/>
+	<position x="477.16" y="2693.89"/>
+	<column name="soe_opl_nr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="soeopl_navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5008_opl_pk" type="pk-constr" factor="10" table="fkg.d_5008_opl">
+		<columns names="soe_opl_nr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5008_soe_opl" oids="true">
+	<schema name="fkg"/>
+	<position x="12.6299" y="2686.79"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="dmu_ref">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="soe_opl_nr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="soe_nr">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="hydro_ref">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5008_soe_opl_pk" type="pk-constr" factor="100" table="fkg.t_5008_soe_opl">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5008_soe_opl_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5008_soe_opl">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5008_soe_opl_d_5008_opl_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5008_opl" table="fkg.t_5008_soe_opl">
+		<columns names="soe_opl_nr" ref-type="src-columns"/>
+		<columns names="soe_opl_nr" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5008_soe_opl_generel" type="relfk"
+	 src-table="fkg.t_5008_soe_opl"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5008_soe_opl_d_5008_opl" type="relfk"
+	 src-table="fkg.t_5008_soe_opl"
+	 dst-table="fkg.d_5008_opl"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5009_lag_type" oids="true">
+	<schema name="fkg"/>
+	<position x="470.898" y="2829.25"/>
+	<column name="lag_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="lag_type" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5009_lag_type_pk" type="pk-constr" factor="100" table="fkg.d_5009_lag_type">
+		<columns names="lag_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5009_pumpelag" oids="true">
+	<schema name="fkg"/>
+	<position x="6.68847" y="2870.25"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="lag_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="lag_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ejerstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="vandloebsystem">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5009_pumpelag_pk" type="pk-constr" factor="100" table="fkg.t_5009_pumpelag">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5009_pumpelag_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5009_pumpelag">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5009_pumpelag_d_5009_lag_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5009_lag_type" table="fkg.t_5009_pumpelag">
+		<columns names="lag_type_kode" ref-type="src-columns"/>
+		<columns names="lag_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5009_pumpelag_d_basis_erjerstatus_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5009_pumpelag">
+		<columns names="ejerstatus_kode" ref-type="src-columns"/>
+		<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5009_pumpelag_generel" type="relfk"
+	 src-table="fkg.t_5009_pumpelag"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5009_pumpelag_d_5009_lag_type" type="relfk"
+	 src-table="fkg.t_5009_pumpelag"
+	 dst-table="fkg.d_5009_lag_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5009_pumpelag_d_basis_ejerstatus" type="relfk"
+	 src-table="fkg.t_5009_pumpelag"
+	 dst-table="fkg.d_basis_ejerstatus"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5010_element_type" oids="true">
+	<schema name="fkg"/>
+	<position x="483.538" y="3011.35"/>
+	<column name="element_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="element" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5010_element_type_pk" type="pk-constr" factor="100" table="fkg.d_5010_element_type">
+		<columns names="element_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5010_vandl_elm" oids="true">
+	<schema name="fkg"/>
+	<position x="11.2013" y="3032.97"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="element_nr">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="element_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="lokalitet">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vstation">
+		<type name="double precision"/>
+	</column>
+	<column name="vandloebsystem" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="anlagt_aar">
+		<type name="integer"/>
+	</column>
+	<column name="saneret_aar">
+		<type name="integer"/>
+	</column>
+	<column name="tilstand_kode">
+		<type name="integer"/>
+	</column>
+	<column name="broend_data">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="toemningsfrekvens">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="adgangsforhold">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5010_vandl_elm_pk" type="pk-constr" factor="100" table="fkg.t_5010_vandl_elm">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5010_vandl_elm_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5010_vandl_elm">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5010_vandl_elm_d_5010_element_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5010_element_type" table="fkg.t_5010_vandl_elm">
+		<columns names="element_kode" ref-type="src-columns"/>
+		<columns names="element_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5010_vandl_elm_d_basis_tilstand_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_tilstand" table="fkg.t_5010_vandl_elm">
+		<columns names="tilstand_kode" ref-type="src-columns"/>
+		<columns names="tilstand_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5010_vandl_elm_generel" type="relfk"
+	 src-table="fkg.t_5010_vandl_elm"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5010_vandl_elm_d_5010_element_type" type="relfk"
+	 src-table="fkg.t_5010_vandl_elm"
+	 dst-table="fkg.d_5010_element_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5010_vandl_elm_d_basis_tilstand" type="relfk"
+	 src-table="fkg.t_5010_vandl_elm"
+	 dst-table="fkg.d_basis_tilstand"
+	 src-required="false" dst-required="false"/>
+
+<textbox name="licensing-link" font-size="9">
+	<position x="58.5714" y="122.857"/>
+	<comment><![CDATA[For Licensing and other information see LICENSE.TXT or github.com/OpenFKG/fkg-postgresql]]></comment>
+</textbox>
+
+<table name="d_5105_kaer_type" oids="false">
+	<schema name="fkg"/>
+	<position x="1655.47" y="1448.43"/>
+	<column name="kaer_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="kaer_type" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5105_kaer_type_pk" type="pk-constr" factor="100" table="fkg.d_5105_kaer_type">
+		<columns names="kaer_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5105_rig_fattig" oids="false">
+	<schema name="fkg"/>
+	<position x="1042.47" y="1443.43"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="stedid">
+		<type name="integer"/>
+	</column>
+	<column name="natura_2000">
+		<type name="integer"/>
+	</column>
+	<column name="kaer_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25835"/>
+	</column>
+	<constraint name="t_5105_rig_fattig_pk" type="pk-constr" factor="100" table="fkg.t_5105_rig_fattig">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5105_rig_fattig_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5105_rig_fattig">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5105_rig_fattig_d_5105_kaer_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5105_kaer_type" table="fkg.t_5105_rig_fattig">
+		<columns names="kaer_type_kode" ref-type="src-columns"/>
+		<columns names="kaer_type_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5105_rig_fattig_generel" type="relfk"
+	 src-table="fkg.t_5105_rig_fattig"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5105_rig_fattig_d_5105_kaer_type" type="relfk"
+	 src-table="fkg.t_5105_rig_fattig"
+	 dst-table="fkg.d_5105_kaer_type"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5106_pleje_type" oids="false">
+	<schema name="fkg"/>
+	<position x="1664.54" y="1629.5"/>
+	<column name="pleje_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="pleje_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="pleje_type_kode_pk" type="pk-constr" factor="100" table="fkg.d_5106_pleje_type">
+		<columns names="pleje_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5106_faciliteter" oids="false">
+	<schema name="fkg"/>
+	<position x="1679.54" y="1790.5"/>
+	<column name="faciliteter_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="faciliteter" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5106_faciliteter_pk" type="pk-constr" factor="100" table="fkg.d_5106_faciliteter">
+		<columns names="faciliteter_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5106_nat_pl" oids="false">
+	<schema name="fkg"/>
+	<position x="1044.47" y="1639.43"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="pleje_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="omr_nr">
+		<type name="integer"/>
+	</column>
+	<column name="omr_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="fortidsmindenr">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="faciliteter_kode">
+		<type name="integer"/>
+	</column>
+	<column name="aftale_type">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="aftale_nr">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="ejerstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="projekt_type">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="dyrehold" not-null="true">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="antal_moder">
+		<type name="integer"/>
+	</column>
+	<column name="chr">
+		<type name="integer"/>
+	</column>
+	<column name="navn">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="telefon">
+		<type name="integer"/>
+	</column>
+	<column name="mobil">
+		<type name="integer"/>
+	</column>
+	<column name="mail">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="ajour">
+		<type name="date"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5106_nat_pl_pk" type="pk-constr" factor="100" table="fkg.t_5106_nat_pl">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5106_nat_pl_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5106_nat_pl">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5106_nat_pl_d_5106_pleje_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5106_pleje_type" table="fkg.t_5106_nat_pl">
+		<columns names="pleje_type_kode" ref-type="src-columns"/>
+		<columns names="pleje_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5106_nat_pl_d_5106_faciliteter_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5106_faciliteter" table="fkg.t_5106_nat_pl">
+		<columns names="faciliteter_kode" ref-type="src-columns"/>
+		<columns names="faciliteter_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5106_nat_pl_d_basis_ejerstatus" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5106_nat_pl">
+		<columns names="ejerstatus_kode" ref-type="src-columns"/>
+		<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5106_nat_pl_generel" type="relfk"
+	 src-table="fkg.t_5106_nat_pl"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5106_nat_pl_d_5106_pleje_type" type="relfk"
+	 src-table="fkg.t_5106_nat_pl"
+	 dst-table="fkg.d_5106_pleje_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5106_nat_pl_d_5106_faciliteter" type="relfk"
+	 src-table="fkg.t_5106_nat_pl"
+	 dst-table="fkg.d_5106_faciliteter"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5106_nat_pl_d_basis_ejerstatus" type="relfk"
+	 src-table="fkg.t_5106_nat_pl"
+	 dst-table="fkg.d_basis_ejerstatus"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5108_groent_part" oids="false">
+	<schema name="fkg"/>
+	<position x="1041.26" y="2300.36"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="navn" not-null="true">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="kontakt_navn">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="kontakt_opl">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="deltager" not-null="true">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="formaal">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="note">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5108_groent_part_pk" type="pk-constr" factor="100" table="fkg.t_5108_groent_part">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5108_groent_part_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5108_groent_part">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5108_groent_part_generel" type="relfk"
+	 src-table="fkg.t_5108_groent_part"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5300_genopd_ret" oids="false">
+	<schema name="fkg"/>
+	<position x="2101" y="1245.67"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="funktion" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="planlagt_aktivitet" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="genoptaget" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="versions_id_pk" type="pk-constr" factor="100" table="fkg.t_5300_genopd_ret">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5300_genopd_ret_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5300_genopd_ret">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5300_genopd_ret_generel" type="relfk"
+	 src-table="fkg.t_5300_genopd_ret"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5400_affalds_type" oids="false">
+	<schema name="fkg"/>
+	<position x="613.667" y="3656"/>
+	<column name="affaldstype_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="affaldstype" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5400_affalds_type_pk" type="pk-constr" factor="100" table="fkg.d_5400_affalds_type">
+		<columns names="affaldstype_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5400_affalds_dis" oids="false">
+	<schema name="fkg"/>
+	<position x="14.0833" y="3595.42"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="affalddistrikt_nr">
+		<type name="integer"/>
+	</column>
+	<column name="affalddistrikt_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="affaldstype_kode">
+		<type name="integer"/>
+	</column>
+	<column name="afh_frekvens">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="afh_dag">
+		<type name="character varying" length="8"/>
+	</column>
+	<column name="renovatoer_cvr">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5400_affalds_dis_pk" type="pk-constr" factor="100" table="fkg.t_5400_affalds_dis">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5400_affalds_dis_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5400_affalds_dis">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5400_affalds_dis_d_5400_affalds_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5400_affalds_type" table="fkg.t_5400_affalds_dis">
+		<columns names="affaldstype_kode" ref-type="src-columns"/>
+		<columns names="affaldstype_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5400_affalds_dis_generel" type="relfk"
+	 src-table="fkg.t_5400_affalds_dis"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5400_affalds_dis_d_5400_affalds_type" type="relfk"
+	 src-table="fkg.t_5400_affalds_dis"
+	 dst-table="fkg.d_5400_affalds_type"
+	 src-required="false" dst-required="false"/>
+
+<table name="d_5200_affald" oids="false">
+	<schema name="fkg"/>
+	<position x="2193.33" y="2606.74"/>
+	<column name="affald_prod_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="affald_prod" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5200_affald_pk" type="pk-constr" factor="10" table="fkg.d_5200_affald">
+		<columns names="affald_prod_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5401_gs_type" oids="false">
+	<schema name="fkg"/>
+	<position x="623.833" y="3883.75"/>
+	<column name="gs_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="gs_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5401_gs_type_pk" type="pk-constr" factor="10" table="fkg.d_5401_gs_type">
+		<columns names="gs_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5402_gc_type" oids="false">
+	<schema name="fkg"/>
+	<position x="624.167" y="4144"/>
+	<column name="gc_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="gc_type" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5402_gc_type_pk" type="pk-constr" factor="10" table="fkg.d_5402_gc_type">
+		<columns names="gc_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5506_anlaegtype" oids="false">
+	<schema name="fkg"/>
+	<position x="1796.89" y="3213.5"/>
+	<column name="anlaeg_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="anlaeg_type" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5506_anlaegtype_pk" type="pk-constr" factor="10" table="fkg.d_5506_anlaegtype">
+		<columns names="anlaeg_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5600_rute" oids="false">
+	<schema name="fkg"/>
+	<position x="20" y="4949"/>
+	<column name="rute_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="rute" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5600_rute_pk" type="pk-constr" factor="10" table="fkg.d_5600_rute">
+		<columns names="rute_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5601_hasti_type" oids="false">
+	<schema name="fkg"/>
+	<position x="20" y="5035"/>
+	<column name="hasti_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="hasti_type" not-null="true">
+		<type name="character varying" length="55"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5601_hasti_type_pk" type="pk-constr" factor="10" table="fkg.d_5601_hasti_type">
+		<columns names="hasti_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5602_p_tid" oids="false">
+	<schema name="fkg"/>
+	<position x="20" y="5126"/>
+	<column name="p_tid_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="p_tid" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5602_p_tid_pk" type="pk-constr" factor="10" table="fkg.d_5602_p_tid">
+		<columns names="p_tid_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5602_p_type" oids="false">
+	<schema name="fkg"/>
+	<position x="21" y="5212"/>
+	<column name="p_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="p_type" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5602_p_type_pk" type="pk-constr" factor="10" table="fkg.d_5602_p_type">
+		<columns names="p_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5604_begr_type" oids="false">
+	<schema name="fkg"/>
+	<position x="20" y="5302"/>
+	<column name="begr_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begr_type" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5604_begr_type_pk" type="pk-constr" factor="10" table="fkg.d_5604_begr_type">
+		<columns names="begr_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5605_dekl_type" oids="false">
+	<schema name="fkg"/>
+	<position x="18" y="5392"/>
+	<column name="dekl_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="dekl_type" not-null="true">
+		<type name="character varying" length="21"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5605_dekl_type_pk" type="pk-constr" factor="10" table="fkg.d_5605_dekl_type">
+		<columns names="dekl_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5606_inventar_type" oids="false">
+	<schema name="fkg"/>
+	<position x="18" y="5478"/>
+	<column name="inventar_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="inventar_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5606_inventar_type_pk" type="pk-constr" factor="10" table="fkg.d_5606_inventar_type">
+		<columns names="inventar_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5700_forening_type" oids="false">
+	<schema name="fkg"/>
+	<position x="19" y="5570"/>
+	<column name="forening_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="forening_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5700_forening_type_pk" type="pk-constr" factor="10" table="fkg.d_5700_forening_type">
+		<columns names="forening_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5700_adr_beskyt" oids="false">
+	<schema name="fkg"/>
+	<position x="19" y="5661"/>
+	<column name="gf_adr_beskyt_kode" not-null="true">
+		<type name="character"/>
+	</column>
+	<column name="gf_adr_beskyt" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5700_adr_beskyt_pk" type="pk-constr" factor="10" table="fkg.d_5700_adr_beskyt">
+		<columns names="gf_adr_beskyt_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5705_udlejning" oids="false">
+	<schema name="fkg"/>
+	<position x="18" y="5752"/>
+	<column name="udlejning_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="udlejning" not-null="true">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5705_udlejning_pk" type="pk-constr" factor="10" table="fkg.d_5705_udlejning">
+		<columns names="udlejning_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5706_havn_type" oids="false">
+	<schema name="fkg"/>
+	<position x="18" y="5846"/>
+	<column name="havn_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="havn_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5706_havn_type_pk" type="pk-constr" factor="10" table="fkg.d_5706_havn_type">
+		<columns names="havn_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5707_grund_type" oids="false">
+	<schema name="fkg"/>
+	<position x="16" y="5938"/>
+	<column name="grund_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="grund_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5707_grund_type_pk" type="pk-constr" factor="10" table="fkg.d_5707_grund_type">
+		<columns names="grund_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5707_salg_status" oids="false">
+	<schema name="fkg"/>
+	<position x="14" y="6020"/>
+	<column name="salg_status_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="salg_status" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5707_salg_status_pk" type="pk-constr" factor="10" table="fkg.d_5707_salg_status">
+		<columns names="salg_status_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5708_institution_type" oids="false">
+	<schema name="fkg"/>
+	<position x="14" y="6105"/>
+	<column name="institution_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="institution_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5708_institution_type_pk" type="pk-constr" factor="10" table="fkg.d_5708_institution_type">
+		<columns names="institution_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5709_distrikt_type" oids="false">
+	<schema name="fkg"/>
+	<position x="12" y="6191"/>
+	<column name="distrikt_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="distrikt_type" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5709_distrikt_type_pk" type="pk-constr" factor="10" table="fkg.d_5709_distrikt_type">
+		<columns names="distrikt_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5800_facilitet" oids="false">
+	<schema name="fkg"/>
+	<position x="3021.14" y="1958.43"/>
+	<column name="facilitet_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="facilitet_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5800_facilitet_pk" type="pk-constr" factor="10" table="fkg.d_5800_facilitet">
+		<columns names="facilitet_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5802_facilitet" oids="false">
+	<schema name="fkg"/>
+	<position x="2992.43" y="2184"/>
+	<column name="facilitet_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="facilitet_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5802_facilitet_pk" type="pk-constr" factor="10" table="fkg.d_5802_facilitet">
+		<columns names="facilitet_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5901_gravestatus" oids="false">
+	<schema name="fkg"/>
+	<position x="1901.5" y="4007.71"/>
+	<column name="gravstatus_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="gravstatus" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5901_gravestatus_pk" type="pk-constr" factor="10" table="fkg.d_5901_gravestatus">
+		<columns names="gravstatus_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5901_raastof_type" oids="false">
+	<schema name="fkg"/>
+	<position x="1902.57" y="4122.43"/>
+	<column name="raastof_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="raastof_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5901_raastof_type_pk" type="pk-constr" factor="10" table="fkg.d_5901_raastof_type">
+		<columns names="raastof_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5902_vaeske_type" oids="false">
+	<schema name="fkg"/>
+	<position x="1888.49" y="4304.1"/>
+	<column name="vaesketype_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vaesketype" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_5902_vaeske_type_pk" type="pk-constr" factor="10" table="fkg.d_5902_vaeske_type">
+		<columns names="vaesketype_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6000_kotesystem" oids="false">
+	<schema name="fkg"/>
+	<position x="8" y="6705"/>
+	<column name="kotesystem_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="kotesystem" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6000_kotesystem_pk" type="pk-constr" factor="10" table="fkg.d_6000_kotesystem">
+		<columns names="kotesystem_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6003_zone_type" oids="false">
+	<schema name="fkg"/>
+	<position x="8" y="6790"/>
+	<column name="zone_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="zone_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6003_zone_type_pk" type="pk-constr" factor="10" table="fkg.d_6003_zone_type">
+		<columns names="zone_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6101_beskyt_rum" oids="false">
+	<schema name="fkg"/>
+	<position x="9" y="6886"/>
+	<column name="beskyt_rum_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="beskyt_rum" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6101_beskyt_rum_pk" type="pk-constr" factor="10" table="fkg.d_6101_beskyt_rum">
+		<columns names="beskyt_rum_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6104_risikotype" oids="false">
+	<schema name="fkg"/>
+	<position x="11" y="6957"/>
+	<column name="risikotype_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="risikotype" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6104_risikotype_pk" type="pk-constr" factor="10" table="fkg.d_6104_risikotype">
+		<columns names="risikotype_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6104_brandhaem" oids="false">
+	<schema name="fkg"/>
+	<position x="9" y="7053"/>
+	<column name="brandhaem_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="brandhaem" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6104_brandhaem_pk" type="pk-constr" factor="10" table="fkg.d_6104_brandhaem">
+		<columns names="brandhaem_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6111_tilladelse" oids="false">
+	<schema name="fkg"/>
+	<position x="9" y="7148"/>
+	<column name="tilladelse_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tilladelse_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6111_tilladelse_pk" type="pk-constr" factor="10" table="fkg.d_6111_tilladelse">
+		<columns names="tilladelse_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6112_depottype" oids="false">
+	<schema name="fkg"/>
+	<position x="11" y="7237"/>
+	<column name="depottype_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="depottype" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6112_depottype_pk" type="pk-constr" factor="10" table="fkg.d_6112_depottype">
+		<columns names="depottype_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6115_afbr_type" oids="false">
+	<schema name="fkg"/>
+	<position x="12" y="7339"/>
+	<column name="afbr_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="afbr_type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6115_afbr_type_pk" type="pk-constr" factor="10" table="fkg.d_6115_afbr_type">
+		<columns names="afbr_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6116_strandtype" oids="false">
+	<schema name="fkg"/>
+	<position x="12" y="7446"/>
+	<column name="strandtype_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="strandtype" not-null="true">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6116_strandtype_pk" type="pk-constr" factor="10" table="fkg.d_6116_strandtype">
+		<columns names="strandtype_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6116_esi_klasse" oids="false">
+	<schema name="fkg"/>
+	<position x="16" y="7571"/>
+	<column name="esi_klasse_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="esi_klasse" not-null="true">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6116_esi_klasse_pk" type="pk-constr" factor="10" table="fkg.d_6116_esi_klasse">
+		<columns names="esi_klasse_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6117_indsatstype" oids="false">
+	<schema name="fkg"/>
+	<position x="20" y="7691"/>
+	<column name="indsatstype_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="indsatstype" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6117_indsatstype_pk" type="pk-constr" factor="10" table="fkg.d_6117_indsatstype">
+		<columns names="indsatstype_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6200_geologi" oids="false">
+	<schema name="fkg"/>
+	<position x="22" y="7798"/>
+	<column name="geologi_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="geologi" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6200_geologi_pk" type="pk-constr" factor="10" table="fkg.d_6200_geologi">
+		<columns names="geologi_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6200_jordtype" oids="false">
+	<schema name="fkg"/>
+	<position x="24" y="7922"/>
+	<column name="jordtype_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="jordtype" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6200_jordtype_pk" type="pk-constr" factor="10" table="fkg.d_6200_jordtype">
+		<columns names="jordtype_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6200_terraen" oids="false">
+	<schema name="fkg"/>
+	<position x="22" y="8045"/>
+	<column name="terraen_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="terraen" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6200_terraen_pk" type="pk-constr" factor="10" table="fkg.d_6200_terraen">
+		<columns names="terraen_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6200_kompleksitet" oids="false">
+	<schema name="fkg"/>
+	<position x="20" y="8184"/>
+	<column name="kompleksitet_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="kompleksitet" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6200_kompleksitet_pk" type="pk-constr" factor="10" table="fkg.d_6200_kompleksitet">
+		<columns names="kompleksitet_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6202_skala" oids="false">
+	<schema name="fkg"/>
+	<position x="22" y="8320"/>
+	<column name="skala_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="skala" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6202_skala_pk" type="pk-constr" factor="10" table="fkg.d_6202_skala">
+		<columns names="skala_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6202_rumlig_afgraensning" oids="false">
+	<schema name="fkg"/>
+	<position x="24" y="8438"/>
+	<column name="rumlig_afgraensning_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="rumlig_afgraensning" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6202_rumlig_afgraensning_pk" type="pk-constr" factor="10" table="fkg.d_6202_rumlig_afgraensning">
+		<columns names="rumlig_afgraensning_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6202_kompleksitet" oids="false">
+	<schema name="fkg"/>
+	<position x="21" y="8594"/>
+	<column name="kompleksitet_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="kompleksitet" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6202_kompleksitet_pk" type="pk-constr" factor="10" table="fkg.d_6202_kompleksitet">
+		<columns names="kompleksitet_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6202_struktur" oids="false">
+	<schema name="fkg"/>
+	<position x="22" y="8722"/>
+	<column name="struktur_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="struktur" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6202_struktur_pk" type="pk-constr" factor="10" table="fkg.d_6202_struktur">
+		<columns names="struktur_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6202_visuel_uro" oids="false">
+	<schema name="fkg"/>
+	<position x="22" y="8852"/>
+	<column name="visuel_uro_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="visuel_uro" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6202_visuel_uro_pk" type="pk-constr" factor="10" table="fkg.d_6202_visuel_uro">
+		<columns names="visuel_uro_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6202_tidsdybde" oids="false">
+	<schema name="fkg"/>
+	<position x="21" y="8978"/>
+	<column name="tidsdybde_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tidsdybde" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6202_tidsdybde_pk" type="pk-constr" factor="10" table="fkg.d_6202_tidsdybde">
+		<columns names="tidsdybde_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6203_karakterstyrke" oids="false">
+	<schema name="fkg"/>
+	<position x="23" y="9114"/>
+	<column name="karakterstyrke_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="karakterstyrke" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6203_karakterstyrke_pk" type="pk-constr" factor="10" table="fkg.d_6203_karakterstyrke">
+		<columns names="karakterstyrke_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6203_saarbarhed" oids="false">
+	<schema name="fkg"/>
+	<position x="23" y="9253"/>
+	<column name="saarbarhed_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="saarbarhed" not-null="true">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6203_saarbarhed_pk" type="pk-constr" factor="10" table="fkg.d_6203_saarbarhed">
+		<columns names="saarbarhed_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6800_vedlhold_f_type" oids="false">
+	<schema name="fkg"/>
+	<position x="23" y="9386"/>
+	<column name="vedlhold_f_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vedlhold_f_type" not-null="true">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vedlhold_f_type_lable" not-null="true">
+		<type name="character varying" length="6"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6800_vedlhold_f_type_pk" type="pk-constr" factor="10" table="fkg.d_6800_vedlhold_f_type">
+		<columns names="vedlhold_f_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6801_vedlhold_l_type" oids="false">
+	<schema name="fkg"/>
+	<position x="22" y="9507"/>
+	<column name="vedlhold_l_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vedlhold_l_type" not-null="true">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vedlhold_l_type_table" not-null="true">
+		<type name="character varying" length="6"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6801_vedlhold_l_type_pk" type="pk-constr" factor="10" table="fkg.d_6801_vedlhold_l_type">
+		<columns names="vedlhold_l_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6802_groenvedligh_punkt" oids="false">
+	<schema name="fkg"/>
+	<position x="24" y="9609"/>
+	<column name="vedlhold_p_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vedlhold_p_type" not-null="true">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vedlhold_p_type_table" not-null="true">
+		<type name="character varying" length="6"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6802_groenvedligh_punkt_pk" type="pk-constr" factor="10" table="fkg.d_6802_groenvedligh_punkt">
+		<columns names="vedlhold_p_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6803_pg_distrikt" oids="false">
+	<schema name="fkg"/>
+	<position x="26" y="9734"/>
+	<column name="pg_distrikt_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="pg_distrikt" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6803_pg_distrikt_pk" type="pk-constr" factor="10" table="fkg.d_6803_pg_distrikt">
+		<columns names="pg_distrikt_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5401_genbr_st" oids="false">
+	<schema name="fkg"/>
+	<position x="20" y="3838.75"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="gs_navn">
+		<type name="character varying" length="51"/>
+	</column>
+	<column name="gs_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="p_nr">
+		<type name="integer"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5401_genbr_st_pk" type="pk-constr" factor="10" table="fkg.t_5401_genbr_st">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5401_genbr_st_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5401_genbr_st">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5401_genbr_st_d_5401_gs_type" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5401_gs_type" table="fkg.t_5401_genbr_st">
+		<columns names="gs_type_kode" ref-type="src-columns"/>
+		<columns names="gs_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5401_genbr_st_d_basis_postnr_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5401_genbr_st">
+		<columns names="postnr" ref-type="src-columns"/>
+		<columns names="postnr" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5401_genbr_st_d_vejnavn_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5401_genbr_st">
+		<columns names="vejkode" ref-type="src-columns"/>
+		<columns names="vejkode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5401_genbr_st_generel" type="relfk"
+	 src-table="fkg.t_5401_genbr_st"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5401_genbr_st_d_5401_gs_type" type="relfk"
+	 src-table="fkg.t_5401_genbr_st"
+	 dst-table="fkg.d_5401_gs_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5401_genbr_st_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5401_genbr_st"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5401_genbr_st_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5401_genbr_st"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5402_genbr_con" oids="false">
+	<schema name="fkg"/>
+	<position x="26.25" y="4122.5"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="gc_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="model">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="t_frekvens">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="t_dato">
+		<type name="date"/>
+	</column>
+	<column name="links">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5402_genbr_con_pk" type="pk-constr" factor="10" table="fkg.t_5402_genbr_con">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5402_genbr_con_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5402_genbr_con">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5402_genbr_con_d_5402_gc_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5402_gc_type" table="fkg.t_5402_genbr_con">
+		<columns names="gc_type_kode" ref-type="src-columns"/>
+		<columns names="gc_type_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5402_genbr_con_generel" type="relfk"
+	 src-table="fkg.t_5402_genbr_con"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5402_genbr_con_d_5402_gc_type" type="relfk"
+	 src-table="fkg.t_5402_genbr_con"
+	 dst-table="fkg.d_5402_gc_type"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5403_husst_moel" oids="false">
+	<schema name="fkg"/>
+	<position x="31.25" y="4302.5"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="hoejde">
+		<type name="double precision"/>
+	</column>
+	<column name="stoej_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="konsekvenszone">
+		<type name="double precision"/>
+	</column>
+	<column name="sagnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="note">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5403_husst_moel_pk" type="pk-constr" factor="10" table="fkg.t_5403_husst_moel">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5403_husst_moel_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5403_husst_moel">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5403_husst_moel_d_vejnavn_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5403_husst_moel">
+		<columns names="vejkode" ref-type="src-columns"/>
+		<columns names="vejkode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5403_husst_moel_d_basis_postnr_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5403_husst_moel">
+		<columns names="postnr" ref-type="src-columns"/>
+		<columns names="postnr" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5403_husst_moel_generel" type="relfk"
+	 src-table="fkg.t_5403_husst_moel"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5403_husst_moel_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5403_husst_moel"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5403_husst_moel_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5403_husst_moel"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<textbox name="mangel_5403" bold="true" font-size="13">
+	<position x="453.75" y="4327.5"/>
+	<comment><![CDATA[Her mangler FKG at specificere den tilhørende opslagstabel :-(]]></comment>
+</textbox>
+
+<table name="t_5200_aff_prod_udbr" oids="false">
+	<schema name="fkg"/>
+	<position x="1514.82" y="2598.75"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="affald_prod_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="navn" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="ejd_nr">
+		<type name="integer"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="markblok">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="dosering_toerstof">
+		<type name="double precision"/>
+	</column>
+	<column name="dosering_vaadvaegt">
+		<type name="double precision"/>
+	</column>
+	<column name="phosphor_indhold">
+		<type name="double precision"/>
+	</column>
+	<column name="udbringning_aar" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5200_aff_prod_udbr_pk" type="pk-constr" factor="10" table="fkg.t_5200_aff_prod_udbr">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5200_aff_prod_udbr">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_d_5200_affald_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5200_affald" table="fkg.t_5200_aff_prod_udbr">
+		<columns names="affald_prod_kode" ref-type="src-columns"/>
+		<columns names="affald_prod_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_d_basis_postnr_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5200_aff_prod_udbr">
+		<columns names="postnr" ref-type="src-columns"/>
+		<columns names="postnr" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_d_vejnavn_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5200_aff_prod_udbr">
+		<columns names="vejkode" ref-type="src-columns"/>
+		<columns names="vejkode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5200_aff_prod_udbr_generel" type="relfk"
+	 src-table="fkg.t_5200_aff_prod_udbr"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5200_aff_prod_udbr_d_5200_affald" type="relfk"
+	 src-table="fkg.t_5200_aff_prod_udbr"
+	 dst-table="fkg.d_5200_affald"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5200_aff_prod_udbr_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5200_aff_prod_udbr"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5200_aff_prod_udbr_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5200_aff_prod_udbr"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5500_elfors_omr" oids="false">
+	<schema name="fkg"/>
+	<position x="1307.5" y="3015.83"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="net_s_nr">
+		<type name="integer"/>
+	</column>
+	<column name="fs_cvr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="fs_navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5500_elfors_omr_pk" type="pk-constr" factor="10" table="fkg.t_5500_elfors_omr">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5500_elfors_omr_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5500_elfors_omr">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5500_elfors_omr_generel" type="relfk"
+	 src-table="fkg.t_5500_elfors_omr"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5506_spildev_pl_pkt" oids="false">
+	<schema name="fkg"/>
+	<position x="1317.5" y="3208.06"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="anlaeg_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="planstatus_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5506_spildev_pl_pkt_pk" type="pk-constr" factor="10" table="fkg.t_5506_spildev_pl_pkt">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5506_spildev_pl_pkt_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5506_spildev_pl_pkt">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5506_anlaegtype" table="fkg.t_5506_spildev_pl_pkt">
+		<columns names="anlaeg_type_kode" ref-type="src-columns"/>
+		<columns names="anlaeg_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5506_spildev_pl_pkt_d_basis_planstatus_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_planstatus" table="fkg.t_5506_spildev_pl_pkt">
+		<columns names="planstatus_kode" ref-type="src-columns"/>
+		<columns names="planstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5506_spildev_pl_pkt_generel" type="relfk"
+	 src-table="fkg.t_5506_spildev_pl_pkt"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5506_spildev_pl_pkt_d_5506_anlaegtype" type="relfk"
+	 src-table="fkg.t_5506_spildev_pl_pkt"
+	 dst-table="fkg.d_5506_anlaegtype"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5506_spildev_pl_pkt_d_basis_planstatus" type="relfk"
+	 src-table="fkg.t_5506_spildev_pl_pkt"
+	 dst-table="fkg.d_basis_planstatus"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5507_fiberkabel" oids="false">
+	<schema name="fkg"/>
+	<position x="1312.58" y="3357.26"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="fs_cvr">
+		<type name="integer"/>
+	</column>
+	<column name="fs_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="dybde">
+		<type name="double precision"/>
+	</column>
+	<column name="aar_i_jord">
+		<type name="integer"/>
+	</column>
+	<column name="antal_kabler">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5507_fiberkabel_pk" type="pk-constr" factor="10" table="fkg.t_5507_fiberkabel">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5507_fiberkabel_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5507_fiberkabel">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5507_fiberkabel_generel" type="relfk"
+	 src-table="fkg.t_5507_fiberkabel"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5800_fac_pkt" oids="false">
+	<schema name="fkg"/>
+	<position x="2515.71" y="1922.86"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="facilitet_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ejerstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="navn">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5800_fac_pkt_pk" type="pk-constr" factor="10" table="fkg.t_5800_fac_pkt">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5800_fac_pkt">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_d_5800_facilitet_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_facilitet" table="fkg.t_5800_fac_pkt">
+		<columns names="facilitet_type_kode" ref-type="src-columns"/>
+		<columns names="facilitet_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_d_basis_ejerstatus_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5800_fac_pkt">
+		<columns names="ejerstatus_kode" ref-type="src-columns"/>
+		<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_d_vejnavn_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5800_fac_pkt">
+		<columns names="vejkode" ref-type="src-columns"/>
+		<columns names="vejkode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_d_basis_postnr_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5800_fac_pkt">
+		<columns names="postnr" ref-type="src-columns"/>
+		<columns names="postnr" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5800_fac_pkt_generel" type="relfk"
+	 src-table="fkg.t_5800_fac_pkt"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_d_5800_facilitet" type="relfk"
+	 src-table="fkg.t_5800_fac_pkt"
+	 dst-table="fkg.d_5800_facilitet"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_d_basis_ejerstatus" type="relfk"
+	 src-table="fkg.t_5800_fac_pkt"
+	 dst-table="fkg.d_basis_ejerstatus"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5800_fac_pkt"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5800_fac_pkt"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5802_fac_li" oids="false">
+	<schema name="fkg"/>
+	<position x="2487.14" y="2141.43"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="facilitet_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="ejerstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="navn">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="nogle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5802_fac_li_pk" type="pk-constr" factor="10" table="fkg.t_5802_fac_li">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5802_fac_li_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5802_fac_li">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5802_fac_li_d_5802_facilitet_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5802_facilitet" table="fkg.t_5802_fac_li">
+		<columns names="facilitet_type_kode" ref-type="src-columns"/>
+		<columns names="facilitet_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5802_fac_li_d_basis_ejerstatus_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5802_fac_li">
+		<columns names="ejerstatus_kode" ref-type="src-columns"/>
+		<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5802_fac_li_d_vejnavn_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5802_fac_li">
+		<columns names="vejkode" ref-type="src-columns"/>
+		<columns names="vejkode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5802_fac_li_d_basis_postnr_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5802_fac_li">
+		<columns names="postnr" ref-type="src-columns"/>
+		<columns names="postnr" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5802_fac_li_generel" type="relfk"
+	 src-table="fkg.t_5802_fac_li"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_d_5802_facilitet" type="relfk"
+	 src-table="fkg.t_5802_fac_li"
+	 dst-table="fkg.d_5802_facilitet"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_d_basis_ejerstatus" type="relfk"
+	 src-table="fkg.t_5802_fac_li"
+	 dst-table="fkg.d_basis_ejerstatus"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5802_fac_li"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5802_fac_li"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5900_jordfl" oids="false">
+	<schema name="fkg"/>
+	<position x="1327.14" y="3647.14"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="afs_vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="afs_cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="afs_husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="afs_kommunekode">
+		<type name="integer"/>
+	</column>
+	<column name="afs_postnr">
+		<type name="integer"/>
+	</column>
+	<column name="jordflyt_dato_start" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="jordflyt_dato_slut" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="modt_vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="modt_cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="modt_husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="modt_kommunekode">
+		<type name="integer"/>
+	</column>
+	<column name="modt_postnr">
+		<type name="integer"/>
+	</column>
+	<column name="tillad_dato" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="jordmaengde_faktisk" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="jordmaengde_anmeldt" not-null="true">
+		<type name="double precision"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5900_jordfl_pk" type="pk-constr" factor="10" table="fkg.t_5900_jordfl">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5900_jordfl_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5900_jordfl">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5900_jordfl_d_vejnavn_afs_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5900_jordfl">
+		<columns names="afs_vejkode" ref-type="src-columns"/>
+		<columns names="vejkode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5900_jordfl_d_basis_postnr_afs_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5900_jordfl">
+		<columns names="afs_postnr" ref-type="src-columns"/>
+		<columns names="postnr" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5900_jordfl_d_vejnavn_modt_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5900_jordfl">
+		<columns names="modt_vejkode" ref-type="src-columns"/>
+		<columns names="vejkode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5900_jordfl_d_basis_postnr_modt_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5900_jordfl">
+		<columns names="modt_postnr" ref-type="src-columns"/>
+		<columns names="postnr" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5900_jordfl_generel" type="relfk"
+	 src-table="fkg.t_5900_jordfl"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5900_jordfl_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5900_jordfl"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5900_jordfl_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5900_jordfl"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5901_raastof_till" oids="false">
+	<schema name="fkg"/>
+	<position x="1334.29" y="4024.29"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="indv_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="indv_cvr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="raastof_type_kode">
+		<type name="integer"/>
+	</column>
+	<column name="tillad_dato" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="aflslut_aar" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="gravstatus_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="grusgrav_nr">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5901_raastof_till_pk" type="pk-constr" factor="10" table="fkg.t_5901_raastof_till">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5901_raastof_till_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5901_raastof_till">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5901_raastof_till_d_5901_raastof_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5901_raastof_type" table="fkg.t_5901_raastof_till">
+		<columns names="raastof_type_kode" ref-type="src-columns"/>
+		<columns names="raastof_type_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5901_raastof_till_d_5901_gravestatus" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5901_gravestatus" table="fkg.t_5901_raastof_till">
+		<columns names="gravstatus_kode" ref-type="src-columns"/>
+		<columns names="gravstatus_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5901_raastof_till_generel" type="relfk"
+	 src-table="fkg.t_5901_raastof_till"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5901_raastof_till_d_5901_raastof_type" type="relfk"
+	 src-table="fkg.t_5901_raastof_till"
+	 dst-table="fkg.d_5901_raastof_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5901_raastof_till_d_5901_gravestatus" type="relfk"
+	 src-table="fkg.t_5901_raastof_till"
+	 dst-table="fkg.d_5901_gravestatus"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5902_jordv_anl" oids="false">
+	<schema name="fkg"/>
+	<position x="1334.44" y="4258.89"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="brine">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="strenge_antal">
+		<type name="integer"/>
+	</column>
+	<column name="strenge_laengde_samlede">
+		<type name="integer"/>
+	</column>
+	<column name="tilladelses_dato">
+		<type name="date"/>
+	</column>
+	<column name="faerdigmeldingsdato">
+		<type name="date"/>
+	</column>
+	<column name="vaesketype_kode">
+		<type name="integer"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sag_status_kode">
+		<type name="integer"/>
+	</column>
+	<column name="note">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5902_jordv_anl_pk" type="pk-constr" factor="10" table="fkg.t_5902_jordv_anl">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5902_jordv_anl_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5902_jordv_anl">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5902_jordv_anl_d_5902_vaeske_type_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5902_vaeske_type" table="fkg.t_5902_jordv_anl">
+		<columns names="vaesketype_kode" ref-type="src-columns"/>
+		<columns names="vaesketype_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5902_jordv_anl_d_basis_sag_status" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_sag_status" table="fkg.t_5902_jordv_anl">
+		<columns names="sag_status_kode" ref-type="src-columns"/>
+		<columns names="sag_status_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5902_jordv_anl_generel" type="relfk"
+	 src-table="fkg.t_5902_jordv_anl"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5902_jordv_anl_d_5902_vaeske_type" type="relfk"
+	 src-table="fkg.t_5902_jordv_anl"
+	 dst-table="fkg.d_5902_vaeske_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5902_jordv_anl_d_basis_sag_status" type="relfk"
+	 src-table="fkg.t_5902_jordv_anl"
+	 dst-table="fkg.d_basis_sag_status"
+	 src-required="false" dst-required="false"/>
+
+<textbox name="5904mangler" bold="true" font-size="11">
+	<position x="1293.33" y="4547.78"/>
+	<comment><![CDATA[Her burde 5904 være - men temaet er ikke specificeret i FKG ver 2.3]]></comment>
+</textbox>
+
+<table name="t_5104_art_invas" oids="false">
+	<schema name="fkg"/>
+	<position x="1042.86" y="1175.71"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="dnavn" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="lnavn">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="nobanis_invasiv_opt">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="rige_dk">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="sortlistet_kode">
+		<type name="integer"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="inventoer">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="antal_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="forekomst">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="0"/>
+	</column>
+	<constraint name="t_5104_art_invas_pk" type="pk-constr" factor="10" table="fkg.t_5104_art_invas">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5104_art_invas_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5104_art_invas">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5104_art_invas_d_basis_ja_nej_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5104_art_invas">
+		<columns names="sortlistet_kode" ref-type="src-columns"/>
+		<columns names="ja_nej_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5104_art_invas_d_basis_antal_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_antal" table="fkg.t_5104_art_invas">
+		<columns names="antal_kode" ref-type="src-columns"/>
+		<columns names="antal_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5104_art_invas_generel" type="relfk"
+	 src-table="fkg.t_5104_art_invas"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5104_art_invas_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_5104_art_invas"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5104_art_invas_d_basis_antal" type="relfk"
+	 src-table="fkg.t_5104_art_invas"
+	 dst-table="fkg.d_basis_antal"
+	 src-required="false" dst-required="false"/>
+
+<table name="t_5107_art_invas_p" oids="false">
+	<schema name="fkg"/>
+	<position x="1061.43" y="2035.71"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="dnavn" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="lnavn">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="nobanis_invasiv_opt">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="rige_dk">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="sortlistet_kode">
+		<type name="integer"/>
+	</column>
+	<column name="nogle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="inventoer">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="antal_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="forekomst">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5107_art_invas_p_pk" type="pk-constr" factor="10" table="fkg.t_5107_art_invas_p">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5107_art_invas_p_generel_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5107_art_invas_p">
+		<columns names="versions_id" ref-type="src-columns"/>
+		<columns names="versions_id" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5107_art_invas_p_d_basis_ja_nej_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5107_art_invas_p">
+		<columns names="sortlistet_kode" ref-type="src-columns"/>
+		<columns names="ja_nej_kode" ref-type="dst-columns"/>
+	</constraint>
+	<constraint name="t_5107_art_invas_p_d_basis_antal_fk" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_antal" table="fkg.t_5107_art_invas_p">
+		<columns names="antal_kode" ref-type="src-columns"/>
+		<columns names="antal_kode" ref-type="dst-columns"/>
+	</constraint>
+</table>
+
+<relationship name="rel_t_5107_art_invas_p_generel" type="relfk"
+	 src-table="fkg.t_5107_art_invas_p"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5107_art_invas_p_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_5107_art_invas_p"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5107_art_invas_p_d_basis_antal" type="relfk"
+	 src-table="fkg.t_5107_art_invas_p"
+	 dst-table="fkg.d_basis_antal"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
