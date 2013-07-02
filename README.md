@@ -2,7 +2,8 @@ FKG til PostgreSQL/PostGIS
 ==============
 Dette projekt er en fysisk implementering af den [fælleskommunale geodatamodel (FKG)](http://www.kl.dk/Fagomrader/Teknik-og-miljo/Digital-forvaltning/Geodata/Falleskommunal-geodatamodel/) i databasesystemet [PostgreSQL](http://www.postgresql.org/). Implementeringen benytter sig af [PostGIS](http://postgis.net/), som er en udvidelse, der tilføjer spatiel funktionalitet til PostgreSQL.
 
-![FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/dataModel.png "Modellen i modelleringsværktøjet pgModeler")
+![Udsnit af FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_cut.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
+Se diagram af [hele modellen](http://OpenFKG.github.io/fkg-postgresql/img/dataModel.png "Se diagram af modellen i modelleringsværktøjet pgModeler")
 
 Features
 -------------
@@ -19,7 +20,7 @@ Installation
 -------------
 For udvikler-information (kompilering af modellen) se afsnittet "For udviklere" nedenfor. 
 
-Ønsker du bare at installere den "kompilerede version" af datamodellen (og ikke selv udvikle på den), så findes der færdige installationspakker på [Septimas hjemmeside](http://septima.dk/openfkgdownload). Installationspakkerne består af SQL scripts, som køres på din PostgreSQL-server, f.eks. ved hjælp af administrationsprogrammet pgAdmin.
+Ønsker du bare at installere den "kompilerede version" af datamodellen (og ikke selv udvikle på den), så findes der færdige installationspakker på [Septimas hjemmeside](http://septima.dk/fkg). Installationspakkerne består af SQL scripts, som køres på din PostgreSQL-server, f.eks. ved hjælp af administrationsprogrammet pgAdmin.
 
 Når modellen er installeret, anbefaler vi, at man laver en bruger med reducerede rettigheder, som tilgår databasen via de funktionelle views og som derfor ikke kan se `t_...`-tabeller mv.
 Brugeren skal have rettigheder til at:
@@ -91,4 +92,4 @@ En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 
 
 ![FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/FKG-DM-screenshot.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/278d836b5c5ac108ee15cc7ae4813097 "githalytics.com")](http://githalytics.com/Septima/fkg-postgresql)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/c99dca67ff866dbe6e8964424477deca "githalytics.com")](http://githalytics.com/OpenFKG/fkg-postgresql)
