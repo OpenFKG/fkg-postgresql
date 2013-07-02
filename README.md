@@ -77,7 +77,7 @@ Derudover er der lavet en lang række SQL scripts, metatabeller, funktioner mv.,
 
 I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på -test ikke på en database, som kører produktion.
 
-SQL-scriptene nummereret fra 000 til 999 køres i rækkefølge og databasen som du kører disse på vil derefter være en FKG-database - udover den almindelige databasemodel vil den have indlagte funktioner til at generere databasemodellen. Filen [040_metadata.sql](040_metadata.sql) generes først fra pgModeler, ved at vælge "Files" -> "Export".
+SQL-scriptene nummereret fra 000 til 999 køres i rækkefølge og databasen som du kører disse på vil derefter være en FKG-database - udover den almindelige databasemodel vil den have indlagte funktioner til at generere databasemodellen. Filen [040_metadata.sql](src/040_metadata.sql) generes først fra pgModeler, ved at vælge "Files" -> "Export".
 Det er enklest at køre denne proces ved at bruge installations/kompileringsscriptet [make_install.sh](src/make_install.sh), hvori du bare skal ændre oplysningerne om din lokale *test/build*-database. 
 Dette gøres enklest således:
 
