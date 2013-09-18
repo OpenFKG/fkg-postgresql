@@ -1668,6 +1668,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="versions_id" ref-type="src-columns"/>
 		<columns names="versions_id" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5006_dybdekurv_dybde_ck" type="ck-constr" table="fkg.t_5006_dybdekurv">
+			<expression><![CDATA[dybde >= 0.0 AND dybde <= 999.9]]></expression>
+	</constraint>
+	<constraint name="t_5006_dybdekurv_lower_ck" type="ck-constr" table="fkg.t_5006_dybdekurv">
+			<expression><![CDATA[lower >= 0.0 AND lower <= 999.9]]></expression>
+	</constraint>
+	<constraint name="t_5006_dybdekurv_upper_ck" type="ck-constr" table="fkg.t_5006_dybdekurv">
+			<expression><![CDATA[upper >= 0.0 AND upper <= 999.9]]></expression>
+	</constraint>
+	<constraint name="t_5006_dybdekurv_maalt_aar_ck" type="ck-constr" table="fkg.t_5006_dybdekurv">
+			<expression><![CDATA[maalt_aar >= 1900 AND maalt_aar <= 2999]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5005_dybdekurv_generel" type="relfk"
