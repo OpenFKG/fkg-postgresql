@@ -1846,6 +1846,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="soe_opl_nr" ref-type="src-columns"/>
 		<columns names="soe_opl_nr" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5008_soe_opl_soe_opl_nr_ck" type="ck-constr" table="fkg.t_5008_soe_opl">
+			<expression><![CDATA[soe_opl_nr >= 1 AND soe_opl_nr <= 9999]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5008_soe_opl_generel" type="relfk"
