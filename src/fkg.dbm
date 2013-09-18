@@ -2020,6 +2020,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="tilstand_kode" ref-type="src-columns"/>
 		<columns names="tilstand_kode" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5010_vandl_elm_vstation_ck" type="ck-constr" table="fkg.t_5010_vandl_elm">
+			<expression><![CDATA[vstation >= 0.0 AND vstation <= 200000]]></expression>
+	</constraint>
+	<constraint name="t_5010_vandl_elm_anlagt_aar_ck" type="ck-constr" table="fkg.t_5010_vandl_elm">
+			<expression><![CDATA[anlagt_aar >= 1800 AND anlagt_aar <= 2999]]></expression>
+	</constraint>
+	<constraint name="t_5010_vandl_elm_saneret_aar_ck" type="ck-constr" table="fkg.t_5010_vandl_elm">
+			<expression><![CDATA[anlagt_aar >= 1800 AND anlagt_aar <= 2999]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5010_vandl_elm_generel" type="relfk"
