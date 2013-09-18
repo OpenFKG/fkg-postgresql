@@ -1231,6 +1231,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="versions_id" ref-type="src-columns"/>
 		<columns names="versions_id" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5002_faunasp_saneret_aar_ck" type="ck-constr" table="fkg.t_5002_faunasp">
+			<expression><![CDATA[saneret_aar >= 1800 AND saneret_aar <= 2999]]></expression>
+	</constraint>
+	<constraint name="t_5002_faunasp_prioritet_ck" type="ck-constr" table="fkg.t_5002_faunasp">
+			<expression><![CDATA[prioritet >= 1 AND prioritet <= 9]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5002_faunasp_d_5002_spaerring" type="relfk"
