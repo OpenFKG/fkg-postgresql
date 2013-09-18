@@ -601,6 +601,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="maalsaetning_kode" ref-type="src-columns"/>
 		<columns names="maalsaetning_kode" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5000_vandl_station_fra_ck" type="ck-constr" table="fkg.t_5000_vandl">
+			<expression><![CDATA[station_fra >= 0.0 AND station_fra <= 200000.0]]></expression>
+	</constraint>
+	<constraint name="t_5000_vandl_station_til_ck" type="ck-constr" table="fkg.t_5000_vandl">
+			<expression><![CDATA[station_til >= 0.0 AND station_til <= 200000.0]]></expression>
+	</constraint>
+	<constraint name="t_5000_vandl_vandloebs_bredde_ck" type="ck-constr" table="fkg.t_5000_vandl">
+			<expression><![CDATA[vandloebs_bredde >= 0.1 AND vandloebs_bredde <=99.9]]></expression>
+	</constraint>
+	<constraint name="t_5000_vandl_vandfoeringsforhold_ck" type="ck-constr" table="fkg.t_5000_vandl">
+			<expression><![CDATA[vandfoeringsforhold >= 9 AND vandfoeringsforhold <= 45]]></expression>
+	</constraint>
+	<constraint name="t_5000_vandl_fot_id_ck" type="ck-constr" table="fkg.t_5000_vandl">
+			<expression><![CDATA[fot_id >=0 AND fot_id <= 2147483648]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5000_vandl_generel" type="relfk"
