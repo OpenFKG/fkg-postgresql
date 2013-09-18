@@ -1348,6 +1348,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="klasse_kode" ref-type="src-columns"/>
 		<columns names="klasse_kode" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5003_draenledn_anlaeg_aar_ck" type="ck-constr" table="fkg.t_5003_draenledn">
+			<expression><![CDATA[anlaeg_aar >= 1800 AND anlaeg_aar <= 2999]]></expression>
+	</constraint>
+	<constraint name="t_5003_draenledn_dybde_ck" type="ck-constr" table="fkg.t_5003_draenledn">
+			<expression><![CDATA[dybde >= 0.1 AND dybde <= 99.9]]></expression>
+	</constraint>
+	<constraint name="t_5003_draenledn_dimension_ck" type="ck-constr" table="fkg.t_5003_draenledn">
+			<expression><![CDATA[dimension >= 1 AND dimension <= 99]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5003_draenledn_generel" type="relfk"
