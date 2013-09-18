@@ -1437,6 +1437,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="omr_type_kode" ref-type="src-columns"/>
 		<columns names="omr_type_kode" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5004_draenomr_anlaeg_aar_ck" type="ck-constr" table="fkg.t_5004_draenomr">
+			<expression><![CDATA[anlaeg_aar >= 1700 AND anlaeg_aar <= 2999]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5004_draenomr_generel" type="relfk"
