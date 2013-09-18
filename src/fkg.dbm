@@ -1588,6 +1588,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="trussel_vand_kode" ref-type="src-columns"/>
 		<columns names="trussel_vand_kode" ref-type="dst-columns"/>
 	</constraint>
+	<constraint name="t_5005_soe_opholdstid_ck" type="ck-constr" table="fkg.t_5005_soe">
+			<expression><![CDATA[opholdstid >= 0.1 AND opholdstid <= 99.9]]></expression>
+	</constraint>
+	<constraint name="t_5005_soe_volumen_ck" type="ck-constr" table="fkg.t_5005_soe">
+			<expression><![CDATA[volumen >= 0.1 AND volumen <= 999.9]]></expression>
+	</constraint>
+	<constraint name="t_5005_soe_fot_id_ck" type="ck-constr" table="fkg.t_5005_soe">
+			<expression><![CDATA[fot_id >= 0 AND fot_id <= 2147483648]]></expression>
+	</constraint>
 </table>
 
 <relationship name="rel_t_5005_soe_generel" type="relfk"
