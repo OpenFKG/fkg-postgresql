@@ -4354,7 +4354,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="geometri" not-null="true">
-		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="0"/>
+		<type name="geometry" spatial-type="POINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5104_art_invas_pk" type="pk-constr" factor="10" table="fkg.t_5104_art_invas">
 		<columns names="versions_id" ref-type="src-columns"/>

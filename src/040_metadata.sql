@@ -2131,7 +2131,7 @@ CREATE TABLE fkg.t_5104_art_invas(
 	sagsnr character varying(128),
 	noter character varying(254),
 	link character varying(1024),
-	geometri geometry(MULTIPOLYGON, 0) NOT NULL,
+	geometri geometry(POINT, 25832) NOT NULL,
 	CONSTRAINT t_5104_art_invas_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_5104_art_invas_generel_fk FOREIGN KEY (versions_id)
 	REFERENCES fkg.generel (versions_id) MATCH FULL
