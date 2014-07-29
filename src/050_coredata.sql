@@ -1634,7 +1634,6 @@ INSERT INTO fkg.d_5002_spaerring VALUES (14,'Styrt, andet',1,'Hvor der er et lod
 INSERT INTO fkg.d_5002_spaerring VALUES (15,'Vej',1,'Hvor en vej krydser en spredningskorridor.');
 INSERT INTO fkg.d_5002_spaerring VALUES (16,'Ålekiste',1,'Et redskab til fangst af ål, og benyttes både i mindre vandløb eller bække i en meget primitiv form som en kasse.');
 INSERT INTO fkg.d_5002_spaerring VALUES (17,'Bro på piller',1,'Vej/jernbanebro der er sat på piller gennem del af f.eks. ådalen for at øge muligheden for landdyrs passage.');
-INSERT INTO fkg.d_5002_spaerring VALUES (18,'',1,'');
 INSERT INTO fkg.d_5002_spaerring VALUES (98,'Anden spærring',1,'Spærring hvor andet ikke er dækkende.');
 INSERT INTO fkg.d_5002_spaerring VALUES (99,'Ukendt spærring',1,'Fået oplyst der er en spærring, men arten er ukendt. Typisk fra borger eller gammelt register.');
 -- SELECT * FROM d_5002_spaerring;
