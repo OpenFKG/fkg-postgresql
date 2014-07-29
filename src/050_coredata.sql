@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -71,6 +71,7 @@ DELETE FROM fkg.d_5400_affalds_type;
 DELETE FROM fkg.d_5401_gs_type;
 DELETE FROM fkg.d_5402_gc_type;
 DELETE FROM fkg.d_5506_anlaegtype;
+DELETE FROM fkg.d_5508_stoej;
 DELETE FROM fkg.d_5600_rute;
 DELETE FROM fkg.d_5601_hasti_type;
 DELETE FROM fkg.d_5602_p_tid;
@@ -174,7 +175,6 @@ INSERT INTO fkg.tema VALUES (5300,'Genopdyrkningsret','F','t_5300_genopd_ret','5
 INSERT INTO fkg.tema VALUES (5400,'Affaldsdistrikt','F','t_5400_affalds_dis','5.5');
 INSERT INTO fkg.tema VALUES (5401,'Genbrugsstation','P','t_5401_genbr_st','5.5');
 INSERT INTO fkg.tema VALUES (5402,'Genbrugscontainer','P','t_5402_genbr_con','5.5');
-INSERT INTO fkg.tema VALUES (5403,'Husstandsmøller','P','t_5403_husst_moel','5.5');
 --
 INSERT INTO fkg.tema VALUES (5500,'Elforsyningsområde','F','t_5500_elfors_omr','5.6');
 INSERT INTO fkg.tema VALUES (5501,'Forsyningsområde - udgået','F','t_5501_fors_omr','5.6');
@@ -183,6 +183,7 @@ INSERT INTO fkg.tema VALUES (5503,'Forsyningsforbudområde - udgået','F','t_550
 INSERT INTO fkg.tema VALUES (5504,'Kloakopland - udgået','F','t_5504_kloakopl','5.6');
 INSERT INTO fkg.tema VALUES (5506,'Spildevandsplanpunkter','P','t_5506_spildev_pl_pkt','5.6');
 INSERT INTO fkg.tema VALUES (5507,'Fiberkabel','L','t_5507_fiberkabel','5.6');
+INSERT INTO fkg.tema VALUES (5508,'Husstandsmøller','P','t_5508_husst_moel','5.6');
 --
 INSERT INTO fkg.tema VALUES (5600,'Vintervedligeholdelse','L','t_5600_vintervedl','5.7');
 INSERT INTO fkg.tema VALUES (5601,'Hastighedsdæmpning','P','t_5601_hasti_daemp','5.7');
@@ -1864,6 +1865,14 @@ INSERT INTO fkg.d_5506_anlaegtype VALUES (6,'Udløb',1,'Punktet hvor ledningen s
 INSERT INTO fkg.d_5506_anlaegtype VALUES (7,'Nedsivning',1,'Ejendommen med punktet har anlagt nedsivning af regnvand');
 INSERT INTO fkg.d_5506_anlaegtype VALUES (8,'Andet',1,'Andet');
 -- SELECT * FROM d_5506_anlaegtype;
+
+
+INSERT INTO fkg.d_5508_stoej VALUES (1,'44 dB(A) ved en vindhastighed på 8 m/s i det åbne land',1,'Måles ved 15 meter fra beboelse i det åbne land ved 8 m/s');
+INSERT INTO fkg.d_5508_stoej VALUES (2,'42 dB(A) ved en vindhastighed på 6 m/s i det åbne land',1,'Måles ved 15 meter fra beboelse i det åbne land ved 6 m/s');
+INSERT INTO fkg.d_5508_stoej VALUES (3,'39 dB(A) ved en vindhastighed på 8 m/s i støjfølsomt område',1,'støjfølsom arealanvendelse ved 8 m/s');
+INSERT INTO fkg.d_5508_stoej VALUES (4,'37 dB(A) ved en vindhastighed på 6 m/s i støjfølsomt område',1,'støjfølsom arealanvendelse ved 6 m/s');
+INSERT INTO fkg.d_5508_stoej VALUES (9,'Ukendt',1,'Mangler viden om typen');
+-- SELECT * FROM d_5508_stoej;
 
 
 INSERT INTO fkg.d_5600_rute VALUES (1,'Klasse I rute',1,'Veje som har afgørende betydning for fjerntrafikken.');
