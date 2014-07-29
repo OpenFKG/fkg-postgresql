@@ -1779,6 +1779,60 @@ CREATE TABLE fkg.d_5508_stoej(
 
 );
 -- ddl-end --
+-- object: fkg.t_5600_vintervedl | type: TABLE --
+-- DROP TABLE fkg.t_5600_vintervedl;
+CREATE TABLE fkg.t_5600_vintervedl(
+	versions_id uuid NOT NULL,
+	rute_kode integer NOT NULL,
+	rute_entreprenoer_sne character varying(128),
+	rute_nr_sne character varying(50),
+	rute_entreprenoer_salt character varying(128),
+	rute_nr_salt character varying(50),
+	link character varying(1024),
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	CONSTRAINT t_5600_vintervedl_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5601_hasti_daemp | type: TABLE --
+-- DROP TABLE fkg.t_5601_hasti_daemp;
+CREATE TABLE fkg.t_5601_hasti_daemp(
+	versions_id uuid NOT NULL,
+	hasti_type_kode integer NOT NULL,
+	hastighed_kode integer NOT NULL,
+	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	CONSTRAINT t_5601_hasti_daemp_pk_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5602_p_zoner | type: TABLE --
+-- DROP TABLE fkg.t_5602_p_zoner;
+CREATE TABLE fkg.t_5602_p_zoner(
+	versions_id uuid NOT NULL,
+	p_type_kode integer NOT NULL,
+	p_tid_kode integer,
+	p_periode character varying(50),
+	p_pladser_personbil integer,
+	p_pris_time integer,
+	p_pladser_handicap integer,
+	p_pladser_lastbil integer,
+	p_pladser_elbil integer,
+	p_pladser_mc integer,
+	p_pladser_cykel integer,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5602_p_zoner_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5602_p_zoner_p_pladser_personbil_ck CHECK (p_pladser_personbil BETWEEN 0 AND 9999),
+	CONSTRAINT t_5602_p_zoner_p_pris_time_ck CHECK (p_pris_time BETWEEN 0 AND 9999),
+	CONSTRAINT t_5602_p_zoner_p_pladser_handicap_ck CHECK (p_pladser_handicap BETWEEN 0 AND 9999),
+	CONSTRAINT t_5602_p_zoner_p_pladser_lastbil_ck CHECK (p_pladser_lastbil BETWEEN 0 AND 9999),
+	CONSTRAINT t_5602_p_zoner_p_pladser_elbil_ck CHECK (p_pladser_elbil BETWEEN 0 AND 9999),
+	CONSTRAINT t_5602_p_zoner_p_pladser_mc_ck CHECK (p_pladser_mc BETWEEN 0 AND 9999),
+	CONSTRAINT t_5602_p_zoner_p_pladser_cykel_ck CHECK (p_pladser_cykel BETWEEN 0 AND 9999)
+
+);
+-- ddl-end --
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.generel DROP CONSTRAINT generel_d_basis_oprindelse_fk;
 ALTER TABLE fkg.generel ADD CONSTRAINT generel_d_basis_oprindelse_fk FOREIGN KEY (oprindkode)
@@ -2615,6 +2669,70 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5107_art_invas_p DROP CONSTRAINT t_5107_art_invas_p_d_basis_antal_fk;
 ALTER TABLE fkg.t_5107_art_invas_p ADD CONSTRAINT t_5107_art_invas_p_d_basis_antal_fk FOREIGN KEY (antal_kode)
 REFERENCES fkg.d_basis_antal (antal_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5600_vintervedl_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5600_vintervedl DROP CONSTRAINT t_5600_vintervedl_generel_fk;
+ALTER TABLE fkg.t_5600_vintervedl ADD CONSTRAINT t_5600_vintervedl_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5600_vintervedl_d_5600_rute_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5600_vintervedl DROP CONSTRAINT t_5600_vintervedl_d_5600_rute_fk;
+ALTER TABLE fkg.t_5600_vintervedl ADD CONSTRAINT t_5600_vintervedl_d_5600_rute_fk FOREIGN KEY (rute_kode)
+REFERENCES fkg.d_5600_rute (rute_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5601_hasti_daemp_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5601_hasti_daemp DROP CONSTRAINT t_5601_hasti_daemp_generel_fk;
+ALTER TABLE fkg.t_5601_hasti_daemp ADD CONSTRAINT t_5601_hasti_daemp_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5601_hasti_daemp_d_5601_hasti_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5601_hasti_daemp DROP CONSTRAINT t_5601_hasti_daemp_d_5601_hasti_type_fk;
+ALTER TABLE fkg.t_5601_hasti_daemp ADD CONSTRAINT t_5601_hasti_daemp_d_5601_hasti_type_fk FOREIGN KEY (hasti_type_kode)
+REFERENCES fkg.d_5601_hasti_type (hasti_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5601_hasti_daemp_d_basis_hastighed_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5601_hasti_daemp DROP CONSTRAINT t_5601_hasti_daemp_d_basis_hastighed_fk;
+ALTER TABLE fkg.t_5601_hasti_daemp ADD CONSTRAINT t_5601_hasti_daemp_d_basis_hastighed_fk FOREIGN KEY (hastighed_kode)
+REFERENCES fkg.d_basis_hastighed (hastighed_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5602_p_zoner_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5602_p_zoner DROP CONSTRAINT t_5602_p_zoner_generel_fk;
+ALTER TABLE fkg.t_5602_p_zoner ADD CONSTRAINT t_5602_p_zoner_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5602_p_zoner_d_5602_p_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5602_p_zoner DROP CONSTRAINT t_5602_p_zoner_d_5602_p_type_fk;
+ALTER TABLE fkg.t_5602_p_zoner ADD CONSTRAINT t_5602_p_zoner_d_5602_p_type_fk FOREIGN KEY (p_type_kode)
+REFERENCES fkg.d_5602_p_type (p_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5602_p_zoner_d_5602_p_tid_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5602_p_zoner DROP CONSTRAINT t_5602_p_zoner_d_5602_p_tid_fk;
+ALTER TABLE fkg.t_5602_p_zoner ADD CONSTRAINT t_5602_p_zoner_d_5602_p_tid_fk FOREIGN KEY (p_tid_kode)
+REFERENCES fkg.d_5602_p_tid (p_tid_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

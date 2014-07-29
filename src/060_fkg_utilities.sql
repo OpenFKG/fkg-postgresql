@@ -50,6 +50,8 @@ where
 UPDATE fkg_utilities.view_mapping SET field_alias='vejnavn', value_field='vejnavn' WHERE field_alias='vejkode' AND value_field='vejkode';
 UPDATE fkg_utilities.view_mapping SET field_alias='postnr_by', value_field='postnr_by' WHERE field_alias='postnr' AND value_field='postnr';
 
+-- Theme t_5603_hasti_zone
+UPDATE fkg_utilities.view_mapping SET field_alias='anbefalet_hastighed', value_field='hastighed' WHERE constraint_name='t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk';
 
 -- Theme t_5007_vandl_opl
 UPDATE fkg_utilities.view_mapping SET field_alias='opl_type', value_field='vandl_opl_type' WHERE constraint_name='t_5007_vandl_opl_d_5007_opl_type_fk';
