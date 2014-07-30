@@ -85,8 +85,8 @@ DELETE FROM fkg.d_5705_udlejning;
 DELETE FROM fkg.d_5706_havn_type;
 DELETE FROM fkg.d_5707_grund_type;
 DELETE FROM fkg.d_5707_salg_status;
-DELETE FROM fkg.d_5708_institution_type;
-DELETE FROM fkg.d_5709_distrikt_type;
+-- DELETE FROM fkg.d_5708_institution_type; Udgået ver. 2.4
+-- DELETE FROM fkg.d_5709_distrikt_type; Udgået ver. 2.4
 DELETE FROM fkg.d_5800_facilitet;
 DELETE FROM fkg.d_5802_facilitet;
 DELETE FROM fkg.d_5901_gravestatus;
@@ -201,7 +201,8 @@ INSERT INTO fkg.tema VALUES (5704,'Afstemningsområde','F','t_5704_afstem_omr','
 INSERT INTO fkg.tema VALUES (5705,'Forpagtningsareal','F','t_5705_forp_are','5.8');
 INSERT INTO fkg.tema VALUES (5706,'Havneareal','F','t_5706_havn_are','5.8');
 INSERT INTO fkg.tema VALUES (5707,'Grundsalg','F','t_5707_grunds','5.8');
-INSERT INTO fkg.tema VALUES (5708,'Kommunal_service','P','t_5708_kom_serv','5.8');
+-- Udgået i ver. 2.4
+-- INSERT INTO fkg.tema VALUES (5708,'Kommunal_service','P','t_5708_kom_serv','5.8');
 --
 INSERT INTO fkg.tema VALUES (5801,'Facilitet_flade - udgået','F','t_5801_fac_fl','5.9');
 --
@@ -2046,53 +2047,53 @@ INSERT INTO fkg.d_5707_salg_status VALUES (8,'Andet',1,'Hvor andre salgstyper ik
 INSERT INTO fkg.d_5707_salg_status VALUES (9,'Ukendt',1,'Ukendt');
 -- SELECT * FROM d_5707_salg_status;
 
-
-INSERT INTO fkg.d_5708_institution_type VALUES (1,'Vuggestue',1,'Pasningstilbud for børn 0-3 år.');
-INSERT INTO fkg.d_5708_institution_type VALUES (2,'Børnehave',1,'Pasningstilbud for børn 3-6 år.');
-INSERT INTO fkg.d_5708_institution_type VALUES (3,'Integreret Institution',1,'Pasningstilbud for børn 0-6 år.');
-INSERT INTO fkg.d_5708_institution_type VALUES (4,'SFO',1,'Pasnings-/fritidstilbud for skolebørn efter skoletid+ferier');
-INSERT INTO fkg.d_5708_institution_type VALUES (5,'Fritidsklub',1,'Fritidstilbud for skolebørn 10-13 år.');
-INSERT INTO fkg.d_5708_institution_type VALUES (6,'Ungdomsklub',1,'Klub for store børn og unge, der er vokset fra pasningsordninger.');
-INSERT INTO fkg.d_5708_institution_type VALUES (7,'Folkeskole',1,'Den kommunale børneskole i Danmark, der kan består af en enårig børnehaveklasse, en niårig grundskole og en enårig tiendeklasse.');
-INSERT INTO fkg.d_5708_institution_type VALUES (8,'Privatskole',1,'Privatejet skole, der drives som en fri grundskole. Har gerne et religiøst, pædagogisk eller kulturelt særkende.');
-INSERT INTO fkg.d_5708_institution_type VALUES (9,'Friskole',1,'fri grundskole, der ud fra en særlig grundholdning, fx religiøs, giver undervisning svarende til folkeskolens krav. Friskoletanken stammer fra Grundtvig og Christen Kold.');
-INSERT INTO fkg.d_5708_institution_type VALUES (10,'Ungdomsskole',1,'Skoleform for unge mellem 14 og 18 år. Betegnelsen angiver nu sædvanligvis kommunale institutioner, som overvejende tilbyder undervisning i de unges fritid');
-INSERT INTO fkg.d_5708_institution_type VALUES (11,'Efterskole',1,'speciel dansk skoleform for unge mellem 14 og 18 år');
-INSERT INTO fkg.d_5708_institution_type VALUES (12,'Plejecentre',1,'');
-INSERT INTO fkg.d_5708_institution_type VALUES (13,'Pleje- og ældreboliger',1,'Boliger for personer, oftest ældre, der ikke kan klare sig i eget hjem eller i en ældrebolig. Indtil 2005 betegnet plejehjem');
-INSERT INTO fkg.d_5708_institution_type VALUES (14,'Handicaptilbud',1,'Boliger til handicappende personer der ikke kan bor alene.');
-INSERT INTO fkg.d_5708_institution_type VALUES (15,'Psykiatritilbud',1,'Boliger til psykiske syge personer, der ikke kan bor alene.');
-INSERT INTO fkg.d_5708_institution_type VALUES (16,'Handicap og psykiatri',1,'Boliger til psykiske syge og handicappende personer, der ikke kan bor alene.');
-INSERT INTO fkg.d_5708_institution_type VALUES (17,'Rådhus',1,'Et rådhus er en bygning for centraladministrationen i en kommune, hvor blandt andet kommunalbestyrelsen holder til');
-INSERT INTO fkg.d_5708_institution_type VALUES (18,'Borgerservice',1,'Borgerens indgang til den offentlige sektor.');
-INSERT INTO fkg.d_5708_institution_type VALUES (19,'Bibliotek',1,'Bibliotek er en samling af bøger, håndskrifter og andet referencemateriale (kort, film, bånd, etc.) og stedet, hvor disse opbevares.');
-INSERT INTO fkg.d_5708_institution_type VALUES (20,'Tandpleje',1,'Tandpleje (gratis tandlægebesøg) for børn og unge under 18 år.');
-INSERT INTO fkg.d_5708_institution_type VALUES (21,'Medborgerhus',1,'Et medborgerhus er en betegnelse for en kulturinstitution, der står til rådighed for en by eller en egns befolkning i f.m. kultur-, forenings - og fritidstilbud. Begrebet Medborgerhus kan relateres til det mere historiske begreb forsamlingshuset, når vi skuer baggrund – og begrebet kulturhus, når vi ser fremefter. Hjemsted for en stor del af kommunens foreningsliv. Udlåner/udlejer lokaler til f.eks. møder, foredrag og kurser');
-INSERT INTO fkg.d_5708_institution_type VALUES (22,'Kulturhus',1,'En samling af forskellige faciliteter under samme tag. F.eks. musiksteder, biografer, foreninger, idrætsfaciliteter, restaurenter, koncertsale, teater, børnekultur, danseforestillinger, møder, lokale foreninger, motionsfaciliteter, markeder, udstillingslokaler, kreative værksteder m.v.');
-INSERT INTO fkg.d_5708_institution_type VALUES (23,'Specialskole',1,'En specialskole er en skole for elever, som vurderes ikke at ville kunne følge den normale undervisning i folkeskolen. Eksempler på sådanne elever er døve eller blinde elever, samt elever med autisme, ADHD eller lignende handicaps.');
-INSERT INTO fkg.d_5708_institution_type VALUES (24,'Musikskole',1,'På en musikskole undervises elever i musikalsk teori (som fx noder og toner) og i at bruge et eller flere musikinstrumenter.');
-INSERT INTO fkg.d_5708_institution_type VALUES (25,'Højskole',1,'Folkehøjskoler var oprindeligt skoler for voksne mænd og kvinder, hvor der blev givet en undervisning, som tog sigte på at gøre dem til gode statsborgere. Med tiden er fokus blevet mere på personlig udvikling, og ofte specialiserer de enkelte skoler sig særligt i dele af dette.');
-INSERT INTO fkg.d_5708_institution_type VALUES (26,'Produktionsskole',1,'Produktionsskolen er et praktisk uddannelsestilbud, baseret på værkstedundervisning');
-INSERT INTO fkg.d_5708_institution_type VALUES (27,'Naturskole',1,'En skole der supplere folkeskolens undervisning, så børn og unge gennem egne oplevelser får indblik i sammenhænge i naturen og dermed øget ansvarsbevi dsthed over for natur og miljø.');
-INSERT INTO fkg.d_5708_institution_type VALUES (28,'Gymnasium',1,'Gymnasium, almendannende og dermed studieforberedende ungdomsuddannelse. Siden 1903 har betegnelsen været brugt om de tre skoleår forud for studentereksamen.');
-INSERT INTO fkg.d_5708_institution_type VALUES (29,'Universitet',1,'Universitet, højeste læreanstalt for uddannelse og forskning. Et universitet defineres traditionelt som en institution, der har stor faglig bredde og rummer fag inden for de humanistiske, teologiske, juridiske, samfunds-, sundheds- og naturvidenskabelige discipliner.');
-INSERT INTO fkg.d_5708_institution_type VALUES (98,'Øvrige institutioner og tilbud',1,'Andre typer institutioner.');
+-- Tema udgået v. 2.4
+-- INSERT INTO fkg.d_5708_institution_type VALUES (1,'Vuggestue',1,'Pasningstilbud for børn 0-3 år.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (2,'Børnehave',1,'Pasningstilbud for børn 3-6 år.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (3,'Integreret Institution',1,'Pasningstilbud for børn 0-6 år.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (4,'SFO',1,'Pasnings-/fritidstilbud for skolebørn efter skoletid+ferier');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (5,'Fritidsklub',1,'Fritidstilbud for skolebørn 10-13 år.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (6,'Ungdomsklub',1,'Klub for store børn og unge, der er vokset fra pasningsordninger.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (7,'Folkeskole',1,'Den kommunale børneskole i Danmark, der kan består af en enårig børnehaveklasse, en niårig grundskole og en enårig tiendeklasse.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (8,'Privatskole',1,'Privatejet skole, der drives som en fri grundskole. Har gerne et religiøst, pædagogisk eller kulturelt særkende.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (9,'Friskole',1,'fri grundskole, der ud fra en særlig grundholdning, fx religiøs, giver undervisning svarende til folkeskolens krav. Friskoletanken stammer fra Grundtvig og Christen Kold.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (10,'Ungdomsskole',1,'Skoleform for unge mellem 14 og 18 år. Betegnelsen angiver nu sædvanligvis kommunale institutioner, som overvejende tilbyder undervisning i de unges fritid');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (11,'Efterskole',1,'speciel dansk skoleform for unge mellem 14 og 18 år');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (12,'Plejecentre',1,'');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (13,'Pleje- og ældreboliger',1,'Boliger for personer, oftest ældre, der ikke kan klare sig i eget hjem eller i en ældrebolig. Indtil 2005 betegnet plejehjem');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (14,'Handicaptilbud',1,'Boliger til handicappende personer der ikke kan bor alene.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (15,'Psykiatritilbud',1,'Boliger til psykiske syge personer, der ikke kan bor alene.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (16,'Handicap og psykiatri',1,'Boliger til psykiske syge og handicappende personer, der ikke kan bor alene.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (17,'Rådhus',1,'Et rådhus er en bygning for centraladministrationen i en kommune, hvor blandt andet kommunalbestyrelsen holder til');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (18,'Borgerservice',1,'Borgerens indgang til den offentlige sektor.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (19,'Bibliotek',1,'Bibliotek er en samling af bøger, håndskrifter og andet referencemateriale (kort, film, bånd, etc.) og stedet, hvor disse opbevares.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (20,'Tandpleje',1,'Tandpleje (gratis tandlægebesøg) for børn og unge under 18 år.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (21,'Medborgerhus',1,'Et medborgerhus er en betegnelse for en kulturinstitution, der står til rådighed for en by eller en egns befolkning i f.m. kultur-, forenings - og fritidstilbud. Begrebet Medborgerhus kan relateres til det mere historiske begreb forsamlingshuset, når vi skuer baggrund – og begrebet kulturhus, når vi ser fremefter. Hjemsted for en stor del af kommunens foreningsliv. Udlåner/udlejer lokaler til f.eks. møder, foredrag og kurser');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (22,'Kulturhus',1,'En samling af forskellige faciliteter under samme tag. F.eks. musiksteder, biografer, foreninger, idrætsfaciliteter, restaurenter, koncertsale, teater, børnekultur, danseforestillinger, møder, lokale foreninger, motionsfaciliteter, markeder, udstillingslokaler, kreative værksteder m.v.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (23,'Specialskole',1,'En specialskole er en skole for elever, som vurderes ikke at ville kunne følge den normale undervisning i folkeskolen. Eksempler på sådanne elever er døve eller blinde elever, samt elever med autisme, ADHD eller lignende handicaps.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (24,'Musikskole',1,'På en musikskole undervises elever i musikalsk teori (som fx noder og toner) og i at bruge et eller flere musikinstrumenter.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (25,'Højskole',1,'Folkehøjskoler var oprindeligt skoler for voksne mænd og kvinder, hvor der blev givet en undervisning, som tog sigte på at gøre dem til gode statsborgere. Med tiden er fokus blevet mere på personlig udvikling, og ofte specialiserer de enkelte skoler sig særligt i dele af dette.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (26,'Produktionsskole',1,'Produktionsskolen er et praktisk uddannelsestilbud, baseret på værkstedundervisning');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (27,'Naturskole',1,'En skole der supplere folkeskolens undervisning, så børn og unge gennem egne oplevelser får indblik i sammenhænge i naturen og dermed øget ansvarsbevi dsthed over for natur og miljø.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (28,'Gymnasium',1,'Gymnasium, almendannende og dermed studieforberedende ungdomsuddannelse. Siden 1903 har betegnelsen været brugt om de tre skoleår forud for studentereksamen.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (29,'Universitet',1,'Universitet, højeste læreanstalt for uddannelse og forskning. Et universitet defineres traditionelt som en institution, der har stor faglig bredde og rummer fag inden for de humanistiske, teologiske, juridiske, samfunds-, sundheds- og naturvidenskabelige discipliner.');
+-- INSERT INTO fkg.d_5708_institution_type VALUES (98,'Øvrige institutioner og tilbud',1,'Andre typer institutioner.');
 -- SELECT * FROM d_5708_institution_type;
 
-
-INSERT INTO fkg.d_5709_distrikt_type VALUES (1,'Børne',1,'Børnedistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (2,'Dagpleje',1,'Dagplejedistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (3,'Klub',1,'Klubdistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (4,'Plejegruppe',1,'Plejegruppedistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (5,'Skole',1,'Skoledistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (6,'Social',1,'Socialdistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (7,'SSP',1,'SSP-distrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (8,'Sundhedsplejerske',1,'Sundhedsplejerskedistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (9,'Ældre',1,'Ældredistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (10,'Ejendomsdrift',1,'Ejendomsdriftsdistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (11,'Basisdistrikt',1,'Basis- eller statistikdistrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (98,'Andet',1,'Andre distrikter');
-INSERT INTO fkg.d_5709_distrikt_type VALUES (99,'Ukendt',1,'Ukendt');
+-- Tema udgået v. 2.4
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (1,'Børne',1,'Børnedistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (2,'Dagpleje',1,'Dagplejedistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (3,'Klub',1,'Klubdistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (4,'Plejegruppe',1,'Plejegruppedistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (5,'Skole',1,'Skoledistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (6,'Social',1,'Socialdistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (7,'SSP',1,'SSP-distrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (8,'Sundhedsplejerske',1,'Sundhedsplejerskedistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (9,'Ældre',1,'Ældredistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (10,'Ejendomsdrift',1,'Ejendomsdriftsdistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (11,'Basisdistrikt',1,'Basis- eller statistikdistrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (98,'Andet',1,'Andre distrikter');
+-- INSERT INTO fkg.d_5709_distrikt_type VALUES (99,'Ukendt',1,'Ukendt');
 -- SELECT * FROM d_5709_distrikt_type;
  
 
