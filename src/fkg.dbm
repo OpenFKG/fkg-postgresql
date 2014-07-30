@@ -15,7 +15,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_oprindelse">
 	<schema name="fkg"/>
-	<position x="2671.43" y="477.143"/>
+	<position x="2670.18" y="237.143"/>
 	<column name="oprindkode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -35,7 +35,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_status">
 	<schema name="fkg"/>
-	<position x="2670" y="375.714"/>
+	<position x="2668.75" y="145.714"/>
 	<column name="statuskode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -52,7 +52,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_ansvarlig_myndighed">
 	<schema name="fkg"/>
-	<position x="2674.29" y="264.286"/>
+	<position x="2670.54" y="34.286"/>
 	<column name="cvr_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -705,7 +705,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6100_brandhane">
 	<schema name="fkg"/>
-	<position x="3025" y="1460.71"/>
+	<position x="3948.33" y="2284.04"/>
 	<column name="brandhane_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -725,7 +725,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6100_placering">
 	<schema name="fkg"/>
-	<position x="3019.29" y="1340.71"/>
+	<position x="3942.62" y="2164.04"/>
 	<column name="placering_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -745,7 +745,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6100_brandhane">
 	<schema name="fkg"/>
-	<position x="2553.57" y="1327.86"/>
+	<position x="3476.9" y="2151.19"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -795,7 +795,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6102_redvej_type">
 	<schema name="fkg"/>
-	<position x="3029.29" y="1652.14"/>
+	<position x="3952.62" y="2475.47"/>
 	<column name="redvej_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -815,7 +815,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6102_redn_vej">
 	<schema name="fkg"/>
-	<position x="2547.86" y="1600.71"/>
+	<position x="3471.19" y="2424.04"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1578,7 +1578,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5105_kaer_type">
 	<schema name="fkg"/>
-	<position x="1611.47" y="1068.43"/>
+	<position x="513.969" y="3443.43"/>
 	<column name="kaer_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1598,7 +1598,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5105_rig_fattig">
 	<schema name="fkg"/>
-	<position x="1117.47" y="1020.43"/>
+	<position x="19.9688" y="3395.43"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1630,7 +1630,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5106_pleje_type">
 	<schema name="fkg"/>
-	<position x="1613.54" y="1264.5"/>
+	<position x="516.039" y="3639.5"/>
 	<column name="pleje_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1650,7 +1650,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5106_faciliteter">
 	<schema name="fkg"/>
-	<position x="1614.54" y="1370.5"/>
+	<position x="517.039" y="3745.5"/>
 	<column name="faciliteter_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1670,7 +1670,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5106_nat_pl">
 	<schema name="fkg"/>
-	<position x="1113.47" y="1163.43"/>
+	<position x="15.9688" y="3538.43"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1747,7 +1747,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5108_groent_part">
 	<schema name="fkg"/>
-	<position x="1125.26" y="1800.36"/>
+	<position x="30.2588" y="4470.36"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1791,7 +1791,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5300_genopd_ret">
 	<schema name="fkg"/>
-	<position x="1120" y="2747.67"/>
+	<position x="1128.75" y="1197.67"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1826,7 +1826,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5400_affalds_type">
 	<schema name="fkg"/>
-	<position x="1727.67" y="3201"/>
+	<position x="1762.67" y="1606"/>
 	<column name="affaldstype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1846,7 +1846,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5400_affalds_dis">
 	<schema name="fkg"/>
-	<position x="1128.08" y="3140.42"/>
+	<position x="1163.08" y="1582.92"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1887,7 +1887,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5200_affald">
 	<schema name="fkg"/>
-	<position x="1658.33" y="2449.74"/>
+	<position x="1638.33" y="875.988"/>
 	<column name="affald_prod_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1907,7 +1907,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5401_gs_type">
 	<schema name="fkg"/>
-	<position x="1737.83" y="3428.75"/>
+	<position x="1772.83" y="1833.75"/>
 	<column name="gs_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1927,7 +1927,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5402_gc_type">
 	<schema name="fkg"/>
-	<position x="1722.17" y="3588"/>
+	<position x="1757.17" y="1993"/>
 	<column name="gc_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1947,7 +1947,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5506_anlaegtype">
 	<schema name="fkg"/>
-	<position x="1666.89" y="3883.5"/>
+	<position x="1673.14" y="2501"/>
 	<column name="anlaeg_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1967,7 +1967,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5600_rute">
 	<schema name="fkg"/>
-	<position x="1704" y="4702"/>
+	<position x="1725.25" y="3162"/>
 	<column name="rute_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1987,7 +1987,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5601_hasti_type">
 	<schema name="fkg"/>
-	<position x="1678" y="4850"/>
+	<position x="1699.25" y="3310"/>
 	<column name="hasti_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2007,7 +2007,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5602_p_tid">
 	<schema name="fkg"/>
-	<position x="1677" y="5049"/>
+	<position x="1698.25" y="3509"/>
 	<column name="p_tid_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2027,7 +2027,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5602_p_type">
 	<schema name="fkg"/>
-	<position x="1676" y="4951"/>
+	<position x="1697.25" y="3411"/>
 	<column name="p_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2047,7 +2047,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5604_begr_type">
 	<schema name="fkg"/>
-	<position x="1686" y="5310"/>
+	<position x="1707.25" y="3770"/>
 	<column name="begr_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2067,7 +2067,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5605_dekl_type">
 	<schema name="fkg"/>
-	<position x="1673" y="5532"/>
+	<position x="1688" y="3985.75"/>
 	<column name="dekl_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2087,7 +2087,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5606_inventar_type">
 	<schema name="fkg"/>
-	<position x="1644" y="5718"/>
+	<position x="1659" y="4171.75"/>
 	<column name="inventar_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2107,7 +2107,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5700_forening_type">
 	<schema name="fkg"/>
-	<position x="19" y="5570"/>
+	<position x="2697.43" y="804.322"/>
 	<column name="forening_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2127,7 +2127,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5700_adr_beskyt">
 	<schema name="fkg"/>
-	<position x="19" y="5661"/>
+	<position x="2694.43" y="910.322"/>
 	<column name="gf_adr_beskyt_kode" not-null="true">
 		<type name="character"/>
 	</column>
@@ -2147,7 +2147,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5705_udlejning">
 	<schema name="fkg"/>
-	<position x="18" y="5752"/>
+	<position x="2718.43" y="1804.32"/>
 	<column name="udlejning_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2167,7 +2167,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5706_havn_type">
 	<schema name="fkg"/>
-	<position x="18" y="5846"/>
+	<position x="2720.43" y="1958.32"/>
 	<column name="havn_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2187,7 +2187,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5707_grund_type">
 	<schema name="fkg"/>
-	<position x="16" y="5938"/>
+	<position x="2710.43" y="2113.32"/>
 	<column name="grund_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2207,7 +2207,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5707_salg_status">
 	<schema name="fkg"/>
-	<position x="14" y="6020"/>
+	<position x="2708.43" y="2195.32"/>
 	<column name="salg_status_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2225,49 +2225,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="d_5708_institution_type">
-	<schema name="fkg"/>
-	<position x="14" y="6105"/>
-	<column name="institution_type_kode" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="institution_type" not-null="true">
-		<type name="character varying" length="30"/>
-	</column>
-	<column name="aktiv" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="begrebsdefinition">
-		<type name="character varying"/>
-	</column>
-	<constraint name="d_5708_institution_type_pk" type="pk-constr" factor="10" table="fkg.d_5708_institution_type">
-		<columns names="institution_type_kode" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<table name="d_5709_distrikt_type">
-	<schema name="fkg"/>
-	<position x="12" y="6191"/>
-	<column name="distrikt_type_kode" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="distrikt_type" not-null="true">
-		<type name="character varying" length="128"/>
-	</column>
-	<column name="aktiv" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="begrebsdefinition">
-		<type name="character varying"/>
-	</column>
-	<constraint name="d_5709_distrikt_type_pk" type="pk-constr" factor="10" table="fkg.d_5709_distrikt_type">
-		<columns names="distrikt_type_kode" ref-type="src-columns"/>
-	</constraint>
-</table>
-
 <table name="d_5800_facilitet">
 	<schema name="fkg"/>
-	<position x="3021.14" y="1958.43"/>
+	<position x="3936.14" y="880.096"/>
 	<column name="facilitet_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2287,7 +2247,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_facilitet">
 	<schema name="fkg"/>
-	<position x="2992.43" y="2184"/>
+	<position x="3907.43" y="1105.67"/>
 	<column name="facilitet_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2307,7 +2267,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5901_gravestatus">
 	<schema name="fkg"/>
-	<position x="1653.5" y="5981.71"/>
+	<position x="4077.26" y="1654.2"/>
 	<column name="gravstatus_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2327,7 +2287,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5901_raastof_type">
 	<schema name="fkg"/>
-	<position x="1666.57" y="6076.43"/>
+	<position x="4071.58" y="1770.17"/>
 	<column name="raastof_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2347,7 +2307,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5902_vaeske_type">
 	<schema name="fkg"/>
-	<position x="1672.49" y="6224.1"/>
+	<position x="4095" y="1960.34"/>
 	<column name="vaesketype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2367,7 +2327,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6000_kotesystem">
 	<schema name="fkg"/>
-	<position x="8" y="6705"/>
+	<position x="5318.01" y="1224.99"/>
 	<column name="kotesystem_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2387,7 +2347,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6003_zone_type">
 	<schema name="fkg"/>
-	<position x="8" y="6790"/>
+	<position x="5318.01" y="1309.99"/>
 	<column name="zone_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2407,7 +2367,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6101_beskyt_rum">
 	<schema name="fkg"/>
-	<position x="9" y="6886"/>
+	<position x="5319.01" y="1405.99"/>
 	<column name="beskyt_rum_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2427,7 +2387,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6104_risikotype">
 	<schema name="fkg"/>
-	<position x="11" y="6957"/>
+	<position x="5321.01" y="1476.99"/>
 	<column name="risikotype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2447,7 +2407,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6104_brandhaem">
 	<schema name="fkg"/>
-	<position x="9" y="7053"/>
+	<position x="5319.01" y="1572.99"/>
 	<column name="brandhaem_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2467,7 +2427,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6111_tilladelse">
 	<schema name="fkg"/>
-	<position x="9" y="7148"/>
+	<position x="5319.01" y="1667.99"/>
 	<column name="tilladelse_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2487,7 +2447,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6112_depottype">
 	<schema name="fkg"/>
-	<position x="11" y="7237"/>
+	<position x="5321.01" y="1756.99"/>
 	<column name="depottype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2507,7 +2467,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6115_afbr_type">
 	<schema name="fkg"/>
-	<position x="12" y="7339"/>
+	<position x="5322.01" y="1858.99"/>
 	<column name="afbr_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2527,7 +2487,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6116_strandtype">
 	<schema name="fkg"/>
-	<position x="12" y="7446"/>
+	<position x="5322.01" y="1965.99"/>
 	<column name="strandtype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2547,7 +2507,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6116_esi_klasse">
 	<schema name="fkg"/>
-	<position x="16" y="7571"/>
+	<position x="5326.01" y="2090.99"/>
 	<column name="esi_klasse_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2567,7 +2527,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6117_indsatstype">
 	<schema name="fkg"/>
-	<position x="20" y="7691"/>
+	<position x="5330.01" y="2210.99"/>
 	<column name="indsatstype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2587,7 +2547,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_geologi">
 	<schema name="fkg"/>
-	<position x="22" y="7798"/>
+	<position x="5332.01" y="2317.99"/>
 	<column name="geologi_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2607,7 +2567,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_jordtype">
 	<schema name="fkg"/>
-	<position x="24" y="7922"/>
+	<position x="5334.01" y="2441.99"/>
 	<column name="jordtype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2627,7 +2587,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_terraen">
 	<schema name="fkg"/>
-	<position x="22" y="8045"/>
+	<position x="5332.01" y="2564.99"/>
 	<column name="terraen_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2647,7 +2607,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_kompleksitet">
 	<schema name="fkg"/>
-	<position x="20" y="8184"/>
+	<position x="5330.01" y="2703.99"/>
 	<column name="kompleksitet_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2667,7 +2627,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_skala">
 	<schema name="fkg"/>
-	<position x="22" y="8320"/>
+	<position x="5332.01" y="2839.99"/>
 	<column name="skala_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2687,7 +2647,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_rumlig_afgraensning">
 	<schema name="fkg"/>
-	<position x="24" y="8438"/>
+	<position x="5334.01" y="2957.99"/>
 	<column name="rumlig_afgraensning_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2707,7 +2667,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_kompleksitet">
 	<schema name="fkg"/>
-	<position x="21" y="8594"/>
+	<position x="5331.01" y="3113.99"/>
 	<column name="kompleksitet_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2727,7 +2687,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_struktur">
 	<schema name="fkg"/>
-	<position x="22" y="8722"/>
+	<position x="5332.01" y="3241.99"/>
 	<column name="struktur_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2747,7 +2707,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_visuel_uro">
 	<schema name="fkg"/>
-	<position x="22" y="8852"/>
+	<position x="5332.01" y="3371.99"/>
 	<column name="visuel_uro_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2767,7 +2727,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_tidsdybde">
 	<schema name="fkg"/>
-	<position x="21" y="8978"/>
+	<position x="5331.01" y="3497.99"/>
 	<column name="tidsdybde_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2787,7 +2747,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6203_karakterstyrke">
 	<schema name="fkg"/>
-	<position x="23" y="9114"/>
+	<position x="5333.01" y="3633.99"/>
 	<column name="karakterstyrke_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2807,7 +2767,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6203_saarbarhed">
 	<schema name="fkg"/>
-	<position x="23" y="9253"/>
+	<position x="5333.01" y="3772.99"/>
 	<column name="saarbarhed_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2827,7 +2787,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6800_vedlhold_f_type">
 	<schema name="fkg"/>
-	<position x="23" y="9386"/>
+	<position x="5333.01" y="3905.99"/>
 	<column name="vedlhold_f_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2850,7 +2810,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6801_vedlhold_l_type">
 	<schema name="fkg"/>
-	<position x="22" y="9507"/>
+	<position x="5332.01" y="4026.99"/>
 	<column name="vedlhold_l_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2873,7 +2833,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6802_groenvedligh_punkt">
 	<schema name="fkg"/>
-	<position x="24" y="9609"/>
+	<position x="5334.01" y="4128.99"/>
 	<column name="vedlhold_p_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2896,7 +2856,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6803_pg_distrikt">
 	<schema name="fkg"/>
-	<position x="26" y="9734"/>
+	<position x="5336.01" y="4253.99"/>
 	<column name="pg_distrikt_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2916,7 +2876,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5401_genbr_st">
 	<schema name="fkg"/>
-	<position x="1134" y="3383.75"/>
+	<position x="1169" y="1788.75"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -2954,7 +2914,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5402_genbr_con">
 	<schema name="fkg"/>
-	<position x="1129.25" y="3575.5"/>
+	<position x="1164.25" y="1980.5"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -2983,7 +2943,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5508_husst_moel">
 	<schema name="fkg"/>
-	<position x="1140.25" y="4174.5"/>
+	<position x="1146.5" y="2792"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3041,7 +3001,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5200_aff_prod_udbr">
 	<schema name="fkg"/>
-	<position x="1120.82" y="2368.75"/>
+	<position x="1124.57" y="802.498"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3100,7 +3060,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5500_elfors_omr">
 	<schema name="fkg"/>
-	<position x="1136.5" y="3758.83"/>
+	<position x="1142.75" y="2376.33"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3126,7 +3086,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5506_spildev_pl_pkt">
 	<schema name="fkg"/>
-	<position x="1138.5" y="3882.06"/>
+	<position x="1144.75" y="2499.56"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3152,7 +3112,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5507_fiberkabel">
 	<schema name="fkg"/>
-	<position x="1139.58" y="4010.26"/>
+	<position x="1145.83" y="2627.76"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3184,7 +3144,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5800_fac_pkt">
 	<schema name="fkg"/>
-	<position x="2515.71" y="1922.86"/>
+	<position x="3430.71" y="844.526"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3228,7 +3188,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5802_fac_li">
 	<schema name="fkg"/>
-	<position x="2487.14" y="2141.43"/>
+	<position x="3402.14" y="1063.1"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3272,7 +3232,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5900_jordfl">
 	<schema name="fkg"/>
-	<position x="1141.14" y="5867.14"/>
+	<position x="3518.65" y="1360.88"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3340,7 +3300,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5901_raastof_till">
 	<schema name="fkg"/>
-	<position x="1150.29" y="6200.29"/>
+	<position x="3555.3" y="1680.28"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3381,7 +3341,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5902_jordv_anl">
 	<schema name="fkg"/>
-	<position x="1140.44" y="6389.89"/>
+	<position x="3545.45" y="1869.88"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3430,13 +3390,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="5904mangler" bold="true" font-size="11">
-	<position x="1638.33" y="6415.78"/>
+	<position x="4043.34" y="1895.77"/>
 	<comment><![CDATA[Her burde 5904 være - men temaet er ikke specificeret i FKG ver 2.3]]></comment>
 </textbox>
 
 <table name="t_5104_art_invas">
 	<schema name="fkg"/>
-	<position x="1116.86" y="789.71"/>
+	<position x="19.3588" y="3164.71"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3486,7 +3446,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5107_art_invas_p">
 	<schema name="fkg"/>
-	<position x="1121.43" y="1575.71"/>
+	<position x="26.4288" y="4245.71"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3536,7 +3496,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5508_stoej">
 	<schema name="fkg"/>
-	<position x="1660" y="4234"/>
+	<position x="1666.25" y="2851.5"/>
 	<column name="stoej_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -3556,7 +3516,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5600_vintervedl">
 	<schema name="fkg"/>
-	<position x="1118" y="4695"/>
+	<position x="1139.25" y="3155"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3588,7 +3548,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5601_hasti_daemp">
 	<schema name="fkg"/>
-	<position x="1117" y="4839"/>
+	<position x="1138.25" y="3299"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3611,7 +3571,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5602_p_zoner">
 	<schema name="fkg"/>
-	<position x="1117" y="4950"/>
+	<position x="1138.25" y="3410"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3679,7 +3639,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5603_hasti_zone">
 	<schema name="fkg"/>
-	<position x="1119" y="5163"/>
+	<position x="1140.25" y="3623"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3702,7 +3662,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5604_koer_begr">
 	<schema name="fkg"/>
-	<position x="1120" y="5284"/>
+	<position x="1141.25" y="3744"/>
 	<column name="versions_id">
 		<type name="uuid"/>
 	</column>
@@ -3734,7 +3694,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5605_vejbyggel">
 	<schema name="fkg"/>
-	<position x="1132" y="5495"/>
+	<position x="1147" y="3948.75"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3778,7 +3738,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5606_vejinv">
 	<schema name="fkg"/>
-	<position x="1154" y="5711"/>
+	<position x="1169" y="4164.75"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3801,6 +3761,462 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5606_vejinv_pk" type="pk-constr" factor="100" table="fkg.t_5606_vejinv">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="licensing-link_cp" font-size="9">
+	<position x="13.3214" y="745.607"/>
+	<comment><![CDATA[In this column Theme group 5.1 and 5.2]]></comment>
+</textbox>
+
+<textbox name="licensing-link_cp_cp" font-size="9">
+	<position x="1128.32" y="749.357"/>
+	<comment><![CDATA[In this column Theme group 5.3, 5.4, 5.5, 5.6, 5.7]]></comment>
+</textbox>
+
+<textbox name="licensing-link_cp_cp_cp" font-size="9">
+	<position x="2235.82" y="746.857"/>
+	<comment><![CDATA[In this column Theme group 5.8]]></comment>
+</textbox>
+
+<table name="t_5700_grundej">
+	<schema name="fkg"/>
+	<position x="2245" y="801"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="forening_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="forening_navn" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="lokalpl_nr">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="formand" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="gf_tlf">
+		<type name="integer"/>
+	</column>
+	<column name="gf_adresse">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="gf_mail">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="gf_adr_beskyt_kode">
+		<type name="character"/>
+	</column>
+	<column name="vedtaegt_kode">
+		<type name="integer"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5700_grundej_pk" type="pk-constr" factor="10" table="fkg.t_5700_grundej">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5700_grundej_gf_tlf_ck" type="ck-constr" table="fkg.t_5700_grundej">
+			<expression><![CDATA[gf_tlf BETWEEN 11111111 AND 99999999]]></expression>
+	</constraint>
+</table>
+
+<table name="t_5701_lok_omr">
+	<schema name="fkg"/>
+	<position x="2248" y="1033"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="lokalraad_navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5701_lok_omr_pk" type="pk-constr" factor="10" table="fkg.t_5701_lok_omr">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5702_skorst_fej">
+	<schema name="fkg"/>
+	<position x="2248" y="1170"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="skorstenf_distrikt_nr">
+		<type name="integer"/>
+	</column>
+	<column name="skorstenf_distrikt_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="skorstensfejer" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sf_tlf">
+		<type name="integer"/>
+	</column>
+	<column name="sf_adresse">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="sf_mail">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5702_skorst_fej_pk" type="pk-constr" factor="10" table="fkg.t_5702_skorst_fej">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5702_skorst_fej_skorstenf_distrikt_nr_ck" type="ck-constr" table="fkg.t_5702_skorst_fej">
+			<expression><![CDATA[skorstenf_distrikt_nr BETWEEN 1 AND 99999]]></expression>
+	</constraint>
+	<constraint name="t_5702_skorst_fej_sf_tlf_ck" type="ck-constr" table="fkg.t_5702_skorst_fej">
+			<expression><![CDATA[sf_tlf BETWEEN 11111111 AND 99999999]]></expression>
+	</constraint>
+</table>
+
+<table name="t_5703_afstem_sted">
+	<schema name="fkg"/>
+	<position x="2249" y="1390"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="afstemningsomraade_nr" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="lokalitet">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5703_afstem_sted_pk" type="pk-constr" factor="10" table="fkg.t_5703_afstem_sted">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5704_afstem_omr">
+	<schema name="fkg"/>
+	<position x="2246" y="1568"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="afstemningsomraade_nr" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="opstillingskreds_nr">
+		<type name="integer"/>
+	</column>
+	<column name="opstillingskreds_navn">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="storkreds_nr">
+		<type name="integer"/>
+	</column>
+	<column name="storkreds_navn">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="ansvar_revision">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5704_afstem_omr_pk" type="pk-constr" factor="10" table="fkg.t_5704_afstem_omr">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5704_afstem_omr_opstillingskreds_nr_ck" type="ck-constr" table="fkg.t_5704_afstem_omr">
+			<expression><![CDATA[opstillingskreds_nr BETWEEN 1 AND 92]]></expression>
+	</constraint>
+	<constraint name="opstillingskreds_nr_storkreds_nr" type="ck-constr" table="fkg.t_5704_afstem_omr">
+			<expression><![CDATA[storkreds_nr BETWEEN 1 AND 10]]></expression>
+	</constraint>
+</table>
+
+<table name="t_5705_forp_are">
+	<schema name="fkg"/>
+	<position x="2247" y="1750"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="forpagter_navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="forpagter_formaal">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="udlejning_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="landbrug_kode">
+		<type name="integer"/>
+	</column>
+	<column name="noter">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5705_forp_are_pk" type="pk-constr" factor="10" table="fkg.t_5705_forp_are">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5706_havn_are">
+	<schema name="fkg"/>
+	<position x="2246" y="1933"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="havn_nr">
+		<type name="integer"/>
+	</column>
+	<column name="havn_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="havne_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="cvr_havn">
+		<type name="integer"/>
+	</column>
+	<column name="ejer_admin">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5706_havn_are_pk" type="pk-constr" factor="10" table="fkg.t_5706_havn_are">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5706_havn_are_havn_nr_ck" type="ck-constr" table="fkg.t_5706_havn_are">
+			<expression><![CDATA[havn_nr BETWEEN 1 AND 99999]]></expression>
+	</constraint>
+	<constraint name="t_5706_havn_are_cvr_havn_ck" type="ck-constr" table="fkg.t_5706_havn_are">
+			<expression><![CDATA[cvr_havn BETWEEN 10000000 AND 99999999]]></expression>
+	</constraint>
+</table>
+
+<table name="t_5707_grunds">
+	<schema name="fkg"/>
+	<position x="2244" y="2079"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="udstyk_navn">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="grund_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="salg_status_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="pris">
+		<type name="integer"/>
+	</column>
+	<column name="mindste_pris">
+		<type name="integer"/>
+	</column>
+	<column name="kvm_pris">
+		<type name="double precision"/>
+	</column>
+	<column name="kontakt_oplys">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="grundareal">
+		<type name="integer"/>
+	</column>
+	<column name="bygningareal">
+		<type name="integer"/>
+	</column>
+	<column name="budfrist_slut">
+		<type name="time"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5707_grunds_pk" type="pk-constr" factor="10" table="fkg.t_5707_grunds">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5707_grunds_pris_ck" type="ck-constr" table="fkg.t_5707_grunds">
+			<expression><![CDATA[pris BETWEEN 1 AND 99999999]]></expression>
+	</constraint>
+	<constraint name="t_5707_grunds_mindste_pris_ck" type="ck-constr" table="fkg.t_5707_grunds">
+			<expression><![CDATA[mindste_pris BETWEEN 1 AND 99999999]]></expression>
+	</constraint>
+	<constraint name="t_5707_grunds_grundareal_ck" type="ck-constr" table="fkg.t_5707_grunds">
+			<expression><![CDATA[grundareal BETWEEN 1 AND 999999]]></expression>
+	</constraint>
+	<constraint name="t_5707_grunds_bygningareal_ck" type="ck-constr" table="fkg.t_5707_grunds">
+			<expression><![CDATA[bygningareal BETWEEN 1 AND 99999]]></expression>
+	</constraint>
+	<constraint name="bygningareal_budfrist_slut_ck" type="ck-constr" table="fkg.t_5707_grunds">
+			<expression><![CDATA[budfrist_slut BETWEEN '2006-12-31T23:59:00.000+01:00' AND '2999-12-31T23:59:00.000+01:00']]></expression>
+	</constraint>
+</table>
+
+<table name="t_5710_born_skole_dis">
+	<schema name="fkg"/>
+	<position x="2246" y="2384"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<constraint name="t_5710_born_skole_dis_pk" type="pk-constr" factor="10" table="fkg.t_5710_born_skole_dis">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5711_and_dis">
+	<schema name="fkg"/>
+	<position x="2250" y="2577"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<constraint name="t_5711_and_dis_pk" type="pk-constr" factor="10" table="fkg.t_5711_and_dis">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5712_plej_aeldr_dis">
+	<schema name="fkg"/>
+	<position x="2251" y="2635"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<constraint name="t_5712_plej_aeldr_dis_pk" type="pk-constr" factor="10" table="fkg.t_5712_plej_aeldr_dis">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5713_prog_stat_dis">
+	<schema name="fkg"/>
+	<position x="2254" y="2687"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<constraint name="t_5713_prog_stat_dis_pk" type="pk-constr" factor="10" table="fkg.t_5713_prog_stat_dis">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5714_laering_udd_inst">
+	<schema name="fkg"/>
+	<position x="2257" y="2730"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<constraint name="t_5714_laering_udd_inst_pk" type="pk-constr" factor="10" table="fkg.t_5714_laering_udd_inst">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5715_botilbud">
+	<schema name="fkg"/>
+	<position x="2257" y="2776"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<constraint name="t_5715_botilbud_pk" type="pk-constr" factor="10" table="fkg.t_5715_botilbud">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5716_servicetilbud">
+	<schema name="fkg"/>
+	<position x="2258" y="2822"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<constraint name="t_5716_servicetilbud_pk" type="pk-constr" factor="10" table="fkg.t_5716_servicetilbud">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -4425,6 +4841,151 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="tilstand_kode" ref-type="src-columns"/>
 	<columns names="tilstand_kode" ref-type="dst-columns"/>
 </constraint>
+<constraint name="t_5700_grundej_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5700_grundej">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5700_grundej_d_5700_forening_type_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5700_forening_type" table="fkg.t_5700_grundej">
+	<columns names="forening_type_kode" ref-type="src-columns"/>
+	<columns names="forening_type_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5700_grundej_d_5700_adr_beskyt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5700_adr_beskyt" table="fkg.t_5700_grundej">
+	<columns names="gf_adr_beskyt_kode" ref-type="src-columns"/>
+	<columns names="gf_adr_beskyt_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5700_grundej_d_basis_ja_nej_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5700_grundej">
+	<columns names="vedtaegt_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5701_lok_omr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5701_lok_omr">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5702_skorst_fej_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5702_skorst_fej">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5703_afstem_sted_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5703_afstem_sted">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5703_afstem_sted_d_basis_afstemningsomraade_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_afstemningsomraade" table="fkg.t_5703_afstem_sted">
+	<columns names="afstemningsomraade_nr" ref-type="src-columns"/>
+	<columns names="afstemningsomraade_nr" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5703_afstem_sted_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5703_afstem_sted">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5703_afstem_sted_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5703_afstem_sted">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5704_afstem_omr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5704_afstem_omr">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5704_afstem_omr_d_basis_afstemningsomraade_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_afstemningsomraade" table="fkg.t_5704_afstem_omr">
+	<columns names="afstemningsomraade_nr" ref-type="src-columns"/>
+	<columns names="afstemningsomraade_nr" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5705_forp_are_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5705_forp_are">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5705_forp_are_d_5705_udlejning_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5705_udlejning" table="fkg.t_5705_forp_are">
+	<columns names="udlejning_kode" ref-type="src-columns"/>
+	<columns names="udlejning_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5705_forp_are_d_basis_ja_nej_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5705_forp_are">
+	<columns names="landbrug_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5706_havn_are_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5706_havn_are">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5706_havn_are_d_5706_havn_type" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5706_havn_type" table="fkg.t_5706_havn_are">
+	<columns names="havne_type_kode" ref-type="src-columns"/>
+	<columns names="havn_type_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5707_grunds_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5707_grunds">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5707_grunds_d5707_grund_type_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5707_grund_type" table="fkg.t_5707_grunds">
+	<columns names="grund_type_kode" ref-type="src-columns"/>
+	<columns names="grund_type_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5707_grunds_d5707_salg_status_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5707_salg_status" table="fkg.t_5707_grunds">
+	<columns names="salg_status_kode" ref-type="src-columns"/>
+	<columns names="salg_status_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5707_grunds_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5707_grunds">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5707_grunds_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5707_grunds">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5710_born_skole_dis_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5710_born_skole_dis">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5711_and_dis_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5711_and_dis">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5712_plej_aeldr_dis_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5712_plej_aeldr_dis">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5713_prog_stat_dis_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5713_prog_stat_dis">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5714_laering_udd_inst_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5714_laering_udd_inst">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5715_botilbud_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5715_botilbud">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_5716_servicetilbud_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5716_servicetilbud">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
 <relationship name="rel_generel_d_basis_oprindelse" type="relfk"
 	 src-table="fkg.generel"
 	 dst-table="fkg.d_basis_oprindelse"
@@ -5013,6 +5574,151 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5606_vejinv_d_basis_tilstand" type="relfk"
 	 src-table="fkg.t_5606_vejinv"
 	 dst-table="fkg.d_basis_tilstand"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5700_grundej_generel" type="relfk"
+	 src-table="fkg.t_5700_grundej"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5701_lok_omr_generel" type="relfk"
+	 src-table="fkg.t_5701_lok_omr"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5702_skorst_fej_generel" type="relfk"
+	 src-table="fkg.t_5702_skorst_fej"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5703_afstem_sted_generel" type="relfk"
+	 src-table="fkg.t_5703_afstem_sted"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5704_afstem_omr_generel" type="relfk"
+	 src-table="fkg.t_5704_afstem_omr"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5705_forp_are_generel" type="relfk"
+	 src-table="fkg.t_5705_forp_are"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5706_havn_are_generel" type="relfk"
+	 src-table="fkg.t_5706_havn_are"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5707_grunds_generel" type="relfk"
+	 src-table="fkg.t_5707_grunds"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5710_born_skole_dis_generel" type="relfk"
+	 src-table="fkg.t_5710_born_skole_dis"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5711_and_dis_generel" type="relfk"
+	 src-table="fkg.t_5711_and_dis"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5712_plej_aeldr_dis_generel" type="relfk"
+	 src-table="fkg.t_5712_plej_aeldr_dis"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5713_prog_stat_dis_generel" type="relfk"
+	 src-table="fkg.t_5713_prog_stat_dis"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_generel" type="relfk"
+	 src-table="fkg.t_5714_laering_udd_inst"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5715_botilbud_generel" type="relfk"
+	 src-table="fkg.t_5715_botilbud"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5716_servicetilbud_generel" type="relfk"
+	 src-table="fkg.t_5716_servicetilbud"
+	 dst-table="fkg.generel"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5700_grundej_d_5700_forening_type" type="relfk"
+	 src-table="fkg.t_5700_grundej"
+	 dst-table="fkg.d_5700_forening_type"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5700_grundej_d_5700_adr_beskyt" type="relfk"
+	 src-table="fkg.t_5700_grundej"
+	 dst-table="fkg.d_5700_adr_beskyt"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5700_grundej_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_5700_grundej"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5703_afstem_sted_d_basis_afstemningsomraade" type="relfk"
+	 src-table="fkg.t_5703_afstem_sted"
+	 dst-table="fkg.d_basis_afstemningsomraade"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5703_afstem_sted_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5703_afstem_sted"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5703_afstem_sted_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5703_afstem_sted"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5704_afstem_omr_d_basis_afstemningsomraade" type="relfk"
+	 src-table="fkg.t_5704_afstem_omr"
+	 dst-table="fkg.d_basis_afstemningsomraade"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5705_forp_are_d_5705_udlejning" type="relfk"
+	 src-table="fkg.t_5705_forp_are"
+	 dst-table="fkg.d_5705_udlejning"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5705_forp_are_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_5705_forp_are"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5706_havn_are_d_5706_havn_type" type="relfk"
+	 src-table="fkg.t_5706_havn_are"
+	 dst-table="fkg.d_5706_havn_type"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5707_grunds_d_5707_grund_type" type="relfk"
+	 src-table="fkg.t_5707_grunds"
+	 dst-table="fkg.d_5707_grund_type"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5707_grunds_d_5707_salg_status" type="relfk"
+	 src-table="fkg.t_5707_grunds"
+	 dst-table="fkg.d_5707_salg_status"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5707_grunds_d_vejnavn" type="relfk"
+	 src-table="fkg.t_5707_grunds"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5707_grunds_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_5707_grunds"
+	 dst-table="fkg.d_basis_postnr"
 	 src-required="true" dst-required="true"/>
 
 </dbmodel>
