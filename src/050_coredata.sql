@@ -1999,7 +1999,7 @@ INSERT INTO fkg.d_5700_forening_type VALUES (9,'Uoplyst',1,'Mangler viden for at
 -- SELECT * FROM d_5606_inventar_type;
 
 
-INSERT INTO fkg.d_5700_adr_beskyt VALUES ('N','Ingen adressebeskyttelse',1,'Ingen adressebeskyttelse');
+INSERT INTO fkg.d_5700_adr_beskyt VALUES ('0','Ingen adressebeskyttelse',1,'Ingen adressebeskyttelse');
 INSERT INTO fkg.d_5700_adr_beskyt VALUES ('A','Ejers navn og ejendomsoplysninger overføres til vejvisere',1,'Ejers navn og ejendomsoplysninger overføres til vejvisere');
 INSERT INTO fkg.d_5700_adr_beskyt VALUES ('B','Adressen er beskyttet i CPR',1,'Adressen er beskyttet i CPR');
 INSERT INTO fkg.d_5700_adr_beskyt VALUES ('E','Der overføres ikke oplysning fra ESR til vejvisere',1,'Der overføres ikke oplysning fra ESR til vejvisere');
