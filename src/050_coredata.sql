@@ -44,6 +44,7 @@ DELETE FROM fkg.d_basis_fors_omr_type;
 DELETE FROM fkg.d_basis_driftniv;
 DELETE FROM fkg.d_basis_ukrudtsbek;
 DELETE FROM fkg.d_basis_antal;
+DELETE FROM d_basis_trin;
 
 -- Temaspecific lookup-tables
 DELETE FROM fkg.d_5000_vandl_type;
@@ -1595,6 +1596,22 @@ INSERT INTO fkg.d_basis_antal VALUES (3,'100+',1,'Over 100 stk.');
 INSERT INTO fkg.d_basis_antal VALUES (8,'Andet',1,'Andet');
 INSERT INTO fkg.d_basis_antal VALUES (9,'Ukendt',1,'Mangler viden om antal');
 -- SELECT * FROM d_basis_antal;
+
+INSERT INTO fkg.d_basis_trin VALUES (1,'1. klasse',1,'1. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (2,'2. klasse',1,'2. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (3,'3. klasse',1,'3. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (4,'4. klasse',1,'4. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (5,'5. klasse',1,'5. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (6,'6. klasse',1,'6. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (7,'7. klasse',1,'7. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (8,'8. klasse',1,'8. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (9,'9. klasse',1,'9. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (10,'10. klasse',1,'10. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (11,'0. klasse',1,'0. klasse');
+INSERT INTO fkg.d_basis_trin VALUES (12,'Førskole',1,'Førskole');
+INSERT INTO fkg.d_basis_trin VALUES (98,'Andet',1,'Andre distrikter');
+INSERT INTO fkg.d_basis_trin VALUES (99,'Ukendt',1,'Ukendt');
+-- SELECT * FROM d_basis_trin;
 
 INSERT INTO fkg.d_5000_vandl_type VALUES (1,'Almindelig',1,'Åbent vandløb');
 INSERT INTO fkg.d_5000_vandl_type VALUES (2,'Rørlagt',1,'Administrativ registrering af rørlagt forløb. Kan registreres, hvor myndigheden mener, at registreringen har funktionsmæssig betydning for vandløbsnetværket.');
