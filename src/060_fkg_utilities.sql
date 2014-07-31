@@ -62,6 +62,10 @@ UPDATE fkg_utilities.view_mapping SET field_alias='vandl_opl_navn', value_field=
 -- Theme t_5008_soe_opl
 UPDATE fkg_utilities.view_mapping SET field_alias='soe_opl_navn', value_field='soeopl_navn' WHERE constraint_name='t_5008_soe_opl_d_5008_opl_fk';
 
+-- Theme t_5710_born_skole_dis
+UPDATE fkg_utilities.view_mapping SET field_alias='starttrin', value_field='trin' WHERE constraint_name='t_5710_born_skole_dis_d_basis_trin_starttrin_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='slutttrin', value_field='trin' WHERE constraint_name='t_5710_born_skole_dis_d_basis_trin_sluttrin_fk';
+
 -- Theme 5900 t_5900_jordfl
 UPDATE fkg_utilities.view_mapping SET field_alias='afs_vejnavn', value_field='vejnavn' WHERE constraint_name='t_5900_jordfl_d_vejnavn_afs_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='modt_vejnavn', value_field='vejnavn' WHERE constraint_name='t_5900_jordfl_d_vejnavn_modt_fk';
