@@ -87,6 +87,13 @@ DELETE FROM fkg.d_5707_grund_type;
 DELETE FROM fkg.d_5707_salg_status;
 -- DELETE FROM fkg.d_5708_institution_type; Udgået ver. 2.4
 -- DELETE FROM fkg.d_5709_distrikt_type; Udgået ver. 2.4
+DELETE FROM fkg.d_5710_udd_distrikt_type;
+DELETE FROM fkg.d_5711_an_distrikt_type;
+DELETE FROM fkg.d_5712_plej_distrikt_type;
+DELETE FROM fkg.d_5713_prog_distrikt_type;
+DELETE FROM fkg.d_5714_udd_institution_type;
+DELETE FROM fkg.d_5715_ botilbud_type;
+DELETE FROM fkg.d_5716_Servicetilbud_type;
 DELETE FROM fkg.d_5800_facilitet;
 DELETE FROM fkg.d_5802_facilitet;
 DELETE FROM fkg.d_5901_gravestatus;
@@ -2095,7 +2102,182 @@ INSERT INTO fkg.d_5707_salg_status VALUES (9,'Ukendt',1,'Ukendt');
 -- INSERT INTO fkg.d_5709_distrikt_type VALUES (98,'Andet',1,'Andre distrikter');
 -- INSERT INTO fkg.d_5709_distrikt_type VALUES (99,'Ukendt',1,'Ukendt');
 -- SELECT * FROM d_5709_distrikt_type;
- 
+
+
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (1,'Børne',1,'Børnedistrikter');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (2,'Dagpleje',1,'Dagplejedistrikter');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (3,'Klub',1,'Klubdistrikter');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (4,'-',0,'-');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (5,'Skole',1,'Skoledistrikter');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (6,'-',0,'-');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (7,'SSP',1,'SSP-distrikter');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (8,'-',0,'-');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (9,'-',0,'-');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (10,'-',0,'-');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (11,'-',0,'-');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (12,'SFO',1,'SFO-distrikter');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (98,'Andet',1,'Andre distrikter');
+INSERT INTO fkg.d_5710_udd_distrikt_type VALUES (99,'Ukendt',1,'Ukendt');
+-- SELECT * FROM d_5710_udd_distrikt_type;
+
+
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (1,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (2,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (3,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (4,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (5,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (6,'Social',1,'Socialdistrikter');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (7,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (8,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (9,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (10,'Ejendomsdrift',1,'Ejendomsdriftsdistrikter');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (11,'-',0,'-');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (98,'Andet',1,'Andre distrikter');
+INSERT INTO fkg.d_5711_an_distrikt_type VALUES (99,'Ukendt',1,'Ukendt');
+-- SELECT * FROM d_5711_an_distrikt_type;
+
+
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (1,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (2,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (3,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (4,'Plejegruppe',1,'Plejegruppedistrikter');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (5,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (6,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (7,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (8,'Sundhedsplejerske',1,'Sundhedsplejerskedistrikter');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (9,'Ældre',1,'Ældredistrikter');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (10,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (11,'-',0,'-');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (98,'Andet',1,'Andre distrikter');
+INSERT INTO fkg.d_5712_plej_distrikt_type VALUES (99,'Ukendt',1,'Ukendt');
+-- SELECT * FROM d_5712_plej_distrikt_type;
+
+
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (1,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (2,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (3,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (4,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (5,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (6,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (7,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (8,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (9,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (10,'-',0,'-');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (11,'Basisdistrikt',1,'Distrikt til beregning af befolkningsprognoser');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (98,'Andet',1,'Andre distrikter');
+INSERT INTO fkg.d_5713_prog_distrikt_type VALUES (99,'Ukendt',1,'Ukendt');
+-- SELECT * FROM d_5713_prog_distrikt_type;
+
+
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (1,'Vuggestue',1,'Pasningstilbud for børn 0-3 år.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (2,'Børnehave',1,'Pasningstilbud for børn 3-6 år.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (3,'Integreret Institution',1,'Pasningstilbud for børn 0-6 år.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (4,'SFO',1,'Pasnings-/fritidstilbud for skolebørn efter skoletid+ferier');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (5,'Fritidsklub',1,'Fritidstilbud for skolebørn 10-13 år.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (6,'Ungdomsklub',1,'Klub for store børn og unge, der er vokset fra pasningsordninger.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (7,'Folkeskole',1,'Den kommunale børneskole i Danmark, der kan består af en enårig børnehaveklasse, en niårig grundskole og en enårig tiendeklasse.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (8,'Privatskole',1,'Privatejet skole, der drives som en fri grundskole. Har gerne et religiøst, pædagogisk eller kulturelt særkende.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (9,'Friskole',1,'fri grundskole, der ud fra en særlig grundholdning, fx religiøs, giver undervisning svarende til folkeskolens krav. Friskoletanken stammer fra Grundtvig og Christen Kold.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (10,'Ungdomsskole',1,'Skoleform for unge mellem 14 og 18 år. Betegnelsen angiver nu sædvanligvis kommunale institutioner, som overvejende tilbyder undervisning i de unges fritid');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (11,'Efterskole',1,'speciel dansk skoleform for unge mellem 14 og 18 år');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (12,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (13,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (14,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (15,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (16,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (17,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (18,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (19,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (20,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (21,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (22,'-',0,'-');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (23,'Specialskole',1,'En specialskole er en skole for elever, som vurderes ikke at ville kunne følge den normale undervisning i folkeskolen. Eksempler på sådanne elever er døve eller blinde elever, samt elever med autisme, ADHD eller lignende handicaps.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (24,'Musikskole',1,'På en musikskole undervises elever i musikalsk teori (som fx noder og toner) og i at bruge et eller flere musikinstrumenter.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (25,'Højskole',1,'Folkehøjskoler var oprindeligt skoler for voksne mænd og kvinder, hvor der blev givet en undervisning, som tog sigte på at gøre dem til gode statsborgere. Med tiden er fokus blevet mere på personlig udvikling, og ofte specialiserer de enkelte skoler sig særligt i dele af dette.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (26,'Produktionsskole',1,'Produktionsskolen er et praktisk uddannelsestilbud, baseret på værkstedundervisning');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (27,'Naturskole',1,'En skole der supplere folkeskolens undervisning, så børn og unge gennem egne oplevelser får indblik i sammenhænge i naturen og dermed øget ansvarsbevidsthed over for natur og miljø.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (28,'Gymnasium',1,'Gymnasium, almendannende og dermed studieforberedende ungdomsuddannelse. Siden 1903 har betegnelsen været brugt om de tre skoleår forud for studentereksamen.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (29,'Universitet',1,'Universitet, højeste læreanstalt for uddannelse og forskning. Et universitet defineres traditionelt som en institution, der har stor faglig bredde og rummer fag inden for de humanistiske, teologiske, juridiske, samfunds-, sundheds- og naturvidenskabelige discipliner.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (98,'Øvrige institutioner og tilbud',1,'Andre typer institutioner.');
+INSERT INTO fkg.d_5714_udd_institution_type VALUES (99,'Ukendt',1,'Ukendt institutiostype.');
+-- SELECT * FROM d_5714_udd_institution_type;
+
+
+INSERT INTO fkg.d_5715_botilbud_type VALUES (1,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (2,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (3,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (4,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (5,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (6,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (7,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (8,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (9,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (10,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (11,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (12,'Plejecentre',1,'Botilbud for alment svækkede borgere');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (13,'Pleje- og ældreboliger',1,'Boliger for personer, oftest ældre, der ikke kan klare sig i eget hjem eller i en ældrebolig. Indtil 2005 betegnet plejehjem');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (14,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (15,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (16,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (17,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (18,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (19,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (20,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (21,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (22,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (23,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (24,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (25,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (26,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (27,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (28,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (29,'-',0,'-');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (30,'Børnehjem',1,'Botilbud for børn og unge (0 – 17 årige). Der bor flere beboere på botilbuddet');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (31,'Pleje familie',1,'Botilbud for børn og unge (0 – 17 årige). Der bor typisk 1 – 2 anbragt børn eller unge.');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (32,'Særligt botilbud',1,'Botilbud tilpasset borgere medsærligt behov. Botilbuddet kan f.eks. være rettet med autister, blinde, psykisk syge mv.');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (33,'Genoptræningscenter',1,'Botilbud rettet mod genoptræning til eget hjem. Beboer har typisk ikke CPR-adresse på tilbuddet.');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (34,'Hospital',1,'Botilbud rettet mod behandling af psykiske eller fysisk sygdom. Beboer har typisk ikke CPR-adresse på tilbuddet.');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (35,'Fængsel',1,'Botilbud oprettet i henhold til retsplejeloven Gruppen omfatter også sikringsanstalter.');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (36,'Hospice',1,'Botilbud rettet mod terminal behandling af døende borgere');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (37,'Herberg',1,'Botilbud rettet mod hjemløse');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (98,'Øvrige botilbud',1,'Andre botilbud');
+INSERT INTO fkg.d_5715_botilbud_type VALUES (99,'Ukendt',1,'Ukendt botilbudstype');
+-- SELECT * FROM d_5715_botilbud_type;
+
+
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (1,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (2,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (3,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (4,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (5,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (6,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (7,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (8,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (9,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (10,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (11,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (12,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (13,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (14,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (15,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (16,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (17,'Rådhus',1,'Et rådhus er en bygning for centraladministrationen i en kommune, hvor blandt andet kommunalbestyrelsen holder til');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (18,'Borgerservice',1,'Borgerens indgang til den offentlige sektor.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (19,'Bibliotek',1,'Bibliotek er en samling af bøger, håndskrifter og andet referencemateriale (kort, film, bånd, etc.) og stedet, hvor disse opbevares.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (20,'Tandpleje',1,'Tandpleje (gratis tandlægebesøg) for børn og unge under 18 år');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (21,'Medborgerhus',1,'Et medborgerhus er en betegnelse for en kulturinstitution, der står til rådighed for en by eller en egns befolkning i f.m. kultur-, forenings- og fritidstilbud. Begrebet Medborgerhus kan relateres til det mere historiske begreb forsamlingshuset, når vi skuer baggrund – og begrebet kulturhus, når vi ser fremefter. Hjemsted for en stor del af kommunens foreningsliv. Udlåner/udlejer lokaler til f.eks. møder, foredrag og kurser');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (22,'Kulturhus',1,'En samling af forskellige faciliteter under samme tag. F.eks. musiksteder, biografer, foreninger, idrætsfaciliteter, restaurenter, koncertsale, teater, børnekultur, danseforestillinger, møder, lokale foreninger, motionsfaciliteter, markeder, udstillingslokaler, kreative værksteder m.v.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (23,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (24,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (25,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (26,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (27,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (28,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (29,'-',0,'-');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (98,'Øvrige tilbud',1,'Andet');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (99,'Ukendt',1,'Ukendt');
+-- SELECT * FROM d_5716_Servicetilbud_type;
+
 
 INSERT INTO fkg.d_5800_facilitet VALUES (1,'Toilet',1,'WC i bygning, der er åbent for offentligheden.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2,'Bålplads',1,'Sted hvor der må/kan tændes bål. Typiske med en række mark sten rundt om til afgrænsning.');
