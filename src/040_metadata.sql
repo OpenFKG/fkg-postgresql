@@ -1127,28 +1127,6 @@ CREATE TABLE fkg.d_5707_salg_status(
 
 );
 -- ddl-end --
--- object: fkg.d_5708_institution_type | type: TABLE --
--- DROP TABLE fkg.d_5708_institution_type;
-CREATE TABLE fkg.d_5708_institution_type(
-	institution_type_kode integer NOT NULL,
-	institution_type character varying(30) NOT NULL,
-	aktiv integer NOT NULL,
-	begrebsdefinition character varying,
-	CONSTRAINT d_5708_institution_type_pk PRIMARY KEY (institution_type_kode)
-
-);
--- ddl-end --
--- object: fkg.d_5709_distrikt_type | type: TABLE --
--- DROP TABLE fkg.d_5709_distrikt_type;
-CREATE TABLE fkg.d_5709_distrikt_type(
-	distrikt_type_kode integer NOT NULL,
-	distrikt_type character varying(128) NOT NULL,
-	aktiv integer NOT NULL,
-	begrebsdefinition character varying,
-	CONSTRAINT d_5709_distrikt_type_pk PRIMARY KEY (distrikt_type_kode)
-
-);
--- ddl-end --
 -- object: fkg.d_5800_facilitet | type: TABLE --
 -- DROP TABLE fkg.d_5800_facilitet;
 CREATE TABLE fkg.d_5800_facilitet(
@@ -1890,6 +1868,369 @@ CREATE TABLE fkg.t_5606_vejinv(
 	link character varying(1024),
 	geometri geometry(MULTIPOINT, 25832),
 	CONSTRAINT t_5606_vejinv_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5700_grundej | type: TABLE --
+-- DROP TABLE fkg.t_5700_grundej;
+CREATE TABLE fkg.t_5700_grundej(
+	versions_id uuid NOT NULL,
+	forening_type_kode integer NOT NULL,
+	forening_navn character varying(50) NOT NULL,
+	lokalpl_nr character varying(50),
+	formand character varying(128) NOT NULL,
+	gf_tlf integer,
+	gf_adresse character varying(254),
+	gf_mail character varying(254),
+	gf_adr_beskyt_kode character,
+	vedtaegt_kode integer,
+	noegle character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832),
+	CONSTRAINT t_5700_grundej_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5700_grundej_gf_tlf_ck CHECK (gf_tlf BETWEEN 11111111 AND 99999999)
+
+);
+-- ddl-end --
+-- object: fkg.t_5701_lok_omr | type: TABLE --
+-- DROP TABLE fkg.t_5701_lok_omr;
+CREATE TABLE fkg.t_5701_lok_omr(
+	versions_id uuid NOT NULL,
+	lokalraad_navn character varying(128) NOT NULL,
+	noegle character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832),
+	CONSTRAINT t_5701_lok_omr_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5702_skorst_fej | type: TABLE --
+-- DROP TABLE fkg.t_5702_skorst_fej;
+CREATE TABLE fkg.t_5702_skorst_fej(
+	versions_id uuid NOT NULL,
+	skorstenf_distrikt_nr integer,
+	skorstenf_distrikt_navn character varying(128),
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	skorstensfejer character varying(128) NOT NULL,
+	sf_tlf integer,
+	sf_adresse character varying(254),
+	sf_mail character varying(254),
+	noegle character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5702_skorst_fej_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5702_skorst_fej_skorstenf_distrikt_nr_ck CHECK (skorstenf_distrikt_nr BETWEEN 1 AND 99999),
+	CONSTRAINT t_5702_skorst_fej_sf_tlf_ck CHECK (sf_tlf BETWEEN 11111111 AND 99999999)
+
+);
+-- ddl-end --
+-- object: fkg.t_5703_afstem_sted | type: TABLE --
+-- DROP TABLE fkg.t_5703_afstem_sted;
+CREATE TABLE fkg.t_5703_afstem_sted(
+	versions_id uuid NOT NULL,
+	afstemningsomraade_nr character varying(128) NOT NULL,
+	lokalitet character varying(128),
+	vejkode integer,
+	cvf_vejkode character(7),
+	husnr character varying(4),
+	postnr integer,
+	noegle character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832),
+	CONSTRAINT t_5703_afstem_sted_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5704_afstem_omr | type: TABLE --
+-- DROP TABLE fkg.t_5704_afstem_omr;
+CREATE TABLE fkg.t_5704_afstem_omr(
+	versions_id uuid NOT NULL,
+	afstemningsomraade_nr character varying(128) NOT NULL,
+	opstillingskreds_nr integer,
+	opstillingskreds_navn character varying(40),
+	storkreds_nr integer,
+	storkreds_navn character varying(40),
+	ansvar_revision character varying(128),
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832),
+	CONSTRAINT t_5704_afstem_omr_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5704_afstem_omr_opstillingskreds_nr_ck CHECK (opstillingskreds_nr BETWEEN 1 AND 92),
+	CONSTRAINT opstillingskreds_nr_storkreds_nr CHECK (storkreds_nr BETWEEN 1 AND 10)
+
+);
+-- ddl-end --
+-- object: fkg.t_5705_forp_are | type: TABLE --
+-- DROP TABLE fkg.t_5705_forp_are;
+CREATE TABLE fkg.t_5705_forp_are(
+	versions_id uuid NOT NULL,
+	forpagter_navn character varying(128) NOT NULL,
+	forpagter_formaal character varying(128),
+	udlejning_kode integer NOT NULL,
+	landbrug_kode integer,
+	noter character varying(254),
+	sagsnr character varying(128),
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5705_forp_are_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5706_havn_are | type: TABLE --
+-- DROP TABLE fkg.t_5706_havn_are;
+CREATE TABLE fkg.t_5706_havn_are(
+	versions_id uuid NOT NULL,
+	havn_nr integer,
+	havn_navn character varying(128),
+	havne_type_kode integer NOT NULL,
+	cvr_havn integer,
+	ejer_admin character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832),
+	CONSTRAINT t_5706_havn_are_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5706_havn_are_havn_nr_ck CHECK (havn_nr BETWEEN 1 AND 99999),
+	CONSTRAINT t_5706_havn_are_cvr_havn_ck CHECK (cvr_havn BETWEEN 10000000 AND 99999999)
+
+);
+-- ddl-end --
+-- object: fkg.t_5707_grunds | type: TABLE --
+-- DROP TABLE fkg.t_5707_grunds;
+CREATE TABLE fkg.t_5707_grunds(
+	versions_id uuid NOT NULL,
+	udstyk_navn character varying(50),
+	grund_type_kode integer NOT NULL,
+	salg_status_kode integer NOT NULL,
+	pris integer,
+	mindste_pris integer,
+	kvm_pris double precision,
+	kontakt_oplys character varying(128),
+	grundareal integer,
+	bygningareal integer,
+	budfrist_slut timestamptz,
+	sagsnr character varying(128),
+	vejkode integer,
+	cvf_vejkode character(7),
+	husnr character varying(4),
+	postnr integer,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5707_grunds_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5707_grunds_pris_ck CHECK (pris BETWEEN 1 AND 99999999),
+	CONSTRAINT t_5707_grunds_mindste_pris_ck CHECK (mindste_pris BETWEEN 1 AND 99999999),
+	CONSTRAINT t_5707_grunds_grundareal_ck CHECK (grundareal BETWEEN 1 AND 999999),
+	CONSTRAINT t_5707_grunds_bygningareal_ck CHECK (bygningareal BETWEEN 1 AND 99999),
+	CONSTRAINT bygningareal_budfrist_slut_ck CHECK (budfrist_slut BETWEEN '2006-12-31T23:59:00.000+01:00' AND '2999-12-31T23:59:00.000+01:00')
+
+);
+-- ddl-end --
+-- object: fkg.t_5710_born_skole_dis | type: TABLE --
+-- DROP TABLE fkg.t_5710_born_skole_dis;
+CREATE TABLE fkg.t_5710_born_skole_dis(
+	versions_id uuid NOT NULL,
+	udd_distrikt_nr integer,
+	udd_distrikt_navn character varying(128),
+	udd_distrikt_type_kode integer NOT NULL,
+	starttrin_kode integer NOT NULL,
+	sluttrin_kode integer NOT NULL,
+	noegle character varying(128),
+	sagsnr character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5710_born_skole_dis_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5711_and_dis | type: TABLE --
+-- DROP TABLE fkg.t_5711_and_dis;
+CREATE TABLE fkg.t_5711_and_dis(
+	versions_id uuid NOT NULL,
+	an_distrikt_nr integer,
+	an_distrikt_navn character varying(128),
+	an_distrikt_type_kode integer NOT NULL,
+	noegle character varying(128),
+	sagsnr character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5711_and_dis_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5711_and_dis_an_distrikt_nr_ck CHECK (an_distrikt_nr BETWEEN 1 AND 99999)
+
+);
+-- ddl-end --
+-- object: fkg.t_5712_plej_aeldr_dis | type: TABLE --
+-- DROP TABLE fkg.t_5712_plej_aeldr_dis;
+CREATE TABLE fkg.t_5712_plej_aeldr_dis(
+	versions_id uuid NOT NULL,
+	plej_distrikt_nr integer,
+	plej_distrikt_navn character varying(128),
+	plej_distrikt_type_kode integer NOT NULL,
+	noegle character varying(128),
+	sagsnr character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5712_plej_aeldr_dis_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5712_plej_aeldr_dis_plej_distrikt_nr_ck CHECK (plej_distrikt_nr BETWEEN 1 AND 99999)
+
+);
+-- ddl-end --
+-- object: fkg.t_5713_prog_stat_dis | type: TABLE --
+-- DROP TABLE fkg.t_5713_prog_stat_dis;
+CREATE TABLE fkg.t_5713_prog_stat_dis(
+	versions_id uuid NOT NULL,
+	prog_distrikt_nr integer,
+	prog_distrikt_navn character varying(128),
+	prog_distrikt_type_kode integer NOT NULL,
+	noegle character varying(128),
+	sagsnr character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5713_prog_stat_dis_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5713_prog_stat_dis_prog_distrikt_nr_ck CHECK (prog_distrikt_nr BETWEEN 1 AND 99999)
+
+);
+-- ddl-end --
+-- object: fkg.t_5714_laering_udd_inst | type: TABLE --
+-- DROP TABLE fkg.t_5714_laering_udd_inst;
+CREATE TABLE fkg.t_5714_laering_udd_inst(
+	versions_id uuid NOT NULL,
+	udd_institution_type_kode integer NOT NULL,
+	ejerstatus_kode integer,
+	udd_institution_navn character varying(128) NOT NULL,
+	starttrin_kode integer NOT NULL,
+	sluttrin_kode integer NOT NULL,
+	noegle character varying(128),
+	vejkode integer,
+	cvf_vejkode character(7),
+	husnr character varying(4),
+	postnr integer,
+	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	CONSTRAINT t_5714_laering_udd_inst_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5715_botilbud | type: TABLE --
+-- DROP TABLE fkg.t_5715_botilbud;
+CREATE TABLE fkg.t_5715_botilbud(
+	versions_id uuid NOT NULL,
+	botilbud_type_kode integer NOT NULL,
+	ejerstatus_kode integer,
+	"botilbud _navn" character varying(128) NOT NULL,
+	noegle character varying(128),
+	vejkode integer,
+	cvf_vejkode character(7),
+	husnr character varying(4),
+	postnr integer,
+	link character varying(1024),
+	CONSTRAINT t_5715_botilbud_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_5716_servicetilbud | type: TABLE --
+-- DROP TABLE fkg.t_5716_servicetilbud;
+CREATE TABLE fkg.t_5716_servicetilbud(
+	versions_id uuid NOT NULL,
+	service_type_kode integer NOT NULL,
+	ejerstatus_kode integer,
+	servicetilbud_navn character varying(128) NOT NULL,
+	nogle character varying(128),
+	vejkode integer,
+	cvf_vejkode character(7),
+	husnr character varying(4),
+	postnr integer,
+	link character varying(1024),
+	CONSTRAINT t_5716_servicetilbud_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.d_5710_udd_distrikt_type | type: TABLE --
+-- DROP TABLE fkg.d_5710_udd_distrikt_type;
+CREATE TABLE fkg.d_5710_udd_distrikt_type(
+	udd_distrikt_type_kode integer NOT NULL,
+	udd_distrikt_type character varying(128) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5710_udd_distrikt_type_pk PRIMARY KEY (udd_distrikt_type_kode)
+
+);
+-- ddl-end --
+-- object: fkg.d_5711_an_distrikt_type | type: TABLE --
+-- DROP TABLE fkg.d_5711_an_distrikt_type;
+CREATE TABLE fkg.d_5711_an_distrikt_type(
+	an_distrikt_type_kode integer NOT NULL,
+	an_distrikt_type character varying(128) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5711_an_distrikt_type_pk PRIMARY KEY (an_distrikt_type_kode)
+
+);
+-- ddl-end --
+-- object: fkg.d_5712_plej_distrikt_type | type: TABLE --
+-- DROP TABLE fkg.d_5712_plej_distrikt_type;
+CREATE TABLE fkg.d_5712_plej_distrikt_type(
+	plej_distrikt_type_kode integer NOT NULL,
+	plej_distrikt_type character varying(128) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5712_plej_distrikt_type_pk PRIMARY KEY (plej_distrikt_type_kode)
+
+);
+-- ddl-end --
+-- object: fkg.d_5713_prog_distrikt_type | type: TABLE --
+-- DROP TABLE fkg.d_5713_prog_distrikt_type;
+CREATE TABLE fkg.d_5713_prog_distrikt_type(
+	prog_distrikt_type_kode integer NOT NULL,
+	prog_distrikt_type character varying(128) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5713_prog_distrikt_type_pk PRIMARY KEY (prog_distrikt_type_kode)
+
+);
+-- ddl-end --
+-- object: fkg.d_5714_udd_institution_type | type: TABLE --
+-- DROP TABLE fkg.d_5714_udd_institution_type;
+CREATE TABLE fkg.d_5714_udd_institution_type(
+	udd_institutions_type_kode integer NOT NULL,
+	udd_institution_type character varying(30) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5714_udd_institution_type_pk PRIMARY KEY (udd_institutions_type_kode)
+
+);
+-- ddl-end --
+-- object: fkg.d_basis_trin | type: TABLE --
+-- DROP TABLE fkg.d_basis_trin;
+CREATE TABLE fkg.d_basis_trin(
+	trin_kode integer NOT NULL,
+	trin character varying(25) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_basis_trin_pk PRIMARY KEY (trin_kode)
+
+);
+-- ddl-end --
+-- object: fkg.d_5715_botilbud_type | type: TABLE --
+-- DROP TABLE fkg.d_5715_botilbud_type;
+CREATE TABLE fkg.d_5715_botilbud_type(
+	botilbud_type_kode integer NOT NULL,
+	botilbud_type character varying(30) NOT NULL,
+	aktiv integer NOT NULL,
+	"Begrebsdefinition" character varying,
+	CONSTRAINT d_5715_botilbud_type_pk PRIMARY KEY (botilbud_type_kode)
+
+);
+-- ddl-end --
+-- object: fkg.d_5716_servicetilbud_type | type: TABLE --
+-- DROP TABLE fkg.d_5716_servicetilbud_type;
+CREATE TABLE fkg.d_5716_servicetilbud_type(
+	service_type_kode integer NOT NULL,
+	service_type character varying(30) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5716_servicetilbud_type_pk PRIMARY KEY (service_type_kode)
 
 );
 -- ddl-end --
@@ -2881,6 +3222,374 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5606_vejinv DROP CONSTRAINT t_5606_vejinv_d_basis_tilstand_fk;
 ALTER TABLE fkg.t_5606_vejinv ADD CONSTRAINT t_5606_vejinv_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5700_grundej_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_generel_fk;
+ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5700_grundej_d_5700_forening_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_d_5700_forening_type_fk;
+ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_d_5700_forening_type_fk FOREIGN KEY (forening_type_kode)
+REFERENCES fkg.d_5700_forening_type (forening_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5700_grundej_d_5700_adr_beskyt_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_d_5700_adr_beskyt_fk;
+ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_d_5700_adr_beskyt_fk FOREIGN KEY (gf_adr_beskyt_kode)
+REFERENCES fkg.d_5700_adr_beskyt (gf_adr_beskyt_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5700_grundej_d_basis_ja_nej_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_d_basis_ja_nej_fk FOREIGN KEY (vedtaegt_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5701_lok_omr_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5701_lok_omr DROP CONSTRAINT t_5701_lok_omr_generel_fk;
+ALTER TABLE fkg.t_5701_lok_omr ADD CONSTRAINT t_5701_lok_omr_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5702_skorst_fej_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5702_skorst_fej DROP CONSTRAINT t_5702_skorst_fej_generel_fk;
+ALTER TABLE fkg.t_5702_skorst_fej ADD CONSTRAINT t_5702_skorst_fej_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5703_afstem_sted_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_generel_fk;
+ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5703_afstem_sted_d_basis_afstemningsomraade_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_d_basis_afstemningsomraade_fk;
+ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_d_basis_afstemningsomraade_fk FOREIGN KEY (afstemningsomraade_nr)
+REFERENCES fkg.d_basis_afstemningsomraade (afstemningsomraade_nr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5703_afstem_sted_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_vejnavn_fk;
+ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5703_afstem_sted_d_basis_postnr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5704_afstem_omr_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5704_afstem_omr DROP CONSTRAINT t_5704_afstem_omr_generel_fk;
+ALTER TABLE fkg.t_5704_afstem_omr ADD CONSTRAINT t_5704_afstem_omr_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5704_afstem_omr_d_basis_afstemningsomraade_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5704_afstem_omr DROP CONSTRAINT t_5704_afstem_omr_d_basis_afstemningsomraade_fk;
+ALTER TABLE fkg.t_5704_afstem_omr ADD CONSTRAINT t_5704_afstem_omr_d_basis_afstemningsomraade_fk FOREIGN KEY (afstemningsomraade_nr)
+REFERENCES fkg.d_basis_afstemningsomraade (afstemningsomraade_nr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5705_forp_are_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5705_forp_are DROP CONSTRAINT t_5705_forp_are_generel_fk;
+ALTER TABLE fkg.t_5705_forp_are ADD CONSTRAINT t_5705_forp_are_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5705_forp_are_d_5705_udlejning_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5705_forp_are DROP CONSTRAINT t_5705_forp_are_d_5705_udlejning_fk;
+ALTER TABLE fkg.t_5705_forp_are ADD CONSTRAINT t_5705_forp_are_d_5705_udlejning_fk FOREIGN KEY (udlejning_kode)
+REFERENCES fkg.d_5705_udlejning (udlejning_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5705_forp_are_d_basis_ja_nej_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5705_forp_are DROP CONSTRAINT t_5705_forp_are_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_5705_forp_are ADD CONSTRAINT t_5705_forp_are_d_basis_ja_nej_fk FOREIGN KEY (landbrug_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5706_havn_are_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5706_havn_are DROP CONSTRAINT t_5706_havn_are_generel_fk;
+ALTER TABLE fkg.t_5706_havn_are ADD CONSTRAINT t_5706_havn_are_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5706_havn_are_d_5706_havn_type | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5706_havn_are DROP CONSTRAINT t_5706_havn_are_d_5706_havn_type;
+ALTER TABLE fkg.t_5706_havn_are ADD CONSTRAINT t_5706_havn_are_d_5706_havn_type FOREIGN KEY (havne_type_kode)
+REFERENCES fkg.d_5706_havn_type (havn_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5707_grunds_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_generel_fk;
+ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5707_grunds_d5707_grund_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d5707_grund_type_fk;
+ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d5707_grund_type_fk FOREIGN KEY (grund_type_kode)
+REFERENCES fkg.d_5707_grund_type (grund_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5707_grunds_d5707_salg_status_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d5707_salg_status_fk;
+ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d5707_salg_status_fk FOREIGN KEY (salg_status_kode)
+REFERENCES fkg.d_5707_salg_status (salg_status_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5707_grunds_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d_vejnavn_fk;
+ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5707_grunds_d_basis_postnr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5710_born_skole_dis_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5710_born_skole_dis DROP CONSTRAINT t_5710_born_skole_dis_generel_fk;
+ALTER TABLE fkg.t_5710_born_skole_dis ADD CONSTRAINT t_5710_born_skole_dis_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5710_born_skole_dis DROP CONSTRAINT t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk;
+ALTER TABLE fkg.t_5710_born_skole_dis ADD CONSTRAINT t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk FOREIGN KEY (udd_distrikt_type_kode)
+REFERENCES fkg.d_5710_udd_distrikt_type (udd_distrikt_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5711_and_dis_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5711_and_dis DROP CONSTRAINT t_5711_and_dis_generel_fk;
+ALTER TABLE fkg.t_5711_and_dis ADD CONSTRAINT t_5711_and_dis_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5711_and_dis_d_5711_an_distrikt_type | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5711_and_dis DROP CONSTRAINT t_5711_and_dis_d_5711_an_distrikt_type;
+ALTER TABLE fkg.t_5711_and_dis ADD CONSTRAINT t_5711_and_dis_d_5711_an_distrikt_type FOREIGN KEY (an_distrikt_type_kode)
+REFERENCES fkg.d_5711_an_distrikt_type (an_distrikt_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5712_plej_aeldr_dis_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5712_plej_aeldr_dis DROP CONSTRAINT t_5712_plej_aeldr_dis_generel_fk;
+ALTER TABLE fkg.t_5712_plej_aeldr_dis ADD CONSTRAINT t_5712_plej_aeldr_dis_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5712_plej_aeldr_dis DROP CONSTRAINT t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk;
+ALTER TABLE fkg.t_5712_plej_aeldr_dis ADD CONSTRAINT t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk FOREIGN KEY (plej_distrikt_type_kode)
+REFERENCES fkg.d_5712_plej_distrikt_type (plej_distrikt_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5713_prog_stat_dis_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5713_prog_stat_dis DROP CONSTRAINT t_5713_prog_stat_dis_generel_fk;
+ALTER TABLE fkg.t_5713_prog_stat_dis ADD CONSTRAINT t_5713_prog_stat_dis_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5713_prog_stat_dis DROP CONSTRAINT t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk;
+ALTER TABLE fkg.t_5713_prog_stat_dis ADD CONSTRAINT t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk FOREIGN KEY (prog_distrikt_type_kode)
+REFERENCES fkg.d_5713_prog_distrikt_type (prog_distrikt_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5714_laering_udd_inst_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_generel_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5714_laering_udd_inst_d_5714_udd_institution_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk FOREIGN KEY (udd_institution_type_kode)
+REFERENCES fkg.d_5714_udd_institution_type (udd_institutions_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5714_laering_udd_inst_d_basis_trin_starttrin_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_starttrin_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_starttrin_fk FOREIGN KEY (starttrin_kode)
+REFERENCES fkg.d_basis_trin (trin_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk FOREIGN KEY (sluttrin_kode)
+REFERENCES fkg.d_basis_trin (trin_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5714_laering_udd_inst_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_vejnavn_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5714_laering_udd_inst_d_basis_postnr | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_postnr;
+ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_postnr FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5715_botilbud_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_generel_fk;
+ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5715_botilbud_d_5715_botilbud_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_5715_botilbud_type_fk;
+ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_5715_botilbud_type_fk FOREIGN KEY (botilbud_type_kode)
+REFERENCES fkg.d_5715_botilbud_type (botilbud_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5715_botilbud_d_basis_ejerstatus_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5715_botilbud_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_vejnavn_fk;
+ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5715_botilbud_d_basis_postnr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5716_servicetilbud_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_generel_fk;
+ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5716_servicetilbud_d_5716_servicetilbud_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_5716_servicetilbud_type_fk;
+ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_5716_servicetilbud_type_fk FOREIGN KEY (service_type_kode)
+REFERENCES fkg.d_5716_servicetilbud_type (service_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5716_servicetilbud_d_basis_ejerstatus_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5716_servicetilbud_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_vejnavn_fk;
+ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_5716_servicetilbud_d_basis_postnr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

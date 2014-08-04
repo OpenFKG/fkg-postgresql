@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -62,9 +62,19 @@ UPDATE fkg_utilities.view_mapping SET field_alias='vandl_opl_navn', value_field=
 -- Theme t_5008_soe_opl
 UPDATE fkg_utilities.view_mapping SET field_alias='soe_opl_navn', value_field='soeopl_navn' WHERE constraint_name='t_5008_soe_opl_d_5008_opl_fk';
 
+-- Theme t_5703_afstem_sted
+UPDATE fkg_utilities.view_mapping SET field_alias='afstemningsomraade_navn', value_field='afstemningsomraade_nr' WHERE constraint_name='t_5703_afstem_sted_d_basis_afstemningsomraade_fk';
+
+-- Theme t_5704_afstem_sted
+UPDATE fkg_utilities.view_mapping SET field_alias='afstemningsomraade_navn', value_field='afstemningsomraade_nr' WHERE constraint_name='t_5704_afstem_omr_d_basis_afstemningsomraade_fk';
+
 -- Theme t_5710_born_skole_dis
 UPDATE fkg_utilities.view_mapping SET field_alias='starttrin', value_field='trin' WHERE constraint_name='t_5710_born_skole_dis_d_basis_trin_starttrin_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='slutttrin', value_field='trin' WHERE constraint_name='t_5710_born_skole_dis_d_basis_trin_sluttrin_fk';
+
+-- Theme t_5714_laering_udd_inst
+UPDATE fkg_utilities.view_mapping SET field_alias='starttrin', value_field='trin' WHERE constraint_name='t_5714_laering_udd_inst_d_basis_trin_starttrin_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='slutttrin', value_field='trin' WHERE constraint_name='t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk';
 
 -- Theme 5900 t_5900_jordfl
 UPDATE fkg_utilities.view_mapping SET field_alias='afs_vejnavn', value_field='vejnavn' WHERE constraint_name='t_5900_jordfl_d_vejnavn_afs_fk';
@@ -72,6 +82,7 @@ UPDATE fkg_utilities.view_mapping SET field_alias='modt_vejnavn', value_field='v
 UPDATE fkg_utilities.view_mapping SET field_alias='afs_postnr_by', value_field='postnr_by' WHERE constraint_name='t_5900_jordfl_d_basis_postnr_afs_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='modt_postnr_by', value_field='postnr_by' WHERE constraint_name='t_5900_jordfl_d_basis_postnr_modt_fk';
 -- select * from fkg_utilities.view_mapping where constraint_name like 't_5900%';
+-- select * from fkg_utilities.view_mapping order by 1;
 
 -- ---- End of manipulation ----
 

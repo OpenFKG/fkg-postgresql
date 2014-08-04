@@ -93,7 +93,7 @@ DELETE FROM fkg.d_5711_an_distrikt_type;
 DELETE FROM fkg.d_5712_plej_distrikt_type;
 DELETE FROM fkg.d_5713_prog_distrikt_type;
 DELETE FROM fkg.d_5714_udd_institution_type;
-DELETE FROM fkg.d_5715_ botilbud_type;
+DELETE FROM fkg.d_5715_botilbud_type;
 DELETE FROM fkg.d_5716_Servicetilbud_type;
 DELETE FROM fkg.d_5800_facilitet;
 DELETE FROM fkg.d_5802_facilitet;
