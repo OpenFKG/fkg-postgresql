@@ -2125,6 +2125,7 @@ CREATE TABLE fkg.t_5715_botilbud(
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5715_botilbud_pk PRIMARY KEY (versions_id)
 
 );
@@ -2142,6 +2143,7 @@ CREATE TABLE fkg.t_5716_servicetilbud(
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5716_servicetilbud_pk PRIMARY KEY (versions_id)
 
 );
