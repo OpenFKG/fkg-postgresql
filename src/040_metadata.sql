@@ -1661,7 +1661,14 @@ CREATE TABLE fkg.t_5900_jordfl(
 	sagsnr character varying(128),
 	link character varying(1024),
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
-	CONSTRAINT t_5900_jordfl_pk PRIMARY KEY (versions_id)
+	CONSTRAINT t_5900_jordfl_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5900_jordfl_afs_kommunekode_ck CHECK (afs_kommunekode BETWEEN 100 AND 999),
+	CONSTRAINT t_5900_jordfl_modt_kommunekode_ck CHECK (modt_kommunekode BETWEEN 100 AND 999),
+	CONSTRAINT t_5900_jordfl_jordflyt_dato_start_ck CHECK (jordflyt_dato_start BETWEEN '2006-12-13' AND '2999-12-31'),
+	CONSTRAINT t_5900_jordfl_jordflyt_dato_slut_ck CHECK (jordflyt_dato_slut BETWEEN '2006-12-31' AND '2999-12-31'),
+	CONSTRAINT t_5900_jordfl_tillad_dato_ck CHECK (tillad_dato BETWEEN '2006-12-31' AND '2999-12-31'),
+	CONSTRAINT t_5900_jordfl_jordmaengde_faktisk_ck CHECK (jordmaengde_faktisk BETWEEN 1.0 AND 9999.9),
+	CONSTRAINT t_5900_jordfl_jordmaengde_anmeldt_ck CHECK (jordmaengde_anmeldt BETWEEN 1.0 AND 9999.9)
 
 );
 -- ddl-end --
@@ -1673,13 +1680,16 @@ CREATE TABLE fkg.t_5901_raastof_till(
 	indv_cvr integer NOT NULL,
 	raastof_type_kode integer,
 	tillad_dato date NOT NULL,
-	aflslut_aar integer NOT NULL,
+	afslut_aar integer NOT NULL,
 	gravstatus_kode integer NOT NULL,
 	grusgrav_nr character varying(50),
 	sagsnr character varying(128),
 	link character varying(1024),
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
-	CONSTRAINT t_5901_raastof_till_pk PRIMARY KEY (versions_id)
+	CONSTRAINT t_5901_raastof_till_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5901_raastof_till_indv_cvr_ck CHECK (indv_cvr BETWEEN 10000000 AND 99999999),
+	CONSTRAINT t_5901_raastof_till_tillad_dato_ck CHECK (tillad_dato BETWEEN '2006-12-31' AND '2999-12-31'),
+	CONSTRAINT t_5901_raastof_till_afslut_aar_ck CHECK (afslut_aar BETWEEN 1900 AND 2999)
 
 );
 -- ddl-end --
@@ -1700,7 +1710,11 @@ CREATE TABLE fkg.t_5902_jordv_anl(
 	note character varying(254),
 	link character varying(1024),
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
-	CONSTRAINT t_5902_jordv_anl_pk PRIMARY KEY (versions_id)
+	CONSTRAINT t_5902_jordv_anl_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5902_jordv_anl_strenge_antal_ck CHECK (strenge_antal BETWEEN 1 AND 999),
+	CONSTRAINT t_5902_jordv_anl_strenge_laengde_samlede_ck CHECK (strenge_laengde_samlede BETWEEN 1 AND 9999),
+	CONSTRAINT t_5902_jordv_anl_tilladelses_dato_ck CHECK (tilladelses_dato BETWEEN '2006-12-31' AND '2999-12-31'),
+	CONSTRAINT t_5902_jordv_anl_faerdigmeldingsdato_ck CHECK (faerdigmeldingsdato BETWEEN '2006-12-31' AND '2999-12-31')
 
 );
 -- ddl-end --
@@ -2233,6 +2247,186 @@ CREATE TABLE fkg.d_5716_servicetilbud_type(
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5716_servicetilbud_type_pk PRIMARY KEY (service_type_kode)
+
+);
+-- ddl-end --
+-- object: fkg.t_6000_pot | type: TABLE --
+-- DROP TABLE fkg.t_6000_pot;
+CREATE TABLE fkg.t_6000_pot(
+	versions_id uuid NOT NULL,
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	kote double precision NOT NULL,
+	navn character varying(50),
+	aekvidistance double precision,
+	magasin_kode integer,
+	pejling character varying(50),
+	oprind_kilde character varying(50),
+	metode character varying(250),
+	reference character varying(250),
+	kotesystem_kode integer,
+	usikkerhed character varying(250),
+	link character varying(1024),
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	CONSTRAINT t_6000_pot_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6000_pot_kote_ck CHECK (kote BETWEEN -999.99 AND 999.99),
+	CONSTRAINT t_6000_pot_aekvidistance_ck CHECK (aekvidistance BETWEEN 0.1 AND 999.9)
+
+);
+-- ddl-end --
+-- object: fkg.t_6001_pot_m | type: TABLE --
+-- DROP TABLE fkg.t_6001_pot_m;
+CREATE TABLE fkg.t_6001_pot_m(
+	versions_id uuid NOT NULL,
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	potentialekort character varying(250),
+	stoettep_kode integer NOT NULL,
+	dgu_nr character varying(50),
+	dybde double precision NOT NULL,
+	aekvidistance double precision,
+	magasin_kode integer,
+	pejling character varying(50),
+	oprind_kkilde character varying(50),
+	kotesystem_kode integer,
+	usikkerhed character varying(250),
+	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	CONSTRAINT t_6001_pot_m_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6001_pot_m_dybde_ck CHECK (dybde BETWEEN 1 AND 999.99),
+	CONSTRAINT t_6001_pot_m_aekvidistance_ck CHECK (aekvidistance BETWEEN 0.1 AND 999.9)
+
+);
+-- ddl-end --
+-- object: fkg.t_6002_indv | type: TABLE --
+-- DROP TABLE fkg.t_6002_indv;
+CREATE TABLE fkg.t_6002_indv(
+	versions_id uuid NOT NULL,
+	vandv_nr character varying(25),
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	indsatsomraade character varying(128),
+	indv_maengde_aar double precision,
+	kildeplads character varying(50),
+	reference character varying(50),
+	metode character varying(50),
+	dgu_nr character varying(50),
+	indtag character varying(50),
+	dato_beregn date,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832),
+	CONSTRAINT t_6002_indv_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6002_indv_indv_maengde_aar_ck CHECK (indv_maengde_aar BETWEEN 0.1 AND 99999.9),
+	CONSTRAINT t_6002_indv_dato_beregn_ck CHECK (dato_beregn BETWEEN '2006-12-31' AND '2999-12-31')
+
+);
+-- ddl-end --
+-- object: fkg.t_6003_besk_zone | type: TABLE --
+-- DROP TABLE fkg.t_6003_besk_zone;
+CREATE TABLE fkg.t_6003_besk_zone(
+	versions_id uuid NOT NULL,
+	dgu_nr character varying(10),
+	kildeplads character varying(254),
+	indsatsomraade character varying(128),
+	vandv_nr character varying(25),
+	jup_nr character varying(50),
+	tilladelse integer,
+	tilladelse_gyldig character varying(50),
+	beskyt_zone integer,
+	beskyt_zone_gyldig character varying(50),
+	lokalitet character varying(128),
+	zone_type_kode integer NOT NULL,
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_6003_besk_zone_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6003_besk_zone_tilladelse_ck CHECK (tilladelse BETWEEN 1 AND 999999),
+	CONSTRAINT t_6003_besk_zone_beskyt_zone_ck CHECK (beskyt_zone BETWEEN 1 AND 9999)
+
+);
+-- ddl-end --
+-- object: fkg.t_6004_vandv_fs | type: TABLE --
+-- DROP TABLE fkg.t_6004_vandv_fs;
+CREATE TABLE fkg.t_6004_vandv_fs(
+	versions_id uuid NOT NULL,
+	vandv_nr character varying(25),
+	fors_omr_type_kode integer,
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_6004_vandv_fs_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_6006_grundv_opl | type: TABLE --
+-- DROP TABLE fkg.t_6006_grundv_opl;
+CREATE TABLE fkg.t_6006_grundv_opl(
+	versions_id uuid NOT NULL,
+	vandv_nr character varying(25),
+	oplandtype character varying(128),
+	indsatsomraade character varying(128),
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_6006_grundv_opl_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_6007_inds_omr | type: TABLE --
+-- DROP TABLE fkg.t_6007_inds_omr;
+CREATE TABLE fkg.t_6007_inds_omr(
+	versions_id uuid NOT NULL,
+	indsatsomr_navn character varying(50) NOT NULL,
+	stoerrelse character varying(50),
+	ansvar_myndighed character varying(128) NOT NULL,
+	vedtagelse character varying(50),
+	note character varying(254),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_6007_inds_omr_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+-- object: fkg.t_6008_maks_bor | type: TABLE --
+-- DROP TABLE fkg.t_6008_maks_bor;
+CREATE TABLE fkg.t_6008_maks_bor(
+	versions_id uuid NOT NULL,
+	boredybde integer NOT NULL,
+	note character varying(254),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_6008_maks_bor_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6008_maks_bor_boredybde_ck CHECK (boredybde BETWEEN 1 AND 99)
+
+);
+-- ddl-end --
+-- object: fkg.t_6009_indv_ovflv | type: TABLE --
+-- DROP TABLE fkg.t_6009_indv_ovflv;
+CREATE TABLE fkg.t_6009_indv_ovflv(
+	versions_id uuid NOT NULL,
+	indv_maengde_aar character varying(50),
+	indv_kapacitet double precision,
+	indvinder_navn character varying(50) NOT NULL,
+	indvinder_kontakt character varying(50),
+	note character varying(254),
+	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	CONSTRAINT t_6009_indv_ovflv_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6009_indv_ovflv_indv_kapacitet_ck CHECK (indv_kapacitet BETWEEN 0.01 AND 99999.99)
+
+);
+-- ddl-end --
+-- object: fkg.d_basis_vandv_nr | type: TABLE --
+-- DROP TABLE fkg.d_basis_vandv_nr;
+CREATE TABLE fkg.d_basis_vandv_nr(
+	vandv_nr character varying(25) NOT NULL,
+	vandv character varying(128),
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_basis_vandv_nr_pk PRIMARY KEY (vandv_nr)
 
 );
 -- ddl-end --
@@ -2996,9 +3190,9 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
--- object: t_5901_raastof_till_d_5901_gravestatus | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5901_raastof_till DROP CONSTRAINT t_5901_raastof_till_d_5901_gravestatus;
-ALTER TABLE fkg.t_5901_raastof_till ADD CONSTRAINT t_5901_raastof_till_d_5901_gravestatus FOREIGN KEY (gravstatus_kode)
+-- object: t_5901_raastof_till_d_5901_gravestatus_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5901_raastof_till DROP CONSTRAINT t_5901_raastof_till_d_5901_gravestatus_fk;
+ALTER TABLE fkg.t_5901_raastof_till ADD CONSTRAINT t_5901_raastof_till_d_5901_gravestatus_fk FOREIGN KEY (gravstatus_kode)
 REFERENCES fkg.d_5901_gravestatus (gravstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
@@ -3020,9 +3214,9 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
--- object: t_5902_jordv_anl_d_basis_sag_status | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5902_jordv_anl DROP CONSTRAINT t_5902_jordv_anl_d_basis_sag_status;
-ALTER TABLE fkg.t_5902_jordv_anl ADD CONSTRAINT t_5902_jordv_anl_d_basis_sag_status FOREIGN KEY (sag_status_kode)
+-- object: t_5902_jordv_anl_d_basis_sag_status_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5902_jordv_anl DROP CONSTRAINT t_5902_jordv_anl_d_basis_sag_status_fk;
+ALTER TABLE fkg.t_5902_jordv_anl ADD CONSTRAINT t_5902_jordv_anl_d_basis_sag_status_fk FOREIGN KEY (sag_status_kode)
 REFERENCES fkg.d_basis_sag_status (sag_status_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
@@ -3592,6 +3786,166 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk;
 ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6000_pot_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6000_pot DROP CONSTRAINT t_6000_pot_generel_fk;
+ALTER TABLE fkg.t_6000_pot ADD CONSTRAINT t_6000_pot_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6000_pot_d_basis_magasin_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6000_pot DROP CONSTRAINT t_6000_pot_d_basis_magasin_fk;
+ALTER TABLE fkg.t_6000_pot ADD CONSTRAINT t_6000_pot_d_basis_magasin_fk FOREIGN KEY (magasin_kode)
+REFERENCES fkg.d_basis_magasin (magasin_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6000_pot | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6000_pot DROP CONSTRAINT t_6000_pot;
+ALTER TABLE fkg.t_6000_pot ADD CONSTRAINT t_6000_pot FOREIGN KEY (kotesystem_kode)
+REFERENCES fkg.d_6000_kotesystem (kotesystem_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6001_pot_m_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_generel_fk;
+ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6001_pot_m_d_basis_ja_nej_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_d_basis_ja_nej_fk FOREIGN KEY (stoettep_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6001_pot_m_d_basis_magasin_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_d_basis_magasin_fk;
+ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_d_basis_magasin_fk FOREIGN KEY (magasin_kode)
+REFERENCES fkg.d_basis_magasin (magasin_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6001_pot_m_d_6000_kotesystem_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_d_6000_kotesystem_fk;
+ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_d_6000_kotesystem_fk FOREIGN KEY (kotesystem_kode)
+REFERENCES fkg.d_6000_kotesystem (kotesystem_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6002_indv_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6002_indv DROP CONSTRAINT t_6002_indv_generel_fk;
+ALTER TABLE fkg.t_6002_indv ADD CONSTRAINT t_6002_indv_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6002_indv_d_basis_vandv_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6002_indv DROP CONSTRAINT t_6002_indv_d_basis_vandv_fk;
+ALTER TABLE fkg.t_6002_indv ADD CONSTRAINT t_6002_indv_d_basis_vandv_fk FOREIGN KEY (vandv_nr)
+REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6003_besk_zone_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6003_besk_zone DROP CONSTRAINT t_6003_besk_zone_generel_fk;
+ALTER TABLE fkg.t_6003_besk_zone ADD CONSTRAINT t_6003_besk_zone_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6003_besk_zone_d_basis_vandv_nr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6003_besk_zone DROP CONSTRAINT t_6003_besk_zone_d_basis_vandv_nr_fk;
+ALTER TABLE fkg.t_6003_besk_zone ADD CONSTRAINT t_6003_besk_zone_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
+REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6003_besk_zone_d_6003_zone_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6003_besk_zone DROP CONSTRAINT t_6003_besk_zone_d_6003_zone_type_fk;
+ALTER TABLE fkg.t_6003_besk_zone ADD CONSTRAINT t_6003_besk_zone_d_6003_zone_type_fk FOREIGN KEY (zone_type_kode)
+REFERENCES fkg.d_6003_zone_type (zone_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6004_vandv_fs_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6004_vandv_fs DROP CONSTRAINT t_6004_vandv_fs_generel_fk;
+ALTER TABLE fkg.t_6004_vandv_fs ADD CONSTRAINT t_6004_vandv_fs_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6004_vandv_fs_d_basis_vandv_nr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6004_vandv_fs DROP CONSTRAINT t_6004_vandv_fs_d_basis_vandv_nr_fk;
+ALTER TABLE fkg.t_6004_vandv_fs ADD CONSTRAINT t_6004_vandv_fs_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
+REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6004_vandv_fs_d_basis_fors_omr_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6004_vandv_fs DROP CONSTRAINT t_6004_vandv_fs_d_basis_fors_omr_type_fk;
+ALTER TABLE fkg.t_6004_vandv_fs ADD CONSTRAINT t_6004_vandv_fs_d_basis_fors_omr_type_fk FOREIGN KEY (fors_omr_type_kode)
+REFERENCES fkg.d_basis_fors_omr_type (fors_omr_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6006_grundv_opl_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6006_grundv_opl DROP CONSTRAINT t_6006_grundv_opl_generel_fk;
+ALTER TABLE fkg.t_6006_grundv_opl ADD CONSTRAINT t_6006_grundv_opl_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6006_grundv_opl_d_basis_vandv_nr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6006_grundv_opl DROP CONSTRAINT t_6006_grundv_opl_d_basis_vandv_nr_fk;
+ALTER TABLE fkg.t_6006_grundv_opl ADD CONSTRAINT t_6006_grundv_opl_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
+REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6007_inds_omr_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6007_inds_omr DROP CONSTRAINT t_6007_inds_omr_generel_fk;
+ALTER TABLE fkg.t_6007_inds_omr ADD CONSTRAINT t_6007_inds_omr_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6008_maks_bor_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6008_maks_bor DROP CONSTRAINT t_6008_maks_bor_generel_fk;
+ALTER TABLE fkg.t_6008_maks_bor ADD CONSTRAINT t_6008_maks_bor_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6009_indv_ovflv_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6009_indv_ovflv DROP CONSTRAINT t_6009_indv_ovflv_generel_fk;
+ALTER TABLE fkg.t_6009_indv_ovflv ADD CONSTRAINT t_6009_indv_ovflv_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

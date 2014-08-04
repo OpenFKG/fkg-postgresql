@@ -218,7 +218,7 @@ INSERT INTO fkg.tema VALUES (5900,'Jordflytning','F','t_5900_jordfl','5.10');
 INSERT INTO fkg.tema VALUES (5901,'Råstofindvindingstilladelse','F','t_5901_raastof_till','5.10');
 INSERT INTO fkg.tema VALUES (5902,'Jordvarmeanlæg','F','t_5902_jordv_anl','5.10');
 INSERT INTO fkg.tema VALUES (5903,'Jordprøve - udgået','P','t_5903_jordpr','5.10');
--- Ikke dokumenteret INSERT INTO fkg.tema VALUES (5904,'Nyttiggørelse af jord','?','t_5904_nyttig_jord','5.10');
+-- Ikke dokumenteret INSERT INTO fkg.tema VALUES (5904,'Nyttiggørelse af jord','?','t_5904_nyttig_jord','5.10'); Forventes nedlagt.
 --
 INSERT INTO fkg.tema VALUES (6000,'Potentialekort','L','t_6000_pot','5.11');
 INSERT INTO fkg.tema VALUES (6001,'Potentialekort målepunkter','P','t_6001_pot_m','5.11');

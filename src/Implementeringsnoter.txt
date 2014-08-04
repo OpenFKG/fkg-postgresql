@@ -1,0 +1,3 @@
+tema 6001 har et felt kotesystem_kode, hvor der ikke er defineret særskilt lookuptabel. Lookuptabellen d_6000_kotesystem benyttes i stedet
+tema 5901 aflslut_aar - besynderlig staveform. Rettet til afslut_aar
+

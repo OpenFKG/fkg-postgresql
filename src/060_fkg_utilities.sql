@@ -81,6 +81,16 @@ UPDATE fkg_utilities.view_mapping SET field_alias='afs_vejnavn', value_field='ve
 UPDATE fkg_utilities.view_mapping SET field_alias='modt_vejnavn', value_field='vejnavn' WHERE constraint_name='t_5900_jordfl_d_vejnavn_modt_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='afs_postnr_by', value_field='postnr_by' WHERE constraint_name='t_5900_jordfl_d_basis_postnr_afs_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='modt_postnr_by', value_field='postnr_by' WHERE constraint_name='t_5900_jordfl_d_basis_postnr_modt_fk';
+
+-- Theme 6001 t_6001_pot_m
+UPDATE fkg_utilities.view_mapping SET field_alias='stoettep', value_field='ja_nej' WHERE constraint_name='t_6001_pot_m_d_basis_ja_nej_fk';
+
+-- Theme 6002, 6003, 6004, 6006
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6002_indv_d_basis_vandv_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6003_besk_zone_d_basis_vandv_nr_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6004_vandv_fs_d_basis_vandv_nr_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6006_grundv_opl_d_basis_vandv_nr_fk';
+
 -- select * from fkg_utilities.view_mapping where constraint_name like 't_5900%';
 -- select * from fkg_utilities.view_mapping order by 1;
 
