@@ -115,6 +115,7 @@ DELETE FROM fkg.d_6115_afbr_type;
 DELETE FROM fkg.d_6116_strandtype;
 DELETE FROM fkg.d_6116_esi_klasse;
 DELETE FROM fkg.d_6117_indsatstype;
+DELETE FROM fkg.d_6118_brand_redarea_type;
 DELETE FROM fkg.d_6200_geologi;
 DELETE FROM fkg.d_6200_jordtype;
 DELETE FROM fkg.d_6200_terraen;
@@ -250,6 +251,7 @@ INSERT INTO fkg.tema VALUES (6114,'Midlertidig ophold','P','t_6114_midl_oph','5.
 INSERT INTO fkg.tema VALUES (6115,'Afbrændingsområde','F','t_6115_afbr_omr','5.12');
 INSERT INTO fkg.tema VALUES (6116,'Olieberedskabsplan','F','t_6116_olie_ber_pl','5.12');
 INSERT INTO fkg.tema VALUES (6117,'Indsatspunkt','P','t_6117_inds_pkt','5.12');
+INSERT INTO fkg.tema VALUES (6118,'Brand- og redningsareal','F','t_6118_bran_redn','5.12');
 --
 INSERT INTO fkg.tema VALUES (6200,'Naturgeografi','F','t_6200_nat_geo','5.13');
 INSERT INTO fkg.tema VALUES (6201,'Kulturgeografi','F','t_6201_kult_geo','5.13');
@@ -2411,6 +2413,10 @@ INSERT INTO fkg.d_6100_brandhane VALUES (3,'C',1,'C-brandhanen er beregnet til o
 INSERT INTO fkg.d_6100_brandhane VALUES (4,'Branddam',1,'Vandhul/sø hvor der kan pumpes vand op til brandslukning.');
 INSERT INTO fkg.d_6100_brandhane VALUES (8,'Andet',1,'Anden type end ovenstående.');
 INSERT INTO fkg.d_6100_brandhane VALUES (9,'Ukendt',1,'Mangler viden');
+INSERT INTO fkg.d_6100_brandhane VALUES (11,'I',1,'<500l/min');
+INSERT INTO fkg.d_6100_brandhane VALUES (12,'II',1,'< 1000');
+INSERT INTO fkg.d_6100_brandhane VALUES (13,'III',1,'< 1500');
+INSERT INTO fkg.d_6100_brandhane VALUES (14,'IIII',1,'> 1500');
 -- SELECT * FROM d_6100_brandhane;
 
 INSERT INTO fkg.d_6100_placering VALUES (1,'Overjordisk',1,'Normal placering – den røde i gadebilledet.');
@@ -2420,13 +2426,6 @@ INSERT INTO fkg.d_6100_placering VALUES (8,'Andet',1,'Anden placering end ovenst
 INSERT INTO fkg.d_6100_placering VALUES (9,'Ukendt',1,'Mangler vide');
 -- SELECT * FROM d_6100_placering;
 
-INSERT INTO fkg.d_6102_redvej_type VALUES (1,'Brandvej',1,'Adgangsvej der skal være fri passage til brandbiler m.v.');
-INSERT INTO fkg.d_6102_redvej_type VALUES (2,'Flugtvej',1,'Udgang fra bygninger, som er afmærket og skal være frie.');
-INSERT INTO fkg.d_6102_redvej_type VALUES (3,'Redningsvej',1,'Adgangsvej til strande m.v.');
-INSERT INTO fkg.d_6102_redvej_type VALUES (8,'Andet',1,'Hvor ovenstående ikke er dækkende.');
-INSERT INTO fkg.d_6102_redvej_type VALUES (9,'Ukendt',1,'Mangler viden om typen af adgangsvej');
--- SELECT * FROM d_6102_redvej_type;
-
 
 INSERT INTO fkg.d_6101_beskyt_rum VALUES (1,'Beskyttelsesrum',1,'Beskyttelsesrum” er en betegnelse, der dækker alle typer af forstærkede rum, hvis formål er at beskytte befolkningen mod luftangreb. Benyttes her om offentlige beskyttelsesrum');
 INSERT INTO fkg.d_6101_beskyt_rum VALUES (2,'Sikringsrum',1,'Et sikringsrum er et ufærdigt beskyttelsesrum, beregnet til beboere, beskæftigede samt andre personer, som opholder sig i bygningen.  Benyttes her mest om private beskyttelsesrum');
@@ -2434,6 +2433,14 @@ INSERT INTO fkg.d_6101_beskyt_rum VALUES (3,'Betondækningsgrav',1,'En særlig d
 INSERT INTO fkg.d_6101_beskyt_rum VALUES (8,'Andet',1,'Hvor ovenstående typer ikke er dækkende.');
 INSERT INTO fkg.d_6101_beskyt_rum VALUES (9,'Ukendt',1,'Mangler viden om typen.');
 -- SELECT * FROM d_6101_beskyt_rum;
+
+
+INSERT INTO fkg.d_6102_redvej_type VALUES (1,'Brandvej',1,'Adgangsvej der skal være fri passage til brandbiler m.v.');
+INSERT INTO fkg.d_6102_redvej_type VALUES (2,'Flugtvej',1,'Udgang fra bygninger, som er afmærket og skal være frie.');
+INSERT INTO fkg.d_6102_redvej_type VALUES (3,'Redningsvej',1,'Adgangsvej til strande m.v.');
+INSERT INTO fkg.d_6102_redvej_type VALUES (8,'Andet',1,'Hvor ovenstående ikke er dækkende.');
+INSERT INTO fkg.d_6102_redvej_type VALUES (9,'Ukendt',1,'Mangler viden om typen af adgangsvej');
+-- SELECT * FROM d_6102_redvej_type;
 
 
 INSERT INTO fkg.d_6104_risikotype VALUES (1,'Kolonne 2 virksomhed',1,'virksomheder med lidt mindre oplag af farlige stoffer end kolonne 3 virksomheder');
@@ -2516,9 +2523,19 @@ INSERT INTO fkg.d_6117_indsatstype VALUES (12,'Vandløb afspærringspunkt type 4
 INSERT INTO fkg.d_6117_indsatstype VALUES (13,'Vej krydser vandløb, åbent',1,'Vejmidte og vandløbsmidte, åbent krydser hinanden eller er tættere end 5 meter');
 INSERT INTO fkg.d_6117_indsatstype VALUES (14,'Vej krydser vandløb, rørlagt',1,'Vejmidte og vandløbsmidte, rørlagt krydser hinanden eller er tættere end 5 meter');
 INSERT INTO fkg.d_6117_indsatstype VALUES (15,'Brønd rørlagt vandløb',1,'Fritliggende brønddæksel til et rørlagt vandløb');
+INSERT INTO fkg.d_6117_indsatstype VALUES (16,'Stigerør',1,'Fast rør installation i eller ved en bygning/område, som gør det muligt hurtigt og sikkert at få bragt slukningsvand frem til faste aftapningssteder');
 INSERT INTO fkg.d_6117_indsatstype VALUES (98,'Andet ',1,'Andet');
 INSERT INTO fkg.d_6117_indsatstype VALUES (99,'Ukendt',1,'Manglende viden');
 -- SELECT * FROM d_6117_indsatstype;
+
+
+INSERT INTO fkg.d_6118_brand_redarea_type VALUES (1,'Brandvej',1,'Adgangsvej der skal være fri passage til brandbiler m.v.');
+INSERT INTO fkg.d_6118_brand_redarea_type VALUES (2,'-',0,'-');
+INSERT INTO fkg.d_6118_brand_redarea_type VALUES (3,'-',0,'-');
+INSERT INTO fkg.d_6118_brand_redarea_type VALUES (4,'Redningsareal',1,'Krav i bygningsreglement (Energistyrelsen) areal hvor der kan sættes en 30 m drejestige op – det er krav hvor bygninger er mere en 9,6 m over terræn svarende til mere end tre etager.');
+INSERT INTO fkg.d_6118_brand_redarea_type VALUES (8,'Andet',1,'Hvor ovenstående ikke er dækkende.');
+INSERT INTO fkg.d_6118_brand_redarea_type VALUES (9,'Ukendt',1,'Mangler viden om typen af adgangsvej');
+-- SELECT * FROM d_6118_brand_redarea_type;
 
 
 INSERT INTO fkg.d_6200_geologi VALUES (1,'A Moræne',1,'Er jord og løse klippestykker, der er blevet efterladt af en gletsjer.');
