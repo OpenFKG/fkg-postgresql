@@ -1,3 +1,8 @@
 tema 6001 har et felt kotesystem_kode, hvor der ikke er defineret særskilt lookuptabel. Lookuptabellen d_6000_kotesystem benyttes i stedet
 tema 5901 aflslut_aar - besynderlig staveform. Rettet til afslut_aar
 
+tema 6800 tilstand. Der implementeres en tilstand_kode / tilstand som defineret i standardiserede felter
+tema 6800 vejkode. Der tilføjes feltet vejnavn (systemgenereret gennem opslagstabel)
+
+tema 6801 tilstand. Der implementeres en tilstand_kode / tilstand som defineret i standardiserede felter
+tema 6801 vejkode. Der tilføjes feltet vejnavn (systemgenereret gennem opslagstabel)
