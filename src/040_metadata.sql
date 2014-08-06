@@ -974,7 +974,7 @@ CREATE TABLE fkg.d_5200_affald(
 -- DROP TABLE fkg.d_5401_gs_type;
 CREATE TABLE fkg.d_5401_gs_type(
 	gs_type_kode integer NOT NULL,
-	gs_type character varying(50) NOT NULL,
+	gs_type character varying(128) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5401_gs_type_pk PRIMARY KEY (gs_type_kode)
@@ -1062,7 +1062,7 @@ CREATE TABLE fkg.d_5604_begr_type(
 -- DROP TABLE fkg.d_5605_dekl_type;
 CREATE TABLE fkg.d_5605_dekl_type(
 	dekl_type_kode integer NOT NULL,
-	dekl_type character varying(21) NOT NULL,
+	dekl_type character varying(25) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5605_dekl_type_pk PRIMARY KEY (dekl_type_kode)
@@ -1205,7 +1205,7 @@ CREATE TABLE fkg.d_5902_vaeske_type(
 -- DROP TABLE fkg.d_6000_kotesystem;
 CREATE TABLE fkg.d_6000_kotesystem(
 	kotesystem_kode integer NOT NULL,
-	kotesystem character varying(255) NOT NULL,
+	kotesystem character varying(250) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_6000_kotesystem_pk PRIMARY KEY (kotesystem_kode)
@@ -1260,7 +1260,7 @@ CREATE TABLE fkg.d_6104_brandhaem(
 -- DROP TABLE fkg.d_6111_tilladelse;
 CREATE TABLE fkg.d_6111_tilladelse(
 	tilladelse_type_kode integer NOT NULL,
-	tilladelse_type character varying(50) NOT NULL,
+	tilladelse_type character varying(20) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_6111_tilladelse_pk PRIMARY KEY (tilladelse_type_kode)
@@ -1505,7 +1505,7 @@ CREATE TABLE fkg.d_6803_pg_distrikt(
 -- DROP TABLE fkg.t_5401_genbr_st;
 CREATE TABLE fkg.t_5401_genbr_st(
 	versions_id uuid NOT NULL,
-	gs_navn character varying(51),
+	gs_navn character varying(50),
 	gs_type_kode integer NOT NULL,
 	p_nr integer,
 	vejkode integer,
@@ -1526,7 +1526,7 @@ CREATE TABLE fkg.t_5402_genbr_con(
 	model character varying(25),
 	t_frekvens character varying(50),
 	t_dato date,
-	links character varying(1024),
+	link character varying(1024),
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5402_genbr_con_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_5402_genbr_con_t_dato_ck CHECK (t_dato BETWEEN '1900-01-01' AND '2999-12-31')
@@ -2166,7 +2166,7 @@ CREATE TABLE fkg.t_5715_botilbud(
 	versions_id uuid NOT NULL,
 	botilbud_type_kode integer NOT NULL,
 	ejerstatus_kode integer,
-	"botilbud _navn" character varying(128) NOT NULL,
+	botilbud_navn character varying(128) NOT NULL,
 	noegle character varying(128),
 	vejkode integer,
 	cvf_vejkode character(7),
@@ -2243,11 +2243,11 @@ CREATE TABLE fkg.d_5713_prog_distrikt_type(
 -- object: fkg.d_5714_udd_institution_type | type: TABLE --
 -- DROP TABLE fkg.d_5714_udd_institution_type;
 CREATE TABLE fkg.d_5714_udd_institution_type(
-	udd_institutions_type_kode integer NOT NULL,
+	udd_institution_type_kode integer NOT NULL,
 	udd_institution_type character varying(30) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
-	CONSTRAINT d_5714_udd_institution_type_pk PRIMARY KEY (udd_institutions_type_kode)
+	CONSTRAINT d_5714_udd_institution_type_pk PRIMARY KEY (udd_institution_type_kode)
 
 );
 -- ddl-end --
@@ -2321,7 +2321,7 @@ CREATE TABLE fkg.t_6001_pot_m(
 	aekvidistance double precision,
 	magasin_kode integer,
 	pejling character varying(50),
-	oprind_kkilde character varying(50),
+	oprind_kilde character varying(50),
 	kotesystem_kode integer,
 	usikkerhed character varying(250),
 	link character varying(1024),
@@ -2821,9 +2821,10 @@ CREATE TABLE fkg.t_6202_landk_omr(
 	struktur_kode integer,
 	struktur_beskrivelse character varying(1024),
 	visuel_uro_kode integer,
+	visuel_uro_beskrivelse character varying(1024),
 	kystforhold character varying(1024),
 	oplevelser character varying(1024),
-	analysekort character varying(1025),
+	analysekort character varying(1024),
 	link_reg_skema character varying(1024),
 	link_vejledning character varying(1024),
 	link character varying(1024),
@@ -4271,7 +4272,7 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- object: t_5714_laering_udd_inst_d_5714_udd_institution_type_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk;
 ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk FOREIGN KEY (udd_institution_type_kode)
-REFERENCES fkg.d_5714_udd_institution_type (udd_institutions_type_kode) MATCH FULL
+REFERENCES fkg.d_5714_udd_institution_type (udd_institution_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

@@ -6,3 +6,6 @@ tema 6800 tilstand. Der implementeres en tilstand_kode / tilstand som defineret 
 tema 6800 vejkode. Der tilføjes feltet vejnavn (systemgenereret gennem opslagstabel)
 tema 6801 tilstand. Der implementeres en tilstand_kode / tilstand som defineret i standardiserede felter
 tema 6801 vejkode. Der tilføjes feltet vejnavn (systemgenereret gennem opslagstabel)
+
+Opslagstabel d_5605_dekl_type. kolonne dekl_type er defineret som 0-20 tegn. Det er for lidt til tekster. Implementeret som 0-25
+Opslagstabel d_5714_udd_institution_type. Kolonne udd_institutions_type_kode hedder udd_institution_type_kode i tema. kolonnenavn ændret til udd_institution_type_kode

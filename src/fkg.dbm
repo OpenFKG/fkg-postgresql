@@ -2127,7 +2127,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer"/>
 	</column>
 	<column name="dekl_type" not-null="true">
-		<type name="character varying" length="20"/>
+		<type name="character varying" length="25"/>
 	</column>
 	<column name="aktiv" not-null="true">
 		<type name="integer"/>
@@ -4478,7 +4478,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ejerstatus_kode">
 		<type name="integer"/>
 	</column>
-	<column name="botilbud _navn" not-null="true">
+	<column name="botilbud_navn" not-null="true">
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="noegle">
@@ -4631,7 +4631,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="d_5714_udd_institution_type">
 	<schema name="fkg"/>
 	<position x="2767.5" y="3037.5"/>
-	<column name="udd_institutions_type_kode" not-null="true">
+	<column name="udd_institution_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="udd_institution_type" not-null="true">
@@ -4644,7 +4644,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying"/>
 	</column>
 	<constraint name="d_5714_udd_institution_type_pk" type="pk-constr" factor="10" table="fkg.d_5714_udd_institution_type">
-		<columns names="udd_institutions_type_kode" ref-type="src-columns"/>
+		<columns names="udd_institution_type_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -7161,7 +7161,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <constraint name="t_5714_laering_udd_inst_d_5714_udd_institution_type_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5714_udd_institution_type" table="fkg.t_5714_laering_udd_inst">
 	<columns names="udd_institution_type_kode" ref-type="src-columns"/>
-	<columns names="udd_institutions_type_kode" ref-type="dst-columns"/>
+	<columns names="udd_institution_type_kode" ref-type="dst-columns"/>
 </constraint>
 <constraint name="t_5714_laering_udd_inst_d_basis_trin_starttrin_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_trin" table="fkg.t_5714_laering_udd_inst">
