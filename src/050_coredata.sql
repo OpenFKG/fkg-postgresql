@@ -164,13 +164,13 @@ INSERT INTO fkg.tema VALUES (5005,'Sø','F','t_5005_soe','5.1');
 INSERT INTO fkg.tema VALUES (5006,'Dybdekurver','F','t_5006_dybdekurv','5.1');
 INSERT INTO fkg.tema VALUES (5007,'Vandløbsoplande','F','t_5007_vandl_opl','5.1');
 INSERT INTO fkg.tema VALUES (5008,'Søoplande','F','t_5008_soe_opl','5.1');
-INSERT INTO fkg.tema VALUES (5009,'Pumpelag','F','t_5009_Pumpelag','5.1');
+INSERT INTO fkg.tema VALUES (5009,'Pumpelag','F','t_5009_pumpelag','5.1');
 INSERT INTO fkg.tema VALUES (5010,'Vandløbselement','P','t_5010_vandl_elm','5.1');
 --
-INSERT INTO fkg.tema VALUES (5100,'Arter Fisk - udgået','P','t_5100_art_fisk','5.2');
-INSERT INTO fkg.tema VALUES (5101,'Arter Fugl- udgået','P','t_5101_art_fugl','5.2');
-INSERT INTO fkg.tema VALUES (5102,'Arter Padde- udgået','P','t_5102_art_padde','5.2');
-INSERT INTO fkg.tema VALUES (5103,'Arter Pattedyr- udgået','P','t_5103_art_pat','5.2');
+-- INSERT INTO fkg.tema VALUES (5100,'Arter Fisk - udgået','P','t_5100_art_fisk','5.2');
+-- INSERT INTO fkg.tema VALUES (5101,'Arter Fugl- udgået','P','t_5101_art_fugl','5.2');
+-- INSERT INTO fkg.tema VALUES (5102,'Arter Padde- udgået','P','t_5102_art_padde','5.2');
+-- INSERT INTO fkg.tema VALUES (5103,'Arter Pattedyr- udgået','P','t_5103_art_pat','5.2');
 INSERT INTO fkg.tema VALUES (5104,'Arter Invasive','F','t_5104_art_invas','5.2');
 INSERT INTO fkg.tema VALUES (5105,'Rigkær – Fattigkær','P','t_5105_rig_fattig','5.2');
 INSERT INTO fkg.tema VALUES (5106,'Naturpleje','F','t_5106_nat_pl','5.2');
@@ -186,10 +186,10 @@ INSERT INTO fkg.tema VALUES (5401,'Genbrugsstation','P','t_5401_genbr_st','5.5')
 INSERT INTO fkg.tema VALUES (5402,'Genbrugscontainer','P','t_5402_genbr_con','5.5');
 --
 INSERT INTO fkg.tema VALUES (5500,'Elforsyningsområde','F','t_5500_elfors_omr','5.6');
-INSERT INTO fkg.tema VALUES (5501,'Forsyningsområde - udgået','F','t_5501_fors_omr','5.6');
-INSERT INTO fkg.tema VALUES (5502,'Tilslutningsforbudområde - udgået','F','t_5502_tilsl_forb_omr','5.6');
-INSERT INTO fkg.tema VALUES (5503,'Forsyningsforbudområde - udgået','F','t_5503_fors_forb_omr','5.6');
-INSERT INTO fkg.tema VALUES (5504,'Kloakopland - udgået','F','t_5504_kloakopl','5.6');
+-- INSERT INTO fkg.tema VALUES (5501,'Forsyningsområde - udgået','F','t_5501_fors_omr','5.6');
+-- INSERT INTO fkg.tema VALUES (5502,'Tilslutningsforbudområde - udgået','F','t_5502_tilsl_forb_omr','5.6');
+-- INSERT INTO fkg.tema VALUES (5503,'Forsyningsforbudområde - udgået','F','t_5503_fors_forb_omr','5.6');
+-- INSERT INTO fkg.tema VALUES (5504,'Kloakopland - udgået','F','t_5504_kloakopl','5.6');
 INSERT INTO fkg.tema VALUES (5506,'Spildevandsplanpunkter','P','t_5506_spildev_pl_pkt','5.6');
 INSERT INTO fkg.tema VALUES (5507,'Fiberkabel','L','t_5507_fiberkabel','5.6');
 INSERT INTO fkg.tema VALUES (5508,'Husstandsmøller','P','t_5508_husst_moel','5.6');
@@ -210,15 +210,24 @@ INSERT INTO fkg.tema VALUES (5704,'Afstemningsområde','F','t_5704_afstem_omr','
 INSERT INTO fkg.tema VALUES (5705,'Forpagtningsareal','F','t_5705_forp_are','5.8');
 INSERT INTO fkg.tema VALUES (5706,'Havneareal','F','t_5706_havn_are','5.8');
 INSERT INTO fkg.tema VALUES (5707,'Grundsalg','F','t_5707_grunds','5.8');
--- Udgået i ver. 2.4
--- INSERT INTO fkg.tema VALUES (5708,'Kommunal_service','P','t_5708_kom_serv','5.8');
+
+-- INSERT INTO fkg.tema VALUES (5708,'Kommunal_service','P','t_5708_kom_serv','5.8'); Udgået i ver. 2.4
+INSERT INTO fkg.tema VALUES (5710,'Børn- og skoledistrikter','F','t_5710_born_skole_dis','5.8');
+INSERT INTO fkg.tema VALUES (5711,'Andre distrikter','F','t_5711_and_dis','5.8');
+INSERT INTO fkg.tema VALUES (5712,'Pleje- og ældredistrikter','F','t_5712_plej_aeldr_dis','5.8');
+INSERT INTO fkg.tema VALUES (5713,'Prognose- og statistik distrikter','F','t_5713_prog_stat_dis','5.8');
+INSERT INTO fkg.tema VALUES (5714,'Lærings- og uddannelsesinstitution','P','t_5714_laering_udd_inst','5.8');
+INSERT INTO fkg.tema VALUES (5715,'Botilbud','P','t_5715_botilbud','5.8');
+INSERT INTO fkg.tema VALUES (5716,'Servicetilbud','P','t_5716_servicetilbud','5.8');
 --
-INSERT INTO fkg.tema VALUES (5801,'Facilitet_flade - udgået','F','t_5801_fac_fl','5.9');
+INSERT INTO fkg.tema VALUES (5800,'Facilitet_punkt','P','t_5800_fac_pkt','5.9');
+-- INSERT INTO fkg.tema VALUES (5801,'Facilitet_flade - udgået','F','t_5801_fac_fl','5.9');
+INSERT INTO fkg.tema VALUES (5802,'Facilitet_linje','L','t_5802_fac_li','5.9');
 --
 INSERT INTO fkg.tema VALUES (5900,'Jordflytning','F','t_5900_jordfl','5.10');
 INSERT INTO fkg.tema VALUES (5901,'Råstofindvindingstilladelse','F','t_5901_raastof_till','5.10');
 INSERT INTO fkg.tema VALUES (5902,'Jordvarmeanlæg','F','t_5902_jordv_anl','5.10');
-INSERT INTO fkg.tema VALUES (5903,'Jordprøve - udgået','P','t_5903_jordpr','5.10');
+-- INSERT INTO fkg.tema VALUES (5903,'Jordprøve - udgået','P','t_5903_jordpr','5.10');
 -- Ikke dokumenteret INSERT INTO fkg.tema VALUES (5904,'Nyttiggørelse af jord','?','t_5904_nyttig_jord','5.10'); Forventes nedlagt.
 --
 INSERT INTO fkg.tema VALUES (6000,'Potentialekort','L','t_6000_pot','5.11');
@@ -226,20 +235,19 @@ INSERT INTO fkg.tema VALUES (6001,'Potentialekort målepunkter','P','t_6001_pot_
 INSERT INTO fkg.tema VALUES (6002,'Indvindingsopland','F','t_6002_indv','5.11');
 INSERT INTO fkg.tema VALUES (6003,'Beskyttelseszone','F','t_6003_besk_zone','5.11');
 INSERT INTO fkg.tema VALUES (6004,'Vandværksforsyningsomr','F','t_6004_vandv_fs','5.11');
-INSERT INTO fkg.tema VALUES (6005,'Ledningsnet vandværk - udgået','F','t_6005_ledn_vand','5.11');
+-- INSERT INTO fkg.tema VALUES (6005,'Ledningsnet vandværk - udgået','F','t_6005_ledn_vand','5.11');
 INSERT INTO fkg.tema VALUES (6006,'Grundvandsdannende Opland','F','t_6006_grundv_opl','5.11');
 INSERT INTO fkg.tema VALUES (6007,'Indsatsområde','F','t_6007_inds_omr','5.11');
--- Dokumentation ufuldstændig:
--- INSERT INTO fkg.tema VALUES (6008,'Maksimal Boredybde','?', 
--- INSERT INTO fkg.tema VALUES (6009,'Indvinding af overfladevand','?', 
---t_6102_redningsvej
+INSERT INTO fkg.tema VALUES (6008,'Maksimal Boredybde','F','t_6008_maks_bor','5.11');
+INSERT INTO fkg.tema VALUES (6009,'Indvinding af overfladevand','P','t_6009_indv_ovflv','5.11');
+
 INSERT INTO fkg.tema VALUES (6100,'Brandhane','P','t_6100_brandhane','5.12');
 INSERT INTO fkg.tema VALUES (6101,'Beskyttelsesrum','P','t_6101_beskyt_rum','5.12');
 INSERT INTO fkg.tema VALUES (6102,'Redningsvej','F','t_6102_redn_vej','5.12');
 INSERT INTO fkg.tema VALUES (6103,'Beredskabsområde - 112 slukningsdistrikt','F','t_6103_bered_omr','5.12');
 INSERT INTO fkg.tema VALUES (6104,'Risiko virksomhed','F','t_6104_risiko_virk','5.12');
 INSERT INTO fkg.tema VALUES (6105,'Særlig bygningsområde','F','t_6105_sbygn_omr','5.12');
-INSERT INTO fkg.tema VALUES (6106,'Særlig bygning','F','t_6106_sbygn','5.12');
+-- INSERT INTO fkg.tema VALUES (6106,'Særlig bygning','F','t_6106_sbygn','5.12'); Udgået
 INSERT INTO fkg.tema VALUES (6107,'Forholdsordre','F','t_6107_forholds','5.12');
 INSERT INTO fkg.tema VALUES (6108,'Mødeplan','F','t_6108_moedepl','5.12');
 INSERT INTO fkg.tema VALUES (6109,'Sirene, alarm','P','t_6109_sirene','5.12');
@@ -258,10 +266,10 @@ INSERT INTO fkg.tema VALUES (6201,'Kulturgeografi','F','t_6201_kult_geo','5.13')
 INSERT INTO fkg.tema VALUES (6202,'Landskabkarakterområder','F','t_6202_landk_omr','5.13');
 INSERT INTO fkg.tema VALUES (6203,'Landskabskaraktervurderinger','F','t_6203_landk_vur','5.13');
 --
-INSERT INTO fkg.tema VALUES (6800,'Park og grønne områder flade','F','t_6800_park_og_groenne_omraader_flade','5.19');
-INSERT INTO fkg.tema VALUES (6801,'Park og grønne områder linje','L','t_6801_park_og_groenne_omraader_linje','5.19');
-INSERT INTO fkg.tema VALUES (6802,'Park og grønne områder punkt','P','t_6802_park_og_groenne_omraader_punkt','5.19');
-INSERT INTO fkg.tema VALUES (6803,'Park og grønne områders distrikt','F','t_6803_park_og_groenne_omraaders_distrikt','5.19');
+INSERT INTO fkg.tema VALUES (6800,'Park og grønne områder flade','F','t_6800_parl_fl','5.19');
+INSERT INTO fkg.tema VALUES (6801,'Park og grønne områder linje','L','t_6801_parl_li','5.19');
+INSERT INTO fkg.tema VALUES (6802,'Park og grønne områder punkt','P','t_6802_parl_pkt','5.19');
+INSERT INTO fkg.tema VALUES (6803,'Park og grønne områders distrikt','F','t_6803_parl_omr','5.19');
 --SELECT * FROM tema
 
 INSERT INTO fkg.d_basis_oprindelse VALUES (0,'Ikke udfyldt', 1, NULL);
@@ -294,7 +302,7 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189765,'Billund Kommune',
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 26696348,'Bornholms Regionskommune', 400, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 65113015,'Brøndby Kommune', 153, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189501,'Brønderslev Kommune',  810, 1);
--- cvr_kode missing: Christiansø 411 
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25775635,'Christiansø', 411, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 12881517,'Dragør Kommune', 155, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29188386,'Egedal Kommune', 240, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189803,'Esbjerg Kommune', 561, 1);
@@ -344,7 +352,7 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 11715311,'Lyngby-Taarbæk K
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 45973328,'Læsø Kommune', 825, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189455,'Mariagerfjord Kommune', 846, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189684,'Middelfart Kommune', 410, 1);
-INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376,'Miljøstyrelsen udgår', NULL, 0);
+-- INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376,'Miljøstyrelsen udgår', NULL, 0);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 41333014,'Morsø Kommune', 773, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189986,'Norddjurs Kommune', 707, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29188947,'Nordfyns Kommune', 480, 1);

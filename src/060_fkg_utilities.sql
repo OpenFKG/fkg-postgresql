@@ -18,6 +18,7 @@
     See more about the OpenFKG project at http://github.com/OpenFKG
 */
 
+DROP SCHEMA IF EXISTS fkg_utilities CASCADE;
 CREATE SCHEMA fkg_utilities; -- AUTHORIZATION postgres;
 
 CREATE TABLE fkg_utilities.view_mapping (
@@ -91,7 +92,11 @@ UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='van
 UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6004_vandv_fs_d_basis_vandv_nr_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6006_grundv_opl_d_basis_vandv_nr_fk';
 
--- select * from fkg_utilities.view_mapping where constraint_name like 't_5900%';
+-- Theme 6200, 6201, 6202, 6203, omraade_nr
+UPDATE fkg_utilities.view_mapping SET field_alias='omraade', value_field='omraade' WHERE constraint_name IN ('t_6200_nat_geo_d_basis_omraade_fk','t_6201_kult_geo_d_basis_omraade_fk','t_6202_landk_omr_d_basis_omraade_fk','t_6203_landk_vur_d_basis_omraade_fk');
+
+
+-- select * from fkg_utilities.view_mapping where constraint_name like 't_%d_basis_omraade%';
 -- select * from fkg_utilities.view_mapping order by 1;
 
 -- ---- End of manipulation ----
