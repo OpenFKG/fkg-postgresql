@@ -1472,7 +1472,7 @@ CREATE TABLE fkg.d_6801_vedlhold_l_type(
 	vedlhold_l_type_kode integer NOT NULL,
 	vedlhold_l_type character varying(150) NOT NULL,
 	aktiv integer NOT NULL,
-	vedlhold_l_type_table character varying(6) NOT NULL,
+	vedlhold_l_type_lable character varying(6) NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_6801_vedlhold_l_type_pk PRIMARY KEY (vedlhold_l_type_kode)
 
@@ -1484,7 +1484,7 @@ CREATE TABLE fkg.d_6802_groenvedligh_punkt(
 	vedlhold_p_type_kode integer NOT NULL,
 	vedlhold_p_type character varying(150) NOT NULL,
 	aktiv integer NOT NULL,
-	vedlhold_p_type_table character varying(6) NOT NULL,
+	vedlhold_p_type_lable character varying(6) NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_6802_groenvedligh_punkt_pk PRIMARY KEY (vedlhold_p_type_kode)
 
