@@ -44,7 +44,8 @@ DELETE FROM fkg.d_basis_fors_omr_type;
 DELETE FROM fkg.d_basis_driftniv;
 DELETE FROM fkg.d_basis_ukrudtsbek;
 DELETE FROM fkg.d_basis_antal;
-DELETE FROM d_basis_trin;
+DELETE FROM fkg.d_basis_trin;
+DELETE FROM fkg.d_basis_offentlig;
 
 -- Temaspecific lookup-tables
 DELETE FROM fkg.d_5000_vandl_type;
@@ -395,6 +396,11 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189854,'Aabenraa Kommune'
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189420,'Aalborg Kommune', 851, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 55133018,'Aarhus Kommune', 751, 1);
 -- SELECT * FROM d_basis_ansvarlig_myndighed;
+
+INSERT INTO fkg.d_basis_offentlig VALUES (1,'Synlig for alle',1);
+INSERT INTO fkg.d_basis_offentlig VALUES (2,'Synlig for den ansvarlige myndighed',1);
+INSERT INTO fkg.d_basis_offentlig VALUES (3,'Synlig for alle myndigheder, men ikke offentligheden',1);
+-- SELECT * FROM d_basis_offentlig;
 
 INSERT INTO fkg.d_basis_ja_nej VALUES (0,'Nej',1,'NEJ');
 INSERT INTO fkg.d_basis_ja_nej VALUES (1,'Ja',1,'JA');
