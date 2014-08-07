@@ -388,7 +388,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5000_vandl_type">
 	<schema name="fkg"/>
-	<position x="542.714" y="786.286"/>
+	<position x="542.714" y="856.286"/>
 	<column name="vandl_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -408,7 +408,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5000_maalsaetning">
 	<schema name="fkg"/>
-	<position x="543.714" y="886.286"/>
+	<position x="543.714" y="956.286"/>
 	<column name="maalsaetning_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -428,7 +428,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5000_klasse">
 	<schema name="fkg"/>
-	<position x="544.714" y="985.286"/>
+	<position x="544.714" y="1055.29"/>
 	<column name="klasse_kode">
 		<type name="integer"/>
 	</column>
@@ -448,7 +448,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5000_vandl">
 	<schema name="fkg"/>
-	<position x="10.7143" y="787.286"/>
+	<position x="10.7143" y="857.286"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -705,7 +705,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6100_brandhane">
 	<schema name="fkg"/>
-	<position x="5013.33" y="931.039"/>
+	<position x="4995.55" y="936.595"/>
 	<column name="brandhane_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -725,7 +725,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6100_placering">
 	<schema name="fkg"/>
-	<position x="5015.62" y="814.039"/>
+	<position x="4997.84" y="819.595"/>
 	<column name="placering_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -745,7 +745,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6100_brandhane">
 	<schema name="fkg"/>
-	<position x="4469.9" y="807.189"/>
+	<position x="4452.12" y="812.745"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -816,7 +816,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6102_redvej_type">
 	<schema name="fkg"/>
-	<position x="5022.62" y="1347.47"/>
+	<position x="4988.18" y="1298.58"/>
 	<column name="redvej_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -836,7 +836,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6102_redn_vej">
 	<schema name="fkg"/>
-	<position x="4484.19" y="1266.04"/>
+	<position x="4449.75" y="1217.15"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -880,7 +880,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5001_maalest_type" oids="true">
 	<schema name="fkg"/>
-	<position x="543" y="1151"/>
+	<position x="543" y="1221"/>
 	<column name="maalest_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -900,7 +900,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5001_maalest" oids="true">
 	<schema name="fkg"/>
-	<position x="16" y="1119"/>
+	<position x="12.6667" y="1194.56"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -935,7 +935,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5002_spaerring" oids="true">
 	<schema name="fkg"/>
-	<position x="543" y="1294"/>
+	<position x="543" y="1364"/>
 	<column name="spaerring_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -955,7 +955,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5002_passage" oids="true">
 	<schema name="fkg"/>
-	<position x="543" y="1384"/>
+	<position x="543" y="1454"/>
 	<column name="passage_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -975,7 +975,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5002_faunasp" oids="true">
 	<schema name="fkg"/>
-	<position x="16" y="1280"/>
+	<position x="12.6667" y="1351.11"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1062,7 +1062,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5003_draenledn" oids="true">
 	<schema name="fkg"/>
-	<position x="7.1429" y="1582.86"/>
+	<position x="13.8096" y="1583.97"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1345,7 +1345,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5007_opl" oids="true">
 	<schema name="fkg"/>
-	<position x="540" y="2468.86"/>
+	<position x="533.333" y="2399.97"/>
 	<column name="opl_nr" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1365,7 +1365,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5007_opl_type" oids="true">
 	<schema name="fkg"/>
-	<position x="519" y="2555.86"/>
+	<position x="532.333" y="2488.08"/>
 	<column name="vandl_opl_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1385,7 +1385,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5007_vandl_opl" oids="true">
 	<schema name="fkg"/>
-	<position x="8.5714" y="2483.57"/>
+	<position x="13.0158" y="2415.79"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1417,7 +1417,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5008_opl" oids="true">
 	<schema name="fkg"/>
-	<position x="521.16" y="2656.89"/>
+	<position x="533.382" y="2590.22"/>
 	<column name="soe_opl_nr" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1437,7 +1437,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5008_soe_opl" oids="true">
 	<schema name="fkg"/>
-	<position x="10.6299" y="2634.79"/>
+	<position x="15.0743" y="2567.01"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1469,7 +1469,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5009_lag_type" oids="true">
 	<schema name="fkg"/>
-	<position x="524.898" y="2784.25"/>
+	<position x="533.787" y="2719.81"/>
 	<column name="lag_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1489,7 +1489,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5009_pumpelag" oids="true">
 	<schema name="fkg"/>
-	<position x="8.68847" y="2775.25"/>
+	<position x="13.1329" y="2707.47"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1518,7 +1518,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5010_element_type" oids="true">
 	<schema name="fkg"/>
-	<position x="516.538" y="2957.35"/>
+	<position x="542.094" y="2891.79"/>
 	<column name="element_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1538,7 +1538,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5010_vandl_elm" oids="true">
 	<schema name="fkg"/>
-	<position x="10.2013" y="2914.97"/>
+	<position x="14.6457" y="2847.19"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1837,7 +1837,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5300_genopd_ret">
 	<schema name="fkg"/>
-	<position x="1128.75" y="1197.67"/>
+	<position x="1126.53" y="1361"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1875,7 +1875,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5400_affalds_type">
 	<schema name="fkg"/>
-	<position x="1762.67" y="1606"/>
+	<position x="1723.78" y="1738.22"/>
 	<column name="affaldstype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1895,7 +1895,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5400_affalds_dis">
 	<schema name="fkg"/>
-	<position x="1163.08" y="1582.92"/>
+	<position x="1124.19" y="1715.14"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -1942,7 +1942,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5200_affald">
 	<schema name="fkg"/>
-	<position x="1638.33" y="875.988"/>
+	<position x="1636.11" y="1039.32"/>
 	<column name="affald_prod_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1962,7 +1962,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5401_gs_type">
 	<schema name="fkg"/>
-	<position x="1772.83" y="1833.75"/>
+	<position x="1733.94" y="1965.97"/>
 	<column name="gs_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1982,7 +1982,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5402_gc_type">
 	<schema name="fkg"/>
-	<position x="1757.17" y="1993"/>
+	<position x="1718.28" y="2125.22"/>
 	<column name="gc_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2002,7 +2002,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5506_anlaegtype">
 	<schema name="fkg"/>
-	<position x="1673.14" y="2501"/>
+	<position x="1648.7" y="2565.44"/>
 	<column name="anlaeg_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2022,7 +2022,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5600_rute">
 	<schema name="fkg"/>
-	<position x="1725.25" y="3162"/>
+	<position x="1707.47" y="3154.22"/>
 	<column name="rute_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2042,7 +2042,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5601_hasti_type">
 	<schema name="fkg"/>
-	<position x="1699.25" y="3310"/>
+	<position x="1681.47" y="3302.22"/>
 	<column name="hasti_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2062,7 +2062,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5602_p_tid">
 	<schema name="fkg"/>
-	<position x="1698.25" y="3509"/>
+	<position x="1680.47" y="3501.22"/>
 	<column name="p_tid_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2082,7 +2082,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5602_p_type">
 	<schema name="fkg"/>
-	<position x="1697.25" y="3411"/>
+	<position x="1679.47" y="3403.22"/>
 	<column name="p_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2102,7 +2102,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5604_begr_type">
 	<schema name="fkg"/>
-	<position x="1707.25" y="3770"/>
+	<position x="1689.47" y="3762.22"/>
 	<column name="begr_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2122,7 +2122,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5605_dekl_type">
 	<schema name="fkg"/>
-	<position x="1688" y="3985.75"/>
+	<position x="1663.56" y="3983.53"/>
 	<column name="dekl_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2142,7 +2142,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5606_inventar_type">
 	<schema name="fkg"/>
-	<position x="1659" y="4171.75"/>
+	<position x="1612.33" y="4167.31"/>
 	<column name="inventar_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2162,7 +2162,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5700_forening_type">
 	<schema name="fkg"/>
-	<position x="2697.43" y="804.322"/>
+	<position x="2682.99" y="868.766"/>
 	<column name="forening_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2182,7 +2182,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5700_adr_beskyt">
 	<schema name="fkg"/>
-	<position x="2694.43" y="910.322"/>
+	<position x="2679.99" y="974.766"/>
 	<column name="gf_adr_beskyt_kode" not-null="true">
 		<type name="character"/>
 	</column>
@@ -2202,7 +2202,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5705_udlejning">
 	<schema name="fkg"/>
-	<position x="2718.43" y="1804.32"/>
+	<position x="2705.1" y="1802.1"/>
 	<column name="udlejning_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2222,7 +2222,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5706_havn_type">
 	<schema name="fkg"/>
-	<position x="2720.43" y="1958.32"/>
+	<position x="2707.1" y="1956.1"/>
 	<column name="havn_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2242,7 +2242,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5707_grund_type">
 	<schema name="fkg"/>
-	<position x="2710.43" y="2113.32"/>
+	<position x="2697.1" y="2111.1"/>
 	<column name="grund_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2262,7 +2262,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5707_salg_status">
 	<schema name="fkg"/>
-	<position x="2708.43" y="2195.32"/>
+	<position x="2695.1" y="2193.1"/>
 	<column name="salg_status_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2282,7 +2282,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5800_facilitet">
 	<schema name="fkg"/>
-	<position x="2802.81" y="3960.1"/>
+	<position x="2735.03" y="3996.77"/>
 	<column name="facilitet_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2302,7 +2302,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_facilitet">
 	<schema name="fkg"/>
-	<position x="2774.1" y="4185.67"/>
+	<position x="2734.1" y="4203.45"/>
 	<column name="facilitet_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2322,7 +2322,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5901_gravestatus">
 	<schema name="fkg"/>
-	<position x="3807.71" y="1223.29"/>
+	<position x="3798.82" y="1265.51"/>
 	<column name="gravstatus_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2342,7 +2342,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5901_raastof_type">
 	<schema name="fkg"/>
-	<position x="3806.58" y="1125.62"/>
+	<position x="3797.69" y="1167.84"/>
 	<column name="raastof_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2362,7 +2362,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5902_vaeske_type">
 	<schema name="fkg"/>
-	<position x="3828.18" y="1334.88"/>
+	<position x="3819.29" y="1377.1"/>
 	<column name="vaesketype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2382,7 +2382,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6000_kotesystem">
 	<schema name="fkg"/>
-	<position x="3905.67" y="1689.62"/>
+	<position x="3873.45" y="1675.18"/>
 	<column name="kotesystem_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2402,7 +2402,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6003_zone_type">
 	<schema name="fkg"/>
-	<position x="3900.67" y="2480.87"/>
+	<position x="3875.11" y="2483.09"/>
 	<column name="zone_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2422,7 +2422,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6101_beskyt_rum">
 	<schema name="fkg"/>
-	<position x="5005.42" y="1068.32"/>
+	<position x="4975.42" y="1101.65"/>
 	<column name="beskyt_rum_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2442,7 +2442,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6104_risikotype">
 	<schema name="fkg"/>
-	<position x="5024.42" y="1607.32"/>
+	<position x="5011.09" y="1598.43"/>
 	<column name="risikotype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2482,7 +2482,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6111_tilladelse">
 	<schema name="fkg"/>
-	<position x="4961.6" y="2806.77"/>
+	<position x="4928.27" y="2805.66"/>
 	<column name="tilladelse_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2502,7 +2502,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6112_depottype">
 	<schema name="fkg"/>
-	<position x="4976.63" y="2992.74"/>
+	<position x="4943.3" y="2991.63"/>
 	<column name="depottype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2522,7 +2522,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6115_afbr_type">
 	<schema name="fkg"/>
-	<position x="4955.81" y="3477.47"/>
+	<position x="4923.59" y="3475.25"/>
 	<column name="afbr_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2542,7 +2542,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6116_strandtype">
 	<schema name="fkg"/>
-	<position x="4956.81" y="3600.84"/>
+	<position x="4924.59" y="3598.62"/>
 	<column name="strandtype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2562,7 +2562,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6116_esi_klasse">
 	<schema name="fkg"/>
-	<position x="4956.77" y="3696.41"/>
+	<position x="4924.55" y="3694.19"/>
 	<column name="esi_klasse_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2582,7 +2582,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6117_indsatstype">
 	<schema name="fkg"/>
-	<position x="4955.49" y="3817.32"/>
+	<position x="4923.27" y="3969.54"/>
 	<column name="indsatstype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2602,7 +2602,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_geologi">
 	<schema name="fkg"/>
-	<position x="6070.06" y="802.18"/>
+	<position x="6070.06" y="938.847"/>
 	<column name="geologi_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2622,7 +2622,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_jordtype">
 	<schema name="fkg"/>
-	<position x="6071.39" y="888.958"/>
+	<position x="6071.39" y="1025.62"/>
 	<column name="jordtype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2642,7 +2642,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_terraen">
 	<schema name="fkg"/>
-	<position x="6070.54" y="977.22"/>
+	<position x="6070.54" y="1113.89"/>
 	<column name="terraen_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2662,7 +2662,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_kompleksitet">
 	<schema name="fkg"/>
-	<position x="6070.65" y="1066.33"/>
+	<position x="6070.65" y="1203"/>
 	<column name="kompleksitet_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2682,7 +2682,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_skala">
 	<schema name="fkg"/>
-	<position x="6110.43" y="1353.13"/>
+	<position x="6104.87" y="1583.13"/>
 	<column name="skala_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2702,7 +2702,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_rumlig_afgraensning">
 	<schema name="fkg"/>
-	<position x="6110.55" y="1434.35"/>
+	<position x="6104.99" y="1664.35"/>
 	<column name="rumlig_afgraensning_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2722,7 +2722,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_kompleksitet">
 	<schema name="fkg"/>
-	<position x="6110.21" y="1515.02"/>
+	<position x="6104.65" y="1745.02"/>
 	<column name="kompleksitet_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2742,7 +2742,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_struktur">
 	<schema name="fkg"/>
-	<position x="6111.43" y="1593.46"/>
+	<position x="6105.87" y="1823.46"/>
 	<column name="struktur_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2762,7 +2762,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_visuel_uro">
 	<schema name="fkg"/>
-	<position x="6112.55" y="1671.24"/>
+	<position x="6106.99" y="1901.24"/>
 	<column name="visuel_uro_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2782,7 +2782,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_tidsdybde">
 	<schema name="fkg"/>
-	<position x="6112.66" y="1753.91"/>
+	<position x="6107.1" y="1983.91"/>
 	<column name="tidsdybde_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2802,7 +2802,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6203_karakterstyrke">
 	<schema name="fkg"/>
-	<position x="6115.27" y="1900.71"/>
+	<position x="6075.27" y="2135.15"/>
 	<column name="karakterstyrke_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2822,7 +2822,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6203_saarbarhed">
 	<schema name="fkg"/>
-	<position x="6116.93" y="1996.83"/>
+	<position x="6076.93" y="2231.27"/>
 	<column name="saarbarhed_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2842,7 +2842,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6800_vedlhold_f_type">
 	<schema name="fkg"/>
-	<position x="6110.26" y="2238.71"/>
+	<position x="6085.82" y="2469.82"/>
 	<column name="vedlhold_f_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2865,7 +2865,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6801_vedlhold_l_type">
 	<schema name="fkg"/>
-	<position x="6150.37" y="2609.71"/>
+	<position x="6091.48" y="2820.82"/>
 	<column name="vedlhold_l_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2875,7 +2875,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="aktiv" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="vedlhold_l_type_table" not-null="true">
+	<column name="vedlhold_l_type_lable" not-null="true">
 		<type name="character varying" length="6"/>
 	</column>
 	<column name="begrebsdefinition">
@@ -2888,7 +2888,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6802_groenvedligh_punkt">
 	<schema name="fkg"/>
-	<position x="6164.6" y="2915.05"/>
+	<position x="6120.16" y="3246.16"/>
 	<column name="vedlhold_p_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2898,7 +2898,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="aktiv" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="vedlhold_p_type_table" not-null="true">
+	<column name="vedlhold_p_type_lable" not-null="true">
 		<type name="character varying" length="6"/>
 	</column>
 	<column name="begrebsdefinition">
@@ -2911,7 +2911,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6803_pg_distrikt">
 	<schema name="fkg"/>
-	<position x="6161.04" y="3200.05"/>
+	<position x="6122.15" y="3503.38"/>
 	<column name="pg_distrikt_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -2931,7 +2931,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5401_genbr_st">
 	<schema name="fkg"/>
-	<position x="1169" y="1788.75"/>
+	<position x="1130.11" y="1920.97"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -2969,7 +2969,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5402_genbr_con">
 	<schema name="fkg"/>
-	<position x="1164.25" y="1980.5"/>
+	<position x="1125.36" y="2112.72"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3001,7 +3001,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5508_husst_moel">
 	<schema name="fkg"/>
-	<position x="1146.5" y="2792"/>
+	<position x="1122.06" y="2856.44"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3054,7 +3054,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5200_aff_prod_udbr">
 	<schema name="fkg"/>
-	<position x="1124.57" y="802.498"/>
+	<position x="1122.35" y="965.831"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3128,7 +3128,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5500_elfors_omr">
 	<schema name="fkg"/>
-	<position x="1142.75" y="2376.33"/>
+	<position x="1118.31" y="2440.77"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3160,7 +3160,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5506_spildev_pl_pkt">
 	<schema name="fkg"/>
-	<position x="1144.75" y="2499.56"/>
+	<position x="1120.31" y="2564"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3186,7 +3186,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5507_fiberkabel">
 	<schema name="fkg"/>
-	<position x="1145.83" y="2627.76"/>
+	<position x="1121.39" y="2692.2"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3230,7 +3230,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5800_fac_pkt">
 	<schema name="fkg"/>
-	<position x="2297.38" y="3924.53"/>
+	<position x="2230.71" y="3945.64"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3274,7 +3274,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5802_fac_li">
 	<schema name="fkg"/>
-	<position x="2268.81" y="4143.1"/>
+	<position x="2228.81" y="4160.88"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3318,7 +3318,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5900_jordfl">
 	<schema name="fkg"/>
-	<position x="3351.98" y="804.213"/>
+	<position x="3343.09" y="846.435"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3407,7 +3407,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5901_raastof_till">
 	<schema name="fkg"/>
-	<position x="3351.21" y="1111.19"/>
+	<position x="3342.32" y="1153.41"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3457,7 +3457,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5902_jordv_anl">
 	<schema name="fkg"/>
-	<position x="3346.81" y="1301.7"/>
+	<position x="3337.92" y="1343.92"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3619,7 +3619,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5508_stoej">
 	<schema name="fkg"/>
-	<position x="1666.25" y="2851.5"/>
+	<position x="1641.81" y="2915.94"/>
 	<column name="stoej_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -3639,7 +3639,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5600_vintervedl">
 	<schema name="fkg"/>
-	<position x="1139.25" y="3155"/>
+	<position x="1121.47" y="3147.22"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3671,7 +3671,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5601_hasti_daemp">
 	<schema name="fkg"/>
-	<position x="1138.25" y="3299"/>
+	<position x="1120.47" y="3291.22"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3694,7 +3694,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5602_p_zoner">
 	<schema name="fkg"/>
-	<position x="1138.25" y="3410"/>
+	<position x="1120.47" y="3402.22"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3762,7 +3762,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5603_hasti_zone">
 	<schema name="fkg"/>
-	<position x="1140.25" y="3623"/>
+	<position x="1122.47" y="3615.22"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3785,7 +3785,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5604_koer_begr">
 	<schema name="fkg"/>
-	<position x="1141.25" y="3744"/>
+	<position x="1123.47" y="3736.22"/>
 	<column name="versions_id">
 		<type name="uuid"/>
 	</column>
@@ -3826,7 +3826,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5605_vejbyggel">
 	<schema name="fkg"/>
-	<position x="1147" y="3948.75"/>
+	<position x="1122.56" y="3946.53"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3870,7 +3870,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5606_vejinv">
 	<schema name="fkg"/>
-	<position x="1169" y="4164.75"/>
+	<position x="1122.33" y="4160.31"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3898,23 +3898,23 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="licensing-link_cp" font-size="9">
-	<position x="13.3214" y="745.607"/>
+	<position x="13.3214" y="800.051"/>
 	<comment><![CDATA[In this column Theme group 5.1 and 5.2]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp" font-size="9">
-	<position x="1128.32" y="749.357"/>
+	<position x="1122.76" y="803.801"/>
 	<comment><![CDATA[In this column Theme group 5.3, 5.4, 5.5, 5.6, 5.7]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp_cp" font-size="9">
-	<position x="2235.82" y="746.857"/>
+	<position x="2233.6" y="793.524"/>
 	<comment><![CDATA[In this column Theme group 5.8, 5.9]]></comment>
 </textbox>
 
 <table name="t_5700_grundej">
 	<schema name="fkg"/>
-	<position x="2245" y="801"/>
+	<position x="2230.56" y="865.444"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3964,7 +3964,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5701_lok_omr">
 	<schema name="fkg"/>
-	<position x="2248" y="1033"/>
+	<position x="2231.33" y="1071.89"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -3987,7 +3987,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5702_skorst_fej">
 	<schema name="fkg"/>
-	<position x="2248" y="1170"/>
+	<position x="2232.44" y="1178.89"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4037,7 +4037,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5703_afstem_sted">
 	<schema name="fkg"/>
-	<position x="2249" y="1390"/>
+	<position x="2233.44" y="1398.89"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4075,7 +4075,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5704_afstem_omr">
 	<schema name="fkg"/>
-	<position x="2246" y="1568"/>
+	<position x="2232.67" y="1565.78"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4122,7 +4122,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5705_forp_are">
 	<schema name="fkg"/>
-	<position x="2247" y="1750"/>
+	<position x="2233.67" y="1747.78"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4163,7 +4163,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5706_havn_are">
 	<schema name="fkg"/>
-	<position x="2246" y="1933"/>
+	<position x="2232.67" y="1930.78"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4201,7 +4201,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5707_grunds">
 	<schema name="fkg"/>
-	<position x="2244" y="2079"/>
+	<position x="2230.67" y="2076.78"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4278,7 +4278,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5710_born_skole_dis">
 	<schema name="fkg"/>
-	<position x="2246" y="2360.25"/>
+	<position x="2232.67" y="2402.47"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4316,7 +4316,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5711_and_dis">
 	<schema name="fkg"/>
-	<position x="2250" y="2553.25"/>
+	<position x="2232.22" y="2594.36"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4351,7 +4351,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5712_plej_aeldr_dis">
 	<schema name="fkg"/>
-	<position x="2252.25" y="2700"/>
+	<position x="2232.25" y="2742.22"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4386,7 +4386,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5713_prog_stat_dis">
 	<schema name="fkg"/>
-	<position x="2255.25" y="2849.5"/>
+	<position x="2233.03" y="2891.72"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4421,7 +4421,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5714_laering_udd_inst">
 	<schema name="fkg"/>
-	<position x="2257" y="2998.75"/>
+	<position x="2231.44" y="3172.08"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4468,7 +4468,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5715_botilbud">
 	<schema name="fkg"/>
-	<position x="2278.58" y="3230.83"/>
+	<position x="2233.02" y="3394.16"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4509,7 +4509,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5716_servicetilbud">
 	<schema name="fkg"/>
-	<position x="2277.58" y="3419.83"/>
+	<position x="2232.02" y="3583.16"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4550,7 +4550,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5710_udd_distrikt_type">
 	<schema name="fkg"/>
-	<position x="2762.5" y="2375"/>
+	<position x="2749.17" y="2417.22"/>
 	<column name="udd_distrikt_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -4570,7 +4570,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5711_an_distrikt_type">
 	<schema name="fkg"/>
-	<position x="2761.25" y="2571.25"/>
+	<position x="2747.92" y="2613.47"/>
 	<column name="an_distrikt_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -4590,7 +4590,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5712_plej_distrikt_type">
 	<schema name="fkg"/>
-	<position x="2757.5" y="2711.25"/>
+	<position x="2744.17" y="2753.47"/>
 	<column name="plej_distrikt_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -4610,7 +4610,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5713_prog_distrikt_type">
 	<schema name="fkg"/>
-	<position x="2757.5" y="2868.75"/>
+	<position x="2744.17" y="2910.97"/>
 	<column name="prog_distrikt_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -4630,7 +4630,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5714_udd_institution_type">
 	<schema name="fkg"/>
-	<position x="2767.5" y="3037.5"/>
+	<position x="2741.94" y="3210.83"/>
 	<column name="udd_institution_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -4670,7 +4670,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5715_botilbud_type">
 	<schema name="fkg"/>
-	<position x="2761" y="3235"/>
+	<position x="2715.44" y="3398.33"/>
 	<column name="botilbud_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -4690,7 +4690,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5716_servicetilbud_type">
 	<schema name="fkg"/>
-	<position x="2783" y="3432"/>
+	<position x="2734.11" y="3619.78"/>
 	<column name="service_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -4709,13 +4709,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="col_4_txt" font-size="9">
-	<position x="3348.74" y="743.94"/>
+	<position x="3343.18" y="797.273"/>
 	<comment><![CDATA[In this column Theme group 5.10, 5.11]]></comment>
 </textbox>
 
 <table name="t_6000_pot">
 	<schema name="fkg"/>
-	<position x="3375" y="1613.75"/>
+	<position x="3342.78" y="1599.31"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4774,7 +4774,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6001_pot_m">
 	<schema name="fkg"/>
-	<position x="3372.5" y="1857.5"/>
+	<position x="3340.28" y="1843.06"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4833,7 +4833,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6002_indv">
 	<schema name="fkg"/>
-	<position x="3370" y="2105"/>
+	<position x="3337.78" y="2090.56"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4889,7 +4889,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6003_besk_zone">
 	<schema name="fkg"/>
-	<position x="3367.5" y="2362.5"/>
+	<position x="3341.94" y="2364.72"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4951,7 +4951,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6004_vandv_fs">
 	<schema name="fkg"/>
-	<position x="3366.25" y="2627.5"/>
+	<position x="3340.69" y="2629.72"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4980,7 +4980,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6006_grundv_opl">
 	<schema name="fkg"/>
-	<position x="3367.5" y="2773.75"/>
+	<position x="3341.94" y="2775.97"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5012,7 +5012,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6007_inds_omr">
 	<schema name="fkg"/>
-	<position x="3366.25" y="2956.25"/>
+	<position x="3340.69" y="2958.47"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5044,7 +5044,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6008_maks_bor">
 	<schema name="fkg"/>
-	<position x="3363.75" y="3151.25"/>
+	<position x="3344.86" y="3202.36"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5070,7 +5070,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6009_indv_ovflv">
 	<schema name="fkg"/>
-	<position x="3367.86" y="3278.39"/>
+	<position x="3348.97" y="3329.5"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5124,13 +5124,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="col_4_txt_cp" font-size="9">
-	<position x="4454.99" y="745.19"/>
+	<position x="4452.77" y="787.412"/>
 	<comment><![CDATA[In this column Theme group 5.12]]></comment>
 </textbox>
 
 <table name="t_6101_beskyt_rum">
 	<schema name="fkg"/>
-	<position x="4487" y="1075"/>
+	<position x="4452.56" y="1079.44"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5159,7 +5159,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6103_bered_omr">
 	<schema name="fkg"/>
-	<position x="4478" y="1471"/>
+	<position x="4451.33" y="1413.22"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5197,7 +5197,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6104_risiko_virk">
 	<schema name="fkg"/>
-	<position x="4480" y="1633"/>
+	<position x="4455.56" y="1610.78"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5232,7 +5232,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6105_sbygn_omr">
 	<schema name="fkg"/>
-	<position x="4492" y="1770"/>
+	<position x="4452" y="1774.44"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5267,7 +5267,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6107_forholds">
 	<schema name="fkg"/>
-	<position x="4492" y="1909"/>
+	<position x="4452" y="1913.44"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5377,7 +5377,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6108_moedepl">
 	<schema name="fkg"/>
-	<position x="4492" y="2358"/>
+	<position x="4453.11" y="2359.11"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5418,7 +5418,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6110_noegle">
 	<schema name="fkg"/>
-	<position x="4487" y="2555"/>
+	<position x="4453.67" y="2553.89"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5462,7 +5462,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6111_fyrv_till">
 	<schema name="fkg"/>
-	<position x="4485" y="2759"/>
+	<position x="4451.67" y="2757.89"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5503,7 +5503,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6112_midl_dep">
 	<schema name="fkg"/>
-	<position x="4487.55" y="2955"/>
+	<position x="4454.22" y="2953.89"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5541,7 +5541,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6113_besk_nat_b">
 	<schema name="fkg"/>
-	<position x="4485.36" y="3137"/>
+	<position x="4453.14" y="3134.78"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5561,7 +5561,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6114_midl_oph">
 	<schema name="fkg"/>
-	<position x="4482.36" y="3232"/>
+	<position x="4450.14" y="3229.78"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5614,7 +5614,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6115_afbr_omr">
 	<schema name="fkg"/>
-	<position x="4482.82" y="3469.18"/>
+	<position x="4450.6" y="3466.96"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5643,7 +5643,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6116_olie_ber_pl">
 	<schema name="fkg"/>
-	<position x="4481.82" y="3598.27"/>
+	<position x="4449.6" y="3596.05"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5684,7 +5684,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6117_inds_pkt">
 	<schema name="fkg"/>
-	<position x="4482.36" y="3778.55"/>
+	<position x="4450.14" y="3930.77"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5728,7 +5728,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6118_bran_redn">
 	<schema name="fkg"/>
-	<position x="4482.73" y="3977.82"/>
+	<position x="4450.51" y="4130.04"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5772,7 +5772,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6118_brand_redarea_type">
 	<schema name="fkg"/>
-	<position x="4944.55" y="4036.36"/>
+	<position x="4912.33" y="4188.58"/>
 	<column name="brand_redarea_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -5797,7 +5797,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6200_nat_geo">
 	<schema name="fkg"/>
-	<position x="5575.56" y="795.556"/>
+	<position x="5563.34" y="970"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5859,7 +5859,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6201_kult_geo">
 	<schema name="fkg"/>
-	<position x="5578.89" y="1166.67"/>
+	<position x="5564.45" y="1316.67"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -5897,7 +5897,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6202_landk_omr">
 	<schema name="fkg"/>
-	<position x="5565.56" y="1394.44"/>
+	<position x="5560" y="1624.44"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -6001,7 +6001,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6203_landk_vur">
 	<schema name="fkg"/>
-	<position x="5601.11" y="1881.11"/>
+	<position x="5561.11" y="2115.55"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -6051,7 +6051,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6800_parl_fl">
 	<schema name="fkg"/>
-	<position x="5598.89" y="2144.44"/>
+	<position x="5565.56" y="2378.88"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -6143,7 +6143,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6801_parl_li">
 	<schema name="fkg"/>
-	<position x="5600" y="2478.89"/>
+	<position x="5566.67" y="2713.33"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -6235,7 +6235,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6802_parl_pkt">
 	<schema name="fkg"/>
-	<position x="5601.11" y="2805.56"/>
+	<position x="5564.44" y="3162.23"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -6309,7 +6309,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6803_parl_omr">
 	<schema name="fkg"/>
-	<position x="5604.44" y="3142.22"/>
+	<position x="5565.55" y="3445.55"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
