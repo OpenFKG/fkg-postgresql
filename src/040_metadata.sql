@@ -70,6 +70,7 @@ CREATE TABLE fkg.generel(
 	bruger_id character varying(128) NOT NULL,
 	oprindkode integer NOT NULL,
 	statuskode integer NOT NULL,
+	off_kode integer NOT NULL,
 	CONSTRAINT generel_pk PRIMARY KEY (versions_id)
 
 );
@@ -1657,7 +1658,7 @@ CREATE TABLE fkg.t_5802_fac_li(
 	facilitet_type_kode integer NOT NULL,
 	ejerstatus_kode integer,
 	navn character varying(50),
-	nogle character varying(128),
+	noegle character varying(128),
 	noter character varying(254),
 	vejkode integer,
 	cvf_vejkode char(7),
@@ -2973,6 +2974,16 @@ CREATE TABLE fkg.t_6803_parl_omr(
 
 );
 -- ddl-end --
+-- object: fkg.d_basis_offentlig | type: TABLE --
+-- DROP TABLE fkg.d_basis_offentlig;
+CREATE TABLE fkg.d_basis_offentlig(
+	off_kode integer NOT NULL,
+	offentlig character varying(60) NOT NULL,
+	aktiv integer NOT NULL,
+	CONSTRAINT d_basis_offentlig_pk PRIMARY KEY (off_kode)
+
+);
+-- ddl-end --
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.generel DROP CONSTRAINT generel_d_basis_oprindelse_fk;
 ALTER TABLE fkg.generel ADD CONSTRAINT generel_d_basis_oprindelse_fk FOREIGN KEY (oprindkode)
@@ -2993,6 +3004,14 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.generel DROP CONSTRAINT generel_d_basis_ansvarlig_myndighed_fk;
 ALTER TABLE fkg.generel ADD CONSTRAINT generel_d_basis_ansvarlig_myndighed_fk FOREIGN KEY (cvr_kode)
 REFERENCES fkg.d_basis_ansvarlig_myndighed (cvr_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: generel_d_basis_offentlig_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.generel DROP CONSTRAINT generel_d_basis_offentlig_fk;
+ALTER TABLE fkg.generel ADD CONSTRAINT generel_d_basis_offentlig_fk FOREIGN KEY (off_kode)
+REFERENCES fkg.d_basis_offentlig (off_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -4309,6 +4328,14 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
+-- object: t_5714_laering_udd_inst_d_basis_ejerstatus_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
 -- object: t_5715_botilbud_generel_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_generel_fk;
 ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_generel_fk FOREIGN KEY (versions_id)
@@ -5109,6 +5136,22 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
+-- object: t_6800_parl_fl_d_basis_tilstand_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6800_parl_fl_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_d_vejnavn_fk;
+ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
 -- object: t_6801_parl_li_generel_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_generel_fk;
 ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_generel_fk FOREIGN KEY (versions_id)
@@ -5149,6 +5192,14 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
+-- object: t_6801_parl_li_d_basis_tilstand_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
 -- object: t_6802_parl_pkt_generel_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_generel_fk;
 ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_generel_fk FOREIGN KEY (versions_id)
@@ -5185,6 +5236,14 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_d_vejnavn_fk;
 ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: t_6802_parl_pkt_d_basis_tilstand_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
