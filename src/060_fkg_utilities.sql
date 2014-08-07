@@ -95,14 +95,16 @@ UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='van
 -- Theme 6200, 6201, 6202, 6203, omraade_nr
 UPDATE fkg_utilities.view_mapping SET field_alias='omraade', value_field='omraade' WHERE constraint_name IN ('t_6200_nat_geo_d_basis_omraade_fk','t_6201_kult_geo_d_basis_omraade_fk','t_6202_landk_omr_d_basis_omraade_fk','t_6203_landk_vur_d_basis_omraade_fk');
 
-
+-- Append the value columns from lookup tables (special for themes 6800, 6801 and 6802)
+INSERT INTO fkg_utilities.view_mapping (constraint_name, field_alias, value_field, ordinal) 
+  SELECT 't_6800_parl_fl_d_6800_vedlhold_f_type_fk', 'vedlhold_f_type_lable', 'vedlhold_f_type_lable', 120 UNION
+  SELECT 't_6801_parl_li_d_6801_vedlhold_l_type_fk', 'vedlhold_l_type_lable', 'vedlhold_l_type_lable', 120 UNION
+  SELECT 't_6802_parl_pkt_d_6802_groenvedligh_punkt_fk', 'vedlhold_p_type_lable', 'vedlhold_p_type_lable', 120;
+  
 -- select * from fkg_utilities.view_mapping where constraint_name like 't_%d_basis_omraade%';
 -- select * from fkg_utilities.view_mapping order by 1;
 
 -- ---- End of manipulation ----
-
-
-
 
 -- View to hold information on columns
 CREATE OR REPLACE VIEW fkg_utilities.column_metadata
