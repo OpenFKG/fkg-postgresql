@@ -104,6 +104,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="statuskode" not-null="true">
 		<type name="integer"/>
 	</column>
+	<column name="off_kode" not-null="true">
+		<type name="integer"/>
+	</column>
 	<constraint name="generel_pk" type="pk-constr" factor="10" table="fkg.generel">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
@@ -3287,7 +3290,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="navn">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="nogle">
+	<column name="noegle">
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="noter">
@@ -6348,6 +6351,23 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
+<table name="d_basis_offentlig">
+	<schema name="fkg"/>
+	<position x="2671" y="355"/>
+	<column name="off_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="offentlig" not-null="true">
+		<type name="character varying" length="60"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="d_basis_offentlig_pk" type="pk-constr" factor="10" table="fkg.d_basis_offentlig">
+		<columns names="off_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
 <constraint name="generel_d_basis_oprindelse_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_oprindelse" table="fkg.generel">
 	<columns names="oprindkode" ref-type="src-columns"/>
@@ -6362,6 +6382,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansvarlig_myndighed" table="fkg.generel">
 	<columns names="cvr_kode" ref-type="src-columns"/>
 	<columns names="cvr_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="generel_d_basis_offentlig_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_offentlig" table="fkg.generel">
+	<columns names="off_kode" ref-type="src-columns"/>
+	<columns names="off_kode" ref-type="dst-columns"/>
 </constraint>
 <constraint name="t_5000_vandl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5000_vandl">
@@ -7183,6 +7208,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="postnr" ref-type="src-columns"/>
 	<columns names="postnr" ref-type="dst-columns"/>
 </constraint>
+<constraint name="t_5714_laering_udd_inst_d_basis_ejerstatus_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5714_laering_udd_inst">
+	<columns names="ejerstatus_kode" ref-type="src-columns"/>
+	<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+</constraint>
 <constraint name="t_5715_botilbud_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5715_botilbud">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -7683,6 +7713,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="ukrudtsbek_kode" ref-type="src-columns"/>
 	<columns names="ukrudtsbek_kode" ref-type="dst-columns"/>
 </constraint>
+<constraint name="t_6800_parl_fl_d_basis_tilstand_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_tilstand" table="fkg.t_6800_parl_fl">
+	<columns names="tilstand_kode" ref-type="src-columns"/>
+	<columns names="tilstand_kode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_6800_parl_fl_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_6800_parl_fl">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
 <constraint name="t_6801_parl_li_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6801_parl_li">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -7708,6 +7748,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="vejkode" ref-type="src-columns"/>
 	<columns names="vejkode" ref-type="dst-columns"/>
 </constraint>
+<constraint name="t_6801_parl_li_d_basis_tilstand_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_tilstand" table="fkg.t_6801_parl_li">
+	<columns names="tilstand_kode" ref-type="src-columns"/>
+	<columns names="tilstand_kode" ref-type="dst-columns"/>
+</constraint>
 <constraint name="t_6802_parl_pkt_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6802_parl_pkt">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -7732,6 +7777,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_6802_parl_pkt">
 	<columns names="vejkode" ref-type="src-columns"/>
 	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+<constraint name="t_6802_parl_pkt_d_basis_tilstand_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_tilstand" table="fkg.t_6802_parl_pkt">
+	<columns names="tilstand_kode" ref-type="src-columns"/>
+	<columns names="tilstand_kode" ref-type="dst-columns"/>
 </constraint>
 <constraint name="t_6803_parl_omr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6803_parl_omr">
@@ -9086,6 +9136,36 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5000_vandl_d_basis_trussel_vand" type="relfk"
 	 src-table="fkg.t_5000_vandl"
 	 dst-table="fkg.d_basis_trussel_vand"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_d_basis_ejerstatus" type="relfk"
+	 src-table="fkg.t_5714_laering_udd_inst"
+	 dst-table="fkg.d_basis_ejerstatus"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_6800_parl_fl_d_basis_tilstand" type="relfk"
+	 src-table="fkg.t_6800_parl_fl"
+	 dst-table="fkg.d_basis_tilstand"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_6800_parl_fl_d_vejnavn" type="relfk"
+	 src-table="fkg.t_6800_parl_fl"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_6801_parl_li_d_basis_tilstand" type="relfk"
+	 src-table="fkg.t_6801_parl_li"
+	 dst-table="fkg.d_basis_tilstand"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_t_6802_parl_pkt_d_basis_tilstand" type="relfk"
+	 src-table="fkg.t_6802_parl_pkt"
+	 dst-table="fkg.d_basis_tilstand"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_generel_d_basis_offentlig" type="relfk"
+	 src-table="fkg.generel"
+	 dst-table="fkg.d_basis_offentlig"
 	 src-required="true" dst-required="true"/>
 
 </dbmodel>
