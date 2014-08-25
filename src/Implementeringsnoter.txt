@@ -1,3 +1,5 @@
+Kommentarer til PostgreSQL implementering (forskelle til officielt dokument)
+
 tema 5703, 5704 afstemningsomraade_nr er defineret som heltal, men standarden siger tekst(128). Tekstvarianten er anvendt
 tema 5901 aflslut_aar - besynderlig staveform. Rettet til afslut_aar
 tema 5904 Ikke implementeret. Dokumentation mangler og tema forventes nedlagt
