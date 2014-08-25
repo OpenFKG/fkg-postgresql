@@ -40,17 +40,7 @@ Status
 -------------
 Der er lagt et stort stykke arbejde med at udvikle programmellet, så hele basis for datamodellen med historik, constraints etc er på plads. Efterfølgende er det meget enkelt at implementere temaer - se afsnittet "Bidrag" nedenfor for mere om, hvordan dette kan gøres.
 
-Pt er alle temaer i otte af i alt 14 temagrupper i FKG version 2.3 færdigimplementeret:
-* Overfladevand
-* Natur
-* Miljø
-* Landbrug
-* Affald og genbrug
-* Forsyning
-* Sport, fritit og friluftsliv
-* Jord og råstof
-
-Desuden er enkelte temaer i temagruppen "Beredskab" implementeret.
+Sommer 2014 blev alle temaer i version 2.4 implementeret / opgraderet med økonomisk fra [KL](http://kl.dk). Alle temaer er således bragt op på version 2.4 og modellen er fuldt klar til brug.
 
 Bidrag
 ------------
@@ -70,6 +60,8 @@ Dette projekt er oprindeligt startet af firmaet [Septima](http://www.septima.dk)
 
 Projektet blev endeligt frigivet som Open Source i begyndelsen af juli 2013 med udgangspunkt i FKG-datamodellen version 2.3.
 
+Sommer 2014 blev alle temaer i version 2.4 implementeret / opgraderet med økonomisk støtte fra [KL](http://kl.dk).
+
 For udviklere
 -----------
 Basis for databasemodellen opsættes i databasemodelleringsværktøjet [pgModeler](http://www.pgmodeler.com.br/). Værktøjet er Open Source og under aktiv udvikling på [github.com/pgmodeler/pgmodeler](https://github.com/pgmodeler/pgmodeler). Sidste nye version til Mac OSX, Linux og Windows kan downloades [her](http://www.pgmodeler.com.br/).
@@ -83,7 +75,7 @@ Det er enklest at køre denne proces ved at bruge installations/kompileringsscri
 Dette gøres enklest således:
 
 1. Lav dine ændringer i modellen - fkg.dbm - i PgModeler
-2. Eksportér dine ændringer fra PgModeler til filen [040_metadata.sql](src/040_metadata.sql)  (gem som PostgreSQL 9.2)
+2. Eksportér dine ændringer fra PgModeler til filen [040_metadata.sql](src/040_metadata.sql)  (gem som PostgreSQL 9.3)
 3. Lav de nødvendige ændringer i [050_coredata.sql](src/050_coredata.sql) og [060_fkg_utilities.sql](src/060_fkg_utilities.sql)
 4. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](src/make_install.sh)
 5. Kør [make_install.sh](src/make_install.sh) i terminalen 
