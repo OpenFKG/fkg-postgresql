@@ -4,10 +4,10 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>706904.64289432833902538</xmin>
-            <ymin>6188232.39301170594990253</ymin>
-            <xmax>718658.41808507777750492</xmax>
-            <ymax>6192490.67836073599755764</ymax>
+            <xmin>710886.00661162356846035</xmin>
+            <ymin>6189956.8851246340200305</ymin>
+            <xmax>714003.89735878852661699</xmax>
+            <ymax>6191008.22022856865078211</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -24,7 +24,7 @@
         </destinationsrs>
     </mapcanvas>
     <legend updateDrawingOrder="true" activeLayer="t_5001_maalest_vw20140807145633126">
-        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="t_5001_maalest_vw [3]" showFeatureCount="1">
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="t_5001_maalest_vw [4]" showFeatureCount="1">
             <filegroup open="false" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="t_5001_maalest_vw20140807145633126" visible="1"/>
             </filegroup>
@@ -341,7 +341,7 @@
             </pipe>
             <blendMode>0</blendMode>
         </maplayer>
-        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Point" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="0" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Point" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
             <id>t_5001_maalest_vw20140807145633126</id>
             <datasource>dbname='fkg' host=localhost port=5432 sslmode=disable key='objekt_id' srid=25832 type=MULTIPOINT table="fkg"."t_5001_maalest_vw" (geometri) sql=</datasource>
             <title></title>
@@ -507,7 +507,7 @@
             <blendMode>0</blendMode>
             <featureBlendMode>0</featureBlendMode>
             <layerTransparency>0</layerTransparency>
-            <displayfield>objekt_id</displayfield>
+            <displayfield>lokalitet</displayfield>
             <label>0</label>
             <labelattributes>
                 <label fieldname="" text="Label"/>
