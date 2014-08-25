@@ -6122,16 +6122,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6800_parl_fl_anlaegsaar_ck" type="ck-constr" table="fkg.t_6800_parl_fl">
-			<expression><![CDATA[anlaegsaar BETWEEN '01-01-1600' AND '31-12-2999']]></expression>
+			<expression><![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_etabl_pleje_udloeb_ck" type="ck-constr" table="fkg.t_6800_parl_fl">
-			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '01-01-2007' AND '31-12-2999']]></expression>
+			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_udskiftningaar_ck" type="ck-constr" table="fkg.t_6800_parl_fl">
-			<expression><![CDATA[udskiftningaar BETWEEN '01-01-2007' AND '31-12-2999']]></expression>
+			<expression><![CDATA[udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_udtyndaar_ck" type="ck-constr" table="fkg.t_6800_parl_fl">
-			<expression><![CDATA[udtyndaar BETWEEN '01-01-2007' AND '31-12-2999']]></expression>
+			<expression><![CDATA[udtyndaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_klip_hoejde_ck" type="ck-constr" table="fkg.t_6800_parl_fl">
 			<expression><![CDATA[klip_hoejde BETWEEN 0.01 AND 9.99]]></expression>
@@ -6214,13 +6214,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6801_parl_li_anlaegsaar_ck" type="ck-constr" table="fkg.t_6801_parl_li">
-			<expression><![CDATA[anlaegsaar BETWEEN '01-01-1600' AND '31-12-2999']]></expression>
+			<expression><![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_etabl_pleje_udloeb_ck" type="ck-constr" table="fkg.t_6801_parl_li">
-			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '01-01-2007' AND '31-12-2999']]></expression>
+			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_udskiftningaar_ck" type="ck-constr" table="fkg.t_6801_parl_li">
-			<expression><![CDATA[udskiftningaar BETWEEN '01-01-2007' AND '31-12-2999']]></expression>
+			<expression><![CDATA[udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_klip_flade_ck" type="ck-constr" table="fkg.t_6801_parl_li">
 			<expression><![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]></expression>
@@ -6297,13 +6297,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_anlaegsaar_ck" type="ck-constr" table="fkg.t_6802_parl_pkt">
-			<expression><![CDATA[anlaegsaar BETWEEN '01-01-1600' AND '31-12-2999']]></expression>
+			<expression><![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_etabl_pleje_udloeb_ck" type="ck-constr" table="fkg.t_6802_parl_pkt">
-			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '01-01-2007' AND '31-12-2999']]></expression>
+			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_udskiftningaar_ck" type="ck-constr" table="fkg.t_6802_parl_pkt">
-			<expression><![CDATA[udskiftningaar BETWEEN '01-01-2007' AND '31-12-2999']]></expression>
+			<expression><![CDATA[udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_klip_flade_ck" type="ck-constr" table="fkg.t_6802_parl_pkt">
 			<expression><![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]></expression>
