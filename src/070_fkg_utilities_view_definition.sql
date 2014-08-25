@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -77,7 +77,9 @@ BEGIN
   vd = vd || E'  g.oprindkode,' || E'\n';
   vd = vd || E'  o.oprindelse,' || E'\n';
   vd = vd || E'  g.statuskode,' || E'\n';
-  vd = vd || E'  s.status';
+  vd = vd || E'  s.status,' || E'\n';
+  vd = vd || E'  g.off_kode,' || E'\n';
+  vd = vd || E'  f.offentlig';
 
   -- Loop through the columns in theme-table
   FOR _record IN select * FROM fkg_utilities.column_metadata WHERE table_name = base_table_name AND column_name <> 'versions_id' ORDER BY ordinal_position, ordinal
@@ -98,20 +100,21 @@ BEGIN
     END IF;
   END LOOP;
 
-  -- Now add the from clause
+  -- Now add the from clause (Natural JOIN on required FK-relations)
   vd = vd || E'\nFROM\n' ||
   E'  ' || schema_name || E'.generel g JOIN\n' ||
   E'  ' || schema_name || E'.d_basis_ansvarlig_myndighed m ON (g.cvr_kode=m.cvr_kode) JOIN\n' ||
   E'  ' || schema_name || E'.d_basis_oprindelse o ON (g.oprindkode=o.oprindkode) JOIN\n' ||
   E'  ' || schema_name || E'.d_basis_status s ON (g.statuskode=s.statuskode) JOIN\n' ||
+  E'  ' || schema_name || E'.d_basis_offentlig f ON (g.off_kode=f.off_kode) JOIN\n' ||
   E'  ' || schema_name || E'.' || base_table_name || ' t ON (g.versions_id = t.versions_id)';
 
-  -- Add the codelist relations
+  -- Add the codelist relations (Left JOIN on other FK-relations)
   relation_counter = 0;
   FOR _record IN select DISTINCT constraint_name, column_name, ref_column_name, ref_table_name, ordinal_position FROM fkg_utilities.column_metadata WHERE table_name = base_table_name AND constraint_name IS NOT NULL ORDER BY ordinal_position
   LOOP
     relation_counter = relation_counter + 1;
-    vd = vd || E' JOIN\n  '  || schema_name || E'.' || _record.ref_table_name || E' k' || relation_counter::text;
+    vd = vd || E' LEFT JOIN\n  '  || schema_name || E'.' || _record.ref_table_name || E' k' || relation_counter::text;
     vd = vd || E' ON (t.' || _record.column_name || E' = k' || relation_counter::text || E'.' || _record.ref_column_name || ')';
   END LOOP;
 

@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -18,6 +18,7 @@
     See more about the OpenFKG project at http://github.com/OpenFKG
 */
 
+DROP SCHEMA IF EXISTS fkg_utilities CASCADE;
 CREATE SCHEMA fkg_utilities; -- AUTHORIZATION postgres;
 
 CREATE TABLE fkg_utilities.view_mapping (
@@ -50,6 +51,8 @@ where
 UPDATE fkg_utilities.view_mapping SET field_alias='vejnavn', value_field='vejnavn' WHERE field_alias='vejkode' AND value_field='vejkode';
 UPDATE fkg_utilities.view_mapping SET field_alias='postnr_by', value_field='postnr_by' WHERE field_alias='postnr' AND value_field='postnr';
 
+-- Theme t_5603_hasti_zone
+UPDATE fkg_utilities.view_mapping SET field_alias='anbefalet_hastighed', value_field='hastighed' WHERE constraint_name='t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk';
 
 -- Theme t_5007_vandl_opl
 UPDATE fkg_utilities.view_mapping SET field_alias='opl_type', value_field='vandl_opl_type' WHERE constraint_name='t_5007_vandl_opl_d_5007_opl_type_fk';
@@ -60,17 +63,48 @@ UPDATE fkg_utilities.view_mapping SET field_alias='vandl_opl_navn', value_field=
 -- Theme t_5008_soe_opl
 UPDATE fkg_utilities.view_mapping SET field_alias='soe_opl_navn', value_field='soeopl_navn' WHERE constraint_name='t_5008_soe_opl_d_5008_opl_fk';
 
+-- Theme t_5703_afstem_sted
+UPDATE fkg_utilities.view_mapping SET field_alias='afstemningsomraade_navn', value_field='afstemningsomraade_nr' WHERE constraint_name='t_5703_afstem_sted_d_basis_afstemningsomraade_fk';
+
+-- Theme t_5704_afstem_sted
+UPDATE fkg_utilities.view_mapping SET field_alias='afstemningsomraade_navn', value_field='afstemningsomraade_nr' WHERE constraint_name='t_5704_afstem_omr_d_basis_afstemningsomraade_fk';
+
+-- Theme t_5710_born_skole_dis
+UPDATE fkg_utilities.view_mapping SET field_alias='starttrin', value_field='trin' WHERE constraint_name='t_5710_born_skole_dis_d_basis_trin_starttrin_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='slutttrin', value_field='trin' WHERE constraint_name='t_5710_born_skole_dis_d_basis_trin_sluttrin_fk';
+
+-- Theme t_5714_laering_udd_inst
+UPDATE fkg_utilities.view_mapping SET field_alias='starttrin', value_field='trin' WHERE constraint_name='t_5714_laering_udd_inst_d_basis_trin_starttrin_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='slutttrin', value_field='trin' WHERE constraint_name='t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk';
+
 -- Theme 5900 t_5900_jordfl
 UPDATE fkg_utilities.view_mapping SET field_alias='afs_vejnavn', value_field='vejnavn' WHERE constraint_name='t_5900_jordfl_d_vejnavn_afs_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='modt_vejnavn', value_field='vejnavn' WHERE constraint_name='t_5900_jordfl_d_vejnavn_modt_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='afs_postnr_by', value_field='postnr_by' WHERE constraint_name='t_5900_jordfl_d_basis_postnr_afs_fk';
 UPDATE fkg_utilities.view_mapping SET field_alias='modt_postnr_by', value_field='postnr_by' WHERE constraint_name='t_5900_jordfl_d_basis_postnr_modt_fk';
--- select * from fkg_utilities.view_mapping where constraint_name like 't_5900%';
+
+-- Theme 6001 t_6001_pot_m
+UPDATE fkg_utilities.view_mapping SET field_alias='stoettep', value_field='ja_nej' WHERE constraint_name='t_6001_pot_m_d_basis_ja_nej_fk';
+
+-- Theme 6002, 6003, 6004, 6006
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6002_indv_d_basis_vandv_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6003_besk_zone_d_basis_vandv_nr_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6004_vandv_fs_d_basis_vandv_nr_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias='vandv_navn', value_field='vandv' WHERE constraint_name='t_6006_grundv_opl_d_basis_vandv_nr_fk';
+
+-- Theme 6200, 6201, 6202, 6203, omraade_nr
+UPDATE fkg_utilities.view_mapping SET field_alias='omraade', value_field='omraade' WHERE constraint_name IN ('t_6200_nat_geo_d_basis_omraade_fk','t_6201_kult_geo_d_basis_omraade_fk','t_6202_landk_omr_d_basis_omraade_fk','t_6203_landk_vur_d_basis_omraade_fk');
+
+-- Append the value columns from lookup tables (special for themes 6800, 6801 and 6802)
+INSERT INTO fkg_utilities.view_mapping (constraint_name, field_alias, value_field, ordinal) 
+  SELECT 't_6800_parl_fl_d_6800_vedlhold_f_type_fk', 'vedlhold_f_type_lable', 'vedlhold_f_type_lable', 120 UNION
+  SELECT 't_6801_parl_li_d_6801_vedlhold_l_type_fk', 'vedlhold_l_type_lable', 'vedlhold_l_type_lable', 120 UNION
+  SELECT 't_6802_parl_pkt_d_6802_groenvedligh_punkt_fk', 'vedlhold_p_type_lable', 'vedlhold_p_type_lable', 120;
+  
+-- select * from fkg_utilities.view_mapping where constraint_name like 't_%d_basis_omraade%';
+-- select * from fkg_utilities.view_mapping order by 1;
 
 -- ---- End of manipulation ----
-
-
-
 
 -- View to hold information on columns
 CREATE OR REPLACE VIEW fkg_utilities.column_metadata
