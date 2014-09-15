@@ -1,38 +1,38 @@
-FKG til PostgreSQL/PostGIS
+FKG til PostgreSQL/PostGIS - Mapinfo variant
 ==============
-Dette projekt er en fysisk implementering af den [fælleskommunale geodatamodel (FKG)](http://www.kl.dk/Fagomrader/Teknik-og-miljo/Digital-forvaltning/Projekter-under-den-falleskommunale-strategi/Geodata/)
-i databasesystemet [PostgreSQL](http://www.postgresql.org/). Implementeringen benytter sig af [PostGIS](http://postgis.net/), som er en udvidelse, der tilføjer spatiel funktionalitet til PostgreSQL.
+Mapinfo-udvidelsen til FKG datamodel i PostgreSQL/PostGIS er udvidelser til FKG basismodellen. Udvidelserne er nødvendige, idet Mapinfo har nogle begrænsninger i at læse/skrive til standardimplementering til PostgreSQL.
 
-![Udsnit af FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_cut_2_4.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
-Se diagram af [hele modellen](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_2_4.png "Se diagram af modellen i modelleringsværktøjet pgModeler")
+Mapinfo-udvidelsen forudsætter, at FKG-datamodellen er installeret som bekrevet i XXX...henvisning til README...XXX
 
 Features
 -------------
-Denne fysiske implementering af FKG-datamodellen udstiller en relationel FKG-datamodel som en ”flad” tabel struktur. Det betyder:
-* at konsistensen i data sikres gennem regler for værdier og sammenhænge (constraints). Dermed sikres at data altid overholder de forretningsregler, som er implementeret ihht. FKG-datamodellen
-* at databasen indeholder fuld databasehistorik, som i det daglige er skjult for den almindelige bruger
-* at tilgang til databasen foregår på traditionel GIS manér (et tema=en tabel) gennem views, der kan opdateres
-* at historiske data kan tilgås gennem særlige views, som udstiller historiske rækker
-* at look-up tabeller kan benyttes som udgangspunkt for indhold i drop-down bokse
+Mapinfo-udvidelsen indeholder:
+* Et schema, hvor alle Mapinfo specifikke elementer placeres: **fkg_mapinfo**
+* Et "skrivbart" view for hvert FKG tema. Navngivning: [udvekslingsnavn]_mi_vw. F.eks: **t_5000_vandl_mi_vw**
+* Et read-only view for hvert FKG tema, som indeholder både aktuelle og historiske versioner af objekter. Navngivning: [udvekslingsnavn]_mi_h_vw. F.eks: **t_5000_vandl_mi_h_vw**
+* En række triggerfunktioner, som muliggør skrivning til de skrivbare views
 
-De generelle principper i implementeringen og værktøjer til generering af views og triggers, gør det muligt at benytte principperne til at danne andre temaer udenfor FKG-datamodellen.
+Begrænsninger
+-------------
+* Det kan ikke gemmes data i tekstfelter der er længere end 254 (max. feltlængde i Mapinfo). Felter som er længere i FKG datamodellen kan stadig opdateres fra Mapinfo, men data bliver klippet af efter 254 tegn.
+* Mapinfo kan ikke håndtere unique-identifiers som primærnøgle. FKG datamodellen foreskriver, at primærnøglen (forretningsnøglen på et objekt) er **objekt_id**, som er af typen unique-identifier. Fordi Mapinfo *ikke* tillader dette, er der implementeret en pseudo-nøgle **mi_prinx** på alle views. Nøglen persisteres ikke i databasen, men benyttes alene for at mapinfo kan opdatere de enkelte views
+* Mapinfo tillader ikke skrivning til views i en Postgres database (fremgår af Mapinfo dokumentation). En workaround er beskrevet i afsnittet xxxOpsætning i MapInfo***
 
 Installation
 -------------
+Forudsætning for installation af Mapinfo udvidelsen er at der allerede er installeret en FKG datamodel.
+
 For udvikler-information (kompilering af modellen) se afsnittet "For udviklere" nedenfor. 
 
 Ønsker du bare at installere den "kompilerede version" af datamodellen (og ikke selv udvikle på den), så findes der færdige installationspakker på [Septimas hjemmeside](http://septima.dk/openfkgdownload). Installationspakkerne består af SQL scripts, som køres på din PostgreSQL-server, f.eks. ved hjælp af administrationsprogrammet pgAdmin.
 
-PostgreSQL skal være version 9.* og databasen skal have følgende karakteristika:
-* ENCODING = 'UTF8'
-* LC_COLLATE = 'Danish, Denmark'
-* LC_CTYPE = 'Danish, Denmark'
+Mapinfo udvidelsen stiller ikke yderligere krav til PostgreSQL end basis FKG modellen.
 
 Når modellen er installeret, anbefaler vi, at man laver en bruger med reducerede rettigheder, som tilgår databasen via de funktionelle views og som derfor ikke kan se `t_...`-tabeller mv.
 Brugeren skal have rettigheder til at:
-* skrive i og læse fra `..._vw`-views (interfaceviews til temaer)
-* læse i `d_...`-tabeller (kodelistetabeller)
-* læse fra `...h_vw`-views (views, som også udstiller historiske data)
+* skrive i og læse fra `..._mi_vw`-views (interfaceviews til temaer - placeret i fkg_mapinfo schemaet)
+* læse i `d_...`-tabeller (kodelistetabeller - placeret i fkg schemaet)
+* læse fra `..._mi_h_vw`-views (views, som også udstiller historiske data - placeret i fkg_mapinfo schemaet)
 
 Licens
 -------------
@@ -43,9 +43,7 @@ Ovennævnte betyder til gengæld *IKKE*, at de data, der senere fyldes i databas
 
 Status
 -------------
-Der er lagt et stort stykke arbejde med at udvikle programmellet, så hele basis for datamodellen med historik, constraints etc er på plads. Efterfølgende er det meget enkelt at implementere temaer - se afsnittet "Bidrag" nedenfor for mere om, hvordan dette kan gøres.
-
-Sommer 2014 blev alle temaer i version 2.4 implementeret / opgraderet med økonomisk fra [KL](http://kl.dk). Alle temaer er således bragt op på version 2.4 og modellen er fuldt klar til brug.
+Mapinfo udvidelsen til FKG følger basisversionen. 
 
 Bidrag
 ------------
@@ -61,33 +59,21 @@ Det er også en mulighed at sponsorere udvikling på projektet. Det kan være ud
 
 Historie
 -----------
-Dette projekt er oprindeligt startet af firmaet [Septima](http://www.septima.dk). Septima så tidligt behovet for en fælles fysisk implementering af FKG på PostgreSQL og investerede derfor nogle hundrede timer i at lave en gennemført og fungerende implementering. Det var fra starten intentionen, at denne implementering skulle frigives som Open Source, så den kunne benyttes af alle interesserede, og så en situation med adskillige konkurrerende implementeringer med deraf følgende inkompatibiliteter kunne undgås.
-
-Projektet blev endeligt frigivet som Open Source i begyndelsen af juli 2013 med udgangspunkt i FKG-datamodellen version 2.3.
-
-Sommer 2014 blev alle temaer i version 2.4 implementeret / opgraderet med økonomisk støtte fra [KL](http://kl.dk).
+Mapinfo udvidelsen er udviklet sommer 2014 med økonomisk støtte fra [KL](http://kl.dk).
 
 For udviklere
 -----------
-Basis for databasemodellen opsættes i databasemodelleringsværktøjet [pgModeler](http://www.pgmodeler.com.br/). Værktøjet er Open Source og under aktiv udvikling på [github.com/pgmodeler/pgmodeler](https://github.com/pgmodeler/pgmodeler). Sidste nye version til Mac OSX, Linux og Windows kan downloades [her](http://www.pgmodeler.com.br/).
+Basis for Mapinfo udvidelsen, er FKG datamodellen til PostgreSQL / PostGIS (læs mere her.....). Ovenpå basismodellen er der etableret views og triggers, som muliggør kommunikation mellem PostgreSQL og Mapinfo. I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på -test ikke på en database, som kører produktion.
 
-Derudover er der lavet en lang række SQL scripts, metatabeller, funktioner mv., som tilsammen gør det muligt at oprette en fuld FKG database med views, constraints, historik, relationer osv. 
+SQL-scriptene er nummereret fra 000 til 999 køres i rækkefølge og den eksisterende FKG-database som du kører disse på, vil derefter være en FKG-database med Mapinfo udvidelser.
 
-I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på -test ikke på en database, som kører produktion.
+Rettelser / ændringer foretages normalt i **070_fkg_utilities_view_definition_mapinfo.sql** eller **080_fkg_utilities_trigger_function_definition_mapinfo.sql* som definerer views og triggere. De øvrige script-filer indeholder intet programmatisk funktionalitet.
 
-SQL-scriptene nummereret fra 000 til 999 køres i rækkefølge og databasen som du kører disse på vil derefter være en FKG-database - udover den almindelige databasemodel vil den have indlagte funktioner til at generere databasemodellen. Filen [040_metadata.sql](src/040_metadata.sql) generes først fra pgModeler, ved at vælge "Files" -> "Export".
-Det er enklest at køre denne proces ved at bruge installations/kompileringsscriptet [make_install.sh](src/make_install.sh), hvori du bare skal ændre oplysningerne om din lokale *test/build*-database. 
+Installations/kompileringsscriptet [make_install.sh](src/make_install.sh), kan anvendes til at etablere et færdigt installationssæt. Du skal blot ændre oplysningerne i scriptet om din lokale *test/build*-database. 
 Dette gøres enklest således:
 
-1. Lav dine ændringer i modellen - fkg.dbm - i PgModeler
-2. Eksportér dine ændringer fra PgModeler til filen [040_metadata.sql](src/040_metadata.sql)  (gem som PostgreSQL 9.3)
-3. Lav de nødvendige ændringer i [050_coredata.sql](src/050_coredata.sql) og [060_fkg_utilities.sql](src/060_fkg_utilities.sql)
-4. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](src/make_install.sh)
+1. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](src/make_install.sh)
 5. Kør [make_install.sh](src/make_install.sh) i terminalen 
 6. Dit installationsscript er nu at finde i folderen kaldet INSTALL
 
 En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 + 100 og samle dette i en SQL-fil.
-
-![FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/FKG-DM-screenshot.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/c99dca67ff866dbe6e8964424477deca "githalytics.com")](http://githalytics.com/OpenFKG/fkg-postgresql)
