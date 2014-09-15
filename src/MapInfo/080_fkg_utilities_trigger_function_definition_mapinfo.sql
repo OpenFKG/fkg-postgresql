@@ -39,6 +39,7 @@ BEGIN
 
   -- Define the trigger definition
   td = '';
+  td = td || E'DROP FUNCTION IF EXISTS ' || trigger_function_name || E'\n';
   td = td || E'CREATE OR REPLACE FUNCTION ' || trigger_function_name || E' RETURNS trigger AS $$' || E'\n';
   td = td || E'  BEGIN' || E'\n';
   ----------------------
@@ -63,8 +64,10 @@ BEGIN
   WHERE table_schema=fkg_schema_name AND table_name = fkg_view_name
   ORDER BY ordinal_position
   LOOP
-    IF NOT first_column THEN td = td || E','; ELSE first_column=false; END IF;
-    td = td || E'\n        ' || _record.column_name || E'=NEW.' || _record.column_name;
+    IF _record.column_name NOT IN ('objekt_id', 'versions_id') THEN
+      IF NOT first_column THEN td = td || E','; ELSE first_column=false; END IF;
+        td = td || E'\n        ' || _record.column_name || E'=NEW.' || _record.column_name;
+    END IF;
   END LOOP;
   td = td || E'\n';  
   td = td || E'      WHERE\n';
