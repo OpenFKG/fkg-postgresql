@@ -2,7 +2,7 @@ FKG til PostgreSQL/PostGIS - Mapinfo variant
 ==============
 Mapinfo-udvidelsen til FKG datamodel i PostgreSQL/PostGIS er udvidelser til FKG basismodellen. Udvidelserne er nødvendige, idet Mapinfo har nogle begrænsninger i at læse/skrive til standardimplementering til PostgreSQL.
 
-Mapinfo-udvidelsen forudsætter, at FKG-datamodellen er installeret som bekrevet i XXX...henvisning til README...XXX
+Mapinfo-udvidelsen forudsætter, at FKG-datamodellen er installeret som bekrevet i [../README.md](README.md) for hovedprojektet
 
 Features
 -------------
@@ -58,15 +58,7 @@ Mapinfo udvidelsen til FKG følger basisversionen.
 
 Bidrag
 ------------
-Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
-
-Fejl, mangler og ideer til forbedringer opsamles i projektets [issuetracker](../../issues). Vær venlig at beskrive dit issue grundigt, så udvikleren kan gå lige til sagen.
-
-Er du teknisk minded kan du følge det klassiske GitHub work flow og lave en "[Fork](https://help.github.com/articles/fork-a-repo)" af projektet, lave dine ændringer i din egen fork og sende et "[Pull request](https://help.github.com/articles/using-pull-requests)" til dette projekt. Kerneudviklere vil få direkte commit-adgang til projektet.
-
-Er du mindre teknisk interesseret, kan du alligevel bidrage med værdifuld hjælp. Der er altid brug for hjælp til udvidelse og forbedring af dokumentation, vejledninger osv.
-
-Det er også en mulighed at sponsorere udvikling på projektet. Det kan være udvikling af specifikke features eller udvikling af mere generel karakter. Kontakt eventuelt [Septima](http://www.septima.dk) for et uforpligtende tilbud.
+Se hvordan du kan bidrage i hovedprojektets [../README.md#bidrag](README.md).
 
 Historie
 -----------
@@ -74,17 +66,18 @@ Mapinfo udvidelsen er udviklet sommer 2014 med økonomisk støtte fra [KL](http:
 
 For udviklere
 -----------
-Basis for Mapinfo udvidelsen, er FKG datamodellen til PostgreSQL / PostGIS (læs mere her.....). Ovenpå basismodellen er der etableret views og triggers, som muliggør kommunikation mellem PostgreSQL og Mapinfo. I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på -test ikke på en database, som kører produktion.
+Basis for Mapinfo udvidelsen, er FKG datamodellen til PostgreSQL / PostGIS (læs mere her.....). Ovenpå basismodellen er der etableret views og triggers, som muliggør kommunikation mellem PostgreSQL og Mapinfo. I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på - test *aldrig* på en database, som kører produktion.
 
-SQL-scriptene er nummereret fra 000 til 999 køres i rækkefølge og den eksisterende FKG-database som du kører disse på, vil derefter være en FKG-database med Mapinfo udvidelser.
+SQL-scriptene er nummereret fra 000 til 999 køres i rækkefølge og den eksisterende FKG-database som du kører disse på, vil derefter være en FKG-database med Mapinfo udvidelser - udover den almindelige databasemodel vil den have indlagte funktioner til at generere databasemodellen.
 
-Rettelser / ændringer foretages normalt i **070_fkg_utilities_view_definition_mapinfo.sql** eller **080_fkg_utilities_trigger_function_definition_mapinfo.sql* som definerer views og triggere. De øvrige script-filer indeholder intet programmatisk funktionalitet.
+Rettelser / ændringer foretages normalt i **070_fkg_utilities_view_definition_mapinfo.sql** eller **080_fkg_utilities_trigger_function_definition_mapinfo.sql** som definerer views og triggere. De øvrige script-filer indeholder intet programmatisk funktionalitet.
 
-Installations/kompileringsscriptet [make_install.sh](src/make_install.sh), kan anvendes til at etablere et færdigt installationssæt. Du skal blot ændre oplysningerne i scriptet om din lokale *test/build*-database. 
+Installations/kompileringsscriptet [make_install.sh](make_install.sh), kan anvendes til at etablere et installations-script til udvidelsen. Du skal blot ændre oplysningerne i scriptet om din lokale *test/build*-database. 
 Dette gøres enklest således:
 
-1. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](src/make_install.sh)
-5. Kør [make_install.sh](src/make_install.sh) i terminalen 
-6. Dit installationsscript er nu at finde i folderen kaldet INSTALL
+1. Kør installationsscriptene for den normale model - [../make_install.sh](../make_install.sh)
+2. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](make_install.sh)
+3. Kør [make_install.sh](make_install.sh) i terminalen 
+4. Dit installationsscript er nu at finde i folderen kaldet INSTALL
 
 En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 + 100 og samle dette i en SQL-fil.
