@@ -16,7 +16,7 @@ Begrænsninger
 -------------
 * Det kan ikke gemmes data i tekstfelter der er længere end 254 (max. feltlængde i Mapinfo). Felter som er længere i FKG datamodellen kan stadig opdateres fra Mapinfo, men data bliver klippet af efter 254 tegn.
 * Mapinfo kan ikke håndtere unique-identifiers som primærnøgle. FKG datamodellen foreskriver, at primærnøglen (forretningsnøglen på et objekt) er **objekt_id**, som er af typen unique-identifier. Fordi Mapinfo *ikke* tillader dette, er der implementeret en pseudo-nøgle **mi_prinx** på alle views. Nøglen persisteres ikke i databasen, men benyttes alene for at mapinfo kan opdatere de enkelte views
-* Mapinfo tillader ikke skrivning til views i en Postgres database (fremgår af Mapinfo dokumentation). En workaround er beskrevet i afsnittet xxxOpsætning i MapInfo***
+* Mapinfo tillader ikke skrivning til views i en Postgres database (fremgår af Mapinfo dokumentation). En workaround er beskrevet i afsnittet [Opsætning i MapInfo](#ops%C3%A6tning-i-mapinfo-version-120--dansk)
 
 Installation
 -------------
@@ -83,4 +83,4 @@ Dette gøres enklest således:
 3. Kør [make_install.sh](make_install.sh) i terminalen 
 4. Dit installationsscript er nu at finde i folderen kaldet INSTALL
 
-En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 + 100 og samle dette i en SQL-fil.
+En installationspakke kan også genereres "i hånden" ved at tage scriptene i 010 - 050 og output fra 090 + 100 og samle dette i een SQL-fil.
