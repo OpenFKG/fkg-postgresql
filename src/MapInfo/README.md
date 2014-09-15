@@ -34,6 +34,17 @@ Brugeren skal have rettigheder til at:
 * læse i `d_...`-tabeller (kodelistetabeller - placeret i fkg schemaet)
 * læse fra `..._mi_h_vw`-views (views, som også udstiller historiske data - placeret i fkg_mapinfo schemaet)
 
+Opsætning i Mapinfo (version 12.0 / dansk)
+-------------
+Mapinfo tillader ikke umiddelbart skrivning til views i en Postgres database. En workaround kan foretages med følgende opskrift:
+* Opret ODBC datakilde til FKG databasen (Mapinfo variant). Postgres ODBC driver kan downloades fra http://ftp.postgresql.org/pub/odbc/versions/msi/psqlodbc_09_03_0300-1.zip. Anvend PostgreSQL ANSI.
+* I Mapinfo tilknyt database (DBMS -> åbn DBMS tabel, udpeg ODBC datakilde)
+* Vælg skema fkg_mapinfo
+* Afkryds de(t) tema(er), der ønskes anvendt. Husk det er basis-views *ikke* historiske views. Eksempel: t_5001_maalest_mi_vw
+* Vælg typen "Sammenkædet" og vælg cache.
+* Mapinfo kommer nu med en besked om at tabellen ikke kan redigeres. Ignorer beskeden og luk tabellen igen (Filer->>luk tabel)
+* Redigér TAB-filen (f.eks. t_5001_maalest_mi_vw.TAB) og udskift linjen: "\DATALINK\DataReadOnly" = "TRUE" med "\DATALINK\DataReadOnly" = "FALSE"
+
 Licens
 -------------
 Hele dette projekt (dvs. databasemodel og scripts til dannelse af den nødvendige SQL, samt output fra disse) er frigivet under [GNU General Public License version 3](http://opensource.org/licenses/GPL-3.0). Det betyder, at du frit kan downloade og installere modellen, og at hvis du laver ændringer til modellen er også denne nye ændrede model GPL-licenseret. På den måde håber vi, at denne implementering af FKG-datamodellen vil møde bred opbakning og komme så mange som muligt til gode.
