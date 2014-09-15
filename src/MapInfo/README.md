@@ -39,13 +39,13 @@ Opsætning i Mapinfo (version 12.0 / dansk)
 Mapinfo tillader ikke umiddelbart skrivning til views i en Postgres database. En workaround kan foretages med følgende opskrift:
 * Opret ODBC datakilde til FKG databasen (Mapinfo variant). Postgres ODBC driver kan downloades fra http://ftp.postgresql.org/pub/odbc/versions/msi/psqlodbc_09_03_0300-1.zip. Anvend PostgreSQL ANSI.
 * Åbn DBMS tilslutning (Vælg ODBC og udpeg den oprettede datakilde)
-* Anvend funktionen "Klargør DBMS tabel til kortlægning" - vælg schema fkg_mapinfo og vælg view. Husk det er basis-views *ikke* historiske views. Eksempel: t_5001_maalest_mi_vw
+* Anvend funktionen "Klargør DBMS tabel til kortlægning" - vælg schema fkg_mapinfo og vælg view. Husk det er basis-views *ikke* historiske views. Eksempel: t_5001_maalest_mi_vw. Husk at vælge den korrekte kortprojektion og undlad at vælge en "stil"-kolonne - det er ikke understøttet i FKG datamodellen.
 * Anvend funktionen "Åbn DBMS-tabel" og udpeg samme view som ovenfor.
 * Vælg typen "Sammenkædet" og vælg cache.
 * Mapinfo kommer nu med en besked om at tabellen ikke kan redigeres. Ignorer beskeden og *luk* tabellen igen (Filer->>luk tabel)
-* Redigér TAB-filen (f.eks. med notepad) (f.eks. t_5001_maalest_mi_vw.TAB) og udskift følgende linjer:
-** "\DATALINK\DataReadOnly" = "TRUE" *ændres til* "\DATALINK\DataReadOnly" = "FALSE"
-** "\DATALINK\MapReadOnly" = "TRUE" *ændres til* "\DATALINK\DataReadOnly" = "TRUE"
+* Redigér TAB-filen (f.eks. med notepad) (f.eks. t_5001_maalest_mi_vw.TAB) og redigér følgende:
+* "\DATALINK\DataReadOnly" = "TRUE" *ændres til* "\DATALINK\DataReadOnly" = "FALSE"
+* "\DATALINK\MapReadOnly" = "TRUE" *ændres til* "\DATALINK\DataReadOnly" = "TRUE"
 * Åbn nu tabellen ved at udpege TAB-filen. Det er nu muligt at "skrive" til view'et i sammenkædet version
 
 Licens
