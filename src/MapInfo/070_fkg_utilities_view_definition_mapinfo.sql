@@ -71,7 +71,7 @@ BEGIN
   END LOOP;
   -- FROM clause
   vd = vd || E'\nFROM\n';
-  vd = vd || E'  ' || fkg_schema_name || '.' || fkg_view_name;
+  vd = vd || E'  ' || fkg_schema_name || E'.' || fkg_view_name || E';\n' ;
 
   execute vd;
 
