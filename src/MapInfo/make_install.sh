@@ -37,7 +37,7 @@ PORT=5432
 export PGPASSFILE=.pgpass
 
 # What to call the installation script
-INSTALL_FILE=fkg_v_XXX_install.sql
+INSTALL_FILE=fkg_v_XXX_install_mapinfo_extension.sql
 
 ################## END SETTINGS - do not correct below
 
@@ -54,46 +54,34 @@ rm INSTALL/*
 
 # Add our copyright NOTICE
 echo "/*" >> INSTALL/$INSTALL_FILE
-cat NOTICE >> INSTALL/$INSTALL_FILE
+cat ../NOTICE >> INSTALL/$INSTALL_FILE
 echo "*/" >> INSTALL/$INSTALL_FILE
 
-# Copy scripts to install
-cat 010_create_uuid_extension.sql >> INSTALL/$INSTALL_FILE
-cat 020_create_postgis_extension.sql >> INSTALL/$INSTALL_FILE
-cat 040_metadata.sql >> INSTALL/$INSTALL_FILE
-cat 050_coredata.sql >> INSTALL/$INSTALL_FILE
+# Copy the stuff
+cat 030_clean_mapinfo.sql >> INSTALL/$INSTALL_FILE
+cat 040_metadata_mapinfo.sql >> INSTALL/$INSTALL_FILE
 
 # Run the scripting files like this
 # psql --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=
 
-# Create the extensions on the local DB
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=010_create_uuid_extension.sql
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=020_create_postgis_extension.sql
-
 # CLEAN the build database of any signs of old builds
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=030_clean.sql
+psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=030_clean_mapinfo.sql
 
 # Create the meta data and simple table forms
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=040_metadata.sql
-
-# Fill the database's base tables with their content
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=050_coredata.sql
-
-# Create the FKG Utilities schema
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=060_fkg_utilities.sql
+psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=040_metadata_mapinfo.sql
 
 # Create the view definition functions
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=070_fkg_utilities_view_definition.sql
+psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=070_fkg_utilities_view_definition_mapinfo.sql
 
 # Create the trigger definition functions
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=080_fkg_utilities_trigger_function_definition.sql
+psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=080_fkg_utilities_trigger_function_definition_mapinfo.sql
 
 # Create the views and store output
-psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=090_create_views.sql  -o INSTALL/_tmp.sql
+psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=090_create_views_mapinfo.sql  -o INSTALL/_tmp.sql
 cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 
 # Create the triggers and store output
-psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=100_create_trigger_functions.sql  -o INSTALL/_tmp.sql
+psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=100_create_trigger_functions_mapinfo.sql  -o INSTALL/_tmp.sql
 cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 
 
