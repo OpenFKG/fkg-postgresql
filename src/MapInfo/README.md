@@ -69,7 +69,7 @@ Mapinfo udvidelsen er udviklet sommer 2014 med økonomisk støtte fra [KL](http:
 
 For udviklere
 -----------
-Basis for Mapinfo udvidelsen, er FKG datamodellen til PostgreSQL / PostGIS (læs mere her.....). Ovenpå basismodellen er der etableret views og triggers, som muliggør kommunikation mellem PostgreSQL og Mapinfo. I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på - test *aldrig* på en database, som kører produktion.
+Basis for Mapinfo udvidelsen, er FKG datamodellen til PostgreSQL / PostGIS. Ovenpå basismodellen er der etableret views og triggers, som muliggør kommunikation mellem PostgreSQL og Mapinfo. I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på - test *aldrig* på en database, som kører produktion.
 
 SQL-scriptene er nummereret fra 000 til 999 køres i rækkefølge og den eksisterende FKG-database som du kører disse på, vil derefter være en FKG-database med Mapinfo udvidelser - udover den almindelige databasemodel vil den have indlagte funktioner til at generere databasemodellen.
 
