@@ -17,6 +17,4 @@
 
     See more about the OpenFKG project at http://github.com/OpenFKG
 */
-
 DROP SCHEMA IF EXISTS fkg_mapinfo CASCADE;
-

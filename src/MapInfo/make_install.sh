@@ -57,6 +57,10 @@ echo "/*" >> INSTALL/$INSTALL_FILE
 cat ../NOTICE >> INSTALL/$INSTALL_FILE
 echo "*/" >> INSTALL/$INSTALL_FILE
 
+# Copy the stuff
+cat 030_clean_mapinfo.sql >> INSTALL/$INSTALL_FILE
+cat 040_metadata_mapinfo.sql >> INSTALL/$INSTALL_FILE
+
 # Run the scripting files like this
 # psql --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=
 
