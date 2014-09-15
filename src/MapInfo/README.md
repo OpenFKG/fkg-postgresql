@@ -2,7 +2,7 @@ FKG til PostgreSQL/PostGIS - Mapinfo variant
 ==============
 Mapinfo-udvidelsen til FKG datamodel i PostgreSQL/PostGIS er udvidelser til FKG basismodellen. Udvidelserne er nødvendige, idet Mapinfo har nogle begrænsninger i at læse/skrive til standardimplementering til PostgreSQL.
 
-Mapinfo-udvidelsen forudsætter, at FKG-datamodellen er installeret som bekrevet i [../../README.md](README.md) for hovedprojektet
+Mapinfo-udvidelsen forudsætter, at FKG-datamodellen er installeret som bekrevet i [README.md](../../README.md) for hovedprojektet
 
 Features
 -------------
@@ -61,7 +61,7 @@ Mapinfo udvidelsen til FKG følger basisversionen.
 
 Bidrag
 ------------
-Se hvordan du kan bidrage i hovedprojektets [../../README.md#bidrag](README.md).
+Se hvordan du kan bidrage i hovedprojektets [README.md](../../README.md#bidrag).
 
 Historie
 -----------
