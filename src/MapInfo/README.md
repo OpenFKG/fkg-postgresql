@@ -45,7 +45,6 @@ Mapinfo tillader ikke umiddelbart skrivning til views i en Postgres database. En
 * Mapinfo kommer nu med en besked om at tabellen ikke kan redigeres. Ignorer beskeden og *luk* tabellen igen (Filer->>luk tabel)
 * Redigér TAB-filen (f.eks. med notepad) (f.eks. t_5001_maalest_mi_vw.TAB) og redigér følgende:
 * "\DATALINK\DataReadOnly" = "TRUE" *ændres til* "\DATALINK\DataReadOnly" = "FALSE"
-* "\DATALINK\MapReadOnly" = "TRUE" *ændres til* "\DATALINK\DataReadOnly" = "TRUE"
 * Åbn nu tabellen ved at udpege TAB-filen. Det er nu muligt at "skrive" til view'et i sammenkædet version
 
 Licens
