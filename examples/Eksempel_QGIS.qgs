@@ -4,10 +4,10 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>710886.00661162310279906</xmin>
-            <ymin>6189697.32317528408020735</ymin>
-            <xmax>714003.89735878899227828</xmax>
-            <ymax>6191267.78217791859060526</ymax>
+            <xmin>708203.24465442297514528</xmin>
+            <ymin>6188163.56889624614268541</ymin>
+            <xmax>716686.65931598911993206</xmax>
+            <ymax>6192801.53645695652812719</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -23,9 +23,9 @@
             </spatialrefsys>
         </destinationsrs>
     </mapcanvas>
-    <legend updateDrawingOrder="true">
-        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="t_5001_maalest_vw [4]" showFeatureCount="1">
-            <filegroup open="false" hidden="false">
+    <legend updateDrawingOrder="true" activeLayer="t_5001_maalest_vw20140807145633126">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="t_5001_maalest_vw [4]" showFeatureCount="1">
+            <filegroup open="true" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="t_5001_maalest_vw20140807145633126" visible="1"/>
             </filegroup>
         </legendlayer>
