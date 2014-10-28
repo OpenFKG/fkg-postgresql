@@ -20,5 +20,5 @@
 */
 
 -- Each line creates all views (base-view 'B' og view with historic records 'H')
-SELECT fkg_utilities.get_view_definition_mapinfo(tablename || '_vw', 'B') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn FROM fkg.tema);
-SELECT fkg_utilities.get_view_definition_mapinfo(tablename || '_h_vw', 'H') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn FROM fkg.tema);
+SELECT fkg_utilities.get_view_definition_mapinfo(SUBSTRING(tablename FROM 1 FOR length(tablename)-2), 'B') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
+SELECT fkg_utilities.get_view_definition_mapinfo(SUBSTRING(tablename FROM 1 FOR length(tablename)-2), 'H') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);

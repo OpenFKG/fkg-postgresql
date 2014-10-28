@@ -26,6 +26,7 @@ DECLARE
   mi_schema_name character varying;
   fkg_schema_name character varying;
   view_name character varying;
+
 BEGIN
   mi_schema_name = 'fkg_mapinfo';
   fkg_schema_name = 'fkg';
@@ -39,9 +40,9 @@ BEGIN
 
   -- Evaluate name of view
   IF view_type = 'B' THEN
-    view_name = mi_schema_name || E'.' || replace(fkg_view_name, '_vw', '_mi_vw');
+    view_name = mi_schema_name || E'.' || fkg_view_name || '_mi';
   ELSEIF view_type = 'H' THEN
-    view_name = mi_schema_name || E'.' || replace(fkg_view_name, '_h_vw', '_mi_h_vw');
+    view_name = mi_schema_name || E'.' || 'hist_' || fkg_view_name || '_mi';
   ELSE
     RAISE EXCEPTION 'Mapinfo view_type must be ''H'' (historic view) or ''B'' (base view)';
   END IF;

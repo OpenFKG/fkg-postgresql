@@ -19,4 +19,4 @@
 */
 
 -- One liner that generates triggers for every present table
-SELECT fkg_utilities.get_trigger_function_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn FROM fkg.tema);
+SELECT fkg_utilities.get_trigger_function_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);

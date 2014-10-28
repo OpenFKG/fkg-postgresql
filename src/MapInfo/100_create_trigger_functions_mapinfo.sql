@@ -19,4 +19,4 @@
 */
 
 -- One liner that generates triggers for every present fkg base table
-SELECT fkg_utilities.get_trigger_function_definition_mapinfo(tablename || '_vw') FROM pg_tables  WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn FROM fkg.tema);
+SELECT fkg_utilities.get_trigger_function_definition_mapinfo(SUBSTRING(tablename FROM 1 FOR length(tablename)-2)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);

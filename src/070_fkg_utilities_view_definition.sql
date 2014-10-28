@@ -30,6 +30,7 @@ DECLARE
   schema_name character varying;
   view_name character varying;
   theme_code integer;
+  interface_name        character varying;
 BEGIN
   IF base_table_name IS NULL THEN
     RAISE EXCEPTION 'base_table_name can''t be NULL';
@@ -40,20 +41,21 @@ BEGIN
 
   vd = ''; column_name_old=''; relation_counter=0; constraint_name_old=''; theme_code=NULL;
   schema_name = 'fkg';
-  
+  interface_name = substring(base_table_name FROM 1 FOR length(base_table_name)-2); -- The last 2 chars "_t" is removed
+
   -- Get theme_code
-  EXECUTE 'SELECT tema_kode FROM ' || schema_name || '.tema WHERE udvekslingsnavn = $1'
+  EXECUTE 'SELECT tema_kode FROM ' || schema_name || '.d_tabel WHERE udvekslingsnavn = $1'
   INTO theme_code
-  USING base_table_name;
+  USING interface_name;
   IF theme_code IS NULL THEN
-    RAISE EXCEPTION 'Entry for basetable: "%" is nissing in "%.tema"', base_table_name, schema_name;
+    RAISE EXCEPTION 'Entry for basetable: "%" is missing in "%.tema"', base_table_name, schema_name;
   END IF;
 
-  -- Evaluate name of view
+  -- Evaluate name of view.
   IF view_type = 'B' THEN
-    view_name = schema_name || E'.' || base_table_name || E'_vw';
+    view_name = schema_name || E'.' || interface_name;
   ELSEIF view_type = 'H' THEN
-    view_name = schema_name || E'.' || base_table_name || E'_h_vw';
+    view_name = schema_name || E'.' || 'hist_' || interface_name;
   ELSE
     RAISE EXCEPTION 'view_type must be ''H'' (historic view) or ''B'' (base view)';
   END IF;

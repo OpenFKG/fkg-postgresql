@@ -21,8 +21,8 @@
 -- Core data
 -- Script to insert core data (lookup, tables etc.) in FKG Postgres DB
 
-DELETE FROM fkg.tema;
-DELETE FROM fkg.temagruppe;
+DELETE FROM fkg.d_tabel;
+DELETE FROM fkg.d_temagruppe;
 
 -- Basis lookup-tables
 DELETE FROM fkg.d_basis_oprindelse;
@@ -135,142 +135,108 @@ DELETE FROM fkg.d_6802_groenvedligh_punkt;
 DELETE FROM fkg.d_6803_pg_distrikt;
 
 
-INSERT INTO fkg.temagruppe VALUES ('5.1', 5000, 5099,'Overfladevand');
-INSERT INTO fkg.temagruppe VALUES ('5.2', 5100, 5199,'Natur');
-INSERT INTO fkg.temagruppe VALUES ('5.3', 5200, 5299,'Miljø');
-INSERT INTO fkg.temagruppe VALUES ('5.4', 5300, 5399,'Landbrug');
-INSERT INTO fkg.temagruppe VALUES ('5.5', 5400, 5499,'Affald og genbrug');
-INSERT INTO fkg.temagruppe VALUES ('5.6', 5500, 5599,'Forsyning');
-INSERT INTO fkg.temagruppe VALUES ('5.7', 5600, 5699,'Vej og trafik');
-INSERT INTO fkg.temagruppe VALUES ('5.8', 5700, 5799,'Administration');
-INSERT INTO fkg.temagruppe VALUES ('5.9', 5800, 5899,'Sport, fritid og friluftsliv');
-INSERT INTO fkg.temagruppe VALUES ('5.10', 5900, 5999,'Jord og råstof');
-INSERT INTO fkg.temagruppe VALUES ('5.11', 6000, 6099,'Grundvand');
-INSERT INTO fkg.temagruppe VALUES ('5.12', 6100, 6199,'Beredskab');
-INSERT INTO fkg.temagruppe VALUES ('5.13', 6200, 6299,'Planlægning');
--- Endnu ikke defineret INSERT INTO fkg.temagruppe VALUES ('', 6300, 6399,'Social og sundhed');
--- Endnu ikke defineret INSERT INTO fkg.temagruppe VALUES ('', 6400, 6499,'Børn og unge');
--- Endnu ikke defineret INSERT INTO fkg.temagruppe VALUES ('', 6500, 6599,'Overvågning');
--- Endnu ikke defineret INSERT INTO fkg.temagruppe VALUES ('', 6600, 6699,'Teknik');
--- Endnu ikke defineret INSERT INTO fkg.temagruppe VALUES ('', 6700, 6799,'Naturbeskyttelse');
-INSERT INTO fkg.temagruppe VALUES ('5.19', 6800, 6899,'Park og Grønne områder');
+INSERT INTO fkg.d_temagruppe VALUES ('5.1', 5000, 5099,'Overfladevand');
+INSERT INTO fkg.d_temagruppe VALUES ('5.2', 5100, 5199,'Natur');
+INSERT INTO fkg.d_temagruppe VALUES ('5.3', 5200, 5299,'Miljø');
+INSERT INTO fkg.d_temagruppe VALUES ('5.4', 5300, 5399,'Landbrug');
+INSERT INTO fkg.d_temagruppe VALUES ('5.5', 5400, 5499,'Affald og genbrug');
+INSERT INTO fkg.d_temagruppe VALUES ('5.6', 5500, 5599,'Forsyning');
+INSERT INTO fkg.d_temagruppe VALUES ('5.7', 5600, 5699,'Vej og trafik');
+INSERT INTO fkg.d_temagruppe VALUES ('5.8', 5700, 5799,'Administration');
+INSERT INTO fkg.d_temagruppe VALUES ('5.9', 5800, 5899,'Sport, fritid og friluftsliv');
+INSERT INTO fkg.d_temagruppe VALUES ('5.10', 5900, 5999,'Jord og råstof');
+INSERT INTO fkg.d_temagruppe VALUES ('5.11', 6000, 6099,'Grundvand');
+INSERT INTO fkg.d_temagruppe VALUES ('5.12', 6100, 6199,'Beredskab');
+INSERT INTO fkg.d_temagruppe VALUES ('5.13', 6200, 6299,'Planlægning');
+INSERT INTO fkg.d_temagruppe VALUES ('5.19', 6800, 6899,'Park og Grønne områder');
 -- SELECT * FROM temagruppe
 
-INSERT INTO fkg.tema VALUES (5000,'Vandløb','L','t_5000_vandl','5.1');
-INSERT INTO fkg.tema VALUES (5001,'Målestation','P','t_5001_maalest','5.1');
-INSERT INTO fkg.tema VALUES (5002,'Faunaspæring','P','t_5002_faunasp','5.1');
-INSERT INTO fkg.tema VALUES (5003,'Drænledning','L','t_5003_draenledn','5.1');
-INSERT INTO fkg.tema VALUES (5004,'Drænområde','F','t_5004_draenomr','5.1');
-INSERT INTO fkg.tema VALUES (5005,'Sø','F','t_5005_soe','5.1');
-INSERT INTO fkg.tema VALUES (5006,'Dybdekurver','F','t_5006_dybdekurv','5.1');
-INSERT INTO fkg.tema VALUES (5007,'Vandløbsoplande','F','t_5007_vandl_opl','5.1');
-INSERT INTO fkg.tema VALUES (5008,'Søoplande','F','t_5008_soe_opl','5.1');
-INSERT INTO fkg.tema VALUES (5009,'Pumpelag','F','t_5009_pumpelag','5.1');
-INSERT INTO fkg.tema VALUES (5010,'Vandløbselement','P','t_5010_vandl_elm','5.1');
---
--- INSERT INTO fkg.tema VALUES (5100,'Arter Fisk - udgået','P','t_5100_art_fisk','5.2');
--- INSERT INTO fkg.tema VALUES (5101,'Arter Fugl- udgået','P','t_5101_art_fugl','5.2');
--- INSERT INTO fkg.tema VALUES (5102,'Arter Padde- udgået','P','t_5102_art_padde','5.2');
--- INSERT INTO fkg.tema VALUES (5103,'Arter Pattedyr- udgået','P','t_5103_art_pat','5.2');
-INSERT INTO fkg.tema VALUES (5104,'Arter Invasive','F','t_5104_art_invas','5.2');
-INSERT INTO fkg.tema VALUES (5105,'Rigkær – Fattigkær','P','t_5105_rig_fattig','5.2');
-INSERT INTO fkg.tema VALUES (5106,'Naturpleje','F','t_5106_nat_pl','5.2');
-INSERT INTO fkg.tema VALUES (5107,'Arter_Invasive_Punkt','P','t_5107_art_invas_p','5.2');
-INSERT INTO fkg.tema VALUES (5108,'Grønt partnerskab','F','t_5108_groent_part','5.2');
---
-INSERT INTO fkg.tema VALUES (5200,'Affaldprod_udbringning','F','t_5200_aff_prod_udbr','5.3');
---
-INSERT INTO fkg.tema VALUES (5300,'Genopdyrkningsret','F','t_5300_genopd_ret','5.4');
---
-INSERT INTO fkg.tema VALUES (5400,'Affaldsdistrikt','F','t_5400_affalds_dis','5.5');
-INSERT INTO fkg.tema VALUES (5401,'Genbrugsstation','P','t_5401_genbr_st','5.5');
-INSERT INTO fkg.tema VALUES (5402,'Genbrugscontainer','P','t_5402_genbr_con','5.5');
---
-INSERT INTO fkg.tema VALUES (5500,'Elforsyningsområde','F','t_5500_elfors_omr','5.6');
--- INSERT INTO fkg.tema VALUES (5501,'Forsyningsområde - udgået','F','t_5501_fors_omr','5.6');
--- INSERT INTO fkg.tema VALUES (5502,'Tilslutningsforbudområde - udgået','F','t_5502_tilsl_forb_omr','5.6');
--- INSERT INTO fkg.tema VALUES (5503,'Forsyningsforbudområde - udgået','F','t_5503_fors_forb_omr','5.6');
--- INSERT INTO fkg.tema VALUES (5504,'Kloakopland - udgået','F','t_5504_kloakopl','5.6');
-INSERT INTO fkg.tema VALUES (5506,'Spildevandsplanpunkter','P','t_5506_spildev_pl_pkt','5.6');
-INSERT INTO fkg.tema VALUES (5507,'Fiberkabel','L','t_5507_fiberkabel','5.6');
-INSERT INTO fkg.tema VALUES (5508,'Husstandsmøller','P','t_5508_husst_moel','5.6');
---
-INSERT INTO fkg.tema VALUES (5600,'Vintervedligeholdelse','L','t_5600_vintervedl','5.7');
-INSERT INTO fkg.tema VALUES (5601,'Hastighedsdæmpning','P','t_5601_hasti_daemp','5.7');
-INSERT INTO fkg.tema VALUES (5602,'P-zoner','F','t_5602_p_zoner','5.7');
-INSERT INTO fkg.tema VALUES (5603,'Hastighedszone','F','t_5603_hasti_zone','5.7');
-INSERT INTO fkg.tema VALUES (5604,'Kørselsregulering','L','t_5604_koer_begr','5.7');
-INSERT INTO fkg.tema VALUES (5605,'Vejbyggelinje','F','t_5605_vejbyggel','5.7');
-INSERT INTO fkg.tema VALUES (5606,'Vejinventar','P','t_5606_vejinv','5.7');
---
-INSERT INTO fkg.tema VALUES (5700,'Grundejerforeninger/ Vejlav','F','t_5700_grundej','5.8');
-INSERT INTO fkg.tema VALUES (5701,'Lokalrådsområde','F','t_5701_lok_omr','5.8');
-INSERT INTO fkg.tema VALUES (5702,'Skorstensfejerdistrikt','F','t_5702_skorst_fej','5.8');
-INSERT INTO fkg.tema VALUES (5703,'Afstemningssted','P','t_5703_afstem_sted','5.8');
-INSERT INTO fkg.tema VALUES (5704,'Afstemningsområde','F','t_5704_afstem_omr','5.8');
-INSERT INTO fkg.tema VALUES (5705,'Forpagtningsareal','F','t_5705_forp_are','5.8');
-INSERT INTO fkg.tema VALUES (5706,'Havneareal','F','t_5706_havn_are','5.8');
-INSERT INTO fkg.tema VALUES (5707,'Grundsalg','F','t_5707_grunds','5.8');
-
--- INSERT INTO fkg.tema VALUES (5708,'Kommunal_service','P','t_5708_kom_serv','5.8'); Udgået i ver. 2.4
-INSERT INTO fkg.tema VALUES (5710,'Børn- og skoledistrikter','F','t_5710_born_skole_dis','5.8');
-INSERT INTO fkg.tema VALUES (5711,'Andre distrikter','F','t_5711_and_dis','5.8');
-INSERT INTO fkg.tema VALUES (5712,'Pleje- og ældredistrikter','F','t_5712_plej_aeldr_dis','5.8');
-INSERT INTO fkg.tema VALUES (5713,'Prognose- og statistik distrikter','F','t_5713_prog_stat_dis','5.8');
-INSERT INTO fkg.tema VALUES (5714,'Lærings- og uddannelsesinstitution','P','t_5714_laering_udd_inst','5.8');
-INSERT INTO fkg.tema VALUES (5715,'Botilbud','P','t_5715_botilbud','5.8');
-INSERT INTO fkg.tema VALUES (5716,'Servicetilbud','P','t_5716_servicetilbud','5.8');
---
-INSERT INTO fkg.tema VALUES (5800,'Facilitet_punkt','P','t_5800_fac_pkt','5.9');
--- INSERT INTO fkg.tema VALUES (5801,'Facilitet_flade - udgået','F','t_5801_fac_fl','5.9');
-INSERT INTO fkg.tema VALUES (5802,'Facilitet_linje','L','t_5802_fac_li','5.9');
---
-INSERT INTO fkg.tema VALUES (5900,'Jordflytning','F','t_5900_jordfl','5.10');
-INSERT INTO fkg.tema VALUES (5901,'Råstofindvindingstilladelse','F','t_5901_raastof_till','5.10');
-INSERT INTO fkg.tema VALUES (5902,'Jordvarmeanlæg','F','t_5902_jordv_anl','5.10');
--- INSERT INTO fkg.tema VALUES (5903,'Jordprøve - udgået','P','t_5903_jordpr','5.10');
--- Ikke dokumenteret INSERT INTO fkg.tema VALUES (5904,'Nyttiggørelse af jord','?','t_5904_nyttig_jord','5.10'); Forventes nedlagt.
---
-INSERT INTO fkg.tema VALUES (6000,'Potentialekort','L','t_6000_pot','5.11');
-INSERT INTO fkg.tema VALUES (6001,'Potentialekort målepunkter','P','t_6001_pot_m','5.11');
-INSERT INTO fkg.tema VALUES (6002,'Indvindingsopland','F','t_6002_indv','5.11');
-INSERT INTO fkg.tema VALUES (6003,'Beskyttelseszone','F','t_6003_besk_zone','5.11');
-INSERT INTO fkg.tema VALUES (6004,'Vandværksforsyningsomr','F','t_6004_vandv_fs','5.11');
--- INSERT INTO fkg.tema VALUES (6005,'Ledningsnet vandværk - udgået','F','t_6005_ledn_vand','5.11');
-INSERT INTO fkg.tema VALUES (6006,'Grundvandsdannende Opland','F','t_6006_grundv_opl','5.11');
-INSERT INTO fkg.tema VALUES (6007,'Indsatsområde','F','t_6007_inds_omr','5.11');
-INSERT INTO fkg.tema VALUES (6008,'Maksimal Boredybde','F','t_6008_maks_bor','5.11');
-INSERT INTO fkg.tema VALUES (6009,'Indvinding af overfladevand','P','t_6009_indv_ovflv','5.11');
-
-INSERT INTO fkg.tema VALUES (6100,'Brandhane','P','t_6100_brandhane','5.12');
-INSERT INTO fkg.tema VALUES (6101,'Beskyttelsesrum','P','t_6101_beskyt_rum','5.12');
-INSERT INTO fkg.tema VALUES (6102,'Redningsvej','F','t_6102_redn_vej','5.12');
-INSERT INTO fkg.tema VALUES (6103,'Beredskabsområde - 112 slukningsdistrikt','F','t_6103_bered_omr','5.12');
-INSERT INTO fkg.tema VALUES (6104,'Risiko virksomhed','F','t_6104_risiko_virk','5.12');
-INSERT INTO fkg.tema VALUES (6105,'Særlig bygningsområde','F','t_6105_sbygn_omr','5.12');
--- INSERT INTO fkg.tema VALUES (6106,'Særlig bygning','F','t_6106_sbygn','5.12'); Udgået
-INSERT INTO fkg.tema VALUES (6107,'Forholdsordre','F','t_6107_forholds','5.12');
-INSERT INTO fkg.tema VALUES (6108,'Mødeplan','F','t_6108_moedepl','5.12');
-INSERT INTO fkg.tema VALUES (6109,'Sirene, alarm','P','t_6109_sirene','5.12');
-INSERT INTO fkg.tema VALUES (6110,'Nøgleboks til beredskab','P','t_6110_noegle','5.12');
-INSERT INTO fkg.tema VALUES (6111,'Fyrværkeri tilladelse','F','t_6111_fyrv_till','5.12');
-INSERT INTO fkg.tema VALUES (6112,'Midlertidige depot ved forurening m.v.','F','t_6112_midl_dep','5.12');
-INSERT INTO fkg.tema VALUES (6113,'Beskyttet natur ved beredskabsindsats','F','t_6113_besk_nat_b','5.12');
-INSERT INTO fkg.tema VALUES (6114,'Midlertidig ophold','P','t_6114_midl_oph','5.12');
-INSERT INTO fkg.tema VALUES (6115,'Afbrændingsområde','F','t_6115_afbr_omr','5.12');
-INSERT INTO fkg.tema VALUES (6116,'Olieberedskabsplan','F','t_6116_olie_ber_pl','5.12');
-INSERT INTO fkg.tema VALUES (6117,'Indsatspunkt','P','t_6117_inds_pkt','5.12');
-INSERT INTO fkg.tema VALUES (6118,'Brand- og redningsareal','F','t_6118_bran_redn','5.12');
---
-INSERT INTO fkg.tema VALUES (6200,'Naturgeografi','F','t_6200_nat_geo','5.13');
-INSERT INTO fkg.tema VALUES (6201,'Kulturgeografi','F','t_6201_kult_geo','5.13');
-INSERT INTO fkg.tema VALUES (6202,'Landskabkarakterområder','F','t_6202_landk_omr','5.13');
-INSERT INTO fkg.tema VALUES (6203,'Landskabskaraktervurderinger','F','t_6203_landk_vur','5.13');
---
-INSERT INTO fkg.tema VALUES (6800,'Park og grønne områder flade','F','t_6800_parl_fl','5.19');
-INSERT INTO fkg.tema VALUES (6801,'Park og grønne områder linje','L','t_6801_parl_li','5.19');
-INSERT INTO fkg.tema VALUES (6802,'Park og grønne områder punkt','P','t_6802_parl_pkt','5.19');
-INSERT INTO fkg.tema VALUES (6803,'Park og grønne områders distrikt','F','t_6803_parl_omr','5.19');
+INSERT INTO fkg.d_tabel VALUES (5000,'Vandløb','L','t_5000_vandl','5.1');
+INSERT INTO fkg.d_tabel VALUES (5001,'Målestation','P','t_5001_maalest','5.1');
+INSERT INTO fkg.d_tabel VALUES (5002,'Faunaspæring','P','t_5002_faunasp','5.1');
+INSERT INTO fkg.d_tabel VALUES (5003,'Drænledning','L','t_5003_draenledn','5.1');
+INSERT INTO fkg.d_tabel VALUES (5004,'Drænområde','F','t_5004_draenomr','5.1');
+INSERT INTO fkg.d_tabel VALUES (5005,'Sø','F','t_5005_soe','5.1');
+INSERT INTO fkg.d_tabel VALUES (5006,'Dybdekurver','F','t_5006_dybdekurv','5.1');
+INSERT INTO fkg.d_tabel VALUES (5007,'Vandløbsoplande','F','t_5007_vandl_opl','5.1');
+INSERT INTO fkg.d_tabel VALUES (5008,'Søoplande','F','t_5008_soe_opl','5.1');
+INSERT INTO fkg.d_tabel VALUES (5009,'Pumpelag','F','t_5009_pumpelag','5.1');
+INSERT INTO fkg.d_tabel VALUES (5010,'Vandløbselement','P','t_5010_vandl_elm','5.1');
+INSERT INTO fkg.d_tabel VALUES (5104,'Arter Invasive','F','t_5104_art_invas','5.2');
+INSERT INTO fkg.d_tabel VALUES (5105,'Rigkær – Fattigkær','P','t_5105_rig_fattig','5.2');
+INSERT INTO fkg.d_tabel VALUES (5106,'Naturpleje','F','t_5106_nat_pl','5.2');
+INSERT INTO fkg.d_tabel VALUES (5107,'Arter_Invasive_Punkt','P','t_5107_art_invas_p','5.2');
+INSERT INTO fkg.d_tabel VALUES (5108,'Grønt partnerskab','F','t_5108_groent_part','5.2');
+INSERT INTO fkg.d_tabel VALUES (5200,'Affaldprod_udbringning','F','t_5200_aff_prod_udbr','5.3');
+INSERT INTO fkg.d_tabel VALUES (5300,'Genopdyrkningsret','F','t_5300_genopd_ret','5.4');
+INSERT INTO fkg.d_tabel VALUES (5400,'Affaldsområde','F','t_5400_affalds_dis','5.5');
+INSERT INTO fkg.d_tabel VALUES (5401,'Genbrugsplads','P','t_5401_genbr_st','5.5');
+INSERT INTO fkg.d_tabel VALUES (5402,'Container','P','t_5402_genbr_con','5.5');
+INSERT INTO fkg.d_tabel VALUES (5500,'Elforsyningsområde','F','t_5500_elfors_omr','5.6');
+INSERT INTO fkg.d_tabel VALUES (5506,'Spildevandsplanpunkter','P','t_5506_spildev_pl_pkt','5.6');
+INSERT INTO fkg.d_tabel VALUES (5507,'Fiberkabel','L','t_5507_fiberkabel','5.6');
+INSERT INTO fkg.d_tabel VALUES (5508,'Husstandsmøller','P','t_5508_husst_moel','5.6');
+INSERT INTO fkg.d_tabel VALUES (5600,'Vintervedligeholdelse','L','t_5600_vintervedl','5.7');
+INSERT INTO fkg.d_tabel VALUES (5601,'Hastighedsdæmpning','P','t_5601_hasti_daemp','5.7');
+INSERT INTO fkg.d_tabel VALUES (5602,'P-zoner','F','t_5602_p_zoner','5.7');
+INSERT INTO fkg.d_tabel VALUES (5603,'Hastighedszone','F','t_5603_hasti_zone','5.7');
+INSERT INTO fkg.d_tabel VALUES (5604,'Kørselsregulering','L','t_5604_koer_begr','5.7');
+INSERT INTO fkg.d_tabel VALUES (5605,'Vejbyggelinje','F','t_5605_vejbyggel','5.7');
+INSERT INTO fkg.d_tabel VALUES (5606,'Vejinventar','P','t_5606_vejinv','5.7');
+INSERT INTO fkg.d_tabel VALUES (5700,'Grundejerforeninger/ Vejlav','F','t_5700_grundej','5.8');
+INSERT INTO fkg.d_tabel VALUES (5701,'Lokalrådsområde','F','t_5701_lok_omr','5.8');
+INSERT INTO fkg.d_tabel VALUES (5702,'Skorstensfejerdistrikt','F','t_5702_skorst_fej','5.8');
+INSERT INTO fkg.d_tabel VALUES (5703,'Afstemningssted','P','t_5703_afstem_sted','5.8');
+INSERT INTO fkg.d_tabel VALUES (5704,'Afstemningsområde','F','t_5704_afstem_omr','5.8');
+INSERT INTO fkg.d_tabel VALUES (5705,'Forpagtningsareal','F','t_5705_forp_are','5.8');
+INSERT INTO fkg.d_tabel VALUES (5706,'Havneareal','F','t_5706_havn_are','5.8');
+INSERT INTO fkg.d_tabel VALUES (5707,'Grundsalg','F','t_5707_grunds','5.8');
+INSERT INTO fkg.d_tabel VALUES (5710,'Børn- og skoledistrikter','F','t_5710_born_skole_dis','5.8');
+INSERT INTO fkg.d_tabel VALUES (5711,'Andre distrikter','F','t_5711_and_dis','5.8');
+INSERT INTO fkg.d_tabel VALUES (5712,'Pleje- og ældredistrikter','F','t_5712_plej_aeldr_dis','5.8');
+INSERT INTO fkg.d_tabel VALUES (5713,'Prognose- og statistik distrikter','F','t_5713_prog_stat_dis','5.8');
+INSERT INTO fkg.d_tabel VALUES (5714,'Lærings- og uddannelsesinstitution','P','t_5714_laering_udd_inst','5.8');
+INSERT INTO fkg.d_tabel VALUES (5715,'Botilbud','P','t_5715_botilbud','5.8');
+INSERT INTO fkg.d_tabel VALUES (5716,'Servicetilbud','P','t_5716_servicetilbud','5.8');
+INSERT INTO fkg.d_tabel VALUES (5800,'Facilitet_punkt','P','t_5800_fac_pkt','5.9');
+INSERT INTO fkg.d_tabel VALUES (5802,'Facilitet_linje','L','t_5802_fac_li','5.9');
+INSERT INTO fkg.d_tabel VALUES (5900,'Jordflytning','F','t_5900_jordfl','5.10');
+INSERT INTO fkg.d_tabel VALUES (5901,'Råstofindvindingstilladelse','F','t_5901_raastof_till','5.10');
+INSERT INTO fkg.d_tabel VALUES (5902,'Jordvarmeanlæg','F','t_5902_jordv_anl','5.10');
+INSERT INTO fkg.d_tabel VALUES (6000,'Potentialekort','L','t_6000_pot','5.11');
+INSERT INTO fkg.d_tabel VALUES (6001,'Potentialekort målepunkter','P','t_6001_pot_m','5.11');
+INSERT INTO fkg.d_tabel VALUES (6002,'Indvindingsopland','F','t_6002_indv','5.11');
+INSERT INTO fkg.d_tabel VALUES (6003,'Beskyttelseszone','F','t_6003_besk_zone','5.11');
+INSERT INTO fkg.d_tabel VALUES (6004,'Vandværksforsyningsomr','F','t_6004_vandv_fs','5.11');
+INSERT INTO fkg.d_tabel VALUES (6006,'Grundvandsdannende Opland','F','t_6006_grundv_opl','5.11');
+INSERT INTO fkg.d_tabel VALUES (6007,'Indsatsområde','F','t_6007_inds_omr','5.11');
+INSERT INTO fkg.d_tabel VALUES (6008,'Maksimal Boredybde','F','t_6008_maks_bor','5.11');
+INSERT INTO fkg.d_tabel VALUES (6009,'Indvinding af overfladevand','P','t_6009_indv_ovflv','5.11');
+INSERT INTO fkg.d_tabel VALUES (6100,'Brandhane','P','t_6100_brandhane','5.12');
+INSERT INTO fkg.d_tabel VALUES (6101,'Beskyttelsesrum','P','t_6101_beskyt_rum','5.12');
+INSERT INTO fkg.d_tabel VALUES (6102,'Redningsvej','F','t_6102_redn_vej','5.12');
+INSERT INTO fkg.d_tabel VALUES (6103,'Beredskabsområde - 112 slukningsdistrikt','F','t_6103_bered_omr','5.12');
+INSERT INTO fkg.d_tabel VALUES (6104,'Risiko virksomhed','F','t_6104_risiko_virk','5.12');
+INSERT INTO fkg.d_tabel VALUES (6105,'Særlig bygningsområde','F','t_6105_sbygn_omr','5.12');
+INSERT INTO fkg.d_tabel VALUES (6107,'Forholdsordre','P','t_6107_forholds','5.12');
+INSERT INTO fkg.d_tabel VALUES (6108,'Mødeplan','F','t_6108_moedepl','5.12');
+INSERT INTO fkg.d_tabel VALUES (6110,'Nøgleboks til beredskab','P','t_6110_noegle','5.12');
+INSERT INTO fkg.d_tabel VALUES (6111,'Fyrværkeri tilladelse','F','t_6111_fyrv_till','5.12');
+INSERT INTO fkg.d_tabel VALUES (6112,'Midlertidige depot ved forurening m.v.','F','t_6112_midl_dep','5.12');
+INSERT INTO fkg.d_tabel VALUES (6113,'Beskyttet natur ved beredskabsindsats','F','t_6113_besk_nat_b','5.12');
+INSERT INTO fkg.d_tabel VALUES (6114,'Midlertidig ophold','P','t_6114_midl_oph','5.12');
+INSERT INTO fkg.d_tabel VALUES (6115,'Afbrændingsområde','F','t_6115_afbr_omr','5.12');
+INSERT INTO fkg.d_tabel VALUES (6116,'Olieberedskabsplan','F','t_6116_olie_ber_pl','5.12');
+INSERT INTO fkg.d_tabel VALUES (6117,'Indsatspunkt','P','t_6117_inds_pkt','5.12');
+INSERT INTO fkg.d_tabel VALUES (6118,'Brand- og redningsareal','F','t_6118_bran_redn','5.12');
+INSERT INTO fkg.d_tabel VALUES (6200,'Naturgeografi','F','t_6200_nat_geo','5.13');
+INSERT INTO fkg.d_tabel VALUES (6201,'Kulturgeografi','F','t_6201_kult_geo','5.13');
+INSERT INTO fkg.d_tabel VALUES (6202,'Landskabkarakterområder','F','t_6202_landk_omr','5.13');
+INSERT INTO fkg.d_tabel VALUES (6203,'Landskabskaraktervurderinger','F','t_6203_landk_vur','5.13');
+INSERT INTO fkg.d_tabel VALUES (6800,'Park og grønne områder flade','F','t_6800_parl_fl','5.19');
+INSERT INTO fkg.d_tabel VALUES (6801,'Park og grønne områder linje','L','t_6801_parl_li','5.19');
+INSERT INTO fkg.d_tabel VALUES (6802,'Park og grønne områder punkt','P','t_6802_parl_pkt','5.19');
+INSERT INTO fkg.d_tabel VALUES (6803,'Park og grønne områders distrikt','F','t_6803_parl_omr','5.19');
 --SELECT * FROM tema
 
 INSERT INTO fkg.d_basis_oprindelse VALUES (0,'Ikke udfyldt', 1, NULL);
@@ -291,7 +257,7 @@ INSERT INTO fkg.d_basis_oprindelse VALUES (12,'3D', 1,'Laserscanning, Digital te
 INSERT INTO fkg.d_basis_status VALUES (0,'Ukendt',1);
 INSERT INTO fkg.d_basis_status VALUES (1,'Kladde',1);
 INSERT INTO fkg.d_basis_status VALUES (2,'Forslag',1);
-INSERT INTO fkg.d_basis_status VALUES (3,'Gældende /  Vedtaget',1);
+INSERT INTO fkg.d_basis_status VALUES (3,'Gældende / Vedtaget',1);
 INSERT INTO fkg.d_basis_status VALUES (4,'Ikke gældende / Aflyst',1);
 -- SELECT * FROM d_basis_status;
 
@@ -1706,7 +1672,7 @@ INSERT INTO fkg.d_5002_passage VALUES (99,'Ukendt passage',1,'Fået oplyst der e
 
 INSERT INTO fkg.d_5003_ledn_type VALUES (1,'Ler',1,'Typiske røde lerrør der er meget korte.');
 INSERT INTO fkg.d_5003_ledn_type VALUES (2,'Plast',1,'Typisk plastrør med riller/folder og mange små huller, så de er bøjelige.');
-INSERT INTO fkg.d_5003_ledn_type VALUES (3,'Beton',1,'Typiske støbte betonrør i 1 - 2 meter længde.');
+INSERT INTO fkg.d_5003_ledn_type VALUES (3,'Beton',1,'Typiske støbte betonrør i 1-2 meter længde.');
 INSERT INTO fkg.d_5003_ledn_type VALUES (8,'Andet',1,'Materiale hvor andet ikke er dækkende.');
 INSERT INTO fkg.d_5003_ledn_type VALUES (9,'Ukendt',1,'Fået oplyst der er et dræn, men materialet er ukendt. Typisk fra borger eller gammelt register.');
 -- SELECT * FROM d_5003_ledn_type;
@@ -1757,7 +1723,7 @@ INSERT INTO fkg.d_5005_soe_type VALUES (99,'Ukendt',1,'Mangler viden om søtype'
 -- SELECT * FROM d_5005_soe_type;
 
 
-INSERT INTO fkg.d_5005_habitat_type VALUES (1,'3110 Kalk - og næringsfattige søer og vandhuller (lobeliesøer) (1, 2)',1,'');
+INSERT INTO fkg.d_5005_habitat_type VALUES (1,'3110 Kalk- og næringsfattige søer og vandhuller (lobeliesøer) (1, 2)',1,'');
 INSERT INTO fkg.d_5005_habitat_type VALUES (2,'3130 Ret næringsfattige søer og vandhuller med små amfibiske planter ved bredden (1, 2, 4, 6)',1,'');
 INSERT INTO fkg.d_5005_habitat_type VALUES (3,'3140 Kalkrige søer og vandhuller med kransnålalger (6, 7)',1,'');
 INSERT INTO fkg.d_5005_habitat_type VALUES (4,'3150 Næringsrige søer og vandhuller med flydeplanter eller store vandaks (6, 7)',1,'');
@@ -1785,7 +1751,7 @@ INSERT INTO fkg.d_5008_opl VALUES (1,'Hav/ingen sø',1,'');
 
 INSERT INTO fkg.d_5009_lag_type VALUES (1,'Digelag',1,'Sammenslutning (gruppe) af ejendomme (jordejere), der er fælles om et dige.');
 INSERT INTO fkg.d_5009_lag_type VALUES (2,'Landvindingslag',1,'Sammenslutning (gruppe) af ejendomme (jordejere), der er fælles om et dige og pumpeanlæg. I forbindelse med tørlægning af en fjord eller sø. Typiske til landbrugsjord.');
-INSERT INTO fkg.d_5009_lag_type VALUES (3,'Pumpelag',1,'Sammenslutning (gruppe) af ejendomme (jordejere), der er fælles om et (afvandings) - pumpeanlæg.');
+INSERT INTO fkg.d_5009_lag_type VALUES (3,'Pumpelag',1,'Sammenslutning (gruppe) af ejendomme (jordejere), der er fælles om et (afvandings) -pumpeanlæg.');
 INSERT INTO fkg.d_5009_lag_type VALUES (8,'Andet',1,'Hvor ovenstående valgmuligheder ikke passer.');
 INSERT INTO fkg.d_5009_lag_type VALUES (9,'Ukendt',1,'Mangler viden om lagtype.');
 -- SELECT * FROM d_5009_lag_type;
@@ -1881,7 +1847,7 @@ INSERT INTO fkg.d_5400_affalds_type VALUES (9,'Ukendt',1,'Ukendt');
 INSERT INTO fkg.d_5401_gs_type VALUES (1,'Genbrugsstation',1,'Større indhegnet område hvor borgere aflevere affald sorteret efter type. Typiske direkte i container.');
 INSERT INTO fkg.d_5401_gs_type VALUES (2,'Affaldsø',1,'Mindre område hvor borgere kan aflevere mindre mænge af sorteret affald - Glas, papir og evt. metal.');
 INSERT INTO fkg.d_5401_gs_type VALUES (3,'Fyldplads',1,'Områder der fyldes op med begrænset former for affald f.eks. i gammel grusgrav eller ved havneudvidelser.');
-INSERT INTO fkg.d_5401_gs_type VALUES (4,'Komposteringssplads',1,'Plads hvor haveaffald m.v. komposteres til jord.');
+INSERT INTO fkg.d_5401_gs_type VALUES (4,'Komposteringsanlæg',1,'Plads hvor haveaffald m.v. komposteres til jord.');
 INSERT INTO fkg.d_5401_gs_type VALUES (8,'Andet',1,'Andet');
 INSERT INTO fkg.d_5401_gs_type VALUES (9,'Ukendt',1,'Ukendt');
 -- SELECT * FROM d_5401_gs_type;
@@ -2384,7 +2350,7 @@ INSERT INTO fkg.d_5802_facilitet VALUES (99,'Ukendt',1,'Mangler viden om typen.'
 
 INSERT INTO fkg.d_5901_gravestatus VALUES (1,'Gravearbejde søgt',1,'Ansøgt men ikke tilladelse.');
 INSERT INTO fkg.d_5901_gravestatus VALUES (2,'Gravearbejde givet',1,'Tilladelse givet');
-INSERT INTO fkg.d_5901_gravestatus VALUES (4,'Gravearbejde af sluttet - ikke reetableret',1,'Gravearbejdet afsluttet, men reetablering ikke færdig.');
+INSERT INTO fkg.d_5901_gravestatus VALUES (4,'Gravearbejde afsluttet - ikke reetableret',1,'Gravearbejdet afsluttet, men reetablering ikke færdig.');
 INSERT INTO fkg.d_5901_gravestatus VALUES (5,'Reetableret',1,'Reetableret i sin endelige status/udformning');
 INSERT INTO fkg.d_5901_gravestatus VALUES (8,'Andet',1,'Andet');
 INSERT INTO fkg.d_5901_gravestatus VALUES (9,'Ukendt',1,'Mangler viden');
@@ -2454,8 +2420,8 @@ INSERT INTO fkg.d_6101_beskyt_rum VALUES (9,'Ukendt',1,'Mangler viden om typen.'
 -- SELECT * FROM d_6101_beskyt_rum;
 
 
-INSERT INTO fkg.d_6102_redvej_type VALUES (1,'Brandvej',1,'Adgangsvej der skal være fri passage til brandbiler m.v.');
-INSERT INTO fkg.d_6102_redvej_type VALUES (2,'Flugtvej',1,'Udgang fra bygninger, som er afmærket og skal være frie.');
+INSERT INTO fkg.d_6102_redvej_type VALUES (1,'Brandvej',0,'Adgangsvej der skal være fri passage til brandbiler m.v.');
+INSERT INTO fkg.d_6102_redvej_type VALUES (2,'Flugtvej',0,'Udgang fra bygninger, som er afmærket og skal være frie.');
 INSERT INTO fkg.d_6102_redvej_type VALUES (3,'Redningsvej',1,'Adgangsvej til strande m.v.');
 INSERT INTO fkg.d_6102_redvej_type VALUES (8,'Andet',1,'Hvor ovenstående ikke er dækkende.');
 INSERT INTO fkg.d_6102_redvej_type VALUES (9,'Ukendt',1,'Mangler viden om typen af adgangsvej');
@@ -2709,8 +2675,8 @@ INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (127020,'Urtebed',1,'BL08','Lokal 
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (161000,'Prydbuske',1,'BU01','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (161010,'Prydbuske – Frugtbuske',1,'BU01a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (161020,'Prydbuske – Formklippede buske',1,'BU01b','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (162000,'Bunddækkende buske',1,'BU01c','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (163000,'Busket',1,'BU02','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (162000,'Bunddækkende buske',1,'BU02','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (163000,'Busket',1,'BU03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (181000,'Prydhæk - flade',1,'HA01','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse. NB findes også som linjeobjekt. Benyt ikke både som flade og linje. Skal vælge én og kun en geometritype.');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (182000,'Hæk - flade',1,'HA02','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse. NB findes også som linjeobjekt. Benyt ikke både som flade og linje. Skal vælge én og kun en geometritype.');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (183000,'Pur',1,'HA03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
@@ -2758,7 +2724,7 @@ INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (412020,'Løs belægning – Parks
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (412030,'Løs belægning - Rekreative sti',1,'LB02c','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (412040,'Løs belægning – Kunststofbelægning',1,'LB02d','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (412050,'Løs belægning – Flis',1,'LB02e','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (41000,'Natursti (bynær)',1,'LB03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (413000,'Natursti (bynær)',1,'LB03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (413010,'Natursti bynær - Ridesti',1,'LB03a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (413020,'Natursti bynær - Muldjord',1,'LB03b','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (413030,'Natursti bynær - Råjord',1,'LB03c','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
@@ -2785,13 +2751,13 @@ INSERT INTO fkg.d_6800_vedlhold_f_type VALUES (990000,'Ukendt',1,'UK01','Mangler
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (141000,'Fladedækkende klatreplanter',1,'KL01','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (181100,'Prydhæk - linje',1,'HA11','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse. NB findes også som fladeobjekt. Benyt ikke både som flade og linje. Skal vælge én og kun en geometritype.');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (182100,'Hæk – linje',1,'HA21','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse. NB findes også som fladeobjekt. Benyt ikke både som flade og linje. Skal vælge én og kun en geometritype.');
-INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (182110,'Stammehæk ',1,'HA02a','Træer med sammenvokset krone, der klippes som ”hæk”. Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
+INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (182110,'Stammehæk',1,'HA02a','Træer med sammenvokset krone, der klippes som ”hæk”. Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (184100,'Fritvoksende Hæk – linje',1,'HA04','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse. NB findes også som fladeobjekt. Benyt ikke både som flade og linje. Skal vælge én og kun en geometritype.');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (303000,'Grøft',1,'VA03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (422000,'Terrænmur',1,'BY05','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (424000,'Stendige',1,'BY06','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (425000,'Kampestensstøttemur',1,'BY07','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (427000,'Kirkegårdsdige',1,'BY08','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (435000,'Terrænmur',1,'BY05','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (436000,'Stendige',1,'BY06','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (437000,'Kampestensstøttemur',1,'BY07','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (438000,'Kirkegårdsdige',1,'BY08','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (443000,'Cykelstativ',1,'UD09','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (447000,'Trådflethegn',1,'UD08','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (447100,'Plankeværk / rækværk',1,'UD81','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
@@ -2804,22 +2770,25 @@ INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (447430,'Saltværn3',1,'UD84c','Be
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (801010,'Div. forhindring - ej pleje',1,'FO01a','Forhindringer (som ikke vedligeholdes) i f.eks. brugsplæne, kan vises i kort/liste. (Lokal standard – kan beskrives i udbudsmaterialet eller lignende)');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (980000,'Andet',1,'AN02','Hvor andre facilitetsbetegnelser ikke er dækkende.');
 INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (990000,'Ukendt',1,'UK02','Mangler viden om typen.');
+INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (303020,'Vandløb',1,'VA03b','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
+INSERT INTO fkg.d_6801_vedlhold_l_type VALUES (403010,'Kantsten',1,'FB03a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
+
 -- SELECT * FROM d_6801_vedlhold_l_type;
 
 
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (126000,'Baljeplante',1,'BL09','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (142000,'Solitære slyng - og klatreplante',1,'KL02','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (128000,'Baljeplante',1,'BL09','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (142000,'Solitære slyng- og klatreplante',1,'KL02','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (142010,'Plantestativ',1,'KL02a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (161000,'Prydbusk (solitær/fritstående)',1,'BU03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (161200,'Prydbusk (solitær/fritstående)',1,'BU03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (201000,'Fuldkronet træ',1,'TR01','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (202000,'Allé (træ)',1,'TR02','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (203000,'Frugttræ',1,'TR03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (204000,'Formet træ',1,'TR04','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (426000,'Monument / mindesten / skulptur',1,'BY09','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (426010,'Pullert',1,'BY09a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (426020,'Stele',1,'BY09b','Stele er næsten det samme som en pullert - bare af sten. Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (426030,'Natursten',1,'BY09c','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (426050,'Flagstang',1,'BY09e','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (439000,'Monument / mindesten / skulptur',1,'BY09','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (439010,'Pullert',1,'BY09a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (439020,'Stele',1,'BY09b','Stele er næsten det samme som en pullert - bare af sten. Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (439030,'Natursten',1,'BY09c','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (439050,'Flagstang',1,'BY09e','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (441000,'Affaldsspand',1,'UD01','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (441100,'Affaldsbeholder til grønt affald',1,'UD11','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (441800,'Vandpost / drikkepost (Vandhane)',1,'UD18','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
@@ -2829,7 +2798,7 @@ INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (441830,'Stophane',1,'UD18c','K
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (442000,'Bænk og bordbænkesæt',1,'UD02','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (442010,'Bænk',1,'UD02a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (442020,'Bordbænkesæt',1,'UD02b','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (443000,'Fodboldmål',1,'UD03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (443100,'Fodboldmål',1,'UD03','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (443010,'Sportsudstyr',1,'UD03a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (443500,'Bålplads / grill',1,'UD35','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (444000,'Informationsskilte',1,'UD04','Se den nye Branchestandard/landsdækkende kvalitetsbeskrivelse');
@@ -2846,13 +2815,14 @@ INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (447010,'Belysning',1,'UD07a','
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (447020,'Elboks',1,'UD07b','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (448010,'Låge',1,'UD08a','Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (448020,'Stente',1,'UD08b','Stente er en overgang over et hegn til mennesker. Lokal standard – skal beskrives i udbudsmaterialet eller lignende');
-INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (801010,'Div. forhindring - ej pleje',1,'FO02a','Forhindringer (som ikke vedligeholdes) i f.eks. brugsplæne, kan vises i kort/liste. (Lokal standard – kan beskrives i udbudsmaterialet eller lignende)');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (802010,'Div. forhindring - ej pleje',1,'FO02a','Forhindringer (som ikke vedligeholdes) i f.eks. brugsplæne, kan vises i kort/liste. (Lokal standard – kan beskrives i udbudsmaterialet eller lignende)');
 INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (980000,'Andet',1,'AN03','Hvor andre facilitetsbetegnelser ikke er dækkende.');
+INSERT INTO fkg.d_6802_groenvedligh_punkt VALUES (990000,'Ukendt',1,'UK02','Mangler viden om typen.');
 -- SELECT * FROM d_6802_groenvedligh_punkt;
 
 
 INSERT INTO fkg.d_6803_pg_distrikt VALUES (1,'Udbudsområde',1,'Området der er udbudt');
-INSERT INTO fkg.d_6803_pg_distrikt VALUES (2,'Fag - entreprise',1,'Entrepriseområdet, som kun dække et meget lille fagområde. F.eks. beskæring af træer.');
+INSERT INTO fkg.d_6803_pg_distrikt VALUES (2,'Fag-entreprise',1,'Entrepriseområdet, som kun dække et meget lille fagområde. F.eks. beskæring af træer.');
 INSERT INTO fkg.d_6803_pg_distrikt VALUES (3,'Geografisk entreprise',1,'Entrepriseområdet, som dækker et stort fagområde, men hvor kommunen typiske er inddelt i flere områder/distrikter med forskellige entreprenører. Kan også benyttes til inddelingen efter hvor et område plejes fra (fx hvilken materielgård, når det er kommunens egne folk, der står for opgaven).');
 INSERT INTO fkg.d_6803_pg_distrikt VALUES (4,'Arbejdssted',1,'Også kaldt arbejdsområde. Typisk et mindre område som en park eller en skole.');
 INSERT INTO fkg.d_6803_pg_distrikt VALUES (8,'Andet',1,'Hvor andet ikke er dækkende.');
