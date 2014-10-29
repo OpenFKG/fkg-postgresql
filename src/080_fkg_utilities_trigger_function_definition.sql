@@ -27,22 +27,24 @@ DECLARE
   column_name_old       character varying;
   schema_name           character varying;
   trigger_function_name character varying;
+  interface_name        character varying;
   theme_code            integer;
 BEGIN
 
   td = ''; column_name_old=''; theme_code=NULL;
   schema_name = 'fkg';
+  interface_name = substring(base_table_name FROM 1 FOR length(base_table_name)-2); -- The last 2 chars "_t" is removed
   
   -- Get theme_code
-  EXECUTE 'SELECT tema_kode FROM ' || schema_name || '.tema WHERE udvekslingsnavn = $1'
+  EXECUTE 'SELECT tema_kode FROM ' || schema_name || '.d_tabel WHERE udvekslingsnavn = $1'
   INTO theme_code
-  USING base_table_name;
+  USING interface_name;
   IF theme_code IS NULL THEN
-    RAISE EXCEPTION 'Entry for basetable: "%" is nissing in "%.tema"', base_table_name, schema_name;
+    RAISE EXCEPTION 'Entry for basetable: "%" is missing in "%.tema"', base_table_name, schema_name;
   END IF;
 
   -- Evaluate name of trigger
-  trigger_function_name = schema_name || E'.' || base_table_name || E'_trg()';
+  trigger_function_name = schema_name || E'.' || interface_name || E'_trg()';
 
 
   -- Define the trigger definition
@@ -171,10 +173,10 @@ BEGIN
 
   -- Now create the trigger itself
   td = td || E'\n';
-  td = td || E'DROP TRIGGER IF EXISTS ' || base_table_name || E'_vw_trg_iud ON ' || schema_name || '.' || base_table_name || '_vw;' || E'\n';
+  td = td || E'DROP TRIGGER IF EXISTS ' || interface_name || E'_vw_trg_iud ON ' || schema_name || '.' || interface_name || E';\n';
   td = td || E'\n';
-  td = td || E'CREATE TRIGGER ' || base_table_name || E'_vw_trg_iud' || E'\n';
-  td = td || E'    INSTEAD OF INSERT OR DELETE OR UPDATE ON ' || schema_name || '.' || base_table_name || '_vw' || E'\n';
+  td = td || E'CREATE TRIGGER ' || interface_name || E'_trg_iud' || E'\n';
+  td = td || E'    INSTEAD OF INSERT OR DELETE OR UPDATE ON ' || schema_name || '.' || interface_name || E'\n';
   td = td || E'    FOR EACH ROW' || E'\n';
   td = td || E'    EXECUTE PROCEDURE ' || trigger_function_name || ';' || E'\n';
 
@@ -194,7 +196,7 @@ BEGIN
   td = td || E'$$LANGUAGE plpgsql VOLATILE' || E'\n';
   td = td || E'  COST 100;' || E'\n';
   td = td || E'\n';
-  td = td || E'DROP TRIGGER IF EXISTS make_multi_trg ON ' || schema_name || '.' || base_table_name || '_vw;' || E'\n';
+  td = td || E'DROP TRIGGER IF EXISTS make_multi_trg ON ' || schema_name || '.' || base_table_name || ';' || E'\n';
   td = td || E'\n';
   td = td || E'CREATE TRIGGER make_multi_trg BEFORE INSERT OR UPDATE' || E'\n';
   td = td || E'   ON ' || schema_name || '.' || base_table_name || ' FOR EACH ROW' || E'\n';

@@ -32,7 +32,7 @@ CREATE TABLE fkg.d_basis_oprindelse(
 	oprindkode integer NOT NULL,
 	oprindelse character varying(35) NOT NULL,
 	aktiv integer NOT NULL DEFAULT 1,
-	bemaerkning character varying,
+	begrebsdefinition character varying,
 	CONSTRAINT d_basis_oprindelse_pk PRIMARY KEY (oprindkode)
 
 );
@@ -166,6 +166,7 @@ CREATE TABLE fkg.d_basis_afstemningsomraade(
 	afstemningsomraade_nr character varying(128) NOT NULL,
 	afstemningsomraade_navn character varying(128) NOT NULL,
 	cvr character varying,
+	aktiv integer NOT NULL,
 	CONSTRAINT d_basis_afstemningsomraade_pk PRIMARY KEY (afstemningsomraade_nr)
 
 );
@@ -230,6 +231,8 @@ CREATE TABLE fkg.d_basis_omraade(
 	omraade_nr integer NOT NULL,
 	omraade character varying(128) NOT NULL,
 	cvr_kode character varying,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
 	CONSTRAINT d_basis_omraade_pk PRIMARY KEY (omraade_nr)
 
 );
@@ -267,9 +270,9 @@ CREATE TABLE fkg.d_5000_klasse(
 
 );
 -- ddl-end --
--- object: fkg.t_5000_vandl | type: TABLE --
--- DROP TABLE fkg.t_5000_vandl;
-CREATE TABLE fkg.t_5000_vandl(
+-- object: fkg.t_5000_vandl_t | type: TABLE --
+-- DROP TABLE fkg.t_5000_vandl_t;
+CREATE TABLE fkg.t_5000_vandl_t(
 	versions_id uuid NOT NULL,
 	navn character varying(128) NOT NULL,
 	dmu_ref character varying(128),
@@ -302,9 +305,9 @@ CREATE TABLE fkg.t_5000_vandl(
 
 );
 -- ddl-end --
--- object: fkg.temagruppe | type: TABLE --
--- DROP TABLE fkg.temagruppe;
-CREATE TABLE fkg.temagruppe(
+-- object: fkg.d_temagruppe | type: TABLE --
+-- DROP TABLE fkg.d_temagruppe;
+CREATE TABLE fkg.d_temagruppe(
 	temagruppe_id character varying NOT NULL,
 	vaerdiomraade_min integer NOT NULL,
 	vaerdiomraade_max integer NOT NULL,
@@ -314,18 +317,18 @@ CREATE TABLE fkg.temagruppe(
 
 );
 -- ddl-end --
--- object: fkg.tema | type: TABLE --
--- DROP TABLE fkg.tema;
-CREATE TABLE fkg.tema(
+-- object: fkg.d_tabel | type: TABLE --
+-- DROP TABLE fkg.d_tabel;
+CREATE TABLE fkg.d_tabel(
 	tema_kode integer NOT NULL,
 	tema_navn character varying NOT NULL,
 	geo character NOT NULL,
 	udvekslingsnavn character varying NOT NULL,
 	temagruppe_id character varying NOT NULL,
-	CONSTRAINT tema_pk PRIMARY KEY (tema_kode),
+	CONSTRAINT d_tabel_pk PRIMARY KEY (tema_kode),
 	CONSTRAINT geo_ck CHECK (geo IN ('P', 'L', 'F')),
-	CONSTRAINT tema_udvekslingsnavn_uc UNIQUE (udvekslingsnavn),
-	CONSTRAINT tema_temanavn_uc UNIQUE (tema_navn)
+	CONSTRAINT d_tabel_udvekslingsnavn_uc UNIQUE (udvekslingsnavn),
+	CONSTRAINT d_tabel_temanavn_uc UNIQUE (tema_navn)
 
 );
 -- ddl-end --
@@ -406,9 +409,9 @@ CREATE TABLE fkg.d_6100_placering(
 
 );
 -- ddl-end --
--- object: fkg.t_6100_brandhane | type: TABLE --
--- DROP TABLE fkg.t_6100_brandhane;
-CREATE TABLE fkg.t_6100_brandhane(
+-- object: fkg.t_6100_brandhane_t | type: TABLE --
+-- DROP TABLE fkg.t_6100_brandhane_t;
+CREATE TABLE fkg.t_6100_brandhane_t(
 	versions_id uuid NOT NULL,
 	brandhane_id integer,
 	brandhane_type_kode integer NOT NULL,
@@ -445,9 +448,9 @@ CREATE TABLE fkg.d_6102_redvej_type(
 
 );
 -- ddl-end --
--- object: fkg.t_6102_redn_vej | type: TABLE --
--- DROP TABLE fkg.t_6102_redn_vej;
-CREATE TABLE fkg.t_6102_redn_vej(
+-- object: fkg.t_6102_redn_vej_t | type: TABLE --
+-- DROP TABLE fkg.t_6102_redn_vej_t;
+CREATE TABLE fkg.t_6102_redn_vej_t(
 	versions_id uuid NOT NULL,
 	redvej_type_kode integer NOT NULL,
 	redn_underomr character varying(20),
@@ -475,9 +478,9 @@ CREATE TABLE fkg.d_5001_maalest_type(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5001_maalest | type: TABLE --
--- DROP TABLE fkg.t_5001_maalest;
-CREATE TABLE fkg.t_5001_maalest(
+-- object: fkg.t_5001_maalest_t | type: TABLE --
+-- DROP TABLE fkg.t_5001_maalest_t;
+CREATE TABLE fkg.t_5001_maalest_t(
 	versions_id uuid NOT NULL,
 	stationsnr character varying(20) NOT NULL,
 	lokalitet character varying(128),
@@ -513,9 +516,9 @@ CREATE TABLE fkg.d_5002_passage(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5002_faunasp | type: TABLE --
--- DROP TABLE fkg.t_5002_faunasp;
-CREATE TABLE fkg.t_5002_faunasp(
+-- object: fkg.t_5002_faunasp_t | type: TABLE --
+-- DROP TABLE fkg.t_5002_faunasp_t;
+CREATE TABLE fkg.t_5002_faunasp_t(
 	versions_id uuid NOT NULL,
 	spaerring_nr character varying(20),
 	spaerring_type_kode integer NOT NULL,
@@ -555,9 +558,9 @@ CREATE TABLE fkg.d_5003_klasse(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5003_draenledn | type: TABLE --
--- DROP TABLE fkg.t_5003_draenledn;
-CREATE TABLE fkg.t_5003_draenledn(
+-- object: fkg.t_5003_draenledn_t | type: TABLE --
+-- DROP TABLE fkg.t_5003_draenledn_t;
+CREATE TABLE fkg.t_5003_draenledn_t(
 	versions_id uuid NOT NULL,
 	ledn_nr character varying(20),
 	ledn_type_kode integer,
@@ -587,9 +590,9 @@ CREATE TABLE fkg.d_5004_omr_type(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5004_draenomr | type: TABLE --
--- DROP TABLE fkg.t_5004_draenomr;
-CREATE TABLE fkg.t_5004_draenomr(
+-- object: fkg.t_5004_draenomr_t | type: TABLE --
+-- DROP TABLE fkg.t_5004_draenomr_t;
+CREATE TABLE fkg.t_5004_draenomr_t(
 	versions_id uuid NOT NULL,
 	omr_navn character varying(128),
 	omr_type_kode integer NOT NULL,
@@ -637,9 +640,9 @@ CREATE TABLE fkg.d_5005_habitat_type(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5005_soe | type: TABLE --
--- DROP TABLE fkg.t_5005_soe;
-CREATE TABLE fkg.t_5005_soe(
+-- object: fkg.t_5005_soe_t | type: TABLE --
+-- DROP TABLE fkg.t_5005_soe_t;
+CREATE TABLE fkg.t_5005_soe_t(
 	versions_id uuid NOT NULL,
 	soe_navn character varying(50) NOT NULL,
 	dmu_ref character varying(50),
@@ -662,9 +665,9 @@ CREATE TABLE fkg.t_5005_soe(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5006_dybdekurv | type: TABLE --
--- DROP TABLE fkg.t_5006_dybdekurv;
-CREATE TABLE fkg.t_5006_dybdekurv(
+-- object: fkg.t_5006_dybdekurv_t | type: TABLE --
+-- DROP TABLE fkg.t_5006_dybdekurv_t;
+CREATE TABLE fkg.t_5006_dybdekurv_t(
 	versions_id uuid NOT NULL,
 	soe_navn character varying(128),
 	dmu_ref character varying(50),
@@ -706,9 +709,9 @@ CREATE TABLE fkg.d_5007_opl_type(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5007_vandl_opl | type: TABLE --
--- DROP TABLE fkg.t_5007_vandl_opl;
-CREATE TABLE fkg.t_5007_vandl_opl(
+-- object: fkg.t_5007_vandl_opl_t | type: TABLE --
+-- DROP TABLE fkg.t_5007_vandl_opl_t;
+CREATE TABLE fkg.t_5007_vandl_opl_t(
 	versions_id uuid NOT NULL,
 	vandloeb_nr character varying(128),
 	dmu_ref character varying(128),
@@ -732,9 +735,9 @@ CREATE TABLE fkg.d_5008_opl(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5008_soe_opl | type: TABLE --
--- DROP TABLE fkg.t_5008_soe_opl;
-CREATE TABLE fkg.t_5008_soe_opl(
+-- object: fkg.t_5008_soe_opl_t | type: TABLE --
+-- DROP TABLE fkg.t_5008_soe_opl_t;
+CREATE TABLE fkg.t_5008_soe_opl_t(
 	versions_id uuid NOT NULL,
 	dmu_ref character varying(128),
 	soe_opl_nr integer NOT NULL,
@@ -758,9 +761,9 @@ CREATE TABLE fkg.d_5009_lag_type(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5009_pumpelag | type: TABLE --
--- DROP TABLE fkg.t_5009_pumpelag;
-CREATE TABLE fkg.t_5009_pumpelag(
+-- object: fkg.t_5009_pumpelag_t | type: TABLE --
+-- DROP TABLE fkg.t_5009_pumpelag_t;
+CREATE TABLE fkg.t_5009_pumpelag_t(
 	versions_id uuid NOT NULL,
 	lag_navn character varying(128),
 	lag_type_kode integer NOT NULL,
@@ -783,9 +786,9 @@ CREATE TABLE fkg.d_5010_element_type(
 
 )WITH ( OIDS = TRUE );
 -- ddl-end --
--- object: fkg.t_5010_vandl_elm | type: TABLE --
--- DROP TABLE fkg.t_5010_vandl_elm;
-CREATE TABLE fkg.t_5010_vandl_elm(
+-- object: fkg.t_5010_vandl_elm_t | type: TABLE --
+-- DROP TABLE fkg.t_5010_vandl_elm_t;
+CREATE TABLE fkg.t_5010_vandl_elm_t(
 	versions_id uuid NOT NULL,
 	element_nr character varying(20),
 	element_kode integer NOT NULL,
@@ -817,9 +820,9 @@ CREATE TABLE fkg.d_5105_kaer_type(
 
 );
 -- ddl-end --
--- object: fkg.t_5105_rig_fattig | type: TABLE --
--- DROP TABLE fkg.t_5105_rig_fattig;
-CREATE TABLE fkg.t_5105_rig_fattig(
+-- object: fkg.t_5105_rig_fattig_t | type: TABLE --
+-- DROP TABLE fkg.t_5105_rig_fattig_t;
+CREATE TABLE fkg.t_5105_rig_fattig_t(
 	versions_id uuid NOT NULL,
 	stedid integer,
 	natura_2000 integer,
@@ -856,9 +859,9 @@ CREATE TABLE fkg.d_5106_faciliteter(
 
 );
 -- ddl-end --
--- object: fkg.t_5106_nat_pl | type: TABLE --
--- DROP TABLE fkg.t_5106_nat_pl;
-CREATE TABLE fkg.t_5106_nat_pl(
+-- object: fkg.t_5106_nat_pl_t | type: TABLE --
+-- DROP TABLE fkg.t_5106_nat_pl_t;
+CREATE TABLE fkg.t_5106_nat_pl_t(
 	versions_id uuid NOT NULL,
 	pleje_type_kode integer NOT NULL,
 	omr_nr integer,
@@ -893,9 +896,9 @@ CREATE TABLE fkg.t_5106_nat_pl(
 
 );
 -- ddl-end --
--- object: fkg.t_5108_groent_part | type: TABLE --
--- DROP TABLE fkg.t_5108_groent_part;
-CREATE TABLE fkg.t_5108_groent_part(
+-- object: fkg.t_5108_groent_part_t | type: TABLE --
+-- DROP TABLE fkg.t_5108_groent_part_t;
+CREATE TABLE fkg.t_5108_groent_part_t(
 	versions_id uuid NOT NULL,
 	navn character varying(150) NOT NULL,
 	kontakt_navn character varying(150),
@@ -912,9 +915,9 @@ CREATE TABLE fkg.t_5108_groent_part(
 
 );
 -- ddl-end --
--- object: fkg.t_5300_genopd_ret | type: TABLE --
--- DROP TABLE fkg.t_5300_genopd_ret;
-CREATE TABLE fkg.t_5300_genopd_ret(
+-- object: fkg.t_5300_genopd_ret_t | type: TABLE --
+-- DROP TABLE fkg.t_5300_genopd_ret_t;
+CREATE TABLE fkg.t_5300_genopd_ret_t(
 	versions_id uuid NOT NULL,
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
@@ -940,9 +943,9 @@ CREATE TABLE fkg.d_5400_affalds_type(
 
 );
 -- ddl-end --
--- object: fkg.t_5400_affalds_dis | type: TABLE --
--- DROP TABLE fkg.t_5400_affalds_dis;
-CREATE TABLE fkg.t_5400_affalds_dis(
+-- object: fkg.t_5400_affalds_dis_t | type: TABLE --
+-- DROP TABLE fkg.t_5400_affalds_dis_t;
+CREATE TABLE fkg.t_5400_affalds_dis_t(
 	versions_id uuid NOT NULL,
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
@@ -1502,9 +1505,9 @@ CREATE TABLE fkg.d_6803_pg_distrikt(
 
 );
 -- ddl-end --
--- object: fkg.t_5401_genbr_st | type: TABLE --
--- DROP TABLE fkg.t_5401_genbr_st;
-CREATE TABLE fkg.t_5401_genbr_st(
+-- object: fkg.t_5401_genbr_st_t | type: TABLE --
+-- DROP TABLE fkg.t_5401_genbr_st_t;
+CREATE TABLE fkg.t_5401_genbr_st_t(
 	versions_id uuid NOT NULL,
 	gs_navn character varying(50),
 	gs_type_kode integer NOT NULL,
@@ -1519,9 +1522,9 @@ CREATE TABLE fkg.t_5401_genbr_st(
 
 );
 -- ddl-end --
--- object: fkg.t_5402_genbr_con | type: TABLE --
--- DROP TABLE fkg.t_5402_genbr_con;
-CREATE TABLE fkg.t_5402_genbr_con(
+-- object: fkg.t_5402_genbr_con_t | type: TABLE --
+-- DROP TABLE fkg.t_5402_genbr_con_t;
+CREATE TABLE fkg.t_5402_genbr_con_t(
 	versions_id uuid NOT NULL,
 	gc_type_kode integer NOT NULL,
 	model character varying(25),
@@ -1534,9 +1537,9 @@ CREATE TABLE fkg.t_5402_genbr_con(
 
 );
 -- ddl-end --
--- object: fkg.t_5508_husst_moel | type: TABLE --
--- DROP TABLE fkg.t_5508_husst_moel;
-CREATE TABLE fkg.t_5508_husst_moel(
+-- object: fkg.t_5508_husst_moel_t | type: TABLE --
+-- DROP TABLE fkg.t_5508_husst_moel_t;
+CREATE TABLE fkg.t_5508_husst_moel_t(
 	versions_id uuid NOT NULL,
 	moelletype character varying(50) NOT NULL,
 	hoejde double precision,
@@ -1556,9 +1559,9 @@ CREATE TABLE fkg.t_5508_husst_moel(
 
 );
 -- ddl-end --
--- object: fkg.t_5200_aff_prod_udbr | type: TABLE --
--- DROP TABLE fkg.t_5200_aff_prod_udbr;
-CREATE TABLE fkg.t_5200_aff_prod_udbr(
+-- object: fkg.t_5200_aff_prod_udbr_t | type: TABLE --
+-- DROP TABLE fkg.t_5200_aff_prod_udbr_t;
+CREATE TABLE fkg.t_5200_aff_prod_udbr_t(
 	versions_id uuid NOT NULL,
 	affald_prod_kode integer NOT NULL,
 	navn character varying(50) NOT NULL,
@@ -1585,9 +1588,9 @@ CREATE TABLE fkg.t_5200_aff_prod_udbr(
 
 );
 -- ddl-end --
--- object: fkg.t_5500_elfors_omr | type: TABLE --
--- DROP TABLE fkg.t_5500_elfors_omr;
-CREATE TABLE fkg.t_5500_elfors_omr(
+-- object: fkg.t_5500_elfors_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_5500_elfors_omr_t;
+CREATE TABLE fkg.t_5500_elfors_omr_t(
 	versions_id uuid NOT NULL,
 	net_s_nr integer,
 	fs_cvr integer NOT NULL,
@@ -1600,9 +1603,9 @@ CREATE TABLE fkg.t_5500_elfors_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_5506_spildev_pl_pkt | type: TABLE --
--- DROP TABLE fkg.t_5506_spildev_pl_pkt;
-CREATE TABLE fkg.t_5506_spildev_pl_pkt(
+-- object: fkg.t_5506_spildev_pl_pkt_t | type: TABLE --
+-- DROP TABLE fkg.t_5506_spildev_pl_pkt_t;
+CREATE TABLE fkg.t_5506_spildev_pl_pkt_t(
 	versions_id uuid NOT NULL,
 	anlaeg_type_kode integer NOT NULL,
 	planstatus_kode integer NOT NULL,
@@ -1613,9 +1616,9 @@ CREATE TABLE fkg.t_5506_spildev_pl_pkt(
 
 );
 -- ddl-end --
--- object: fkg.t_5507_fiberkabel | type: TABLE --
--- DROP TABLE fkg.t_5507_fiberkabel;
-CREATE TABLE fkg.t_5507_fiberkabel(
+-- object: fkg.t_5507_fiberkabel_t | type: TABLE --
+-- DROP TABLE fkg.t_5507_fiberkabel_t;
+CREATE TABLE fkg.t_5507_fiberkabel_t(
 	versions_id uuid NOT NULL,
 	fs_cvr integer,
 	fs_navn character varying(128),
@@ -1632,9 +1635,9 @@ CREATE TABLE fkg.t_5507_fiberkabel(
 
 );
 -- ddl-end --
--- object: fkg.t_5800_fac_pkt | type: TABLE --
--- DROP TABLE fkg.t_5800_fac_pkt;
-CREATE TABLE fkg.t_5800_fac_pkt(
+-- object: fkg.t_5800_fac_pkt_t | type: TABLE --
+-- DROP TABLE fkg.t_5800_fac_pkt_t;
+CREATE TABLE fkg.t_5800_fac_pkt_t(
 	versions_id uuid NOT NULL,
 	facilitet_type_kode integer NOT NULL,
 	ejerstatus_kode integer,
@@ -1651,9 +1654,9 @@ CREATE TABLE fkg.t_5800_fac_pkt(
 
 );
 -- ddl-end --
--- object: fkg.t_5802_fac_li | type: TABLE --
--- DROP TABLE fkg.t_5802_fac_li;
-CREATE TABLE fkg.t_5802_fac_li(
+-- object: fkg.t_5802_fac_li_t | type: TABLE --
+-- DROP TABLE fkg.t_5802_fac_li_t;
+CREATE TABLE fkg.t_5802_fac_li_t(
 	versions_id uuid NOT NULL,
 	facilitet_type_kode integer NOT NULL,
 	ejerstatus_kode integer,
@@ -1670,9 +1673,9 @@ CREATE TABLE fkg.t_5802_fac_li(
 
 );
 -- ddl-end --
--- object: fkg.t_5900_jordfl | type: TABLE --
--- DROP TABLE fkg.t_5900_jordfl;
-CREATE TABLE fkg.t_5900_jordfl(
+-- object: fkg.t_5900_jordfl_t | type: TABLE --
+-- DROP TABLE fkg.t_5900_jordfl_t;
+CREATE TABLE fkg.t_5900_jordfl_t(
 	versions_id uuid NOT NULL,
 	afs_vejkode integer,
 	afs_cvf_vejkode char(7),
@@ -1704,9 +1707,9 @@ CREATE TABLE fkg.t_5900_jordfl(
 
 );
 -- ddl-end --
--- object: fkg.t_5901_raastof_till | type: TABLE --
--- DROP TABLE fkg.t_5901_raastof_till;
-CREATE TABLE fkg.t_5901_raastof_till(
+-- object: fkg.t_5901_raastof_till_t | type: TABLE --
+-- DROP TABLE fkg.t_5901_raastof_till_t;
+CREATE TABLE fkg.t_5901_raastof_till_t(
 	versions_id uuid NOT NULL,
 	indv_navn character varying(128),
 	indv_cvr integer NOT NULL,
@@ -1725,9 +1728,9 @@ CREATE TABLE fkg.t_5901_raastof_till(
 
 );
 -- ddl-end --
--- object: fkg.t_5902_jordv_anl | type: TABLE --
--- DROP TABLE fkg.t_5902_jordv_anl;
-CREATE TABLE fkg.t_5902_jordv_anl(
+-- object: fkg.t_5902_jordv_anl_t | type: TABLE --
+-- DROP TABLE fkg.t_5902_jordv_anl_t;
+CREATE TABLE fkg.t_5902_jordv_anl_t(
 	versions_id uuid NOT NULL,
 	brine character varying(50),
 	strenge_antal integer,
@@ -1750,9 +1753,9 @@ CREATE TABLE fkg.t_5902_jordv_anl(
 
 );
 -- ddl-end --
--- object: fkg.t_5104_art_invas | type: TABLE --
--- DROP TABLE fkg.t_5104_art_invas;
-CREATE TABLE fkg.t_5104_art_invas(
+-- object: fkg.t_5104_art_invas_t | type: TABLE --
+-- DROP TABLE fkg.t_5104_art_invas_t;
+CREATE TABLE fkg.t_5104_art_invas_t(
 	versions_id uuid NOT NULL,
 	dnavn character varying(50) NOT NULL,
 	lnavn character varying(50),
@@ -1771,16 +1774,16 @@ CREATE TABLE fkg.t_5104_art_invas(
 
 );
 -- ddl-end --
--- object: fkg.t_5107_art_invas_p | type: TABLE --
--- DROP TABLE fkg.t_5107_art_invas_p;
-CREATE TABLE fkg.t_5107_art_invas_p(
+-- object: fkg.t_5107_art_invas_p_t | type: TABLE --
+-- DROP TABLE fkg.t_5107_art_invas_p_t;
+CREATE TABLE fkg.t_5107_art_invas_p_t(
 	versions_id uuid NOT NULL,
 	dnavn character varying(50) NOT NULL,
 	lnavn character varying(50),
 	nobanis_invasiv_opt character varying(50),
 	rige_dk character varying(50),
 	sortlistet_kode integer,
-	nogle character varying(128),
+	noegle character varying(128),
 	inventoer character varying(30),
 	antal_kode integer NOT NULL,
 	forekomst character varying(128),
@@ -1803,9 +1806,9 @@ CREATE TABLE fkg.d_5508_stoej(
 
 );
 -- ddl-end --
--- object: fkg.t_5600_vintervedl | type: TABLE --
--- DROP TABLE fkg.t_5600_vintervedl;
-CREATE TABLE fkg.t_5600_vintervedl(
+-- object: fkg.t_5600_vintervedl_t | type: TABLE --
+-- DROP TABLE fkg.t_5600_vintervedl_t;
+CREATE TABLE fkg.t_5600_vintervedl_t(
 	versions_id uuid NOT NULL,
 	rute_kode integer NOT NULL,
 	rute_entreprenoer_sne character varying(128),
@@ -1818,9 +1821,9 @@ CREATE TABLE fkg.t_5600_vintervedl(
 
 );
 -- ddl-end --
--- object: fkg.t_5601_hasti_daemp | type: TABLE --
--- DROP TABLE fkg.t_5601_hasti_daemp;
-CREATE TABLE fkg.t_5601_hasti_daemp(
+-- object: fkg.t_5601_hasti_daemp_t | type: TABLE --
+-- DROP TABLE fkg.t_5601_hasti_daemp_t;
+CREATE TABLE fkg.t_5601_hasti_daemp_t(
 	versions_id uuid NOT NULL,
 	hasti_type_kode integer NOT NULL,
 	hastighed_kode integer NOT NULL,
@@ -1830,9 +1833,9 @@ CREATE TABLE fkg.t_5601_hasti_daemp(
 
 );
 -- ddl-end --
--- object: fkg.t_5602_p_zoner | type: TABLE --
--- DROP TABLE fkg.t_5602_p_zoner;
-CREATE TABLE fkg.t_5602_p_zoner(
+-- object: fkg.t_5602_p_zoner_t | type: TABLE --
+-- DROP TABLE fkg.t_5602_p_zoner_t;
+CREATE TABLE fkg.t_5602_p_zoner_t(
 	versions_id uuid NOT NULL,
 	p_type_kode integer NOT NULL,
 	p_tid_kode integer,
@@ -1857,9 +1860,9 @@ CREATE TABLE fkg.t_5602_p_zoner(
 
 );
 -- ddl-end --
--- object: fkg.t_5603_hasti_zone | type: TABLE --
--- DROP TABLE fkg.t_5603_hasti_zone;
-CREATE TABLE fkg.t_5603_hasti_zone(
+-- object: fkg.t_5603_hasti_zone_t | type: TABLE --
+-- DROP TABLE fkg.t_5603_hasti_zone_t;
+CREATE TABLE fkg.t_5603_hasti_zone_t(
 	versions_id uuid NOT NULL,
 	hastighed_kode integer NOT NULL,
 	anbefalet_hastighed_kode integer NOT NULL,
@@ -1869,9 +1872,9 @@ CREATE TABLE fkg.t_5603_hasti_zone(
 
 );
 -- ddl-end --
--- object: fkg.t_5604_koer_begr | type: TABLE --
--- DROP TABLE fkg.t_5604_koer_begr;
-CREATE TABLE fkg.t_5604_koer_begr(
+-- object: fkg.t_5604_koer_begr_t | type: TABLE --
+-- DROP TABLE fkg.t_5604_koer_begr_t;
+CREATE TABLE fkg.t_5604_koer_begr_t(
 	versions_id uuid,
 	begr_type_kode integer NOT NULL,
 	periode character varying(50) NOT NULL,
@@ -1887,9 +1890,9 @@ CREATE TABLE fkg.t_5604_koer_begr(
 
 );
 -- ddl-end --
--- object: fkg.t_5605_vejbyggel | type: TABLE --
--- DROP TABLE fkg.t_5605_vejbyggel;
-CREATE TABLE fkg.t_5605_vejbyggel(
+-- object: fkg.t_5605_vejbyggel_t | type: TABLE --
+-- DROP TABLE fkg.t_5605_vejbyggel_t;
+CREATE TABLE fkg.t_5605_vejbyggel_t(
 	versions_id uuid NOT NULL,
 	dekl_type_kode integer NOT NULL,
 	vejkode integer,
@@ -1906,9 +1909,9 @@ CREATE TABLE fkg.t_5605_vejbyggel(
 
 );
 -- ddl-end --
--- object: fkg.t_5606_vejinv | type: TABLE --
--- DROP TABLE fkg.t_5606_vejinv;
-CREATE TABLE fkg.t_5606_vejinv(
+-- object: fkg.t_5606_vejinv_t | type: TABLE --
+-- DROP TABLE fkg.t_5606_vejinv_t;
+CREATE TABLE fkg.t_5606_vejinv_t(
 	versions_id uuid NOT NULL,
 	inventar_nr character varying(50),
 	inventar_type_kode integer NOT NULL,
@@ -1920,9 +1923,9 @@ CREATE TABLE fkg.t_5606_vejinv(
 
 );
 -- ddl-end --
--- object: fkg.t_5700_grundej | type: TABLE --
--- DROP TABLE fkg.t_5700_grundej;
-CREATE TABLE fkg.t_5700_grundej(
+-- object: fkg.t_5700_grundej_t | type: TABLE --
+-- DROP TABLE fkg.t_5700_grundej_t;
+CREATE TABLE fkg.t_5700_grundej_t(
 	versions_id uuid NOT NULL,
 	forening_type_kode integer NOT NULL,
 	forening_navn character varying(50) NOT NULL,
@@ -1941,9 +1944,9 @@ CREATE TABLE fkg.t_5700_grundej(
 
 );
 -- ddl-end --
--- object: fkg.t_5701_lok_omr | type: TABLE --
--- DROP TABLE fkg.t_5701_lok_omr;
-CREATE TABLE fkg.t_5701_lok_omr(
+-- object: fkg.t_5701_lok_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_5701_lok_omr_t;
+CREATE TABLE fkg.t_5701_lok_omr_t(
 	versions_id uuid NOT NULL,
 	lokalraad_navn character varying(128) NOT NULL,
 	noegle character varying(128),
@@ -1953,9 +1956,9 @@ CREATE TABLE fkg.t_5701_lok_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_5702_skorst_fej | type: TABLE --
--- DROP TABLE fkg.t_5702_skorst_fej;
-CREATE TABLE fkg.t_5702_skorst_fej(
+-- object: fkg.t_5702_skorst_fej_t | type: TABLE --
+-- DROP TABLE fkg.t_5702_skorst_fej_t;
+CREATE TABLE fkg.t_5702_skorst_fej_t(
 	versions_id uuid NOT NULL,
 	skorstenf_distrikt_nr integer,
 	skorstenf_distrikt_navn character varying(128),
@@ -1974,9 +1977,9 @@ CREATE TABLE fkg.t_5702_skorst_fej(
 
 );
 -- ddl-end --
--- object: fkg.t_5703_afstem_sted | type: TABLE --
--- DROP TABLE fkg.t_5703_afstem_sted;
-CREATE TABLE fkg.t_5703_afstem_sted(
+-- object: fkg.t_5703_afstem_sted_t | type: TABLE --
+-- DROP TABLE fkg.t_5703_afstem_sted_t;
+CREATE TABLE fkg.t_5703_afstem_sted_t(
 	versions_id uuid NOT NULL,
 	afstemningsomraade_nr character varying(128) NOT NULL,
 	lokalitet character varying(128),
@@ -1991,9 +1994,9 @@ CREATE TABLE fkg.t_5703_afstem_sted(
 
 );
 -- ddl-end --
--- object: fkg.t_5704_afstem_omr | type: TABLE --
--- DROP TABLE fkg.t_5704_afstem_omr;
-CREATE TABLE fkg.t_5704_afstem_omr(
+-- object: fkg.t_5704_afstem_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_5704_afstem_omr_t;
+CREATE TABLE fkg.t_5704_afstem_omr_t(
 	versions_id uuid NOT NULL,
 	afstemningsomraade_nr character varying(128) NOT NULL,
 	opstillingskreds_nr integer,
@@ -2011,9 +2014,9 @@ CREATE TABLE fkg.t_5704_afstem_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_5705_forp_are | type: TABLE --
--- DROP TABLE fkg.t_5705_forp_are;
-CREATE TABLE fkg.t_5705_forp_are(
+-- object: fkg.t_5705_forp_are_t | type: TABLE --
+-- DROP TABLE fkg.t_5705_forp_are_t;
+CREATE TABLE fkg.t_5705_forp_are_t(
 	versions_id uuid NOT NULL,
 	forpagter_navn character varying(128) NOT NULL,
 	forpagter_formaal character varying(128),
@@ -2029,9 +2032,9 @@ CREATE TABLE fkg.t_5705_forp_are(
 
 );
 -- ddl-end --
--- object: fkg.t_5706_havn_are | type: TABLE --
--- DROP TABLE fkg.t_5706_havn_are;
-CREATE TABLE fkg.t_5706_havn_are(
+-- object: fkg.t_5706_havn_are_t | type: TABLE --
+-- DROP TABLE fkg.t_5706_havn_are_t;
+CREATE TABLE fkg.t_5706_havn_are_t(
 	versions_id uuid NOT NULL,
 	havn_nr integer,
 	havn_navn character varying(128),
@@ -2046,9 +2049,9 @@ CREATE TABLE fkg.t_5706_havn_are(
 
 );
 -- ddl-end --
--- object: fkg.t_5707_grunds | type: TABLE --
--- DROP TABLE fkg.t_5707_grunds;
-CREATE TABLE fkg.t_5707_grunds(
+-- object: fkg.t_5707_grunds_t | type: TABLE --
+-- DROP TABLE fkg.t_5707_grunds_t;
+CREATE TABLE fkg.t_5707_grunds_t(
 	versions_id uuid NOT NULL,
 	udstyk_navn character varying(50),
 	grund_type_kode integer NOT NULL,
@@ -2076,9 +2079,9 @@ CREATE TABLE fkg.t_5707_grunds(
 
 );
 -- ddl-end --
--- object: fkg.t_5710_born_skole_dis | type: TABLE --
--- DROP TABLE fkg.t_5710_born_skole_dis;
-CREATE TABLE fkg.t_5710_born_skole_dis(
+-- object: fkg.t_5710_born_skole_dis_t | type: TABLE --
+-- DROP TABLE fkg.t_5710_born_skole_dis_t;
+CREATE TABLE fkg.t_5710_born_skole_dis_t(
 	versions_id uuid NOT NULL,
 	udd_distrikt_nr integer,
 	udd_distrikt_navn character varying(128),
@@ -2093,9 +2096,9 @@ CREATE TABLE fkg.t_5710_born_skole_dis(
 
 );
 -- ddl-end --
--- object: fkg.t_5711_and_dis | type: TABLE --
--- DROP TABLE fkg.t_5711_and_dis;
-CREATE TABLE fkg.t_5711_and_dis(
+-- object: fkg.t_5711_and_dis_t | type: TABLE --
+-- DROP TABLE fkg.t_5711_and_dis_t;
+CREATE TABLE fkg.t_5711_and_dis_t(
 	versions_id uuid NOT NULL,
 	an_distrikt_nr integer,
 	an_distrikt_navn character varying(128),
@@ -2109,9 +2112,9 @@ CREATE TABLE fkg.t_5711_and_dis(
 
 );
 -- ddl-end --
--- object: fkg.t_5712_plej_aeldr_dis | type: TABLE --
--- DROP TABLE fkg.t_5712_plej_aeldr_dis;
-CREATE TABLE fkg.t_5712_plej_aeldr_dis(
+-- object: fkg.t_5712_plej_aeldr_dis_t | type: TABLE --
+-- DROP TABLE fkg.t_5712_plej_aeldr_dis_t;
+CREATE TABLE fkg.t_5712_plej_aeldr_dis_t(
 	versions_id uuid NOT NULL,
 	plej_distrikt_nr integer,
 	plej_distrikt_navn character varying(128),
@@ -2125,9 +2128,9 @@ CREATE TABLE fkg.t_5712_plej_aeldr_dis(
 
 );
 -- ddl-end --
--- object: fkg.t_5713_prog_stat_dis | type: TABLE --
--- DROP TABLE fkg.t_5713_prog_stat_dis;
-CREATE TABLE fkg.t_5713_prog_stat_dis(
+-- object: fkg.t_5713_prog_stat_dis_t | type: TABLE --
+-- DROP TABLE fkg.t_5713_prog_stat_dis_t;
+CREATE TABLE fkg.t_5713_prog_stat_dis_t(
 	versions_id uuid NOT NULL,
 	prog_distrikt_nr integer,
 	prog_distrikt_navn character varying(128),
@@ -2141,9 +2144,9 @@ CREATE TABLE fkg.t_5713_prog_stat_dis(
 
 );
 -- ddl-end --
--- object: fkg.t_5714_laering_udd_inst | type: TABLE --
--- DROP TABLE fkg.t_5714_laering_udd_inst;
-CREATE TABLE fkg.t_5714_laering_udd_inst(
+-- object: fkg.t_5714_laering_udd_inst_t | type: TABLE --
+-- DROP TABLE fkg.t_5714_laering_udd_inst_t;
+CREATE TABLE fkg.t_5714_laering_udd_inst_t(
 	versions_id uuid NOT NULL,
 	udd_institution_type_kode integer NOT NULL,
 	ejerstatus_kode integer,
@@ -2161,9 +2164,9 @@ CREATE TABLE fkg.t_5714_laering_udd_inst(
 
 );
 -- ddl-end --
--- object: fkg.t_5715_botilbud | type: TABLE --
--- DROP TABLE fkg.t_5715_botilbud;
-CREATE TABLE fkg.t_5715_botilbud(
+-- object: fkg.t_5715_botilbud_t | type: TABLE --
+-- DROP TABLE fkg.t_5715_botilbud_t;
+CREATE TABLE fkg.t_5715_botilbud_t(
 	versions_id uuid NOT NULL,
 	botilbud_type_kode integer NOT NULL,
 	ejerstatus_kode integer,
@@ -2179,14 +2182,14 @@ CREATE TABLE fkg.t_5715_botilbud(
 
 );
 -- ddl-end --
--- object: fkg.t_5716_servicetilbud | type: TABLE --
--- DROP TABLE fkg.t_5716_servicetilbud;
-CREATE TABLE fkg.t_5716_servicetilbud(
+-- object: fkg.t_5716_servicetilbud_t | type: TABLE --
+-- DROP TABLE fkg.t_5716_servicetilbud_t;
+CREATE TABLE fkg.t_5716_servicetilbud_t(
 	versions_id uuid NOT NULL,
 	service_type_kode integer NOT NULL,
 	ejerstatus_kode integer,
 	servicetilbud_navn character varying(128) NOT NULL,
-	nogle character varying(128),
+	noegle character varying(128),
 	vejkode integer,
 	cvf_vejkode character(7),
 	husnr character varying(4),
@@ -2269,7 +2272,7 @@ CREATE TABLE fkg.d_5715_botilbud_type(
 	botilbud_type_kode integer NOT NULL,
 	botilbud_type character varying(30) NOT NULL,
 	aktiv integer NOT NULL,
-	"Begrebsdefinition" character varying,
+	begrebsdefinition character varying,
 	CONSTRAINT d_5715_botilbud_type_pk PRIMARY KEY (botilbud_type_kode)
 
 );
@@ -2285,9 +2288,9 @@ CREATE TABLE fkg.d_5716_servicetilbud_type(
 
 );
 -- ddl-end --
--- object: fkg.t_6000_pot | type: TABLE --
--- DROP TABLE fkg.t_6000_pot;
-CREATE TABLE fkg.t_6000_pot(
+-- object: fkg.t_6000_pot_t | type: TABLE --
+-- DROP TABLE fkg.t_6000_pot_t;
+CREATE TABLE fkg.t_6000_pot_t(
 	versions_id uuid NOT NULL,
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
@@ -2309,9 +2312,9 @@ CREATE TABLE fkg.t_6000_pot(
 
 );
 -- ddl-end --
--- object: fkg.t_6001_pot_m | type: TABLE --
--- DROP TABLE fkg.t_6001_pot_m;
-CREATE TABLE fkg.t_6001_pot_m(
+-- object: fkg.t_6001_pot_m_t | type: TABLE --
+-- DROP TABLE fkg.t_6001_pot_m_t;
+CREATE TABLE fkg.t_6001_pot_m_t(
 	versions_id uuid NOT NULL,
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
@@ -2333,9 +2336,9 @@ CREATE TABLE fkg.t_6001_pot_m(
 
 );
 -- ddl-end --
--- object: fkg.t_6002_indv | type: TABLE --
--- DROP TABLE fkg.t_6002_indv;
-CREATE TABLE fkg.t_6002_indv(
+-- object: fkg.t_6002_indv_t | type: TABLE --
+-- DROP TABLE fkg.t_6002_indv_t;
+CREATE TABLE fkg.t_6002_indv_t(
 	versions_id uuid NOT NULL,
 	vandv_nr character varying(25),
 	gyldig_fra date NOT NULL,
@@ -2356,9 +2359,9 @@ CREATE TABLE fkg.t_6002_indv(
 
 );
 -- ddl-end --
--- object: fkg.t_6003_besk_zone | type: TABLE --
--- DROP TABLE fkg.t_6003_besk_zone;
-CREATE TABLE fkg.t_6003_besk_zone(
+-- object: fkg.t_6003_besk_zone_t | type: TABLE --
+-- DROP TABLE fkg.t_6003_besk_zone_t;
+CREATE TABLE fkg.t_6003_besk_zone_t(
 	versions_id uuid NOT NULL,
 	dgu_nr character varying(10),
 	kildeplads character varying(254),
@@ -2381,9 +2384,9 @@ CREATE TABLE fkg.t_6003_besk_zone(
 
 );
 -- ddl-end --
--- object: fkg.t_6004_vandv_fs | type: TABLE --
--- DROP TABLE fkg.t_6004_vandv_fs;
-CREATE TABLE fkg.t_6004_vandv_fs(
+-- object: fkg.t_6004_vandv_fs_t | type: TABLE --
+-- DROP TABLE fkg.t_6004_vandv_fs_t;
+CREATE TABLE fkg.t_6004_vandv_fs_t(
 	versions_id uuid NOT NULL,
 	vandv_nr character varying(25),
 	fors_omr_type_kode integer,
@@ -2395,9 +2398,9 @@ CREATE TABLE fkg.t_6004_vandv_fs(
 
 );
 -- ddl-end --
--- object: fkg.t_6006_grundv_opl | type: TABLE --
--- DROP TABLE fkg.t_6006_grundv_opl;
-CREATE TABLE fkg.t_6006_grundv_opl(
+-- object: fkg.t_6006_grundv_opl_t | type: TABLE --
+-- DROP TABLE fkg.t_6006_grundv_opl_t;
+CREATE TABLE fkg.t_6006_grundv_opl_t(
 	versions_id uuid NOT NULL,
 	vandv_nr character varying(25),
 	oplandtype character varying(128),
@@ -2410,9 +2413,9 @@ CREATE TABLE fkg.t_6006_grundv_opl(
 
 );
 -- ddl-end --
--- object: fkg.t_6007_inds_omr | type: TABLE --
--- DROP TABLE fkg.t_6007_inds_omr;
-CREATE TABLE fkg.t_6007_inds_omr(
+-- object: fkg.t_6007_inds_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_6007_inds_omr_t;
+CREATE TABLE fkg.t_6007_inds_omr_t(
 	versions_id uuid NOT NULL,
 	indsatsomr_navn character varying(50) NOT NULL,
 	stoerrelse character varying(50),
@@ -2425,9 +2428,9 @@ CREATE TABLE fkg.t_6007_inds_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_6008_maks_bor | type: TABLE --
--- DROP TABLE fkg.t_6008_maks_bor;
-CREATE TABLE fkg.t_6008_maks_bor(
+-- object: fkg.t_6008_maks_bor_t | type: TABLE --
+-- DROP TABLE fkg.t_6008_maks_bor_t;
+CREATE TABLE fkg.t_6008_maks_bor_t(
 	versions_id uuid NOT NULL,
 	boredybde integer NOT NULL,
 	note character varying(254),
@@ -2438,9 +2441,9 @@ CREATE TABLE fkg.t_6008_maks_bor(
 
 );
 -- ddl-end --
--- object: fkg.t_6009_indv_ovflv | type: TABLE --
--- DROP TABLE fkg.t_6009_indv_ovflv;
-CREATE TABLE fkg.t_6009_indv_ovflv(
+-- object: fkg.t_6009_indv_ovflv_t | type: TABLE --
+-- DROP TABLE fkg.t_6009_indv_ovflv_t;
+CREATE TABLE fkg.t_6009_indv_ovflv_t(
 	versions_id uuid NOT NULL,
 	indv_maengde_aar character varying(50),
 	indv_kapacitet double precision,
@@ -2465,9 +2468,9 @@ CREATE TABLE fkg.d_basis_vandv_nr(
 
 );
 -- ddl-end --
--- object: fkg.t_6101_beskyt_rum | type: TABLE --
--- DROP TABLE fkg.t_6101_beskyt_rum;
-CREATE TABLE fkg.t_6101_beskyt_rum(
+-- object: fkg.t_6101_beskyt_rum_t | type: TABLE --
+-- DROP TABLE fkg.t_6101_beskyt_rum_t;
+CREATE TABLE fkg.t_6101_beskyt_rum_t(
 	versions_id uuid NOT NULL,
 	beskyt_rum_kode integer NOT NULL,
 	klargjort_kode integer NOT NULL,
@@ -2479,9 +2482,9 @@ CREATE TABLE fkg.t_6101_beskyt_rum(
 
 );
 -- ddl-end --
--- object: fkg.t_6103_bered_omr | type: TABLE --
--- DROP TABLE fkg.t_6103_bered_omr;
-CREATE TABLE fkg.t_6103_bered_omr(
+-- object: fkg.t_6103_bered_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_6103_bered_omr_t;
+CREATE TABLE fkg.t_6103_bered_omr_t(
 	versions_id uuid NOT NULL,
 	bereds_distrikt_nr integer,
 	bereds_distrikt_navn character varying(128),
@@ -2496,9 +2499,9 @@ CREATE TABLE fkg.t_6103_bered_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_6104_risiko_virk | type: TABLE --
--- DROP TABLE fkg.t_6104_risiko_virk;
-CREATE TABLE fkg.t_6104_risiko_virk(
+-- object: fkg.t_6104_risiko_virk_t | type: TABLE --
+-- DROP TABLE fkg.t_6104_risiko_virk_t;
+CREATE TABLE fkg.t_6104_risiko_virk_t(
 	versions_id uuid NOT NULL,
 	risikotype_kode integer NOT NULL,
 	cvr_risi_virk integer,
@@ -2512,9 +2515,9 @@ CREATE TABLE fkg.t_6104_risiko_virk(
 
 );
 -- ddl-end --
--- object: fkg.t_6105_sbygn_omr | type: TABLE --
--- DROP TABLE fkg.t_6105_sbygn_omr;
-CREATE TABLE fkg.t_6105_sbygn_omr(
+-- object: fkg.t_6105_sbygn_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_6105_sbygn_omr_t;
+CREATE TABLE fkg.t_6105_sbygn_omr_t(
 	versions_id uuid NOT NULL,
 	saer_distrikt_nr integer,
 	saer_distrikt_navn character varying(128),
@@ -2528,9 +2531,9 @@ CREATE TABLE fkg.t_6105_sbygn_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_6107_forholds | type: TABLE --
--- DROP TABLE fkg.t_6107_forholds;
-CREATE TABLE fkg.t_6107_forholds(
+-- object: fkg.t_6107_forholds_t | type: TABLE --
+-- DROP TABLE fkg.t_6107_forholds_t;
+CREATE TABLE fkg.t_6107_forholds_t(
 	versions_id uuid NOT NULL,
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
@@ -2569,9 +2572,9 @@ CREATE TABLE fkg.t_6107_forholds(
 
 );
 -- ddl-end --
--- object: fkg.t_6108_moedepl | type: TABLE --
--- DROP TABLE fkg.t_6108_moedepl;
-CREATE TABLE fkg.t_6108_moedepl(
+-- object: fkg.t_6108_moedepl_t | type: TABLE --
+-- DROP TABLE fkg.t_6108_moedepl_t;
+CREATE TABLE fkg.t_6108_moedepl_t(
 	versions_id uuid NOT NULL,
 	navn character varying(128) NOT NULL,
 	vejkode integer,
@@ -2587,9 +2590,9 @@ CREATE TABLE fkg.t_6108_moedepl(
 
 );
 -- ddl-end --
--- object: fkg.t_6110_noegle | type: TABLE --
--- DROP TABLE fkg.t_6110_noegle;
-CREATE TABLE fkg.t_6110_noegle(
+-- object: fkg.t_6110_noegle_t | type: TABLE --
+-- DROP TABLE fkg.t_6110_noegle_t;
+CREATE TABLE fkg.t_6110_noegle_t(
 	versions_id uuid NOT NULL,
 	bra_kode character varying(50),
 	tyv_alarm_kode integer NOT NULL,
@@ -2606,9 +2609,9 @@ CREATE TABLE fkg.t_6110_noegle(
 
 );
 -- ddl-end --
--- object: fkg.t_6111_fyrv_till | type: TABLE --
--- DROP TABLE fkg.t_6111_fyrv_till;
-CREATE TABLE fkg.t_6111_fyrv_till(
+-- object: fkg.t_6111_fyrv_till_t | type: TABLE --
+-- DROP TABLE fkg.t_6111_fyrv_till_t;
+CREATE TABLE fkg.t_6111_fyrv_till_t(
 	versions_id uuid NOT NULL,
 	firma character varying(128) NOT NULL,
 	vejkode integer,
@@ -2624,9 +2627,9 @@ CREATE TABLE fkg.t_6111_fyrv_till(
 
 );
 -- ddl-end --
--- object: fkg.t_6112_midl_dep | type: TABLE --
--- DROP TABLE fkg.t_6112_midl_dep;
-CREATE TABLE fkg.t_6112_midl_dep(
+-- object: fkg.t_6112_midl_dep_t | type: TABLE --
+-- DROP TABLE fkg.t_6112_midl_dep_t;
+CREATE TABLE fkg.t_6112_midl_dep_t(
 	versions_id uuid NOT NULL,
 	cvr integer NOT NULL,
 	virksomhed_navn character varying(128),
@@ -2641,9 +2644,9 @@ CREATE TABLE fkg.t_6112_midl_dep(
 
 );
 -- ddl-end --
--- object: fkg.t_6113_besk_nat_b | type: TABLE --
--- DROP TABLE fkg.t_6113_besk_nat_b;
-CREATE TABLE fkg.t_6113_besk_nat_b(
+-- object: fkg.t_6113_besk_nat_b_t | type: TABLE --
+-- DROP TABLE fkg.t_6113_besk_nat_b_t;
+CREATE TABLE fkg.t_6113_besk_nat_b_t(
 	versions_id uuid NOT NULL,
 	noegle character varying(128),
 	link character varying(1024),
@@ -2652,9 +2655,9 @@ CREATE TABLE fkg.t_6113_besk_nat_b(
 
 );
 -- ddl-end --
--- object: fkg.t_6114_midl_oph | type: TABLE --
--- DROP TABLE fkg.t_6114_midl_oph;
-CREATE TABLE fkg.t_6114_midl_oph(
+-- object: fkg.t_6114_midl_oph_t | type: TABLE --
+-- DROP TABLE fkg.t_6114_midl_oph_t;
+CREATE TABLE fkg.t_6114_midl_oph_t(
 	versions_id uuid NOT NULL,
 	institution_navn character varying(128) NOT NULL,
 	vejkode integer,
@@ -2674,9 +2677,9 @@ CREATE TABLE fkg.t_6114_midl_oph(
 
 );
 -- ddl-end --
--- object: fkg.t_6115_afbr_omr | type: TABLE --
--- DROP TABLE fkg.t_6115_afbr_omr;
-CREATE TABLE fkg.t_6115_afbr_omr(
+-- object: fkg.t_6115_afbr_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_6115_afbr_omr_t;
+CREATE TABLE fkg.t_6115_afbr_omr_t(
 	versions_id uuid NOT NULL,
 	afbr_nr integer,
 	afbr_navn character varying(128),
@@ -2688,9 +2691,9 @@ CREATE TABLE fkg.t_6115_afbr_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_6116_olie_ber_pl | type: TABLE --
--- DROP TABLE fkg.t_6116_olie_ber_pl;
-CREATE TABLE fkg.t_6116_olie_ber_pl(
+-- object: fkg.t_6116_olie_ber_pl_t | type: TABLE --
+-- DROP TABLE fkg.t_6116_olie_ber_pl_t;
+CREATE TABLE fkg.t_6116_olie_ber_pl_t(
 	versions_id uuid NOT NULL,
 	navn character varying(128),
 	strandtype_kode integer NOT NULL,
@@ -2706,9 +2709,9 @@ CREATE TABLE fkg.t_6116_olie_ber_pl(
 
 );
 -- ddl-end --
--- object: fkg.t_6117_inds_pkt | type: TABLE --
--- DROP TABLE fkg.t_6117_inds_pkt;
-CREATE TABLE fkg.t_6117_inds_pkt(
+-- object: fkg.t_6117_inds_pkt_t | type: TABLE --
+-- DROP TABLE fkg.t_6117_inds_pkt_t;
+CREATE TABLE fkg.t_6117_inds_pkt_t(
 	versions_id uuid NOT NULL,
 	nr_navn character varying(20) NOT NULL,
 	beskrivelse character varying(254),
@@ -2725,9 +2728,9 @@ CREATE TABLE fkg.t_6117_inds_pkt(
 
 );
 -- ddl-end --
--- object: fkg.t_6118_bran_redn | type: TABLE --
--- DROP TABLE fkg.t_6118_bran_redn;
-CREATE TABLE fkg.t_6118_bran_redn(
+-- object: fkg.t_6118_bran_redn_t | type: TABLE --
+-- DROP TABLE fkg.t_6118_bran_redn_t;
+CREATE TABLE fkg.t_6118_bran_redn_t(
 	versions_id uuid NOT NULL,
 	redarea_type_kode integer NOT NULL,
 	rednarea_underomr character varying(20),
@@ -2755,9 +2758,9 @@ CREATE TABLE fkg.d_6118_brand_redarea_type(
 
 );
 -- ddl-end --
--- object: fkg.t_6200_nat_geo | type: TABLE --
--- DROP TABLE fkg.t_6200_nat_geo;
-CREATE TABLE fkg.t_6200_nat_geo(
+-- object: fkg.t_6200_nat_geo_t | type: TABLE --
+-- DROP TABLE fkg.t_6200_nat_geo_t;
+CREATE TABLE fkg.t_6200_nat_geo_t(
 	versions_id uuid NOT NULL,
 	data_oprindelse character varying(128),
 	omraade_nr integer,
@@ -2780,9 +2783,9 @@ CREATE TABLE fkg.t_6200_nat_geo(
 
 );
 -- ddl-end --
--- object: fkg.t_6201_kult_geo | type: TABLE --
--- DROP TABLE fkg.t_6201_kult_geo;
-CREATE TABLE fkg.t_6201_kult_geo(
+-- object: fkg.t_6201_kult_geo_t | type: TABLE --
+-- DROP TABLE fkg.t_6201_kult_geo_t;
+CREATE TABLE fkg.t_6201_kult_geo_t(
 	versions_id uuid NOT NULL,
 	data_oprindelse character varying(128),
 	omraade_nr integer,
@@ -2797,9 +2800,9 @@ CREATE TABLE fkg.t_6201_kult_geo(
 
 );
 -- ddl-end --
--- object: fkg.t_6202_landk_omr | type: TABLE --
--- DROP TABLE fkg.t_6202_landk_omr;
-CREATE TABLE fkg.t_6202_landk_omr(
+-- object: fkg.t_6202_landk_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_6202_landk_omr_t;
+CREATE TABLE fkg.t_6202_landk_omr_t(
 	versions_id uuid NOT NULL,
 	omraade_nr integer,
 	dato_besigtig date,
@@ -2836,9 +2839,9 @@ CREATE TABLE fkg.t_6202_landk_omr(
 
 );
 -- ddl-end --
--- object: fkg.t_6203_landk_vur | type: TABLE --
--- DROP TABLE fkg.t_6203_landk_vur;
-CREATE TABLE fkg.t_6203_landk_vur(
+-- object: fkg.t_6203_landk_vur_t | type: TABLE --
+-- DROP TABLE fkg.t_6203_landk_vur_t;
+CREATE TABLE fkg.t_6203_landk_vur_t(
 	versions_id uuid NOT NULL,
 	omraade_nr integer,
 	delomraade_nr character varying(4),
@@ -2857,9 +2860,9 @@ CREATE TABLE fkg.t_6203_landk_vur(
 
 );
 -- ddl-end --
--- object: fkg.t_6800_parl_fl | type: TABLE --
--- DROP TABLE fkg.t_6800_parl_fl;
-CREATE TABLE fkg.t_6800_parl_fl(
+-- object: fkg.t_6800_parl_fl_t | type: TABLE --
+-- DROP TABLE fkg.t_6800_parl_fl_t;
+CREATE TABLE fkg.t_6800_parl_fl_t(
 	versions_id uuid NOT NULL,
 	vedlhold_f_type_kode integer NOT NULL,
 	arbejdssted character varying(150),
@@ -2892,9 +2895,9 @@ CREATE TABLE fkg.t_6800_parl_fl(
 
 );
 -- ddl-end --
--- object: fkg.t_6801_parl_li | type: TABLE --
--- DROP TABLE fkg.t_6801_parl_li;
-CREATE TABLE fkg.t_6801_parl_li(
+-- object: fkg.t_6801_parl_li_t | type: TABLE --
+-- DROP TABLE fkg.t_6801_parl_li_t;
+CREATE TABLE fkg.t_6801_parl_li_t(
 	versions_id uuid NOT NULL,
 	vedlhold_l_type_kode integer NOT NULL,
 	arbejdssted character varying(150),
@@ -2927,9 +2930,9 @@ CREATE TABLE fkg.t_6801_parl_li(
 
 );
 -- ddl-end --
--- object: fkg.t_6802_parl_pkt | type: TABLE --
--- DROP TABLE fkg.t_6802_parl_pkt;
-CREATE TABLE fkg.t_6802_parl_pkt(
+-- object: fkg.t_6802_parl_pkt_t | type: TABLE --
+-- DROP TABLE fkg.t_6802_parl_pkt_t;
+CREATE TABLE fkg.t_6802_parl_pkt_t(
 	versions_id uuid NOT NULL,
 	vedlhold_p_type_kode integer NOT NULL,
 	arbejdssted character varying(150),
@@ -2938,7 +2941,7 @@ CREATE TABLE fkg.t_6802_parl_pkt(
 	kommunal_kontakt character varying(150),
 	anlaegsaar date,
 	etabl_pleje_udloeb date,
-	udskiftningaar date,
+	udskiftningsaar date,
 	klip_flade double precision,
 	driftniv_kode integer,
 	ukrudtsbek_kode integer,
@@ -2951,14 +2954,14 @@ CREATE TABLE fkg.t_6802_parl_pkt(
 	CONSTRAINT t_6802_parl_pkt_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_6802_parl_pkt_anlaegsaar_ck CHECK (anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31'),
 	CONSTRAINT t_6802_parl_pkt_etabl_pleje_udloeb_ck CHECK (etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31'),
-	CONSTRAINT t_6802_parl_pkt_udskiftningaar_ck CHECK (udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31'),
+	CONSTRAINT t_6802_parl_pkt_udskiftningsaar_ck CHECK (udskiftningsaar BETWEEN '2007-01-01' AND '2999-12-31'),
 	CONSTRAINT t_6802_parl_pkt_klip_flade_ck CHECK (klip_flade BETWEEN 0.01 AND 99999.99)
 
 );
 -- ddl-end --
--- object: fkg.t_6803_parl_omr | type: TABLE --
--- DROP TABLE fkg.t_6803_parl_omr;
-CREATE TABLE fkg.t_6803_parl_omr(
+-- object: fkg.t_6803_parl_omr_t | type: TABLE --
+-- DROP TABLE fkg.t_6803_parl_omr_t;
+CREATE TABLE fkg.t_6803_parl_omr_t(
 	versions_id uuid NOT NULL,
 	pg_distrikt_kode integer NOT NULL,
 	pg_distrikt_nr character varying(150),
@@ -3017,2248 +3020,2248 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 -- object: t_5000_vandl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_generel_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_generel_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_5000_klasse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_5000_klasse_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_5000_klasse_fk FOREIGN KEY (klasse_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_5000_klasse_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_klasse_fk FOREIGN KEY (klasse_kode)
 REFERENCES fkg.d_5000_klasse (klasse_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_5000_vandl_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_5000_vandl_type_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_5000_vandl_type_fk FOREIGN KEY (vandl_type_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_5000_vandl_type_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_vandl_type_fk FOREIGN KEY (vandl_type_kode)
 REFERENCES fkg.d_5000_vandl_type (vandl_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_basis_ja_nej_tidl_amt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_basis_ja_nej_tidl_amt_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_tidl_amt_fk FOREIGN KEY (tidl_amt_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_basis_ja_nej_tidl_amt_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_tidl_amt_fk FOREIGN KEY (tidl_amt_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk FOREIGN KEY (p3vandloeb_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk FOREIGN KEY (p3vandloeb_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_basis_dvfi_bedoemmelse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_basis_dvfi_bedoemmelse_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_basis_dvfi_bedoemmelse_fk FOREIGN KEY (dvfi_bedoemmelse_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_basis_dvfi_bedoemmelse_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_dvfi_bedoemmelse_fk FOREIGN KEY (dvfi_bedoemmelse_kode)
 REFERENCES fkg.d_basis_dvfi_bedoemmelse (dvfi_bedoemmelse_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk FOREIGN KEY (maalsaetning_opfyldt_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk FOREIGN KEY (maalsaetning_opfyldt_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_basis_trussel_vand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_basis_trussel_vand_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_basis_trussel_vand_fk FOREIGN KEY (trussel_vand_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_basis_trussel_vand_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_trussel_vand_fk FOREIGN KEY (trussel_vand_kode)
 REFERENCES fkg.d_basis_trussel_vand (trussel_vand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5000_vandl_d_5000_maalsaetning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl DROP CONSTRAINT t_5000_vandl_d_5000_maalsaetning_fk;
-ALTER TABLE fkg.t_5000_vandl ADD CONSTRAINT t_5000_vandl_d_5000_maalsaetning_fk FOREIGN KEY (maalsaetning_kode)
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT t_5000_vandl_d_5000_maalsaetning_fk;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_maalsaetning_fk FOREIGN KEY (maalsaetning_kode)
 REFERENCES fkg.d_5000_maalsaetning (maalsaetning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
--- object: tema_temagruppe_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.tema DROP CONSTRAINT tema_temagruppe_fk;
-ALTER TABLE fkg.tema ADD CONSTRAINT tema_temagruppe_fk FOREIGN KEY (temagruppe_id)
-REFERENCES fkg.temagruppe (temagruppe_id) MATCH FULL
+-- object: d_tabel_d_temagruppe_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.d_tabel DROP CONSTRAINT d_tabel_d_temagruppe_fk;
+ALTER TABLE fkg.d_tabel ADD CONSTRAINT d_tabel_d_temagruppe_fk FOREIGN KEY (temagruppe_id)
+REFERENCES fkg.d_temagruppe (temagruppe_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6100_brandhane_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6100_brandhane DROP CONSTRAINT t_6100_brandhane_generel_fk;
-ALTER TABLE fkg.t_6100_brandhane ADD CONSTRAINT t_6100_brandhane_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6100_brandhane_t DROP CONSTRAINT t_6100_brandhane_generel_fk;
+ALTER TABLE fkg.t_6100_brandhane_t ADD CONSTRAINT t_6100_brandhane_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6100_brandhane_d_6100_brandhane_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6100_brandhane DROP CONSTRAINT t_6100_brandhane_d_6100_brandhane_fk;
-ALTER TABLE fkg.t_6100_brandhane ADD CONSTRAINT t_6100_brandhane_d_6100_brandhane_fk FOREIGN KEY (brandhane_type_kode)
+-- ALTER TABLE fkg.t_6100_brandhane_t DROP CONSTRAINT t_6100_brandhane_d_6100_brandhane_fk;
+ALTER TABLE fkg.t_6100_brandhane_t ADD CONSTRAINT t_6100_brandhane_d_6100_brandhane_fk FOREIGN KEY (brandhane_type_kode)
 REFERENCES fkg.d_6100_brandhane (brandhane_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6100_brandhane_d_6100_placering_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6100_brandhane DROP CONSTRAINT t_6100_brandhane_d_6100_placering_fk;
-ALTER TABLE fkg.t_6100_brandhane ADD CONSTRAINT t_6100_brandhane_d_6100_placering_fk FOREIGN KEY (placering_kode)
+-- ALTER TABLE fkg.t_6100_brandhane_t DROP CONSTRAINT t_6100_brandhane_d_6100_placering_fk;
+ALTER TABLE fkg.t_6100_brandhane_t ADD CONSTRAINT t_6100_brandhane_d_6100_placering_fk FOREIGN KEY (placering_kode)
 REFERENCES fkg.d_6100_placering (placering_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6100_brandhane_d_basis_funktionsstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6100_brandhane DROP CONSTRAINT t_6100_brandhane_d_basis_funktionsstatus_fk;
-ALTER TABLE fkg.t_6100_brandhane ADD CONSTRAINT t_6100_brandhane_d_basis_funktionsstatus_fk FOREIGN KEY (funktionsstatus_kode)
+-- ALTER TABLE fkg.t_6100_brandhane_t DROP CONSTRAINT t_6100_brandhane_d_basis_funktionsstatus_fk;
+ALTER TABLE fkg.t_6100_brandhane_t ADD CONSTRAINT t_6100_brandhane_d_basis_funktionsstatus_fk FOREIGN KEY (funktionsstatus_kode)
 REFERENCES fkg.d_basis_funktionsstatus (funktionsstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6100_brandhane_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6100_brandhane DROP CONSTRAINT t_6100_brandhane_d_vejnavn_fk;
-ALTER TABLE fkg.t_6100_brandhane ADD CONSTRAINT t_6100_brandhane_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6100_brandhane_t DROP CONSTRAINT t_6100_brandhane_d_vejnavn_fk;
+ALTER TABLE fkg.t_6100_brandhane_t ADD CONSTRAINT t_6100_brandhane_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6100_brandhane_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6100_brandhane DROP CONSTRAINT t_6100_brandhane_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6100_brandhane ADD CONSTRAINT t_6100_brandhane_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6100_brandhane_t DROP CONSTRAINT t_6100_brandhane_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6100_brandhane_t ADD CONSTRAINT t_6100_brandhane_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6100_brandhane_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6100_brandhane DROP CONSTRAINT t_6100_brandhane_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_6100_brandhane ADD CONSTRAINT t_6100_brandhane_d_basis_ja_nej_fk FOREIGN KEY (aktiv_kode)
+-- ALTER TABLE fkg.t_6100_brandhane_t DROP CONSTRAINT t_6100_brandhane_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_6100_brandhane_t ADD CONSTRAINT t_6100_brandhane_d_basis_ja_nej_fk FOREIGN KEY (aktiv_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6102_redningsvej_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6102_redn_vej DROP CONSTRAINT t_6102_redningsvej_generel_fk;
-ALTER TABLE fkg.t_6102_redn_vej ADD CONSTRAINT t_6102_redningsvej_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6102_redn_vej_t DROP CONSTRAINT t_6102_redningsvej_generel_fk;
+ALTER TABLE fkg.t_6102_redn_vej_t ADD CONSTRAINT t_6102_redningsvej_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6102_redningsvej_d_6102_redvej_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6102_redn_vej DROP CONSTRAINT t_6102_redningsvej_d_6102_redvej_type_fk;
-ALTER TABLE fkg.t_6102_redn_vej ADD CONSTRAINT t_6102_redningsvej_d_6102_redvej_type_fk FOREIGN KEY (redvej_type_kode)
+-- ALTER TABLE fkg.t_6102_redn_vej_t DROP CONSTRAINT t_6102_redningsvej_d_6102_redvej_type_fk;
+ALTER TABLE fkg.t_6102_redn_vej_t ADD CONSTRAINT t_6102_redningsvej_d_6102_redvej_type_fk FOREIGN KEY (redvej_type_kode)
 REFERENCES fkg.d_6102_redvej_type (redvej_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6102_redn_vej_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6102_redn_vej DROP CONSTRAINT t_6102_redn_vej_d_vejnavn_fk;
-ALTER TABLE fkg.t_6102_redn_vej ADD CONSTRAINT t_6102_redn_vej_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6102_redn_vej_t DROP CONSTRAINT t_6102_redn_vej_d_vejnavn_fk;
+ALTER TABLE fkg.t_6102_redn_vej_t ADD CONSTRAINT t_6102_redn_vej_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6102_redn_vej_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6102_redn_vej DROP CONSTRAINT t_6102_redn_vej_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6102_redn_vej ADD CONSTRAINT t_6102_redn_vej_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6102_redn_vej_t DROP CONSTRAINT t_6102_redn_vej_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6102_redn_vej_t ADD CONSTRAINT t_6102_redn_vej_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5001_maalest_d_5001_maalest_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5001_maalest DROP CONSTRAINT t_5001_maalest_d_5001_maalest_type_fk;
-ALTER TABLE fkg.t_5001_maalest ADD CONSTRAINT t_5001_maalest_d_5001_maalest_type_fk FOREIGN KEY (maalest_type_kode)
+-- ALTER TABLE fkg.t_5001_maalest_t DROP CONSTRAINT t_5001_maalest_d_5001_maalest_type_fk;
+ALTER TABLE fkg.t_5001_maalest_t ADD CONSTRAINT t_5001_maalest_d_5001_maalest_type_fk FOREIGN KEY (maalest_type_kode)
 REFERENCES fkg.d_5001_maalest_type (maalest_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5001_maalest_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5001_maalest DROP CONSTRAINT t_5001_maalest_generel_fk;
-ALTER TABLE fkg.t_5001_maalest ADD CONSTRAINT t_5001_maalest_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5001_maalest_t DROP CONSTRAINT t_5001_maalest_generel_fk;
+ALTER TABLE fkg.t_5001_maalest_t ADD CONSTRAINT t_5001_maalest_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5001_maalest_d_basisdvfi_bedoemmelse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5001_maalest DROP CONSTRAINT t_5001_maalest_d_basisdvfi_bedoemmelse_fk;
-ALTER TABLE fkg.t_5001_maalest ADD CONSTRAINT t_5001_maalest_d_basisdvfi_bedoemmelse_fk FOREIGN KEY (dvfi_bedoemmelse_kode)
+-- ALTER TABLE fkg.t_5001_maalest_t DROP CONSTRAINT t_5001_maalest_d_basisdvfi_bedoemmelse_fk;
+ALTER TABLE fkg.t_5001_maalest_t ADD CONSTRAINT t_5001_maalest_d_basisdvfi_bedoemmelse_fk FOREIGN KEY (dvfi_bedoemmelse_kode)
 REFERENCES fkg.d_basis_dvfi_bedoemmelse (dvfi_bedoemmelse_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5001_maalest_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5001_maalest DROP CONSTRAINT t_5001_maalest_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5001_maalest ADD CONSTRAINT t_5001_maalest_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5001_maalest_t DROP CONSTRAINT t_5001_maalest_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5001_maalest_t ADD CONSTRAINT t_5001_maalest_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5002_faunasp_d_5002_spaerring_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5002_faunasp DROP CONSTRAINT t_5002_faunasp_d_5002_spaerring_fk;
-ALTER TABLE fkg.t_5002_faunasp ADD CONSTRAINT t_5002_faunasp_d_5002_spaerring_fk FOREIGN KEY (spaerring_type_kode)
+-- ALTER TABLE fkg.t_5002_faunasp_t DROP CONSTRAINT t_5002_faunasp_d_5002_spaerring_fk;
+ALTER TABLE fkg.t_5002_faunasp_t ADD CONSTRAINT t_5002_faunasp_d_5002_spaerring_fk FOREIGN KEY (spaerring_type_kode)
 REFERENCES fkg.d_5002_spaerring (spaerring_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5002_faunasp_d_5002_passage_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5002_faunasp DROP CONSTRAINT t_5002_faunasp_d_5002_passage_fk;
-ALTER TABLE fkg.t_5002_faunasp ADD CONSTRAINT t_5002_faunasp_d_5002_passage_fk FOREIGN KEY (passage_kode)
+-- ALTER TABLE fkg.t_5002_faunasp_t DROP CONSTRAINT t_5002_faunasp_d_5002_passage_fk;
+ALTER TABLE fkg.t_5002_faunasp_t ADD CONSTRAINT t_5002_faunasp_d_5002_passage_fk FOREIGN KEY (passage_kode)
 REFERENCES fkg.d_5002_passage (passage_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5002_faunasp_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5002_faunasp DROP CONSTRAINT t_5002_faunasp_generel_fk;
-ALTER TABLE fkg.t_5002_faunasp ADD CONSTRAINT t_5002_faunasp_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5002_faunasp_t DROP CONSTRAINT t_5002_faunasp_generel_fk;
+ALTER TABLE fkg.t_5002_faunasp_t ADD CONSTRAINT t_5002_faunasp_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5003_draenledn_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5003_draenledn DROP CONSTRAINT t_5003_draenledn_generel_fk;
-ALTER TABLE fkg.t_5003_draenledn ADD CONSTRAINT t_5003_draenledn_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5003_draenledn_t DROP CONSTRAINT t_5003_draenledn_generel_fk;
+ALTER TABLE fkg.t_5003_draenledn_t ADD CONSTRAINT t_5003_draenledn_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5003_draenledn_d_5003_ledn_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5003_draenledn DROP CONSTRAINT t_5003_draenledn_d_5003_ledn_type_fk;
-ALTER TABLE fkg.t_5003_draenledn ADD CONSTRAINT t_5003_draenledn_d_5003_ledn_type_fk FOREIGN KEY (ledn_type_kode)
+-- ALTER TABLE fkg.t_5003_draenledn_t DROP CONSTRAINT t_5003_draenledn_d_5003_ledn_type_fk;
+ALTER TABLE fkg.t_5003_draenledn_t ADD CONSTRAINT t_5003_draenledn_d_5003_ledn_type_fk FOREIGN KEY (ledn_type_kode)
 REFERENCES fkg.d_5003_ledn_type (ledn_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5003_draenledn_d_5003_klasse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5003_draenledn DROP CONSTRAINT t_5003_draenledn_d_5003_klasse_fk;
-ALTER TABLE fkg.t_5003_draenledn ADD CONSTRAINT t_5003_draenledn_d_5003_klasse_fk FOREIGN KEY (klasse_kode)
+-- ALTER TABLE fkg.t_5003_draenledn_t DROP CONSTRAINT t_5003_draenledn_d_5003_klasse_fk;
+ALTER TABLE fkg.t_5003_draenledn_t ADD CONSTRAINT t_5003_draenledn_d_5003_klasse_fk FOREIGN KEY (klasse_kode)
 REFERENCES fkg.d_5003_klasse (klasse_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5004_draenomr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5004_draenomr DROP CONSTRAINT t_5004_draenomr_generel_fk;
-ALTER TABLE fkg.t_5004_draenomr ADD CONSTRAINT t_5004_draenomr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5004_draenomr_t DROP CONSTRAINT t_5004_draenomr_generel_fk;
+ALTER TABLE fkg.t_5004_draenomr_t ADD CONSTRAINT t_5004_draenomr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5004_draenomr_d_5004_omr_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5004_draenomr DROP CONSTRAINT t_5004_draenomr_d_5004_omr_type_fk;
-ALTER TABLE fkg.t_5004_draenomr ADD CONSTRAINT t_5004_draenomr_d_5004_omr_type_fk FOREIGN KEY (omr_type_kode)
+-- ALTER TABLE fkg.t_5004_draenomr_t DROP CONSTRAINT t_5004_draenomr_d_5004_omr_type_fk;
+ALTER TABLE fkg.t_5004_draenomr_t ADD CONSTRAINT t_5004_draenomr_d_5004_omr_type_fk FOREIGN KEY (omr_type_kode)
 REFERENCES fkg.d_5004_omr_type (omr_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5005_soe_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5005_soe DROP CONSTRAINT t_5005_soe_generel_fk;
-ALTER TABLE fkg.t_5005_soe ADD CONSTRAINT t_5005_soe_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5005_soe_t DROP CONSTRAINT t_5005_soe_generel_fk;
+ALTER TABLE fkg.t_5005_soe_t ADD CONSTRAINT t_5005_soe_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5005_soe_d_5005_maalsaetning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5005_soe DROP CONSTRAINT t_5005_soe_d_5005_maalsaetning_fk;
-ALTER TABLE fkg.t_5005_soe ADD CONSTRAINT t_5005_soe_d_5005_maalsaetning_fk FOREIGN KEY (maalsaetning_kode)
+-- ALTER TABLE fkg.t_5005_soe_t DROP CONSTRAINT t_5005_soe_d_5005_maalsaetning_fk;
+ALTER TABLE fkg.t_5005_soe_t ADD CONSTRAINT t_5005_soe_d_5005_maalsaetning_fk FOREIGN KEY (maalsaetning_kode)
 REFERENCES fkg.d_5005_maalsaetning (maalsaetning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5005_soe_d_5005_soe_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5005_soe DROP CONSTRAINT t_5005_soe_d_5005_soe_type_fk;
-ALTER TABLE fkg.t_5005_soe ADD CONSTRAINT t_5005_soe_d_5005_soe_type_fk FOREIGN KEY (soe_type_kode)
+-- ALTER TABLE fkg.t_5005_soe_t DROP CONSTRAINT t_5005_soe_d_5005_soe_type_fk;
+ALTER TABLE fkg.t_5005_soe_t ADD CONSTRAINT t_5005_soe_d_5005_soe_type_fk FOREIGN KEY (soe_type_kode)
 REFERENCES fkg.d_5005_soe_type (soe_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5005_soe_d_5005_habitat_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5005_soe DROP CONSTRAINT t_5005_soe_d_5005_habitat_type_fk;
-ALTER TABLE fkg.t_5005_soe ADD CONSTRAINT t_5005_soe_d_5005_habitat_type_fk FOREIGN KEY (habitat_type_kode)
+-- ALTER TABLE fkg.t_5005_soe_t DROP CONSTRAINT t_5005_soe_d_5005_habitat_type_fk;
+ALTER TABLE fkg.t_5005_soe_t ADD CONSTRAINT t_5005_soe_d_5005_habitat_type_fk FOREIGN KEY (habitat_type_kode)
 REFERENCES fkg.d_5005_habitat_type (habitat_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5005_soe_d_basis_trussel_vand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5005_soe DROP CONSTRAINT t_5005_soe_d_basis_trussel_vand_fk;
-ALTER TABLE fkg.t_5005_soe ADD CONSTRAINT t_5005_soe_d_basis_trussel_vand_fk FOREIGN KEY (trussel_vand_kode)
+-- ALTER TABLE fkg.t_5005_soe_t DROP CONSTRAINT t_5005_soe_d_basis_trussel_vand_fk;
+ALTER TABLE fkg.t_5005_soe_t ADD CONSTRAINT t_5005_soe_d_basis_trussel_vand_fk FOREIGN KEY (trussel_vand_kode)
 REFERENCES fkg.d_basis_trussel_vand (trussel_vand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5006_dybdekurv_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5006_dybdekurv DROP CONSTRAINT t_5006_dybdekurv_generel_fk;
-ALTER TABLE fkg.t_5006_dybdekurv ADD CONSTRAINT t_5006_dybdekurv_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5006_dybdekurv_t DROP CONSTRAINT t_5006_dybdekurv_generel_fk;
+ALTER TABLE fkg.t_5006_dybdekurv_t ADD CONSTRAINT t_5006_dybdekurv_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5007_vandl_opl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5007_vandl_opl DROP CONSTRAINT t_5007_vandl_opl_generel_fk;
-ALTER TABLE fkg.t_5007_vandl_opl ADD CONSTRAINT t_5007_vandl_opl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5007_vandl_opl_t DROP CONSTRAINT t_5007_vandl_opl_generel_fk;
+ALTER TABLE fkg.t_5007_vandl_opl_t ADD CONSTRAINT t_5007_vandl_opl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5007_vandl_opl_d_5007_opl_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5007_vandl_opl DROP CONSTRAINT t_5007_vandl_opl_d_5007_opl_fk;
-ALTER TABLE fkg.t_5007_vandl_opl ADD CONSTRAINT t_5007_vandl_opl_d_5007_opl_fk FOREIGN KEY (vandl_opl_nr)
+-- ALTER TABLE fkg.t_5007_vandl_opl_t DROP CONSTRAINT t_5007_vandl_opl_d_5007_opl_fk;
+ALTER TABLE fkg.t_5007_vandl_opl_t ADD CONSTRAINT t_5007_vandl_opl_d_5007_opl_fk FOREIGN KEY (vandl_opl_nr)
 REFERENCES fkg.d_5007_opl (opl_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5007_vandl_opl_d_5007_opl_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5007_vandl_opl DROP CONSTRAINT t_5007_vandl_opl_d_5007_opl_type_fk;
-ALTER TABLE fkg.t_5007_vandl_opl ADD CONSTRAINT t_5007_vandl_opl_d_5007_opl_type_fk FOREIGN KEY (opl_type_kode)
+-- ALTER TABLE fkg.t_5007_vandl_opl_t DROP CONSTRAINT t_5007_vandl_opl_d_5007_opl_type_fk;
+ALTER TABLE fkg.t_5007_vandl_opl_t ADD CONSTRAINT t_5007_vandl_opl_d_5007_opl_type_fk FOREIGN KEY (opl_type_kode)
 REFERENCES fkg.d_5007_opl_type (vandl_opl_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5008_soe_opl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5008_soe_opl DROP CONSTRAINT t_5008_soe_opl_generel_fk;
-ALTER TABLE fkg.t_5008_soe_opl ADD CONSTRAINT t_5008_soe_opl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5008_soe_opl_t DROP CONSTRAINT t_5008_soe_opl_generel_fk;
+ALTER TABLE fkg.t_5008_soe_opl_t ADD CONSTRAINT t_5008_soe_opl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5008_soe_opl_d_5008_opl_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5008_soe_opl DROP CONSTRAINT t_5008_soe_opl_d_5008_opl_fk;
-ALTER TABLE fkg.t_5008_soe_opl ADD CONSTRAINT t_5008_soe_opl_d_5008_opl_fk FOREIGN KEY (soe_opl_nr)
+-- ALTER TABLE fkg.t_5008_soe_opl_t DROP CONSTRAINT t_5008_soe_opl_d_5008_opl_fk;
+ALTER TABLE fkg.t_5008_soe_opl_t ADD CONSTRAINT t_5008_soe_opl_d_5008_opl_fk FOREIGN KEY (soe_opl_nr)
 REFERENCES fkg.d_5008_opl (soe_opl_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5009_pumpelag_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5009_pumpelag DROP CONSTRAINT t_5009_pumpelag_generel_fk;
-ALTER TABLE fkg.t_5009_pumpelag ADD CONSTRAINT t_5009_pumpelag_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5009_pumpelag_t DROP CONSTRAINT t_5009_pumpelag_generel_fk;
+ALTER TABLE fkg.t_5009_pumpelag_t ADD CONSTRAINT t_5009_pumpelag_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5009_pumpelag_d_5009_lag_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5009_pumpelag DROP CONSTRAINT t_5009_pumpelag_d_5009_lag_type_fk;
-ALTER TABLE fkg.t_5009_pumpelag ADD CONSTRAINT t_5009_pumpelag_d_5009_lag_type_fk FOREIGN KEY (lag_type_kode)
+-- ALTER TABLE fkg.t_5009_pumpelag_t DROP CONSTRAINT t_5009_pumpelag_d_5009_lag_type_fk;
+ALTER TABLE fkg.t_5009_pumpelag_t ADD CONSTRAINT t_5009_pumpelag_d_5009_lag_type_fk FOREIGN KEY (lag_type_kode)
 REFERENCES fkg.d_5009_lag_type (lag_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5009_pumpelag_d_basis_erjerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5009_pumpelag DROP CONSTRAINT t_5009_pumpelag_d_basis_erjerstatus_fk;
-ALTER TABLE fkg.t_5009_pumpelag ADD CONSTRAINT t_5009_pumpelag_d_basis_erjerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5009_pumpelag_t DROP CONSTRAINT t_5009_pumpelag_d_basis_erjerstatus_fk;
+ALTER TABLE fkg.t_5009_pumpelag_t ADD CONSTRAINT t_5009_pumpelag_d_basis_erjerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5010_vandl_elm_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5010_vandl_elm DROP CONSTRAINT t_5010_vandl_elm_generel_fk;
-ALTER TABLE fkg.t_5010_vandl_elm ADD CONSTRAINT t_5010_vandl_elm_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5010_vandl_elm_t DROP CONSTRAINT t_5010_vandl_elm_generel_fk;
+ALTER TABLE fkg.t_5010_vandl_elm_t ADD CONSTRAINT t_5010_vandl_elm_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5010_vandl_elm_d_5010_element_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5010_vandl_elm DROP CONSTRAINT t_5010_vandl_elm_d_5010_element_type_fk;
-ALTER TABLE fkg.t_5010_vandl_elm ADD CONSTRAINT t_5010_vandl_elm_d_5010_element_type_fk FOREIGN KEY (element_kode)
+-- ALTER TABLE fkg.t_5010_vandl_elm_t DROP CONSTRAINT t_5010_vandl_elm_d_5010_element_type_fk;
+ALTER TABLE fkg.t_5010_vandl_elm_t ADD CONSTRAINT t_5010_vandl_elm_d_5010_element_type_fk FOREIGN KEY (element_kode)
 REFERENCES fkg.d_5010_element_type (element_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5010_vandl_elm_d_basis_tilstand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5010_vandl_elm DROP CONSTRAINT t_5010_vandl_elm_d_basis_tilstand_fk;
-ALTER TABLE fkg.t_5010_vandl_elm ADD CONSTRAINT t_5010_vandl_elm_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+-- ALTER TABLE fkg.t_5010_vandl_elm_t DROP CONSTRAINT t_5010_vandl_elm_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_5010_vandl_elm_t ADD CONSTRAINT t_5010_vandl_elm_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5105_rig_fattig_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5105_rig_fattig DROP CONSTRAINT t_5105_rig_fattig_generel_fk;
-ALTER TABLE fkg.t_5105_rig_fattig ADD CONSTRAINT t_5105_rig_fattig_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5105_rig_fattig_t DROP CONSTRAINT t_5105_rig_fattig_generel_fk;
+ALTER TABLE fkg.t_5105_rig_fattig_t ADD CONSTRAINT t_5105_rig_fattig_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5105_rig_fattig_d_5105_kaer_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5105_rig_fattig DROP CONSTRAINT t_5105_rig_fattig_d_5105_kaer_type_fk;
-ALTER TABLE fkg.t_5105_rig_fattig ADD CONSTRAINT t_5105_rig_fattig_d_5105_kaer_type_fk FOREIGN KEY (kaer_type_kode)
+-- ALTER TABLE fkg.t_5105_rig_fattig_t DROP CONSTRAINT t_5105_rig_fattig_d_5105_kaer_type_fk;
+ALTER TABLE fkg.t_5105_rig_fattig_t ADD CONSTRAINT t_5105_rig_fattig_d_5105_kaer_type_fk FOREIGN KEY (kaer_type_kode)
 REFERENCES fkg.d_5105_kaer_type (kaer_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5106_nat_pl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5106_nat_pl DROP CONSTRAINT t_5106_nat_pl_generel_fk;
-ALTER TABLE fkg.t_5106_nat_pl ADD CONSTRAINT t_5106_nat_pl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5106_nat_pl_t DROP CONSTRAINT t_5106_nat_pl_generel_fk;
+ALTER TABLE fkg.t_5106_nat_pl_t ADD CONSTRAINT t_5106_nat_pl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5106_nat_pl_d_5106_pleje_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5106_nat_pl DROP CONSTRAINT t_5106_nat_pl_d_5106_pleje_type_fk;
-ALTER TABLE fkg.t_5106_nat_pl ADD CONSTRAINT t_5106_nat_pl_d_5106_pleje_type_fk FOREIGN KEY (pleje_type_kode)
+-- ALTER TABLE fkg.t_5106_nat_pl_t DROP CONSTRAINT t_5106_nat_pl_d_5106_pleje_type_fk;
+ALTER TABLE fkg.t_5106_nat_pl_t ADD CONSTRAINT t_5106_nat_pl_d_5106_pleje_type_fk FOREIGN KEY (pleje_type_kode)
 REFERENCES fkg.d_5106_pleje_type (pleje_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5106_nat_pl_d_5106_faciliteter_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5106_nat_pl DROP CONSTRAINT t_5106_nat_pl_d_5106_faciliteter_fk;
-ALTER TABLE fkg.t_5106_nat_pl ADD CONSTRAINT t_5106_nat_pl_d_5106_faciliteter_fk FOREIGN KEY (faciliteter_kode)
+-- ALTER TABLE fkg.t_5106_nat_pl_t DROP CONSTRAINT t_5106_nat_pl_d_5106_faciliteter_fk;
+ALTER TABLE fkg.t_5106_nat_pl_t ADD CONSTRAINT t_5106_nat_pl_d_5106_faciliteter_fk FOREIGN KEY (faciliteter_kode)
 REFERENCES fkg.d_5106_faciliteter (faciliteter_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5106_nat_pl_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5106_nat_pl DROP CONSTRAINT t_5106_nat_pl_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5106_nat_pl ADD CONSTRAINT t_5106_nat_pl_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5106_nat_pl_t DROP CONSTRAINT t_5106_nat_pl_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5106_nat_pl_t ADD CONSTRAINT t_5106_nat_pl_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5108_groent_part_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5108_groent_part DROP CONSTRAINT t_5108_groent_part_generel_fk;
-ALTER TABLE fkg.t_5108_groent_part ADD CONSTRAINT t_5108_groent_part_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5108_groent_part_t DROP CONSTRAINT t_5108_groent_part_generel_fk;
+ALTER TABLE fkg.t_5108_groent_part_t ADD CONSTRAINT t_5108_groent_part_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5300_genopd_ret_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5300_genopd_ret DROP CONSTRAINT t_5300_genopd_ret_generel_fk;
-ALTER TABLE fkg.t_5300_genopd_ret ADD CONSTRAINT t_5300_genopd_ret_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5300_genopd_ret_t DROP CONSTRAINT t_5300_genopd_ret_generel_fk;
+ALTER TABLE fkg.t_5300_genopd_ret_t ADD CONSTRAINT t_5300_genopd_ret_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5400_affalds_dis_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5400_affalds_dis DROP CONSTRAINT t_5400_affalds_dis_generel_fk;
-ALTER TABLE fkg.t_5400_affalds_dis ADD CONSTRAINT t_5400_affalds_dis_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5400_affalds_dis_t DROP CONSTRAINT t_5400_affalds_dis_generel_fk;
+ALTER TABLE fkg.t_5400_affalds_dis_t ADD CONSTRAINT t_5400_affalds_dis_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5400_affalds_dis_d_5400_affalds_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5400_affalds_dis DROP CONSTRAINT t_5400_affalds_dis_d_5400_affalds_type_fk;
-ALTER TABLE fkg.t_5400_affalds_dis ADD CONSTRAINT t_5400_affalds_dis_d_5400_affalds_type_fk FOREIGN KEY (affaldstype_kode)
+-- ALTER TABLE fkg.t_5400_affalds_dis_t DROP CONSTRAINT t_5400_affalds_dis_d_5400_affalds_type_fk;
+ALTER TABLE fkg.t_5400_affalds_dis_t ADD CONSTRAINT t_5400_affalds_dis_d_5400_affalds_type_fk FOREIGN KEY (affaldstype_kode)
 REFERENCES fkg.d_5400_affalds_type (affaldstype_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5401_genbr_st_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5401_genbr_st DROP CONSTRAINT t_5401_genbr_st_generel_fk;
-ALTER TABLE fkg.t_5401_genbr_st ADD CONSTRAINT t_5401_genbr_st_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5401_genbr_st_t DROP CONSTRAINT t_5401_genbr_st_generel_fk;
+ALTER TABLE fkg.t_5401_genbr_st_t ADD CONSTRAINT t_5401_genbr_st_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5401_genbr_st_d_5401_gs_type | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5401_genbr_st DROP CONSTRAINT t_5401_genbr_st_d_5401_gs_type;
-ALTER TABLE fkg.t_5401_genbr_st ADD CONSTRAINT t_5401_genbr_st_d_5401_gs_type FOREIGN KEY (gs_type_kode)
+-- ALTER TABLE fkg.t_5401_genbr_st_t DROP CONSTRAINT t_5401_genbr_st_d_5401_gs_type;
+ALTER TABLE fkg.t_5401_genbr_st_t ADD CONSTRAINT t_5401_genbr_st_d_5401_gs_type FOREIGN KEY (gs_type_kode)
 REFERENCES fkg.d_5401_gs_type (gs_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5401_genbr_st_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5401_genbr_st DROP CONSTRAINT t_5401_genbr_st_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5401_genbr_st ADD CONSTRAINT t_5401_genbr_st_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5401_genbr_st_t DROP CONSTRAINT t_5401_genbr_st_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5401_genbr_st_t ADD CONSTRAINT t_5401_genbr_st_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5401_genbr_st_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5401_genbr_st DROP CONSTRAINT t_5401_genbr_st_d_vejnavn_fk;
-ALTER TABLE fkg.t_5401_genbr_st ADD CONSTRAINT t_5401_genbr_st_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5401_genbr_st_t DROP CONSTRAINT t_5401_genbr_st_d_vejnavn_fk;
+ALTER TABLE fkg.t_5401_genbr_st_t ADD CONSTRAINT t_5401_genbr_st_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5402_genbr_con_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5402_genbr_con DROP CONSTRAINT t_5402_genbr_con_generel_fk;
-ALTER TABLE fkg.t_5402_genbr_con ADD CONSTRAINT t_5402_genbr_con_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5402_genbr_con_t DROP CONSTRAINT t_5402_genbr_con_generel_fk;
+ALTER TABLE fkg.t_5402_genbr_con_t ADD CONSTRAINT t_5402_genbr_con_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5402_genbr_con_d_5402_gc_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5402_genbr_con DROP CONSTRAINT t_5402_genbr_con_d_5402_gc_type_fk;
-ALTER TABLE fkg.t_5402_genbr_con ADD CONSTRAINT t_5402_genbr_con_d_5402_gc_type_fk FOREIGN KEY (gc_type_kode)
+-- ALTER TABLE fkg.t_5402_genbr_con_t DROP CONSTRAINT t_5402_genbr_con_d_5402_gc_type_fk;
+ALTER TABLE fkg.t_5402_genbr_con_t ADD CONSTRAINT t_5402_genbr_con_d_5402_gc_type_fk FOREIGN KEY (gc_type_kode)
 REFERENCES fkg.d_5402_gc_type (gc_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5508_husst_moel_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5508_husst_moel DROP CONSTRAINT t_5508_husst_moel_generel_fk;
-ALTER TABLE fkg.t_5508_husst_moel ADD CONSTRAINT t_5508_husst_moel_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5508_husst_moel_t DROP CONSTRAINT t_5508_husst_moel_generel_fk;
+ALTER TABLE fkg.t_5508_husst_moel_t ADD CONSTRAINT t_5508_husst_moel_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5508_husst_moel_d5508_stoej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5508_husst_moel DROP CONSTRAINT t_5508_husst_moel_d5508_stoej_fk;
-ALTER TABLE fkg.t_5508_husst_moel ADD CONSTRAINT t_5508_husst_moel_d5508_stoej_fk FOREIGN KEY (stoej_kode)
+-- ALTER TABLE fkg.t_5508_husst_moel_t DROP CONSTRAINT t_5508_husst_moel_d5508_stoej_fk;
+ALTER TABLE fkg.t_5508_husst_moel_t ADD CONSTRAINT t_5508_husst_moel_d5508_stoej_fk FOREIGN KEY (stoej_kode)
 REFERENCES fkg.d_5508_stoej (stoej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5508_husst_moel_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5508_husst_moel DROP CONSTRAINT t_5508_husst_moel_d_vejnavn_fk;
-ALTER TABLE fkg.t_5508_husst_moel ADD CONSTRAINT t_5508_husst_moel_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5508_husst_moel_t DROP CONSTRAINT t_5508_husst_moel_d_vejnavn_fk;
+ALTER TABLE fkg.t_5508_husst_moel_t ADD CONSTRAINT t_5508_husst_moel_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5508_husst_moel_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5508_husst_moel DROP CONSTRAINT t_5508_husst_moel_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5508_husst_moel ADD CONSTRAINT t_5508_husst_moel_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5508_husst_moel_t DROP CONSTRAINT t_5508_husst_moel_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5508_husst_moel_t ADD CONSTRAINT t_5508_husst_moel_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5200_aff_prod_udbr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5200_aff_prod_udbr DROP CONSTRAINT t_5200_aff_prod_udbr_generel_fk;
-ALTER TABLE fkg.t_5200_aff_prod_udbr ADD CONSTRAINT t_5200_aff_prod_udbr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5200_aff_prod_udbr_t DROP CONSTRAINT t_5200_aff_prod_udbr_generel_fk;
+ALTER TABLE fkg.t_5200_aff_prod_udbr_t ADD CONSTRAINT t_5200_aff_prod_udbr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5200_aff_prod_udbr_d_5200_affald_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5200_aff_prod_udbr DROP CONSTRAINT t_5200_aff_prod_udbr_d_5200_affald_fk;
-ALTER TABLE fkg.t_5200_aff_prod_udbr ADD CONSTRAINT t_5200_aff_prod_udbr_d_5200_affald_fk FOREIGN KEY (affald_prod_kode)
+-- ALTER TABLE fkg.t_5200_aff_prod_udbr_t DROP CONSTRAINT t_5200_aff_prod_udbr_d_5200_affald_fk;
+ALTER TABLE fkg.t_5200_aff_prod_udbr_t ADD CONSTRAINT t_5200_aff_prod_udbr_d_5200_affald_fk FOREIGN KEY (affald_prod_kode)
 REFERENCES fkg.d_5200_affald (affald_prod_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5200_aff_prod_udbr_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5200_aff_prod_udbr DROP CONSTRAINT t_5200_aff_prod_udbr_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5200_aff_prod_udbr ADD CONSTRAINT t_5200_aff_prod_udbr_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5200_aff_prod_udbr_t DROP CONSTRAINT t_5200_aff_prod_udbr_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5200_aff_prod_udbr_t ADD CONSTRAINT t_5200_aff_prod_udbr_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5200_aff_prod_udbr_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5200_aff_prod_udbr DROP CONSTRAINT t_5200_aff_prod_udbr_d_vejnavn_fk;
-ALTER TABLE fkg.t_5200_aff_prod_udbr ADD CONSTRAINT t_5200_aff_prod_udbr_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5200_aff_prod_udbr_t DROP CONSTRAINT t_5200_aff_prod_udbr_d_vejnavn_fk;
+ALTER TABLE fkg.t_5200_aff_prod_udbr_t ADD CONSTRAINT t_5200_aff_prod_udbr_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5500_elfors_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5500_elfors_omr DROP CONSTRAINT t_5500_elfors_omr_generel_fk;
-ALTER TABLE fkg.t_5500_elfors_omr ADD CONSTRAINT t_5500_elfors_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5500_elfors_omr_t DROP CONSTRAINT t_5500_elfors_omr_generel_fk;
+ALTER TABLE fkg.t_5500_elfors_omr_t ADD CONSTRAINT t_5500_elfors_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5506_spildev_pl_pkt_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5506_spildev_pl_pkt DROP CONSTRAINT t_5506_spildev_pl_pkt_generel_fk;
-ALTER TABLE fkg.t_5506_spildev_pl_pkt ADD CONSTRAINT t_5506_spildev_pl_pkt_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5506_spildev_pl_pkt_t DROP CONSTRAINT t_5506_spildev_pl_pkt_generel_fk;
+ALTER TABLE fkg.t_5506_spildev_pl_pkt_t ADD CONSTRAINT t_5506_spildev_pl_pkt_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5506_spildev_pl_pkt DROP CONSTRAINT t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk;
-ALTER TABLE fkg.t_5506_spildev_pl_pkt ADD CONSTRAINT t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk FOREIGN KEY (anlaeg_type_kode)
+-- ALTER TABLE fkg.t_5506_spildev_pl_pkt_t DROP CONSTRAINT t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk;
+ALTER TABLE fkg.t_5506_spildev_pl_pkt_t ADD CONSTRAINT t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk FOREIGN KEY (anlaeg_type_kode)
 REFERENCES fkg.d_5506_anlaegtype (anlaeg_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5506_spildev_pl_pkt_d_basis_planstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5506_spildev_pl_pkt DROP CONSTRAINT t_5506_spildev_pl_pkt_d_basis_planstatus_fk;
-ALTER TABLE fkg.t_5506_spildev_pl_pkt ADD CONSTRAINT t_5506_spildev_pl_pkt_d_basis_planstatus_fk FOREIGN KEY (planstatus_kode)
+-- ALTER TABLE fkg.t_5506_spildev_pl_pkt_t DROP CONSTRAINT t_5506_spildev_pl_pkt_d_basis_planstatus_fk;
+ALTER TABLE fkg.t_5506_spildev_pl_pkt_t ADD CONSTRAINT t_5506_spildev_pl_pkt_d_basis_planstatus_fk FOREIGN KEY (planstatus_kode)
 REFERENCES fkg.d_basis_planstatus (planstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5507_fiberkabel_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5507_fiberkabel DROP CONSTRAINT t_5507_fiberkabel_generel_fk;
-ALTER TABLE fkg.t_5507_fiberkabel ADD CONSTRAINT t_5507_fiberkabel_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5507_fiberkabel_t DROP CONSTRAINT t_5507_fiberkabel_generel_fk;
+ALTER TABLE fkg.t_5507_fiberkabel_t ADD CONSTRAINT t_5507_fiberkabel_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5800_fac_pkt_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt DROP CONSTRAINT t_5800_fac_pkt_generel_fk;
-ALTER TABLE fkg.t_5800_fac_pkt ADD CONSTRAINT t_5800_fac_pkt_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT t_5800_fac_pkt_generel_fk;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5800_fac_pkt_d_5800_facilitet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt DROP CONSTRAINT t_5800_fac_pkt_d_5800_facilitet_fk;
-ALTER TABLE fkg.t_5800_fac_pkt ADD CONSTRAINT t_5800_fac_pkt_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT t_5800_fac_pkt_d_5800_facilitet_fk;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
 REFERENCES fkg.d_5800_facilitet (facilitet_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5800_fac_pkt_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt DROP CONSTRAINT t_5800_fac_pkt_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5800_fac_pkt ADD CONSTRAINT t_5800_fac_pkt_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT t_5800_fac_pkt_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5800_fac_pkt_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt DROP CONSTRAINT t_5800_fac_pkt_d_vejnavn_fk;
-ALTER TABLE fkg.t_5800_fac_pkt ADD CONSTRAINT t_5800_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT t_5800_fac_pkt_d_vejnavn_fk;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5800_fac_pkt_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt DROP CONSTRAINT t_5800_fac_pkt_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5800_fac_pkt ADD CONSTRAINT t_5800_fac_pkt_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT t_5800_fac_pkt_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5802_fac_li_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li DROP CONSTRAINT t_5802_fac_li_generel_fk;
-ALTER TABLE fkg.t_5802_fac_li ADD CONSTRAINT t_5802_fac_li_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT t_5802_fac_li_generel_fk;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5802_fac_li_d_5802_facilitet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li DROP CONSTRAINT t_5802_fac_li_d_5802_facilitet_fk;
-ALTER TABLE fkg.t_5802_fac_li ADD CONSTRAINT t_5802_fac_li_d_5802_facilitet_fk FOREIGN KEY (facilitet_type_kode)
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT t_5802_fac_li_d_5802_facilitet_fk;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_facilitet_fk FOREIGN KEY (facilitet_type_kode)
 REFERENCES fkg.d_5802_facilitet (facilitet_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5802_fac_li_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li DROP CONSTRAINT t_5802_fac_li_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5802_fac_li ADD CONSTRAINT t_5802_fac_li_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT t_5802_fac_li_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5802_fac_li_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li DROP CONSTRAINT t_5802_fac_li_d_vejnavn_fk;
-ALTER TABLE fkg.t_5802_fac_li ADD CONSTRAINT t_5802_fac_li_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT t_5802_fac_li_d_vejnavn_fk;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5802_fac_li_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li DROP CONSTRAINT t_5802_fac_li_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5802_fac_li ADD CONSTRAINT t_5802_fac_li_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT t_5802_fac_li_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5900_jordfl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5900_jordfl DROP CONSTRAINT t_5900_jordfl_generel_fk;
-ALTER TABLE fkg.t_5900_jordfl ADD CONSTRAINT t_5900_jordfl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5900_jordfl_t DROP CONSTRAINT t_5900_jordfl_generel_fk;
+ALTER TABLE fkg.t_5900_jordfl_t ADD CONSTRAINT t_5900_jordfl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5900_jordfl_d_vejnavn_afs_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5900_jordfl DROP CONSTRAINT t_5900_jordfl_d_vejnavn_afs_fk;
-ALTER TABLE fkg.t_5900_jordfl ADD CONSTRAINT t_5900_jordfl_d_vejnavn_afs_fk FOREIGN KEY (afs_vejkode)
+-- ALTER TABLE fkg.t_5900_jordfl_t DROP CONSTRAINT t_5900_jordfl_d_vejnavn_afs_fk;
+ALTER TABLE fkg.t_5900_jordfl_t ADD CONSTRAINT t_5900_jordfl_d_vejnavn_afs_fk FOREIGN KEY (afs_vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5900_jordfl_d_basis_postnr_afs_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5900_jordfl DROP CONSTRAINT t_5900_jordfl_d_basis_postnr_afs_fk;
-ALTER TABLE fkg.t_5900_jordfl ADD CONSTRAINT t_5900_jordfl_d_basis_postnr_afs_fk FOREIGN KEY (afs_postnr)
+-- ALTER TABLE fkg.t_5900_jordfl_t DROP CONSTRAINT t_5900_jordfl_d_basis_postnr_afs_fk;
+ALTER TABLE fkg.t_5900_jordfl_t ADD CONSTRAINT t_5900_jordfl_d_basis_postnr_afs_fk FOREIGN KEY (afs_postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5900_jordfl_d_vejnavn_modt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5900_jordfl DROP CONSTRAINT t_5900_jordfl_d_vejnavn_modt_fk;
-ALTER TABLE fkg.t_5900_jordfl ADD CONSTRAINT t_5900_jordfl_d_vejnavn_modt_fk FOREIGN KEY (modt_vejkode)
+-- ALTER TABLE fkg.t_5900_jordfl_t DROP CONSTRAINT t_5900_jordfl_d_vejnavn_modt_fk;
+ALTER TABLE fkg.t_5900_jordfl_t ADD CONSTRAINT t_5900_jordfl_d_vejnavn_modt_fk FOREIGN KEY (modt_vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5900_jordfl_d_basis_postnr_modt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5900_jordfl DROP CONSTRAINT t_5900_jordfl_d_basis_postnr_modt_fk;
-ALTER TABLE fkg.t_5900_jordfl ADD CONSTRAINT t_5900_jordfl_d_basis_postnr_modt_fk FOREIGN KEY (modt_postnr)
+-- ALTER TABLE fkg.t_5900_jordfl_t DROP CONSTRAINT t_5900_jordfl_d_basis_postnr_modt_fk;
+ALTER TABLE fkg.t_5900_jordfl_t ADD CONSTRAINT t_5900_jordfl_d_basis_postnr_modt_fk FOREIGN KEY (modt_postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5901_raastof_till_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5901_raastof_till DROP CONSTRAINT t_5901_raastof_till_generel_fk;
-ALTER TABLE fkg.t_5901_raastof_till ADD CONSTRAINT t_5901_raastof_till_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5901_raastof_till_t DROP CONSTRAINT t_5901_raastof_till_generel_fk;
+ALTER TABLE fkg.t_5901_raastof_till_t ADD CONSTRAINT t_5901_raastof_till_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5901_raastof_till_d_5901_raastof_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5901_raastof_till DROP CONSTRAINT t_5901_raastof_till_d_5901_raastof_type_fk;
-ALTER TABLE fkg.t_5901_raastof_till ADD CONSTRAINT t_5901_raastof_till_d_5901_raastof_type_fk FOREIGN KEY (raastof_type_kode)
+-- ALTER TABLE fkg.t_5901_raastof_till_t DROP CONSTRAINT t_5901_raastof_till_d_5901_raastof_type_fk;
+ALTER TABLE fkg.t_5901_raastof_till_t ADD CONSTRAINT t_5901_raastof_till_d_5901_raastof_type_fk FOREIGN KEY (raastof_type_kode)
 REFERENCES fkg.d_5901_raastof_type (raastof_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5901_raastof_till_d_5901_gravestatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5901_raastof_till DROP CONSTRAINT t_5901_raastof_till_d_5901_gravestatus_fk;
-ALTER TABLE fkg.t_5901_raastof_till ADD CONSTRAINT t_5901_raastof_till_d_5901_gravestatus_fk FOREIGN KEY (gravstatus_kode)
+-- ALTER TABLE fkg.t_5901_raastof_till_t DROP CONSTRAINT t_5901_raastof_till_d_5901_gravestatus_fk;
+ALTER TABLE fkg.t_5901_raastof_till_t ADD CONSTRAINT t_5901_raastof_till_d_5901_gravestatus_fk FOREIGN KEY (gravstatus_kode)
 REFERENCES fkg.d_5901_gravestatus (gravstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5902_jordv_anl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5902_jordv_anl DROP CONSTRAINT t_5902_jordv_anl_generel_fk;
-ALTER TABLE fkg.t_5902_jordv_anl ADD CONSTRAINT t_5902_jordv_anl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5902_jordv_anl_t DROP CONSTRAINT t_5902_jordv_anl_generel_fk;
+ALTER TABLE fkg.t_5902_jordv_anl_t ADD CONSTRAINT t_5902_jordv_anl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5902_jordv_anl_d_5902_vaeske_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5902_jordv_anl DROP CONSTRAINT t_5902_jordv_anl_d_5902_vaeske_type_fk;
-ALTER TABLE fkg.t_5902_jordv_anl ADD CONSTRAINT t_5902_jordv_anl_d_5902_vaeske_type_fk FOREIGN KEY (vaesketype_kode)
+-- ALTER TABLE fkg.t_5902_jordv_anl_t DROP CONSTRAINT t_5902_jordv_anl_d_5902_vaeske_type_fk;
+ALTER TABLE fkg.t_5902_jordv_anl_t ADD CONSTRAINT t_5902_jordv_anl_d_5902_vaeske_type_fk FOREIGN KEY (vaesketype_kode)
 REFERENCES fkg.d_5902_vaeske_type (vaesketype_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5902_jordv_anl_d_basis_sag_status_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5902_jordv_anl DROP CONSTRAINT t_5902_jordv_anl_d_basis_sag_status_fk;
-ALTER TABLE fkg.t_5902_jordv_anl ADD CONSTRAINT t_5902_jordv_anl_d_basis_sag_status_fk FOREIGN KEY (sag_status_kode)
+-- ALTER TABLE fkg.t_5902_jordv_anl_t DROP CONSTRAINT t_5902_jordv_anl_d_basis_sag_status_fk;
+ALTER TABLE fkg.t_5902_jordv_anl_t ADD CONSTRAINT t_5902_jordv_anl_d_basis_sag_status_fk FOREIGN KEY (sag_status_kode)
 REFERENCES fkg.d_basis_sag_status (sag_status_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5104_art_invas_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5104_art_invas DROP CONSTRAINT t_5104_art_invas_generel_fk;
-ALTER TABLE fkg.t_5104_art_invas ADD CONSTRAINT t_5104_art_invas_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5104_art_invas_t DROP CONSTRAINT t_5104_art_invas_generel_fk;
+ALTER TABLE fkg.t_5104_art_invas_t ADD CONSTRAINT t_5104_art_invas_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5104_art_invas_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5104_art_invas DROP CONSTRAINT t_5104_art_invas_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_5104_art_invas ADD CONSTRAINT t_5104_art_invas_d_basis_ja_nej_fk FOREIGN KEY (sortlistet_kode)
+-- ALTER TABLE fkg.t_5104_art_invas_t DROP CONSTRAINT t_5104_art_invas_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_5104_art_invas_t ADD CONSTRAINT t_5104_art_invas_d_basis_ja_nej_fk FOREIGN KEY (sortlistet_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5104_art_invas_d_basis_antal_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5104_art_invas DROP CONSTRAINT t_5104_art_invas_d_basis_antal_fk;
-ALTER TABLE fkg.t_5104_art_invas ADD CONSTRAINT t_5104_art_invas_d_basis_antal_fk FOREIGN KEY (antal_kode)
+-- ALTER TABLE fkg.t_5104_art_invas_t DROP CONSTRAINT t_5104_art_invas_d_basis_antal_fk;
+ALTER TABLE fkg.t_5104_art_invas_t ADD CONSTRAINT t_5104_art_invas_d_basis_antal_fk FOREIGN KEY (antal_kode)
 REFERENCES fkg.d_basis_antal (antal_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5107_art_invas_p_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5107_art_invas_p DROP CONSTRAINT t_5107_art_invas_p_generel_fk;
-ALTER TABLE fkg.t_5107_art_invas_p ADD CONSTRAINT t_5107_art_invas_p_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5107_art_invas_p_t DROP CONSTRAINT t_5107_art_invas_p_generel_fk;
+ALTER TABLE fkg.t_5107_art_invas_p_t ADD CONSTRAINT t_5107_art_invas_p_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5107_art_invas_p_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5107_art_invas_p DROP CONSTRAINT t_5107_art_invas_p_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_5107_art_invas_p ADD CONSTRAINT t_5107_art_invas_p_d_basis_ja_nej_fk FOREIGN KEY (sortlistet_kode)
+-- ALTER TABLE fkg.t_5107_art_invas_p_t DROP CONSTRAINT t_5107_art_invas_p_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_5107_art_invas_p_t ADD CONSTRAINT t_5107_art_invas_p_d_basis_ja_nej_fk FOREIGN KEY (sortlistet_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5107_art_invas_p_d_basis_antal_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5107_art_invas_p DROP CONSTRAINT t_5107_art_invas_p_d_basis_antal_fk;
-ALTER TABLE fkg.t_5107_art_invas_p ADD CONSTRAINT t_5107_art_invas_p_d_basis_antal_fk FOREIGN KEY (antal_kode)
+-- ALTER TABLE fkg.t_5107_art_invas_p_t DROP CONSTRAINT t_5107_art_invas_p_d_basis_antal_fk;
+ALTER TABLE fkg.t_5107_art_invas_p_t ADD CONSTRAINT t_5107_art_invas_p_d_basis_antal_fk FOREIGN KEY (antal_kode)
 REFERENCES fkg.d_basis_antal (antal_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5600_vintervedl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5600_vintervedl DROP CONSTRAINT t_5600_vintervedl_generel_fk;
-ALTER TABLE fkg.t_5600_vintervedl ADD CONSTRAINT t_5600_vintervedl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5600_vintervedl_t DROP CONSTRAINT t_5600_vintervedl_generel_fk;
+ALTER TABLE fkg.t_5600_vintervedl_t ADD CONSTRAINT t_5600_vintervedl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5600_vintervedl_d_5600_rute_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5600_vintervedl DROP CONSTRAINT t_5600_vintervedl_d_5600_rute_fk;
-ALTER TABLE fkg.t_5600_vintervedl ADD CONSTRAINT t_5600_vintervedl_d_5600_rute_fk FOREIGN KEY (rute_kode)
+-- ALTER TABLE fkg.t_5600_vintervedl_t DROP CONSTRAINT t_5600_vintervedl_d_5600_rute_fk;
+ALTER TABLE fkg.t_5600_vintervedl_t ADD CONSTRAINT t_5600_vintervedl_d_5600_rute_fk FOREIGN KEY (rute_kode)
 REFERENCES fkg.d_5600_rute (rute_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5601_hasti_daemp_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5601_hasti_daemp DROP CONSTRAINT t_5601_hasti_daemp_generel_fk;
-ALTER TABLE fkg.t_5601_hasti_daemp ADD CONSTRAINT t_5601_hasti_daemp_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5601_hasti_daemp_t DROP CONSTRAINT t_5601_hasti_daemp_generel_fk;
+ALTER TABLE fkg.t_5601_hasti_daemp_t ADD CONSTRAINT t_5601_hasti_daemp_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5601_hasti_daemp_d_5601_hasti_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5601_hasti_daemp DROP CONSTRAINT t_5601_hasti_daemp_d_5601_hasti_type_fk;
-ALTER TABLE fkg.t_5601_hasti_daemp ADD CONSTRAINT t_5601_hasti_daemp_d_5601_hasti_type_fk FOREIGN KEY (hasti_type_kode)
+-- ALTER TABLE fkg.t_5601_hasti_daemp_t DROP CONSTRAINT t_5601_hasti_daemp_d_5601_hasti_type_fk;
+ALTER TABLE fkg.t_5601_hasti_daemp_t ADD CONSTRAINT t_5601_hasti_daemp_d_5601_hasti_type_fk FOREIGN KEY (hasti_type_kode)
 REFERENCES fkg.d_5601_hasti_type (hasti_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5601_hasti_daemp_d_basis_hastighed_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5601_hasti_daemp DROP CONSTRAINT t_5601_hasti_daemp_d_basis_hastighed_fk;
-ALTER TABLE fkg.t_5601_hasti_daemp ADD CONSTRAINT t_5601_hasti_daemp_d_basis_hastighed_fk FOREIGN KEY (hastighed_kode)
+-- ALTER TABLE fkg.t_5601_hasti_daemp_t DROP CONSTRAINT t_5601_hasti_daemp_d_basis_hastighed_fk;
+ALTER TABLE fkg.t_5601_hasti_daemp_t ADD CONSTRAINT t_5601_hasti_daemp_d_basis_hastighed_fk FOREIGN KEY (hastighed_kode)
 REFERENCES fkg.d_basis_hastighed (hastighed_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5602_p_zoner_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5602_p_zoner DROP CONSTRAINT t_5602_p_zoner_generel_fk;
-ALTER TABLE fkg.t_5602_p_zoner ADD CONSTRAINT t_5602_p_zoner_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5602_p_zoner_t DROP CONSTRAINT t_5602_p_zoner_generel_fk;
+ALTER TABLE fkg.t_5602_p_zoner_t ADD CONSTRAINT t_5602_p_zoner_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5602_p_zoner_d_5602_p_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5602_p_zoner DROP CONSTRAINT t_5602_p_zoner_d_5602_p_type_fk;
-ALTER TABLE fkg.t_5602_p_zoner ADD CONSTRAINT t_5602_p_zoner_d_5602_p_type_fk FOREIGN KEY (p_type_kode)
+-- ALTER TABLE fkg.t_5602_p_zoner_t DROP CONSTRAINT t_5602_p_zoner_d_5602_p_type_fk;
+ALTER TABLE fkg.t_5602_p_zoner_t ADD CONSTRAINT t_5602_p_zoner_d_5602_p_type_fk FOREIGN KEY (p_type_kode)
 REFERENCES fkg.d_5602_p_type (p_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5602_p_zoner_d_5602_p_tid_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5602_p_zoner DROP CONSTRAINT t_5602_p_zoner_d_5602_p_tid_fk;
-ALTER TABLE fkg.t_5602_p_zoner ADD CONSTRAINT t_5602_p_zoner_d_5602_p_tid_fk FOREIGN KEY (p_tid_kode)
+-- ALTER TABLE fkg.t_5602_p_zoner_t DROP CONSTRAINT t_5602_p_zoner_d_5602_p_tid_fk;
+ALTER TABLE fkg.t_5602_p_zoner_t ADD CONSTRAINT t_5602_p_zoner_d_5602_p_tid_fk FOREIGN KEY (p_tid_kode)
 REFERENCES fkg.d_5602_p_tid (p_tid_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5603_hasti_zone_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5603_hasti_zone DROP CONSTRAINT t_5603_hasti_zone_generel_fk;
-ALTER TABLE fkg.t_5603_hasti_zone ADD CONSTRAINT t_5603_hasti_zone_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5603_hasti_zone_t DROP CONSTRAINT t_5603_hasti_zone_generel_fk;
+ALTER TABLE fkg.t_5603_hasti_zone_t ADD CONSTRAINT t_5603_hasti_zone_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5603_hasti_zone_d_basis_hastighed_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5603_hasti_zone DROP CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_fk;
-ALTER TABLE fkg.t_5603_hasti_zone ADD CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_fk FOREIGN KEY (hastighed_kode)
+-- ALTER TABLE fkg.t_5603_hasti_zone_t DROP CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_fk;
+ALTER TABLE fkg.t_5603_hasti_zone_t ADD CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_fk FOREIGN KEY (hastighed_kode)
 REFERENCES fkg.d_basis_hastighed (hastighed_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5603_hasti_zone DROP CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk;
-ALTER TABLE fkg.t_5603_hasti_zone ADD CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk FOREIGN KEY (anbefalet_hastighed_kode)
+-- ALTER TABLE fkg.t_5603_hasti_zone_t DROP CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk;
+ALTER TABLE fkg.t_5603_hasti_zone_t ADD CONSTRAINT t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk FOREIGN KEY (anbefalet_hastighed_kode)
 REFERENCES fkg.d_basis_hastighed (hastighed_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5604_koer_begr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5604_koer_begr DROP CONSTRAINT t_5604_koer_begr_generel_fk;
-ALTER TABLE fkg.t_5604_koer_begr ADD CONSTRAINT t_5604_koer_begr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5604_koer_begr_t DROP CONSTRAINT t_5604_koer_begr_generel_fk;
+ALTER TABLE fkg.t_5604_koer_begr_t ADD CONSTRAINT t_5604_koer_begr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5604_koer_begr_d_5604_begr_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5604_koer_begr DROP CONSTRAINT t_5604_koer_begr_d_5604_begr_type_fk;
-ALTER TABLE fkg.t_5604_koer_begr ADD CONSTRAINT t_5604_koer_begr_d_5604_begr_type_fk FOREIGN KEY (begr_type_kode)
+-- ALTER TABLE fkg.t_5604_koer_begr_t DROP CONSTRAINT t_5604_koer_begr_d_5604_begr_type_fk;
+ALTER TABLE fkg.t_5604_koer_begr_t ADD CONSTRAINT t_5604_koer_begr_d_5604_begr_type_fk FOREIGN KEY (begr_type_kode)
 REFERENCES fkg.d_5604_begr_type (begr_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5605_vejbyggel_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5605_vejbyggel DROP CONSTRAINT t_5605_vejbyggel_generel_fk;
-ALTER TABLE fkg.t_5605_vejbyggel ADD CONSTRAINT t_5605_vejbyggel_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5605_vejbyggel_t DROP CONSTRAINT t_5605_vejbyggel_generel_fk;
+ALTER TABLE fkg.t_5605_vejbyggel_t ADD CONSTRAINT t_5605_vejbyggel_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5605_vejbyggel_d_5605_dekl_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5605_vejbyggel DROP CONSTRAINT t_5605_vejbyggel_d_5605_dekl_type_fk;
-ALTER TABLE fkg.t_5605_vejbyggel ADD CONSTRAINT t_5605_vejbyggel_d_5605_dekl_type_fk FOREIGN KEY (dekl_type_kode)
+-- ALTER TABLE fkg.t_5605_vejbyggel_t DROP CONSTRAINT t_5605_vejbyggel_d_5605_dekl_type_fk;
+ALTER TABLE fkg.t_5605_vejbyggel_t ADD CONSTRAINT t_5605_vejbyggel_d_5605_dekl_type_fk FOREIGN KEY (dekl_type_kode)
 REFERENCES fkg.d_5605_dekl_type (dekl_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5605_vejbyggel_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5605_vejbyggel DROP CONSTRAINT t_5605_vejbyggel_d_vejnavn_fk;
-ALTER TABLE fkg.t_5605_vejbyggel ADD CONSTRAINT t_5605_vejbyggel_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5605_vejbyggel_t DROP CONSTRAINT t_5605_vejbyggel_d_vejnavn_fk;
+ALTER TABLE fkg.t_5605_vejbyggel_t ADD CONSTRAINT t_5605_vejbyggel_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5606_vejinv_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5606_vejinv DROP CONSTRAINT t_5606_vejinv_generel_fk;
-ALTER TABLE fkg.t_5606_vejinv ADD CONSTRAINT t_5606_vejinv_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5606_vejinv_t DROP CONSTRAINT t_5606_vejinv_generel_fk;
+ALTER TABLE fkg.t_5606_vejinv_t ADD CONSTRAINT t_5606_vejinv_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5606_vejinv_d_5606_inventar_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5606_vejinv DROP CONSTRAINT t_5606_vejinv_d_5606_inventar_type_fk;
-ALTER TABLE fkg.t_5606_vejinv ADD CONSTRAINT t_5606_vejinv_d_5606_inventar_type_fk FOREIGN KEY (inventar_type_kode)
+-- ALTER TABLE fkg.t_5606_vejinv_t DROP CONSTRAINT t_5606_vejinv_d_5606_inventar_type_fk;
+ALTER TABLE fkg.t_5606_vejinv_t ADD CONSTRAINT t_5606_vejinv_d_5606_inventar_type_fk FOREIGN KEY (inventar_type_kode)
 REFERENCES fkg.d_5606_inventar_type (inventar_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5606_vejinv_d_basis_tilstand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5606_vejinv DROP CONSTRAINT t_5606_vejinv_d_basis_tilstand_fk;
-ALTER TABLE fkg.t_5606_vejinv ADD CONSTRAINT t_5606_vejinv_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+-- ALTER TABLE fkg.t_5606_vejinv_t DROP CONSTRAINT t_5606_vejinv_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_5606_vejinv_t ADD CONSTRAINT t_5606_vejinv_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5700_grundej_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_generel_fk;
-ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5700_grundej_t DROP CONSTRAINT t_5700_grundej_generel_fk;
+ALTER TABLE fkg.t_5700_grundej_t ADD CONSTRAINT t_5700_grundej_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5700_grundej_d_5700_forening_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_d_5700_forening_type_fk;
-ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_d_5700_forening_type_fk FOREIGN KEY (forening_type_kode)
+-- ALTER TABLE fkg.t_5700_grundej_t DROP CONSTRAINT t_5700_grundej_d_5700_forening_type_fk;
+ALTER TABLE fkg.t_5700_grundej_t ADD CONSTRAINT t_5700_grundej_d_5700_forening_type_fk FOREIGN KEY (forening_type_kode)
 REFERENCES fkg.d_5700_forening_type (forening_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5700_grundej_d_5700_adr_beskyt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_d_5700_adr_beskyt_fk;
-ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_d_5700_adr_beskyt_fk FOREIGN KEY (gf_adr_beskyt_kode)
+-- ALTER TABLE fkg.t_5700_grundej_t DROP CONSTRAINT t_5700_grundej_d_5700_adr_beskyt_fk;
+ALTER TABLE fkg.t_5700_grundej_t ADD CONSTRAINT t_5700_grundej_d_5700_adr_beskyt_fk FOREIGN KEY (gf_adr_beskyt_kode)
 REFERENCES fkg.d_5700_adr_beskyt (gf_adr_beskyt_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5700_grundej_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5700_grundej DROP CONSTRAINT t_5700_grundej_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_5700_grundej ADD CONSTRAINT t_5700_grundej_d_basis_ja_nej_fk FOREIGN KEY (vedtaegt_kode)
+-- ALTER TABLE fkg.t_5700_grundej_t DROP CONSTRAINT t_5700_grundej_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_5700_grundej_t ADD CONSTRAINT t_5700_grundej_d_basis_ja_nej_fk FOREIGN KEY (vedtaegt_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5701_lok_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5701_lok_omr DROP CONSTRAINT t_5701_lok_omr_generel_fk;
-ALTER TABLE fkg.t_5701_lok_omr ADD CONSTRAINT t_5701_lok_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5701_lok_omr_t DROP CONSTRAINT t_5701_lok_omr_generel_fk;
+ALTER TABLE fkg.t_5701_lok_omr_t ADD CONSTRAINT t_5701_lok_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5702_skorst_fej_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5702_skorst_fej DROP CONSTRAINT t_5702_skorst_fej_generel_fk;
-ALTER TABLE fkg.t_5702_skorst_fej ADD CONSTRAINT t_5702_skorst_fej_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5702_skorst_fej_t DROP CONSTRAINT t_5702_skorst_fej_generel_fk;
+ALTER TABLE fkg.t_5702_skorst_fej_t ADD CONSTRAINT t_5702_skorst_fej_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5703_afstem_sted_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_generel_fk;
-ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5703_afstem_sted_t DROP CONSTRAINT t_5703_afstem_sted_generel_fk;
+ALTER TABLE fkg.t_5703_afstem_sted_t ADD CONSTRAINT t_5703_afstem_sted_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5703_afstem_sted_d_basis_afstemningsomraade_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_d_basis_afstemningsomraade_fk;
-ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_d_basis_afstemningsomraade_fk FOREIGN KEY (afstemningsomraade_nr)
+-- ALTER TABLE fkg.t_5703_afstem_sted_t DROP CONSTRAINT t_5703_afstem_sted_d_basis_afstemningsomraade_fk;
+ALTER TABLE fkg.t_5703_afstem_sted_t ADD CONSTRAINT t_5703_afstem_sted_d_basis_afstemningsomraade_fk FOREIGN KEY (afstemningsomraade_nr)
 REFERENCES fkg.d_basis_afstemningsomraade (afstemningsomraade_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5703_afstem_sted_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_vejnavn_fk;
-ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5703_afstem_sted_t DROP CONSTRAINT t_5703_afstem_sted_vejnavn_fk;
+ALTER TABLE fkg.t_5703_afstem_sted_t ADD CONSTRAINT t_5703_afstem_sted_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5703_afstem_sted_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5703_afstem_sted DROP CONSTRAINT t_5703_afstem_sted_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5703_afstem_sted ADD CONSTRAINT t_5703_afstem_sted_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5703_afstem_sted_t DROP CONSTRAINT t_5703_afstem_sted_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5703_afstem_sted_t ADD CONSTRAINT t_5703_afstem_sted_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5704_afstem_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5704_afstem_omr DROP CONSTRAINT t_5704_afstem_omr_generel_fk;
-ALTER TABLE fkg.t_5704_afstem_omr ADD CONSTRAINT t_5704_afstem_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5704_afstem_omr_t DROP CONSTRAINT t_5704_afstem_omr_generel_fk;
+ALTER TABLE fkg.t_5704_afstem_omr_t ADD CONSTRAINT t_5704_afstem_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5704_afstem_omr_d_basis_afstemningsomraade_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5704_afstem_omr DROP CONSTRAINT t_5704_afstem_omr_d_basis_afstemningsomraade_fk;
-ALTER TABLE fkg.t_5704_afstem_omr ADD CONSTRAINT t_5704_afstem_omr_d_basis_afstemningsomraade_fk FOREIGN KEY (afstemningsomraade_nr)
+-- ALTER TABLE fkg.t_5704_afstem_omr_t DROP CONSTRAINT t_5704_afstem_omr_d_basis_afstemningsomraade_fk;
+ALTER TABLE fkg.t_5704_afstem_omr_t ADD CONSTRAINT t_5704_afstem_omr_d_basis_afstemningsomraade_fk FOREIGN KEY (afstemningsomraade_nr)
 REFERENCES fkg.d_basis_afstemningsomraade (afstemningsomraade_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5705_forp_are_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5705_forp_are DROP CONSTRAINT t_5705_forp_are_generel_fk;
-ALTER TABLE fkg.t_5705_forp_are ADD CONSTRAINT t_5705_forp_are_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5705_forp_are_t DROP CONSTRAINT t_5705_forp_are_generel_fk;
+ALTER TABLE fkg.t_5705_forp_are_t ADD CONSTRAINT t_5705_forp_are_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5705_forp_are_d_5705_udlejning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5705_forp_are DROP CONSTRAINT t_5705_forp_are_d_5705_udlejning_fk;
-ALTER TABLE fkg.t_5705_forp_are ADD CONSTRAINT t_5705_forp_are_d_5705_udlejning_fk FOREIGN KEY (udlejning_kode)
+-- ALTER TABLE fkg.t_5705_forp_are_t DROP CONSTRAINT t_5705_forp_are_d_5705_udlejning_fk;
+ALTER TABLE fkg.t_5705_forp_are_t ADD CONSTRAINT t_5705_forp_are_d_5705_udlejning_fk FOREIGN KEY (udlejning_kode)
 REFERENCES fkg.d_5705_udlejning (udlejning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5705_forp_are_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5705_forp_are DROP CONSTRAINT t_5705_forp_are_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_5705_forp_are ADD CONSTRAINT t_5705_forp_are_d_basis_ja_nej_fk FOREIGN KEY (landbrug_kode)
+-- ALTER TABLE fkg.t_5705_forp_are_t DROP CONSTRAINT t_5705_forp_are_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_5705_forp_are_t ADD CONSTRAINT t_5705_forp_are_d_basis_ja_nej_fk FOREIGN KEY (landbrug_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5706_havn_are_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5706_havn_are DROP CONSTRAINT t_5706_havn_are_generel_fk;
-ALTER TABLE fkg.t_5706_havn_are ADD CONSTRAINT t_5706_havn_are_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5706_havn_are_t DROP CONSTRAINT t_5706_havn_are_generel_fk;
+ALTER TABLE fkg.t_5706_havn_are_t ADD CONSTRAINT t_5706_havn_are_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5706_havn_are_d_5706_havn_type | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5706_havn_are DROP CONSTRAINT t_5706_havn_are_d_5706_havn_type;
-ALTER TABLE fkg.t_5706_havn_are ADD CONSTRAINT t_5706_havn_are_d_5706_havn_type FOREIGN KEY (havne_type_kode)
+-- ALTER TABLE fkg.t_5706_havn_are_t DROP CONSTRAINT t_5706_havn_are_d_5706_havn_type;
+ALTER TABLE fkg.t_5706_havn_are_t ADD CONSTRAINT t_5706_havn_are_d_5706_havn_type FOREIGN KEY (havne_type_kode)
 REFERENCES fkg.d_5706_havn_type (havn_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5707_grunds_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_generel_fk;
-ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5707_grunds_t DROP CONSTRAINT t_5707_grunds_generel_fk;
+ALTER TABLE fkg.t_5707_grunds_t ADD CONSTRAINT t_5707_grunds_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5707_grunds_d5707_grund_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d5707_grund_type_fk;
-ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d5707_grund_type_fk FOREIGN KEY (grund_type_kode)
+-- ALTER TABLE fkg.t_5707_grunds_t DROP CONSTRAINT t_5707_grunds_d5707_grund_type_fk;
+ALTER TABLE fkg.t_5707_grunds_t ADD CONSTRAINT t_5707_grunds_d5707_grund_type_fk FOREIGN KEY (grund_type_kode)
 REFERENCES fkg.d_5707_grund_type (grund_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5707_grunds_d5707_salg_status_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d5707_salg_status_fk;
-ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d5707_salg_status_fk FOREIGN KEY (salg_status_kode)
+-- ALTER TABLE fkg.t_5707_grunds_t DROP CONSTRAINT t_5707_grunds_d5707_salg_status_fk;
+ALTER TABLE fkg.t_5707_grunds_t ADD CONSTRAINT t_5707_grunds_d5707_salg_status_fk FOREIGN KEY (salg_status_kode)
 REFERENCES fkg.d_5707_salg_status (salg_status_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5707_grunds_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d_vejnavn_fk;
-ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5707_grunds_t DROP CONSTRAINT t_5707_grunds_d_vejnavn_fk;
+ALTER TABLE fkg.t_5707_grunds_t ADD CONSTRAINT t_5707_grunds_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5707_grunds_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5707_grunds DROP CONSTRAINT t_5707_grunds_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5707_grunds ADD CONSTRAINT t_5707_grunds_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5707_grunds_t DROP CONSTRAINT t_5707_grunds_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5707_grunds_t ADD CONSTRAINT t_5707_grunds_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5710_born_skole_dis_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5710_born_skole_dis DROP CONSTRAINT t_5710_born_skole_dis_generel_fk;
-ALTER TABLE fkg.t_5710_born_skole_dis ADD CONSTRAINT t_5710_born_skole_dis_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5710_born_skole_dis_t DROP CONSTRAINT t_5710_born_skole_dis_generel_fk;
+ALTER TABLE fkg.t_5710_born_skole_dis_t ADD CONSTRAINT t_5710_born_skole_dis_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5710_born_skole_dis DROP CONSTRAINT t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk;
-ALTER TABLE fkg.t_5710_born_skole_dis ADD CONSTRAINT t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk FOREIGN KEY (udd_distrikt_type_kode)
+-- ALTER TABLE fkg.t_5710_born_skole_dis_t DROP CONSTRAINT t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk;
+ALTER TABLE fkg.t_5710_born_skole_dis_t ADD CONSTRAINT t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk FOREIGN KEY (udd_distrikt_type_kode)
 REFERENCES fkg.d_5710_udd_distrikt_type (udd_distrikt_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5710_born_skole_dis_d_basis_trin_starttrin_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5710_born_skole_dis DROP CONSTRAINT t_5710_born_skole_dis_d_basis_trin_starttrin_fk;
-ALTER TABLE fkg.t_5710_born_skole_dis ADD CONSTRAINT t_5710_born_skole_dis_d_basis_trin_starttrin_fk FOREIGN KEY (starttrin_kode)
+-- ALTER TABLE fkg.t_5710_born_skole_dis_t DROP CONSTRAINT t_5710_born_skole_dis_d_basis_trin_starttrin_fk;
+ALTER TABLE fkg.t_5710_born_skole_dis_t ADD CONSTRAINT t_5710_born_skole_dis_d_basis_trin_starttrin_fk FOREIGN KEY (starttrin_kode)
 REFERENCES fkg.d_basis_trin (trin_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5710_born_skole_dis_d_basis_trin_sluttrin_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5710_born_skole_dis DROP CONSTRAINT t_5710_born_skole_dis_d_basis_trin_sluttrin_fk;
-ALTER TABLE fkg.t_5710_born_skole_dis ADD CONSTRAINT t_5710_born_skole_dis_d_basis_trin_sluttrin_fk FOREIGN KEY (sluttrin_kode)
+-- ALTER TABLE fkg.t_5710_born_skole_dis_t DROP CONSTRAINT t_5710_born_skole_dis_d_basis_trin_sluttrin_fk;
+ALTER TABLE fkg.t_5710_born_skole_dis_t ADD CONSTRAINT t_5710_born_skole_dis_d_basis_trin_sluttrin_fk FOREIGN KEY (sluttrin_kode)
 REFERENCES fkg.d_basis_trin (trin_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5711_and_dis_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5711_and_dis DROP CONSTRAINT t_5711_and_dis_generel_fk;
-ALTER TABLE fkg.t_5711_and_dis ADD CONSTRAINT t_5711_and_dis_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5711_and_dis_t DROP CONSTRAINT t_5711_and_dis_generel_fk;
+ALTER TABLE fkg.t_5711_and_dis_t ADD CONSTRAINT t_5711_and_dis_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5711_and_dis_d_5711_an_distrikt_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5711_and_dis DROP CONSTRAINT t_5711_and_dis_d_5711_an_distrikt_type_fk;
-ALTER TABLE fkg.t_5711_and_dis ADD CONSTRAINT t_5711_and_dis_d_5711_an_distrikt_type_fk FOREIGN KEY (an_distrikt_type_kode)
+-- ALTER TABLE fkg.t_5711_and_dis_t DROP CONSTRAINT t_5711_and_dis_d_5711_an_distrikt_type_fk;
+ALTER TABLE fkg.t_5711_and_dis_t ADD CONSTRAINT t_5711_and_dis_d_5711_an_distrikt_type_fk FOREIGN KEY (an_distrikt_type_kode)
 REFERENCES fkg.d_5711_an_distrikt_type (an_distrikt_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5712_plej_aeldr_dis_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5712_plej_aeldr_dis DROP CONSTRAINT t_5712_plej_aeldr_dis_generel_fk;
-ALTER TABLE fkg.t_5712_plej_aeldr_dis ADD CONSTRAINT t_5712_plej_aeldr_dis_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5712_plej_aeldr_dis_t DROP CONSTRAINT t_5712_plej_aeldr_dis_generel_fk;
+ALTER TABLE fkg.t_5712_plej_aeldr_dis_t ADD CONSTRAINT t_5712_plej_aeldr_dis_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5712_plej_aeldr_dis DROP CONSTRAINT t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk;
-ALTER TABLE fkg.t_5712_plej_aeldr_dis ADD CONSTRAINT t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk FOREIGN KEY (plej_distrikt_type_kode)
+-- ALTER TABLE fkg.t_5712_plej_aeldr_dis_t DROP CONSTRAINT t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk;
+ALTER TABLE fkg.t_5712_plej_aeldr_dis_t ADD CONSTRAINT t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk FOREIGN KEY (plej_distrikt_type_kode)
 REFERENCES fkg.d_5712_plej_distrikt_type (plej_distrikt_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5713_prog_stat_dis_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5713_prog_stat_dis DROP CONSTRAINT t_5713_prog_stat_dis_generel_fk;
-ALTER TABLE fkg.t_5713_prog_stat_dis ADD CONSTRAINT t_5713_prog_stat_dis_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5713_prog_stat_dis_t DROP CONSTRAINT t_5713_prog_stat_dis_generel_fk;
+ALTER TABLE fkg.t_5713_prog_stat_dis_t ADD CONSTRAINT t_5713_prog_stat_dis_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5713_prog_stat_dis DROP CONSTRAINT t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk;
-ALTER TABLE fkg.t_5713_prog_stat_dis ADD CONSTRAINT t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk FOREIGN KEY (prog_distrikt_type_kode)
+-- ALTER TABLE fkg.t_5713_prog_stat_dis_t DROP CONSTRAINT t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk;
+ALTER TABLE fkg.t_5713_prog_stat_dis_t ADD CONSTRAINT t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk FOREIGN KEY (prog_distrikt_type_kode)
 REFERENCES fkg.d_5713_prog_distrikt_type (prog_distrikt_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5714_laering_udd_inst_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_generel_fk;
-ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5714_laering_udd_inst_t DROP CONSTRAINT t_5714_laering_udd_inst_generel_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD CONSTRAINT t_5714_laering_udd_inst_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5714_laering_udd_inst_d_5714_udd_institution_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk;
-ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk FOREIGN KEY (udd_institution_type_kode)
+-- ALTER TABLE fkg.t_5714_laering_udd_inst_t DROP CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD CONSTRAINT t_5714_laering_udd_inst_d_5714_udd_institution_type_fk FOREIGN KEY (udd_institution_type_kode)
 REFERENCES fkg.d_5714_udd_institution_type (udd_institution_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5714_laering_udd_inst_d_basis_trin_starttrin_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_starttrin_fk;
-ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_starttrin_fk FOREIGN KEY (starttrin_kode)
+-- ALTER TABLE fkg.t_5714_laering_udd_inst_t DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_starttrin_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_starttrin_fk FOREIGN KEY (starttrin_kode)
 REFERENCES fkg.d_basis_trin (trin_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk;
-ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk FOREIGN KEY (sluttrin_kode)
+-- ALTER TABLE fkg.t_5714_laering_udd_inst_t DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk FOREIGN KEY (sluttrin_kode)
 REFERENCES fkg.d_basis_trin (trin_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5714_laering_udd_inst_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_vejnavn_fk;
-ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5714_laering_udd_inst_t DROP CONSTRAINT t_5714_laering_udd_inst_d_vejnavn_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD CONSTRAINT t_5714_laering_udd_inst_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5714_laering_udd_inst_d_basis_postnr | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_postnr;
-ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_postnr FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5714_laering_udd_inst_t DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_postnr;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_postnr FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5714_laering_udd_inst_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5714_laering_udd_inst DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5714_laering_udd_inst ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5714_laering_udd_inst_t DROP CONSTRAINT t_5714_laering_udd_inst_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD CONSTRAINT t_5714_laering_udd_inst_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5715_botilbud_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_generel_fk;
-ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5715_botilbud_t DROP CONSTRAINT t_5715_botilbud_generel_fk;
+ALTER TABLE fkg.t_5715_botilbud_t ADD CONSTRAINT t_5715_botilbud_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5715_botilbud_d_5715_botilbud_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_5715_botilbud_type_fk;
-ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_5715_botilbud_type_fk FOREIGN KEY (botilbud_type_kode)
+-- ALTER TABLE fkg.t_5715_botilbud_t DROP CONSTRAINT t_5715_botilbud_d_5715_botilbud_type_fk;
+ALTER TABLE fkg.t_5715_botilbud_t ADD CONSTRAINT t_5715_botilbud_d_5715_botilbud_type_fk FOREIGN KEY (botilbud_type_kode)
 REFERENCES fkg.d_5715_botilbud_type (botilbud_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5715_botilbud_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5715_botilbud_t DROP CONSTRAINT t_5715_botilbud_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5715_botilbud_t ADD CONSTRAINT t_5715_botilbud_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5715_botilbud_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_vejnavn_fk;
-ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5715_botilbud_t DROP CONSTRAINT t_5715_botilbud_d_vejnavn_fk;
+ALTER TABLE fkg.t_5715_botilbud_t ADD CONSTRAINT t_5715_botilbud_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5715_botilbud_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5715_botilbud DROP CONSTRAINT t_5715_botilbud_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5715_botilbud ADD CONSTRAINT t_5715_botilbud_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5715_botilbud_t DROP CONSTRAINT t_5715_botilbud_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5715_botilbud_t ADD CONSTRAINT t_5715_botilbud_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5716_servicetilbud_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_generel_fk;
-ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5716_servicetilbud_t DROP CONSTRAINT t_5716_servicetilbud_generel_fk;
+ALTER TABLE fkg.t_5716_servicetilbud_t ADD CONSTRAINT t_5716_servicetilbud_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5716_servicetilbud_d_5716_servicetilbud_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_5716_servicetilbud_type_fk;
-ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_5716_servicetilbud_type_fk FOREIGN KEY (service_type_kode)
+-- ALTER TABLE fkg.t_5716_servicetilbud_t DROP CONSTRAINT t_5716_servicetilbud_d_5716_servicetilbud_type_fk;
+ALTER TABLE fkg.t_5716_servicetilbud_t ADD CONSTRAINT t_5716_servicetilbud_d_5716_servicetilbud_type_fk FOREIGN KEY (service_type_kode)
 REFERENCES fkg.d_5716_servicetilbud_type (service_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5716_servicetilbud_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_basis_ejerstatus_fk;
-ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5716_servicetilbud_t DROP CONSTRAINT t_5716_servicetilbud_d_basis_ejerstatus_fk;
+ALTER TABLE fkg.t_5716_servicetilbud_t ADD CONSTRAINT t_5716_servicetilbud_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5716_servicetilbud_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_vejnavn_fk;
-ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5716_servicetilbud_t DROP CONSTRAINT t_5716_servicetilbud_d_vejnavn_fk;
+ALTER TABLE fkg.t_5716_servicetilbud_t ADD CONSTRAINT t_5716_servicetilbud_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_5716_servicetilbud_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5716_servicetilbud DROP CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk;
-ALTER TABLE fkg.t_5716_servicetilbud ADD CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5716_servicetilbud_t DROP CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk;
+ALTER TABLE fkg.t_5716_servicetilbud_t ADD CONSTRAINT t_5716_servicetilbud_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6000_pot_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6000_pot DROP CONSTRAINT t_6000_pot_generel_fk;
-ALTER TABLE fkg.t_6000_pot ADD CONSTRAINT t_6000_pot_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6000_pot_t DROP CONSTRAINT t_6000_pot_generel_fk;
+ALTER TABLE fkg.t_6000_pot_t ADD CONSTRAINT t_6000_pot_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6000_pot_d_basis_magasin_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6000_pot DROP CONSTRAINT t_6000_pot_d_basis_magasin_fk;
-ALTER TABLE fkg.t_6000_pot ADD CONSTRAINT t_6000_pot_d_basis_magasin_fk FOREIGN KEY (magasin_kode)
+-- ALTER TABLE fkg.t_6000_pot_t DROP CONSTRAINT t_6000_pot_d_basis_magasin_fk;
+ALTER TABLE fkg.t_6000_pot_t ADD CONSTRAINT t_6000_pot_d_basis_magasin_fk FOREIGN KEY (magasin_kode)
 REFERENCES fkg.d_basis_magasin (magasin_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6000_pot | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6000_pot DROP CONSTRAINT t_6000_pot;
-ALTER TABLE fkg.t_6000_pot ADD CONSTRAINT t_6000_pot FOREIGN KEY (kotesystem_kode)
+-- ALTER TABLE fkg.t_6000_pot_t DROP CONSTRAINT t_6000_pot;
+ALTER TABLE fkg.t_6000_pot_t ADD CONSTRAINT t_6000_pot FOREIGN KEY (kotesystem_kode)
 REFERENCES fkg.d_6000_kotesystem (kotesystem_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6001_pot_m_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_generel_fk;
-ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6001_pot_m_t DROP CONSTRAINT t_6001_pot_m_generel_fk;
+ALTER TABLE fkg.t_6001_pot_m_t ADD CONSTRAINT t_6001_pot_m_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6001_pot_m_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_d_basis_ja_nej_fk FOREIGN KEY (stoettep_kode)
+-- ALTER TABLE fkg.t_6001_pot_m_t DROP CONSTRAINT t_6001_pot_m_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_6001_pot_m_t ADD CONSTRAINT t_6001_pot_m_d_basis_ja_nej_fk FOREIGN KEY (stoettep_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6001_pot_m_d_basis_magasin_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_d_basis_magasin_fk;
-ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_d_basis_magasin_fk FOREIGN KEY (magasin_kode)
+-- ALTER TABLE fkg.t_6001_pot_m_t DROP CONSTRAINT t_6001_pot_m_d_basis_magasin_fk;
+ALTER TABLE fkg.t_6001_pot_m_t ADD CONSTRAINT t_6001_pot_m_d_basis_magasin_fk FOREIGN KEY (magasin_kode)
 REFERENCES fkg.d_basis_magasin (magasin_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6001_pot_m_d_6000_kotesystem_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6001_pot_m DROP CONSTRAINT t_6001_pot_m_d_6000_kotesystem_fk;
-ALTER TABLE fkg.t_6001_pot_m ADD CONSTRAINT t_6001_pot_m_d_6000_kotesystem_fk FOREIGN KEY (kotesystem_kode)
+-- ALTER TABLE fkg.t_6001_pot_m_t DROP CONSTRAINT t_6001_pot_m_d_6000_kotesystem_fk;
+ALTER TABLE fkg.t_6001_pot_m_t ADD CONSTRAINT t_6001_pot_m_d_6000_kotesystem_fk FOREIGN KEY (kotesystem_kode)
 REFERENCES fkg.d_6000_kotesystem (kotesystem_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6002_indv_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6002_indv DROP CONSTRAINT t_6002_indv_generel_fk;
-ALTER TABLE fkg.t_6002_indv ADD CONSTRAINT t_6002_indv_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6002_indv_t DROP CONSTRAINT t_6002_indv_generel_fk;
+ALTER TABLE fkg.t_6002_indv_t ADD CONSTRAINT t_6002_indv_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6002_indv_d_basis_vandv_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6002_indv DROP CONSTRAINT t_6002_indv_d_basis_vandv_fk;
-ALTER TABLE fkg.t_6002_indv ADD CONSTRAINT t_6002_indv_d_basis_vandv_fk FOREIGN KEY (vandv_nr)
+-- ALTER TABLE fkg.t_6002_indv_t DROP CONSTRAINT t_6002_indv_d_basis_vandv_fk;
+ALTER TABLE fkg.t_6002_indv_t ADD CONSTRAINT t_6002_indv_d_basis_vandv_fk FOREIGN KEY (vandv_nr)
 REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6003_besk_zone_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6003_besk_zone DROP CONSTRAINT t_6003_besk_zone_generel_fk;
-ALTER TABLE fkg.t_6003_besk_zone ADD CONSTRAINT t_6003_besk_zone_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6003_besk_zone_t DROP CONSTRAINT t_6003_besk_zone_generel_fk;
+ALTER TABLE fkg.t_6003_besk_zone_t ADD CONSTRAINT t_6003_besk_zone_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6003_besk_zone_d_basis_vandv_nr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6003_besk_zone DROP CONSTRAINT t_6003_besk_zone_d_basis_vandv_nr_fk;
-ALTER TABLE fkg.t_6003_besk_zone ADD CONSTRAINT t_6003_besk_zone_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
+-- ALTER TABLE fkg.t_6003_besk_zone_t DROP CONSTRAINT t_6003_besk_zone_d_basis_vandv_nr_fk;
+ALTER TABLE fkg.t_6003_besk_zone_t ADD CONSTRAINT t_6003_besk_zone_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
 REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6003_besk_zone_d_6003_zone_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6003_besk_zone DROP CONSTRAINT t_6003_besk_zone_d_6003_zone_type_fk;
-ALTER TABLE fkg.t_6003_besk_zone ADD CONSTRAINT t_6003_besk_zone_d_6003_zone_type_fk FOREIGN KEY (zone_type_kode)
+-- ALTER TABLE fkg.t_6003_besk_zone_t DROP CONSTRAINT t_6003_besk_zone_d_6003_zone_type_fk;
+ALTER TABLE fkg.t_6003_besk_zone_t ADD CONSTRAINT t_6003_besk_zone_d_6003_zone_type_fk FOREIGN KEY (zone_type_kode)
 REFERENCES fkg.d_6003_zone_type (zone_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6004_vandv_fs_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6004_vandv_fs DROP CONSTRAINT t_6004_vandv_fs_generel_fk;
-ALTER TABLE fkg.t_6004_vandv_fs ADD CONSTRAINT t_6004_vandv_fs_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6004_vandv_fs_t DROP CONSTRAINT t_6004_vandv_fs_generel_fk;
+ALTER TABLE fkg.t_6004_vandv_fs_t ADD CONSTRAINT t_6004_vandv_fs_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6004_vandv_fs_d_basis_vandv_nr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6004_vandv_fs DROP CONSTRAINT t_6004_vandv_fs_d_basis_vandv_nr_fk;
-ALTER TABLE fkg.t_6004_vandv_fs ADD CONSTRAINT t_6004_vandv_fs_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
+-- ALTER TABLE fkg.t_6004_vandv_fs_t DROP CONSTRAINT t_6004_vandv_fs_d_basis_vandv_nr_fk;
+ALTER TABLE fkg.t_6004_vandv_fs_t ADD CONSTRAINT t_6004_vandv_fs_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
 REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6004_vandv_fs_d_basis_fors_omr_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6004_vandv_fs DROP CONSTRAINT t_6004_vandv_fs_d_basis_fors_omr_type_fk;
-ALTER TABLE fkg.t_6004_vandv_fs ADD CONSTRAINT t_6004_vandv_fs_d_basis_fors_omr_type_fk FOREIGN KEY (fors_omr_type_kode)
+-- ALTER TABLE fkg.t_6004_vandv_fs_t DROP CONSTRAINT t_6004_vandv_fs_d_basis_fors_omr_type_fk;
+ALTER TABLE fkg.t_6004_vandv_fs_t ADD CONSTRAINT t_6004_vandv_fs_d_basis_fors_omr_type_fk FOREIGN KEY (fors_omr_type_kode)
 REFERENCES fkg.d_basis_fors_omr_type (fors_omr_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6006_grundv_opl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6006_grundv_opl DROP CONSTRAINT t_6006_grundv_opl_generel_fk;
-ALTER TABLE fkg.t_6006_grundv_opl ADD CONSTRAINT t_6006_grundv_opl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6006_grundv_opl_t DROP CONSTRAINT t_6006_grundv_opl_generel_fk;
+ALTER TABLE fkg.t_6006_grundv_opl_t ADD CONSTRAINT t_6006_grundv_opl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6006_grundv_opl_d_basis_vandv_nr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6006_grundv_opl DROP CONSTRAINT t_6006_grundv_opl_d_basis_vandv_nr_fk;
-ALTER TABLE fkg.t_6006_grundv_opl ADD CONSTRAINT t_6006_grundv_opl_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
+-- ALTER TABLE fkg.t_6006_grundv_opl_t DROP CONSTRAINT t_6006_grundv_opl_d_basis_vandv_nr_fk;
+ALTER TABLE fkg.t_6006_grundv_opl_t ADD CONSTRAINT t_6006_grundv_opl_d_basis_vandv_nr_fk FOREIGN KEY (vandv_nr)
 REFERENCES fkg.d_basis_vandv_nr (vandv_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6007_inds_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6007_inds_omr DROP CONSTRAINT t_6007_inds_omr_generel_fk;
-ALTER TABLE fkg.t_6007_inds_omr ADD CONSTRAINT t_6007_inds_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6007_inds_omr_t DROP CONSTRAINT t_6007_inds_omr_generel_fk;
+ALTER TABLE fkg.t_6007_inds_omr_t ADD CONSTRAINT t_6007_inds_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6008_maks_bor_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6008_maks_bor DROP CONSTRAINT t_6008_maks_bor_generel_fk;
-ALTER TABLE fkg.t_6008_maks_bor ADD CONSTRAINT t_6008_maks_bor_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6008_maks_bor_t DROP CONSTRAINT t_6008_maks_bor_generel_fk;
+ALTER TABLE fkg.t_6008_maks_bor_t ADD CONSTRAINT t_6008_maks_bor_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6009_indv_ovflv_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6009_indv_ovflv DROP CONSTRAINT t_6009_indv_ovflv_generel_fk;
-ALTER TABLE fkg.t_6009_indv_ovflv ADD CONSTRAINT t_6009_indv_ovflv_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6009_indv_ovflv_t DROP CONSTRAINT t_6009_indv_ovflv_generel_fk;
+ALTER TABLE fkg.t_6009_indv_ovflv_t ADD CONSTRAINT t_6009_indv_ovflv_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6101_beskyt_rum_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6101_beskyt_rum DROP CONSTRAINT t_6101_beskyt_rum_generel_fk;
-ALTER TABLE fkg.t_6101_beskyt_rum ADD CONSTRAINT t_6101_beskyt_rum_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6101_beskyt_rum_t DROP CONSTRAINT t_6101_beskyt_rum_generel_fk;
+ALTER TABLE fkg.t_6101_beskyt_rum_t ADD CONSTRAINT t_6101_beskyt_rum_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6101_beskyt_rum_d_6101_beskyt_rum_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6101_beskyt_rum DROP CONSTRAINT t_6101_beskyt_rum_d_6101_beskyt_rum_fk;
-ALTER TABLE fkg.t_6101_beskyt_rum ADD CONSTRAINT t_6101_beskyt_rum_d_6101_beskyt_rum_fk FOREIGN KEY (beskyt_rum_kode)
+-- ALTER TABLE fkg.t_6101_beskyt_rum_t DROP CONSTRAINT t_6101_beskyt_rum_d_6101_beskyt_rum_fk;
+ALTER TABLE fkg.t_6101_beskyt_rum_t ADD CONSTRAINT t_6101_beskyt_rum_d_6101_beskyt_rum_fk FOREIGN KEY (beskyt_rum_kode)
 REFERENCES fkg.d_6101_beskyt_rum (beskyt_rum_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6101_beskyt_rum_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6101_beskyt_rum DROP CONSTRAINT t_6101_beskyt_rum_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_6101_beskyt_rum ADD CONSTRAINT t_6101_beskyt_rum_d_basis_ja_nej_fk FOREIGN KEY (klargjort_kode)
+-- ALTER TABLE fkg.t_6101_beskyt_rum_t DROP CONSTRAINT t_6101_beskyt_rum_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_6101_beskyt_rum_t ADD CONSTRAINT t_6101_beskyt_rum_d_basis_ja_nej_fk FOREIGN KEY (klargjort_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6103_bered_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6103_bered_omr DROP CONSTRAINT t_6103_bered_omr_generel_fk;
-ALTER TABLE fkg.t_6103_bered_omr ADD CONSTRAINT t_6103_bered_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6103_bered_omr_t DROP CONSTRAINT t_6103_bered_omr_generel_fk;
+ALTER TABLE fkg.t_6103_bered_omr_t ADD CONSTRAINT t_6103_bered_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6104_risiko_virk_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6104_risiko_virk DROP CONSTRAINT t_6104_risiko_virk_generel_fk;
-ALTER TABLE fkg.t_6104_risiko_virk ADD CONSTRAINT t_6104_risiko_virk_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6104_risiko_virk_t DROP CONSTRAINT t_6104_risiko_virk_generel_fk;
+ALTER TABLE fkg.t_6104_risiko_virk_t ADD CONSTRAINT t_6104_risiko_virk_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6104_risiko_virk_d_6104_risikotype_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6104_risiko_virk DROP CONSTRAINT t_6104_risiko_virk_d_6104_risikotype_fk;
-ALTER TABLE fkg.t_6104_risiko_virk ADD CONSTRAINT t_6104_risiko_virk_d_6104_risikotype_fk FOREIGN KEY (risikotype_kode)
+-- ALTER TABLE fkg.t_6104_risiko_virk_t DROP CONSTRAINT t_6104_risiko_virk_d_6104_risikotype_fk;
+ALTER TABLE fkg.t_6104_risiko_virk_t ADD CONSTRAINT t_6104_risiko_virk_d_6104_risikotype_fk FOREIGN KEY (risikotype_kode)
 REFERENCES fkg.d_6104_risikotype (risikotype_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6104_risiko_virk_d_6104_brandhaem_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6104_risiko_virk DROP CONSTRAINT t_6104_risiko_virk_d_6104_brandhaem_fk;
-ALTER TABLE fkg.t_6104_risiko_virk ADD CONSTRAINT t_6104_risiko_virk_d_6104_brandhaem_fk FOREIGN KEY (brandhaem_kode)
+-- ALTER TABLE fkg.t_6104_risiko_virk_t DROP CONSTRAINT t_6104_risiko_virk_d_6104_brandhaem_fk;
+ALTER TABLE fkg.t_6104_risiko_virk_t ADD CONSTRAINT t_6104_risiko_virk_d_6104_brandhaem_fk FOREIGN KEY (brandhaem_kode)
 REFERENCES fkg.d_6104_brandhaem (brandhaem_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6105_sbygn_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6105_sbygn_omr DROP CONSTRAINT t_6105_sbygn_omr_generel_fk;
-ALTER TABLE fkg.t_6105_sbygn_omr ADD CONSTRAINT t_6105_sbygn_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6105_sbygn_omr_t DROP CONSTRAINT t_6105_sbygn_omr_generel_fk;
+ALTER TABLE fkg.t_6105_sbygn_omr_t ADD CONSTRAINT t_6105_sbygn_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6107_forholds_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6107_forholds DROP CONSTRAINT t_6107_forholds_generel_fk;
-ALTER TABLE fkg.t_6107_forholds ADD CONSTRAINT t_6107_forholds_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6107_forholds_t DROP CONSTRAINT t_6107_forholds_generel_fk;
+ALTER TABLE fkg.t_6107_forholds_t ADD CONSTRAINT t_6107_forholds_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6107_forholds_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6107_forholds DROP CONSTRAINT t_6107_forholds_d_vejnavn_fk;
-ALTER TABLE fkg.t_6107_forholds ADD CONSTRAINT t_6107_forholds_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6107_forholds_t DROP CONSTRAINT t_6107_forholds_d_vejnavn_fk;
+ALTER TABLE fkg.t_6107_forholds_t ADD CONSTRAINT t_6107_forholds_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6107_forholds_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6107_forholds DROP CONSTRAINT t_6107_forholds_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6107_forholds ADD CONSTRAINT t_6107_forholds_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6107_forholds_t DROP CONSTRAINT t_6107_forholds_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6107_forholds_t ADD CONSTRAINT t_6107_forholds_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6107_forholds_d_basis_ja_nej_aba_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6107_forholds DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_aba_fk;
-ALTER TABLE fkg.t_6107_forholds ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_aba_fk FOREIGN KEY (aba_kode)
+-- ALTER TABLE fkg.t_6107_forholds_t DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_aba_fk;
+ALTER TABLE fkg.t_6107_forholds_t ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_aba_fk FOREIGN KEY (aba_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6107_forholds_d_basis_ja_nej_avs_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6107_forholds DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_avs_fk;
-ALTER TABLE fkg.t_6107_forholds ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_avs_fk FOREIGN KEY (avs_kode)
+-- ALTER TABLE fkg.t_6107_forholds_t DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_avs_fk;
+ALTER TABLE fkg.t_6107_forholds_t ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_avs_fk FOREIGN KEY (avs_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6107_forholds_d_basis_ja_nej_ars_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6107_forholds DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_ars_fk;
-ALTER TABLE fkg.t_6107_forholds ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_ars_fk FOREIGN KEY (ars_kode)
+-- ALTER TABLE fkg.t_6107_forholds_t DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_ars_fk;
+ALTER TABLE fkg.t_6107_forholds_t ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_ars_fk FOREIGN KEY (ars_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6107_forholds_d_basis_ja_nej_noegleboks_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6107_forholds DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_noegleboks_fk;
-ALTER TABLE fkg.t_6107_forholds ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_noegleboks_fk FOREIGN KEY (noegleboks_kode)
+-- ALTER TABLE fkg.t_6107_forholds_t DROP CONSTRAINT t_6107_forholds_d_basis_ja_nej_noegleboks_fk;
+ALTER TABLE fkg.t_6107_forholds_t ADD CONSTRAINT t_6107_forholds_d_basis_ja_nej_noegleboks_fk FOREIGN KEY (noegleboks_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6108_moedepl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6108_moedepl DROP CONSTRAINT t_6108_moedepl_generel_fk;
-ALTER TABLE fkg.t_6108_moedepl ADD CONSTRAINT t_6108_moedepl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6108_moedepl_t DROP CONSTRAINT t_6108_moedepl_generel_fk;
+ALTER TABLE fkg.t_6108_moedepl_t ADD CONSTRAINT t_6108_moedepl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6108_moedepl_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6108_moedepl DROP CONSTRAINT t_6108_moedepl_d_vejnavn_fk;
-ALTER TABLE fkg.t_6108_moedepl ADD CONSTRAINT t_6108_moedepl_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6108_moedepl_t DROP CONSTRAINT t_6108_moedepl_d_vejnavn_fk;
+ALTER TABLE fkg.t_6108_moedepl_t ADD CONSTRAINT t_6108_moedepl_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6108_moedepl_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6108_moedepl DROP CONSTRAINT t_6108_moedepl_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6108_moedepl ADD CONSTRAINT t_6108_moedepl_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6108_moedepl_t DROP CONSTRAINT t_6108_moedepl_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6108_moedepl_t ADD CONSTRAINT t_6108_moedepl_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6110_noegle_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6110_noegle DROP CONSTRAINT t_6110_noegle_generel_fk;
-ALTER TABLE fkg.t_6110_noegle ADD CONSTRAINT t_6110_noegle_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6110_noegle_t DROP CONSTRAINT t_6110_noegle_generel_fk;
+ALTER TABLE fkg.t_6110_noegle_t ADD CONSTRAINT t_6110_noegle_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6110_noegle_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6110_noegle DROP CONSTRAINT t_6110_noegle_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_6110_noegle ADD CONSTRAINT t_6110_noegle_d_basis_ja_nej_fk FOREIGN KEY (tyv_alarm_kode)
+-- ALTER TABLE fkg.t_6110_noegle_t DROP CONSTRAINT t_6110_noegle_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_6110_noegle_t ADD CONSTRAINT t_6110_noegle_d_basis_ja_nej_fk FOREIGN KEY (tyv_alarm_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6110_noegle_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6110_noegle DROP CONSTRAINT t_6110_noegle_d_vejnavn_fk;
-ALTER TABLE fkg.t_6110_noegle ADD CONSTRAINT t_6110_noegle_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6110_noegle_t DROP CONSTRAINT t_6110_noegle_d_vejnavn_fk;
+ALTER TABLE fkg.t_6110_noegle_t ADD CONSTRAINT t_6110_noegle_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6110_noegle_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6110_noegle DROP CONSTRAINT t_6110_noegle_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6110_noegle ADD CONSTRAINT t_6110_noegle_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6110_noegle_t DROP CONSTRAINT t_6110_noegle_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6110_noegle_t ADD CONSTRAINT t_6110_noegle_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6111_fyrv_till_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6111_fyrv_till DROP CONSTRAINT t_6111_fyrv_till_generel_fk;
-ALTER TABLE fkg.t_6111_fyrv_till ADD CONSTRAINT t_6111_fyrv_till_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6111_fyrv_till_t DROP CONSTRAINT t_6111_fyrv_till_generel_fk;
+ALTER TABLE fkg.t_6111_fyrv_till_t ADD CONSTRAINT t_6111_fyrv_till_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6111_fyrv_till_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6111_fyrv_till DROP CONSTRAINT t_6111_fyrv_till_d_vejnavn_fk;
-ALTER TABLE fkg.t_6111_fyrv_till ADD CONSTRAINT t_6111_fyrv_till_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6111_fyrv_till_t DROP CONSTRAINT t_6111_fyrv_till_d_vejnavn_fk;
+ALTER TABLE fkg.t_6111_fyrv_till_t ADD CONSTRAINT t_6111_fyrv_till_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6111_fyrv_till_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6111_fyrv_till DROP CONSTRAINT t_6111_fyrv_till_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6111_fyrv_till ADD CONSTRAINT t_6111_fyrv_till_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6111_fyrv_till_t DROP CONSTRAINT t_6111_fyrv_till_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6111_fyrv_till_t ADD CONSTRAINT t_6111_fyrv_till_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6111_fyrv_till_d_6111_tilladelse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6111_fyrv_till DROP CONSTRAINT t_6111_fyrv_till_d_6111_tilladelse_fk;
-ALTER TABLE fkg.t_6111_fyrv_till ADD CONSTRAINT t_6111_fyrv_till_d_6111_tilladelse_fk FOREIGN KEY (tilladelse_type_kode)
+-- ALTER TABLE fkg.t_6111_fyrv_till_t DROP CONSTRAINT t_6111_fyrv_till_d_6111_tilladelse_fk;
+ALTER TABLE fkg.t_6111_fyrv_till_t ADD CONSTRAINT t_6111_fyrv_till_d_6111_tilladelse_fk FOREIGN KEY (tilladelse_type_kode)
 REFERENCES fkg.d_6111_tilladelse (tilladelse_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6112_midl_dep_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6112_midl_dep DROP CONSTRAINT t_6112_midl_dep_generel_fk;
-ALTER TABLE fkg.t_6112_midl_dep ADD CONSTRAINT t_6112_midl_dep_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6112_midl_dep_t DROP CONSTRAINT t_6112_midl_dep_generel_fk;
+ALTER TABLE fkg.t_6112_midl_dep_t ADD CONSTRAINT t_6112_midl_dep_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6112_midl_dep_d_6112_depottype_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6112_midl_dep DROP CONSTRAINT t_6112_midl_dep_d_6112_depottype_fk;
-ALTER TABLE fkg.t_6112_midl_dep ADD CONSTRAINT t_6112_midl_dep_d_6112_depottype_fk FOREIGN KEY (depottype_kode)
+-- ALTER TABLE fkg.t_6112_midl_dep_t DROP CONSTRAINT t_6112_midl_dep_d_6112_depottype_fk;
+ALTER TABLE fkg.t_6112_midl_dep_t ADD CONSTRAINT t_6112_midl_dep_d_6112_depottype_fk FOREIGN KEY (depottype_kode)
 REFERENCES fkg.d_6112_depottype (depottype_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6113_besk_nat_b_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6113_besk_nat_b DROP CONSTRAINT t_6113_besk_nat_b_generel_fk;
-ALTER TABLE fkg.t_6113_besk_nat_b ADD CONSTRAINT t_6113_besk_nat_b_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6113_besk_nat_b_t DROP CONSTRAINT t_6113_besk_nat_b_generel_fk;
+ALTER TABLE fkg.t_6113_besk_nat_b_t ADD CONSTRAINT t_6113_besk_nat_b_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6114_midl_oph_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6114_midl_oph DROP CONSTRAINT t_6114_midl_oph_generel_fk;
-ALTER TABLE fkg.t_6114_midl_oph ADD CONSTRAINT t_6114_midl_oph_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6114_midl_oph_t DROP CONSTRAINT t_6114_midl_oph_generel_fk;
+ALTER TABLE fkg.t_6114_midl_oph_t ADD CONSTRAINT t_6114_midl_oph_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6114_midl_oph_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6114_midl_oph DROP CONSTRAINT t_6114_midl_oph_d_vejnavn_fk;
-ALTER TABLE fkg.t_6114_midl_oph ADD CONSTRAINT t_6114_midl_oph_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6114_midl_oph_t DROP CONSTRAINT t_6114_midl_oph_d_vejnavn_fk;
+ALTER TABLE fkg.t_6114_midl_oph_t ADD CONSTRAINT t_6114_midl_oph_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6114_midl_oph_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6114_midl_oph DROP CONSTRAINT t_6114_midl_oph_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6114_midl_oph ADD CONSTRAINT t_6114_midl_oph_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6114_midl_oph_t DROP CONSTRAINT t_6114_midl_oph_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6114_midl_oph_t ADD CONSTRAINT t_6114_midl_oph_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6115_afbr_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6115_afbr_omr DROP CONSTRAINT t_6115_afbr_omr_generel_fk;
-ALTER TABLE fkg.t_6115_afbr_omr ADD CONSTRAINT t_6115_afbr_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6115_afbr_omr_t DROP CONSTRAINT t_6115_afbr_omr_generel_fk;
+ALTER TABLE fkg.t_6115_afbr_omr_t ADD CONSTRAINT t_6115_afbr_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6115_afbr_omr_d_6115_afbr_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6115_afbr_omr DROP CONSTRAINT t_6115_afbr_omr_d_6115_afbr_type_fk;
-ALTER TABLE fkg.t_6115_afbr_omr ADD CONSTRAINT t_6115_afbr_omr_d_6115_afbr_type_fk FOREIGN KEY (afbr_type_kode)
+-- ALTER TABLE fkg.t_6115_afbr_omr_t DROP CONSTRAINT t_6115_afbr_omr_d_6115_afbr_type_fk;
+ALTER TABLE fkg.t_6115_afbr_omr_t ADD CONSTRAINT t_6115_afbr_omr_d_6115_afbr_type_fk FOREIGN KEY (afbr_type_kode)
 REFERENCES fkg.d_6115_afbr_type (afbr_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6116_olie_ber_pl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6116_olie_ber_pl DROP CONSTRAINT t_6116_olie_ber_pl_generel_fk;
-ALTER TABLE fkg.t_6116_olie_ber_pl ADD CONSTRAINT t_6116_olie_ber_pl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6116_olie_ber_pl_t DROP CONSTRAINT t_6116_olie_ber_pl_generel_fk;
+ALTER TABLE fkg.t_6116_olie_ber_pl_t ADD CONSTRAINT t_6116_olie_ber_pl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6116_olie_ber_pl_d_6116_strandtype_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6116_olie_ber_pl DROP CONSTRAINT t_6116_olie_ber_pl_d_6116_strandtype_fk;
-ALTER TABLE fkg.t_6116_olie_ber_pl ADD CONSTRAINT t_6116_olie_ber_pl_d_6116_strandtype_fk FOREIGN KEY (strandtype_kode)
+-- ALTER TABLE fkg.t_6116_olie_ber_pl_t DROP CONSTRAINT t_6116_olie_ber_pl_d_6116_strandtype_fk;
+ALTER TABLE fkg.t_6116_olie_ber_pl_t ADD CONSTRAINT t_6116_olie_ber_pl_d_6116_strandtype_fk FOREIGN KEY (strandtype_kode)
 REFERENCES fkg.d_6116_strandtype (strandtype_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6116_olie_ber_pl_d_6116_esi_klasse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6116_olie_ber_pl DROP CONSTRAINT t_6116_olie_ber_pl_d_6116_esi_klasse_fk;
-ALTER TABLE fkg.t_6116_olie_ber_pl ADD CONSTRAINT t_6116_olie_ber_pl_d_6116_esi_klasse_fk FOREIGN KEY (esi_klasse_kode)
+-- ALTER TABLE fkg.t_6116_olie_ber_pl_t DROP CONSTRAINT t_6116_olie_ber_pl_d_6116_esi_klasse_fk;
+ALTER TABLE fkg.t_6116_olie_ber_pl_t ADD CONSTRAINT t_6116_olie_ber_pl_d_6116_esi_klasse_fk FOREIGN KEY (esi_klasse_kode)
 REFERENCES fkg.d_6116_esi_klasse (esi_klasse_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6116_olie_ber_pl_d_basis_ja_nej_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6116_olie_ber_pl DROP CONSTRAINT t_6116_olie_ber_pl_d_basis_ja_nej_fk;
-ALTER TABLE fkg.t_6116_olie_ber_pl ADD CONSTRAINT t_6116_olie_ber_pl_d_basis_ja_nej_fk FOREIGN KEY (baad_kode)
+-- ALTER TABLE fkg.t_6116_olie_ber_pl_t DROP CONSTRAINT t_6116_olie_ber_pl_d_basis_ja_nej_fk;
+ALTER TABLE fkg.t_6116_olie_ber_pl_t ADD CONSTRAINT t_6116_olie_ber_pl_d_basis_ja_nej_fk FOREIGN KEY (baad_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6117_inds_pkt_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6117_inds_pkt DROP CONSTRAINT t_6117_inds_pkt_generel_fk;
-ALTER TABLE fkg.t_6117_inds_pkt ADD CONSTRAINT t_6117_inds_pkt_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6117_inds_pkt_t DROP CONSTRAINT t_6117_inds_pkt_generel_fk;
+ALTER TABLE fkg.t_6117_inds_pkt_t ADD CONSTRAINT t_6117_inds_pkt_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6117_inds_pkt_d_6117_indsatstype_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6117_inds_pkt DROP CONSTRAINT t_6117_inds_pkt_d_6117_indsatstype_fk;
-ALTER TABLE fkg.t_6117_inds_pkt ADD CONSTRAINT t_6117_inds_pkt_d_6117_indsatstype_fk FOREIGN KEY (indsatstype_kode)
+-- ALTER TABLE fkg.t_6117_inds_pkt_t DROP CONSTRAINT t_6117_inds_pkt_d_6117_indsatstype_fk;
+ALTER TABLE fkg.t_6117_inds_pkt_t ADD CONSTRAINT t_6117_inds_pkt_d_6117_indsatstype_fk FOREIGN KEY (indsatstype_kode)
 REFERENCES fkg.d_6117_indsatstype (indsatstype_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6118_bran_redn_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6118_bran_redn DROP CONSTRAINT t_6118_bran_redn_generel_fk;
-ALTER TABLE fkg.t_6118_bran_redn ADD CONSTRAINT t_6118_bran_redn_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6118_bran_redn_t DROP CONSTRAINT t_6118_bran_redn_generel_fk;
+ALTER TABLE fkg.t_6118_bran_redn_t ADD CONSTRAINT t_6118_bran_redn_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6118_bran_redn_d_6118_brand_redarea_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6118_bran_redn DROP CONSTRAINT t_6118_bran_redn_d_6118_brand_redarea_type_fk;
-ALTER TABLE fkg.t_6118_bran_redn ADD CONSTRAINT t_6118_bran_redn_d_6118_brand_redarea_type_fk FOREIGN KEY (redarea_type_kode)
+-- ALTER TABLE fkg.t_6118_bran_redn_t DROP CONSTRAINT t_6118_bran_redn_d_6118_brand_redarea_type_fk;
+ALTER TABLE fkg.t_6118_bran_redn_t ADD CONSTRAINT t_6118_bran_redn_d_6118_brand_redarea_type_fk FOREIGN KEY (redarea_type_kode)
 REFERENCES fkg.d_6118_brand_redarea_type (brand_redarea_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6118_bran_redn_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6118_bran_redn DROP CONSTRAINT t_6118_bran_redn_d_vejnavn_fk;
-ALTER TABLE fkg.t_6118_bran_redn ADD CONSTRAINT t_6118_bran_redn_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6118_bran_redn_t DROP CONSTRAINT t_6118_bran_redn_d_vejnavn_fk;
+ALTER TABLE fkg.t_6118_bran_redn_t ADD CONSTRAINT t_6118_bran_redn_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6118_bran_redn_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6118_bran_redn DROP CONSTRAINT t_6118_bran_redn_d_basis_postnr_fk;
-ALTER TABLE fkg.t_6118_bran_redn ADD CONSTRAINT t_6118_bran_redn_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_6118_bran_redn_t DROP CONSTRAINT t_6118_bran_redn_d_basis_postnr_fk;
+ALTER TABLE fkg.t_6118_bran_redn_t ADD CONSTRAINT t_6118_bran_redn_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6200_nat_geo_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6200_nat_geo DROP CONSTRAINT t_6200_nat_geo_generel_fk;
-ALTER TABLE fkg.t_6200_nat_geo ADD CONSTRAINT t_6200_nat_geo_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6200_nat_geo_t DROP CONSTRAINT t_6200_nat_geo_generel_fk;
+ALTER TABLE fkg.t_6200_nat_geo_t ADD CONSTRAINT t_6200_nat_geo_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6200_nat_geo_d_basis_omraade_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6200_nat_geo DROP CONSTRAINT t_6200_nat_geo_d_basis_omraade_fk;
-ALTER TABLE fkg.t_6200_nat_geo ADD CONSTRAINT t_6200_nat_geo_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
+-- ALTER TABLE fkg.t_6200_nat_geo_t DROP CONSTRAINT t_6200_nat_geo_d_basis_omraade_fk;
+ALTER TABLE fkg.t_6200_nat_geo_t ADD CONSTRAINT t_6200_nat_geo_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
 REFERENCES fkg.d_basis_omraade (omraade_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6200_nat_geo_d_6200_geologi_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6200_nat_geo DROP CONSTRAINT t_6200_nat_geo_d_6200_geologi_fk;
-ALTER TABLE fkg.t_6200_nat_geo ADD CONSTRAINT t_6200_nat_geo_d_6200_geologi_fk FOREIGN KEY (geologi_kode)
+-- ALTER TABLE fkg.t_6200_nat_geo_t DROP CONSTRAINT t_6200_nat_geo_d_6200_geologi_fk;
+ALTER TABLE fkg.t_6200_nat_geo_t ADD CONSTRAINT t_6200_nat_geo_d_6200_geologi_fk FOREIGN KEY (geologi_kode)
 REFERENCES fkg.d_6200_geologi (geologi_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6200_nat_geo_d_6200_jordtype_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6200_nat_geo DROP CONSTRAINT t_6200_nat_geo_d_6200_jordtype_fk;
-ALTER TABLE fkg.t_6200_nat_geo ADD CONSTRAINT t_6200_nat_geo_d_6200_jordtype_fk FOREIGN KEY (jordtype_kode)
+-- ALTER TABLE fkg.t_6200_nat_geo_t DROP CONSTRAINT t_6200_nat_geo_d_6200_jordtype_fk;
+ALTER TABLE fkg.t_6200_nat_geo_t ADD CONSTRAINT t_6200_nat_geo_d_6200_jordtype_fk FOREIGN KEY (jordtype_kode)
 REFERENCES fkg.d_6200_jordtype (jordtype_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6200_nat_geo_d_6200_terraen_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6200_nat_geo DROP CONSTRAINT t_6200_nat_geo_d_6200_terraen_fk;
-ALTER TABLE fkg.t_6200_nat_geo ADD CONSTRAINT t_6200_nat_geo_d_6200_terraen_fk FOREIGN KEY (terraen_kode)
+-- ALTER TABLE fkg.t_6200_nat_geo_t DROP CONSTRAINT t_6200_nat_geo_d_6200_terraen_fk;
+ALTER TABLE fkg.t_6200_nat_geo_t ADD CONSTRAINT t_6200_nat_geo_d_6200_terraen_fk FOREIGN KEY (terraen_kode)
 REFERENCES fkg.d_6200_terraen (terraen_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6200_nat_geo_6200_kompleksitet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6200_nat_geo DROP CONSTRAINT t_6200_nat_geo_6200_kompleksitet_fk;
-ALTER TABLE fkg.t_6200_nat_geo ADD CONSTRAINT t_6200_nat_geo_6200_kompleksitet_fk FOREIGN KEY (kompleksitet_kode)
+-- ALTER TABLE fkg.t_6200_nat_geo_t DROP CONSTRAINT t_6200_nat_geo_6200_kompleksitet_fk;
+ALTER TABLE fkg.t_6200_nat_geo_t ADD CONSTRAINT t_6200_nat_geo_6200_kompleksitet_fk FOREIGN KEY (kompleksitet_kode)
 REFERENCES fkg.d_6200_kompleksitet (kompleksitet_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6201_kult_geo_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6201_kult_geo DROP CONSTRAINT t_6201_kult_geo_generel_fk;
-ALTER TABLE fkg.t_6201_kult_geo ADD CONSTRAINT t_6201_kult_geo_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6201_kult_geo_t DROP CONSTRAINT t_6201_kult_geo_generel_fk;
+ALTER TABLE fkg.t_6201_kult_geo_t ADD CONSTRAINT t_6201_kult_geo_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6201_kult_geo_d_basis_omraade_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6201_kult_geo DROP CONSTRAINT t_6201_kult_geo_d_basis_omraade_fk;
-ALTER TABLE fkg.t_6201_kult_geo ADD CONSTRAINT t_6201_kult_geo_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
+-- ALTER TABLE fkg.t_6201_kult_geo_t DROP CONSTRAINT t_6201_kult_geo_d_basis_omraade_fk;
+ALTER TABLE fkg.t_6201_kult_geo_t ADD CONSTRAINT t_6201_kult_geo_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
 REFERENCES fkg.d_basis_omraade (omraade_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_generel_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_generel_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_basis_omraade_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_basis_omraade_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_basis_omraade_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
 REFERENCES fkg.d_basis_omraade (omraade_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_6202_tidsdybde_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_6202_tidsdybde_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_6202_tidsdybde_fk FOREIGN KEY (tidsdybde_kode)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_6202_tidsdybde_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_6202_tidsdybde_fk FOREIGN KEY (tidsdybde_kode)
 REFERENCES fkg.d_6202_tidsdybde (tidsdybde_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_basis_tilstand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_basis_tilstand_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_basis_tilstand_fk FOREIGN KEY (intakthed_kode)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_basis_tilstand_fk FOREIGN KEY (intakthed_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_6202_skala_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_6202_skala_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_6202_skala_fk FOREIGN KEY (skala_kode)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_6202_skala_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_6202_skala_fk FOREIGN KEY (skala_kode)
 REFERENCES fkg.d_6202_skala (skala_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_6202_rumlig_afgraensning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_6202_rumlig_afgraensning_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_6202_rumlig_afgraensning_fk FOREIGN KEY (rumlig_afgraensning_kode)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_6202_rumlig_afgraensning_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_6202_rumlig_afgraensning_fk FOREIGN KEY (rumlig_afgraensning_kode)
 REFERENCES fkg.d_6202_rumlig_afgraensning (rumlig_afgraensning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_6202_kompleksitet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_6202_kompleksitet_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_6202_kompleksitet_fk FOREIGN KEY (kompleksitet_kode)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_6202_kompleksitet_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_6202_kompleksitet_fk FOREIGN KEY (kompleksitet_kode)
 REFERENCES fkg.d_6202_kompleksitet (kompleksitet_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_6202_struktur_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_6202_struktur_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_6202_struktur_fk FOREIGN KEY (struktur_kode)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_6202_struktur_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_6202_struktur_fk FOREIGN KEY (struktur_kode)
 REFERENCES fkg.d_6202_struktur (struktur_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6202_landk_omr_d_6202_visuel_uro_kode_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6202_landk_omr DROP CONSTRAINT t_6202_landk_omr_d_6202_visuel_uro_kode_fk;
-ALTER TABLE fkg.t_6202_landk_omr ADD CONSTRAINT t_6202_landk_omr_d_6202_visuel_uro_kode_fk FOREIGN KEY (visuel_uro_kode)
+-- ALTER TABLE fkg.t_6202_landk_omr_t DROP CONSTRAINT t_6202_landk_omr_d_6202_visuel_uro_kode_fk;
+ALTER TABLE fkg.t_6202_landk_omr_t ADD CONSTRAINT t_6202_landk_omr_d_6202_visuel_uro_kode_fk FOREIGN KEY (visuel_uro_kode)
 REFERENCES fkg.d_6202_visuel_uro (visuel_uro_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6203_landk_vur_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6203_landk_vur DROP CONSTRAINT t_6203_landk_vur_generel_fk;
-ALTER TABLE fkg.t_6203_landk_vur ADD CONSTRAINT t_6203_landk_vur_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6203_landk_vur_t DROP CONSTRAINT t_6203_landk_vur_generel_fk;
+ALTER TABLE fkg.t_6203_landk_vur_t ADD CONSTRAINT t_6203_landk_vur_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6203_landk_vur_d_basis_omraade_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6203_landk_vur DROP CONSTRAINT t_6203_landk_vur_d_basis_omraade_fk;
-ALTER TABLE fkg.t_6203_landk_vur ADD CONSTRAINT t_6203_landk_vur_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
+-- ALTER TABLE fkg.t_6203_landk_vur_t DROP CONSTRAINT t_6203_landk_vur_d_basis_omraade_fk;
+ALTER TABLE fkg.t_6203_landk_vur_t ADD CONSTRAINT t_6203_landk_vur_d_basis_omraade_fk FOREIGN KEY (omraade_nr)
 REFERENCES fkg.d_basis_omraade (omraade_nr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6203_landk_vur_d_basis_tilstand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6203_landk_vur DROP CONSTRAINT t_6203_landk_vur_d_basis_tilstand_fk;
-ALTER TABLE fkg.t_6203_landk_vur ADD CONSTRAINT t_6203_landk_vur_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+-- ALTER TABLE fkg.t_6203_landk_vur_t DROP CONSTRAINT t_6203_landk_vur_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6203_landk_vur_t ADD CONSTRAINT t_6203_landk_vur_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6203_landk_vur_d_6203_saarbarhed_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6203_landk_vur DROP CONSTRAINT t_6203_landk_vur_d_6203_saarbarhed_fk;
-ALTER TABLE fkg.t_6203_landk_vur ADD CONSTRAINT t_6203_landk_vur_d_6203_saarbarhed_fk FOREIGN KEY (saarbarhed_kode)
+-- ALTER TABLE fkg.t_6203_landk_vur_t DROP CONSTRAINT t_6203_landk_vur_d_6203_saarbarhed_fk;
+ALTER TABLE fkg.t_6203_landk_vur_t ADD CONSTRAINT t_6203_landk_vur_d_6203_saarbarhed_fk FOREIGN KEY (saarbarhed_kode)
 REFERENCES fkg.d_6203_saarbarhed (saarbarhed_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6203_landk_vur_d_6203_karakterstyrke_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6203_landk_vur DROP CONSTRAINT t_6203_landk_vur_d_6203_karakterstyrke_fk;
-ALTER TABLE fkg.t_6203_landk_vur ADD CONSTRAINT t_6203_landk_vur_d_6203_karakterstyrke_fk FOREIGN KEY (karakterstyrke_kode)
+-- ALTER TABLE fkg.t_6203_landk_vur_t DROP CONSTRAINT t_6203_landk_vur_d_6203_karakterstyrke_fk;
+ALTER TABLE fkg.t_6203_landk_vur_t ADD CONSTRAINT t_6203_landk_vur_d_6203_karakterstyrke_fk FOREIGN KEY (karakterstyrke_kode)
 REFERENCES fkg.d_6203_karakterstyrke (karakterstyrke_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6800_parl_fl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_generel_fk;
-ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6800_parl_fl_t DROP CONSTRAINT t_6800_parl_fl_generel_fk;
+ALTER TABLE fkg.t_6800_parl_fl_t ADD CONSTRAINT t_6800_parl_fl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6800_parl_fl_d_6800_vedlhold_f_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_d_6800_vedlhold_f_type_fk;
-ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_d_6800_vedlhold_f_type_fk FOREIGN KEY (vedlhold_f_type_kode)
+-- ALTER TABLE fkg.t_6800_parl_fl_t DROP CONSTRAINT t_6800_parl_fl_d_6800_vedlhold_f_type_fk;
+ALTER TABLE fkg.t_6800_parl_fl_t ADD CONSTRAINT t_6800_parl_fl_d_6800_vedlhold_f_type_fk FOREIGN KEY (vedlhold_f_type_kode)
 REFERENCES fkg.d_6800_vedlhold_f_type (vedlhold_f_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6800_parl_fl_d_basis_driftniv_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_d_basis_driftniv_fk;
-ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_d_basis_driftniv_fk FOREIGN KEY (driftniv_kode)
+-- ALTER TABLE fkg.t_6800_parl_fl_t DROP CONSTRAINT t_6800_parl_fl_d_basis_driftniv_fk;
+ALTER TABLE fkg.t_6800_parl_fl_t ADD CONSTRAINT t_6800_parl_fl_d_basis_driftniv_fk FOREIGN KEY (driftniv_kode)
 REFERENCES fkg.d_basis_driftniv (driftniv_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6800_parl_fl_d_basis_ukrudtsbek_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_d_basis_ukrudtsbek_fk;
-ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_d_basis_ukrudtsbek_fk FOREIGN KEY (ukrudtsbek_kode)
+-- ALTER TABLE fkg.t_6800_parl_fl_t DROP CONSTRAINT t_6800_parl_fl_d_basis_ukrudtsbek_fk;
+ALTER TABLE fkg.t_6800_parl_fl_t ADD CONSTRAINT t_6800_parl_fl_d_basis_ukrudtsbek_fk FOREIGN KEY (ukrudtsbek_kode)
 REFERENCES fkg.d_basis_ukrudtsbek (ukrudtsbek_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6800_parl_fl_d_basis_tilstand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_d_basis_tilstand_fk;
-ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+-- ALTER TABLE fkg.t_6800_parl_fl_t DROP CONSTRAINT t_6800_parl_fl_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6800_parl_fl_t ADD CONSTRAINT t_6800_parl_fl_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6800_parl_fl_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6800_parl_fl DROP CONSTRAINT t_6800_parl_fl_d_vejnavn_fk;
-ALTER TABLE fkg.t_6800_parl_fl ADD CONSTRAINT t_6800_parl_fl_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6800_parl_fl_t DROP CONSTRAINT t_6800_parl_fl_d_vejnavn_fk;
+ALTER TABLE fkg.t_6800_parl_fl_t ADD CONSTRAINT t_6800_parl_fl_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6801_parl_li_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_generel_fk;
-ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6801_parl_li_t DROP CONSTRAINT t_6801_parl_li_generel_fk;
+ALTER TABLE fkg.t_6801_parl_li_t ADD CONSTRAINT t_6801_parl_li_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6801_parl_li_d_6801_vedlhold_l_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_d_6801_vedlhold_l_type_fk;
-ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_d_6801_vedlhold_l_type_fk FOREIGN KEY (vedlhold_l_type_kode)
+-- ALTER TABLE fkg.t_6801_parl_li_t DROP CONSTRAINT t_6801_parl_li_d_6801_vedlhold_l_type_fk;
+ALTER TABLE fkg.t_6801_parl_li_t ADD CONSTRAINT t_6801_parl_li_d_6801_vedlhold_l_type_fk FOREIGN KEY (vedlhold_l_type_kode)
 REFERENCES fkg.d_6801_vedlhold_l_type (vedlhold_l_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6801_parl_li_d_basis_driftniv_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_d_basis_driftniv_fk;
-ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_d_basis_driftniv_fk FOREIGN KEY (driftniv_kode)
+-- ALTER TABLE fkg.t_6801_parl_li_t DROP CONSTRAINT t_6801_parl_li_d_basis_driftniv_fk;
+ALTER TABLE fkg.t_6801_parl_li_t ADD CONSTRAINT t_6801_parl_li_d_basis_driftniv_fk FOREIGN KEY (driftniv_kode)
 REFERENCES fkg.d_basis_driftniv (driftniv_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6801_parl_li_d_basis_ukrudtsbek_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_d_basis_ukrudtsbek_fk;
-ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_d_basis_ukrudtsbek_fk FOREIGN KEY (ukrudtsbek_kode)
+-- ALTER TABLE fkg.t_6801_parl_li_t DROP CONSTRAINT t_6801_parl_li_d_basis_ukrudtsbek_fk;
+ALTER TABLE fkg.t_6801_parl_li_t ADD CONSTRAINT t_6801_parl_li_d_basis_ukrudtsbek_fk FOREIGN KEY (ukrudtsbek_kode)
 REFERENCES fkg.d_basis_ukrudtsbek (ukrudtsbek_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6801_parl_li_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_d_vejnavn_fk;
-ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6801_parl_li_t DROP CONSTRAINT t_6801_parl_li_d_vejnavn_fk;
+ALTER TABLE fkg.t_6801_parl_li_t ADD CONSTRAINT t_6801_parl_li_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6801_parl_li_d_basis_tilstand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6801_parl_li DROP CONSTRAINT t_6801_parl_li_d_basis_tilstand_fk;
-ALTER TABLE fkg.t_6801_parl_li ADD CONSTRAINT t_6801_parl_li_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+-- ALTER TABLE fkg.t_6801_parl_li_t DROP CONSTRAINT t_6801_parl_li_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6801_parl_li_t ADD CONSTRAINT t_6801_parl_li_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6802_parl_pkt_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_generel_fk;
-ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6802_parl_pkt_t DROP CONSTRAINT t_6802_parl_pkt_generel_fk;
+ALTER TABLE fkg.t_6802_parl_pkt_t ADD CONSTRAINT t_6802_parl_pkt_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6802_parl_pkt_d_6802_groenvedligh_punkt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_d_6802_groenvedligh_punkt_fk;
-ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_d_6802_groenvedligh_punkt_fk FOREIGN KEY (vedlhold_p_type_kode)
+-- ALTER TABLE fkg.t_6802_parl_pkt_t DROP CONSTRAINT t_6802_parl_pkt_d_6802_groenvedligh_punkt_fk;
+ALTER TABLE fkg.t_6802_parl_pkt_t ADD CONSTRAINT t_6802_parl_pkt_d_6802_groenvedligh_punkt_fk FOREIGN KEY (vedlhold_p_type_kode)
 REFERENCES fkg.d_6802_groenvedligh_punkt (vedlhold_p_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6802_parl_pkt_d_basis_driftniv_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_d_basis_driftniv_fk;
-ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_d_basis_driftniv_fk FOREIGN KEY (driftniv_kode)
+-- ALTER TABLE fkg.t_6802_parl_pkt_t DROP CONSTRAINT t_6802_parl_pkt_d_basis_driftniv_fk;
+ALTER TABLE fkg.t_6802_parl_pkt_t ADD CONSTRAINT t_6802_parl_pkt_d_basis_driftniv_fk FOREIGN KEY (driftniv_kode)
 REFERENCES fkg.d_basis_driftniv (driftniv_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6802_parl_pkt_d_basis_ukrudtsbek_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_d_basis_ukrudtsbek_fk;
-ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_d_basis_ukrudtsbek_fk FOREIGN KEY (ukrudtsbek_kode)
+-- ALTER TABLE fkg.t_6802_parl_pkt_t DROP CONSTRAINT t_6802_parl_pkt_d_basis_ukrudtsbek_fk;
+ALTER TABLE fkg.t_6802_parl_pkt_t ADD CONSTRAINT t_6802_parl_pkt_d_basis_ukrudtsbek_fk FOREIGN KEY (ukrudtsbek_kode)
 REFERENCES fkg.d_basis_ukrudtsbek (ukrudtsbek_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6802_parl_pkt_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_d_vejnavn_fk;
-ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_6802_parl_pkt_t DROP CONSTRAINT t_6802_parl_pkt_d_vejnavn_fk;
+ALTER TABLE fkg.t_6802_parl_pkt_t ADD CONSTRAINT t_6802_parl_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6802_parl_pkt_d_basis_tilstand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6802_parl_pkt DROP CONSTRAINT t_6802_parl_pkt_d_basis_tilstand_fk;
-ALTER TABLE fkg.t_6802_parl_pkt ADD CONSTRAINT t_6802_parl_pkt_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
+-- ALTER TABLE fkg.t_6802_parl_pkt_t DROP CONSTRAINT t_6802_parl_pkt_d_basis_tilstand_fk;
+ALTER TABLE fkg.t_6802_parl_pkt_t ADD CONSTRAINT t_6802_parl_pkt_d_basis_tilstand_fk FOREIGN KEY (tilstand_kode)
 REFERENCES fkg.d_basis_tilstand (tilstand_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6803_parl_omr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6803_parl_omr DROP CONSTRAINT t_6803_parl_omr_generel_fk;
-ALTER TABLE fkg.t_6803_parl_omr ADD CONSTRAINT t_6803_parl_omr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6803_parl_omr_t DROP CONSTRAINT t_6803_parl_omr_generel_fk;
+ALTER TABLE fkg.t_6803_parl_omr_t ADD CONSTRAINT t_6803_parl_omr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 
 -- object: t_6803_parl_omr_d_6803_pg_distrikt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6803_parl_omr DROP CONSTRAINT t_6803_parl_omr_d_6803_pg_distrikt_fk;
-ALTER TABLE fkg.t_6803_parl_omr ADD CONSTRAINT t_6803_parl_omr_d_6803_pg_distrikt_fk FOREIGN KEY (pg_distrikt_kode)
+-- ALTER TABLE fkg.t_6803_parl_omr_t DROP CONSTRAINT t_6803_parl_omr_d_6803_pg_distrikt_fk;
+ALTER TABLE fkg.t_6803_parl_omr_t ADD CONSTRAINT t_6803_parl_omr_d_6803_pg_distrikt_fk FOREIGN KEY (pg_distrikt_kode)
 REFERENCES fkg.d_6803_pg_distrikt (pg_distrikt_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --

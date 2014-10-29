@@ -1,5 +1,4 @@
-﻿
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -19,6 +18,5 @@
     See more about the OpenFKG project at http://github.com/OpenFKG
 */
 
--- Each line creates all views (base-view 'B' og view with historic records 'H')
-SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), 'B') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
-SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), 'H') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
+-- One liner that generates gist indexes for every present table
+SELECT fkg_utilities.get_index_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);

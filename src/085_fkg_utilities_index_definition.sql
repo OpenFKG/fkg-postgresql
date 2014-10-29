@@ -1,5 +1,4 @@
-﻿
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -19,6 +18,35 @@
     See more about the OpenFKG project at http://github.com/OpenFKG
 */
 
--- Each line creates all views (base-view 'B' og view with historic records 'H')
-SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), 'B') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
-SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), 'H') FROM pg_tables WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
+CREATE OR REPLACE FUNCTION fkg_utilities.get_index_definition(base_table_name character varying)
+  RETURNS character varying AS
+$BODY$
+DECLARE 
+  _record RECORD;
+  id                    character varying;
+  schema_name           character varying;
+  index_name            character varying;
+BEGIN
+
+  id = '';
+  schema_name = 'fkg';
+  
+  -- Evaluate name of gist index
+  index_name = base_table_name || E'_gist';
+
+  -- Define the index
+  id = '';
+  id = id || E'DROP INDEX IF EXISTS ' || schema_name || '.' || base_table_name || E'_gist;';
+  id = id || E'CREATE INDEX ' || index_name || ' ON ' || schema_name || '.' || base_table_name || ' USING gist (geometri);';
+
+  -- Create the index
+  execute id;
+
+  return id;
+END
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+-- Test:
+-- select fkg_utilities.get_index_definition('t_6100_brandhane_t');
