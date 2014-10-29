@@ -28,11 +28,11 @@ PostgreSQL skal være version 9.* og databasen skal have følgende karakteristik
 * LC_COLLATE = 'Danish, Denmark'
 * LC_CTYPE = 'Danish, Denmark'
 
-Når modellen er installeret, anbefaler vi, at man laver en bruger med reducerede rettigheder, som tilgår databasen via de funktionelle views og som derfor ikke kan se `t_...`-tabeller mv.
+Når modellen er installeret, anbefaler vi, at man laver en bruger med reducerede rettigheder, som tilgår databasen via de funktionelle views og som derfor ikke kan se `..._t`-tabeller mv.
 Brugeren skal have rettigheder til at:
-* skrive i og læse fra `..._vw`-views (interfaceviews til temaer)
+* skrive i og læse fra `t_...`-views (interfaceviews til temaer)
 * læse i `d_...`-tabeller (kodelistetabeller)
-* læse fra `...h_vw`-views (views, som også udstiller historiske data)
+* læse fra `hist_t_...`-views (views, som også udstiller historiske data)
 
 Licens
 -------------
@@ -86,7 +86,7 @@ Dette gøres enklest således:
 5. Kør [make_install.sh](src/make_install.sh) i terminalen 
 6. Dit installationsscript er nu at finde i folderen kaldet INSTALL
 
-En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 + 100 og samle dette i en SQL-fil.
+En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 - 110 og samle dette i en SQL-fil.
 
 ![FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/FKG-DM-screenshot.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
 
