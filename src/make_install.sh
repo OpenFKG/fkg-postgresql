@@ -57,6 +57,9 @@ echo "/*" >> INSTALL/$INSTALL_FILE
 cat NOTICE >> INSTALL/$INSTALL_FILE
 echo "*/" >> INSTALL/$INSTALL_FILE
 
+# Remove any BOMs resulting from pgAdmin on Windows
+sed -i '1 s/^\xef\xbb\xbf//' *.txt
+
 # Copy scripts to install
 cat 010_create_uuid_extension.sql >> INSTALL/$INSTALL_FILE
 cat 020_create_postgis_extension.sql >> INSTALL/$INSTALL_FILE
@@ -88,6 +91,9 @@ psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$US
 # Create the trigger definition functions
 psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=080_fkg_utilities_trigger_function_definition.sql
 
+# Create the index definition functions
+psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=085_fkg_utilities_index_definition.sql
+
 # Create the views and store output
 psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=090_create_views.sql  -o INSTALL/_tmp.sql
 cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
@@ -96,6 +102,9 @@ cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=100_create_trigger_functions.sql  -o INSTALL/_tmp.sql
 cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 
+# Create the indeces and store output
+psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=110_create_indeces.sql  -o INSTALL/_tmp.sql
+cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 
 # remove tmp file
 rm INSTALL/_tmp.sql
