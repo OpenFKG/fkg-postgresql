@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -98,8 +98,6 @@ DELETE FROM fkg.d_5715_botilbud_type;
 DELETE FROM fkg.d_5716_Servicetilbud_type;
 DELETE FROM fkg.d_5800_facilitet;
 DELETE FROM fkg.d_5802_facilitet;
-DELETE FROM fkg.d_5901_gravestatus;
-DELETE FROM fkg.d_5901_raastof_type;
 DELETE FROM fkg.d_5902_vaeske_type;
 DELETE FROM fkg.d_6000_kotesystem;
 DELETE FROM fkg.d_6003_zone_type;
@@ -201,7 +199,6 @@ INSERT INTO fkg.d_tabel VALUES (5716,'Servicetilbud','P','t_5716_servicetilbud',
 INSERT INTO fkg.d_tabel VALUES (5800,'Facilitet_punkt','P','t_5800_fac_pkt','5.9');
 INSERT INTO fkg.d_tabel VALUES (5802,'Facilitet_linje','L','t_5802_fac_li','5.9');
 INSERT INTO fkg.d_tabel VALUES (5900,'Jordflytning','F','t_5900_jordfl','5.10');
-INSERT INTO fkg.d_tabel VALUES (5901,'Råstofindvindingstilladelse','F','t_5901_raastof_till','5.10');
 INSERT INTO fkg.d_tabel VALUES (5902,'Jordvarmeanlæg','F','t_5902_jordv_anl','5.10');
 INSERT INTO fkg.d_tabel VALUES (6000,'Potentialekort','L','t_6000_pot','5.11');
 INSERT INTO fkg.d_tabel VALUES (6001,'Potentialekort målepunkter','P','t_6001_pot_m','5.11');
@@ -224,7 +221,6 @@ INSERT INTO fkg.d_tabel VALUES (6110,'Nøgleboks til beredskab','P','t_6110_noeg
 INSERT INTO fkg.d_tabel VALUES (6111,'Fyrværkeri tilladelse','F','t_6111_fyrv_till','5.12');
 INSERT INTO fkg.d_tabel VALUES (6112,'Midlertidige depot ved forurening m.v.','F','t_6112_midl_dep','5.12');
 INSERT INTO fkg.d_tabel VALUES (6113,'Beskyttet natur ved beredskabsindsats','F','t_6113_besk_nat_b','5.12');
-INSERT INTO fkg.d_tabel VALUES (6114,'Midlertidig ophold','P','t_6114_midl_oph','5.12');
 INSERT INTO fkg.d_tabel VALUES (6115,'Afbrændingsområde','F','t_6115_afbr_omr','5.12');
 INSERT INTO fkg.d_tabel VALUES (6116,'Olieberedskabsplan','F','t_6116_olie_ber_pl','5.12');
 INSERT INTO fkg.d_tabel VALUES (6117,'Indsatspunkt','P','t_6117_inds_pkt','5.12');
@@ -2346,25 +2342,6 @@ INSERT INTO fkg.d_5802_facilitet VALUES (2,'løberute',1,'Løberute på uafmærk
 INSERT INTO fkg.d_5802_facilitet VALUES (98,'Andet',1,'Hvor andre facilitetsbetegnelser ikke er dækkende.');
 INSERT INTO fkg.d_5802_facilitet VALUES (99,'Ukendt',1,'Mangler viden om typen.');
 -- SELECT * FROM d_5802_facilitet;
-
-
-INSERT INTO fkg.d_5901_gravestatus VALUES (1,'Gravearbejde søgt',1,'Ansøgt men ikke tilladelse.');
-INSERT INTO fkg.d_5901_gravestatus VALUES (2,'Gravearbejde givet',1,'Tilladelse givet');
-INSERT INTO fkg.d_5901_gravestatus VALUES (4,'Gravearbejde afsluttet - ikke reetableret',1,'Gravearbejdet afsluttet, men reetablering ikke færdig.');
-INSERT INTO fkg.d_5901_gravestatus VALUES (5,'Reetableret',1,'Reetableret i sin endelige status/udformning');
-INSERT INTO fkg.d_5901_gravestatus VALUES (8,'Andet',1,'Andet');
-INSERT INTO fkg.d_5901_gravestatus VALUES (9,'Ukendt',1,'Mangler viden');
--- SELECT * FROM d_5901_gravestatus;
-
-
-INSERT INTO fkg.d_5901_raastof_type VALUES (1,'Sand',1,'En jordtype, der består af partikler, som har en diameter mellem 0,002/0,06 og 2 mm.');
-INSERT INTO fkg.d_5901_raastof_type VALUES (2,'Grus',1,'En blanding af sten og sand og kan bredt defineret dække jordpartikler med en diameter mellem 2 og 20mm.');
-INSERT INTO fkg.d_5901_raastof_type VALUES (3,'Tørv',1,'Tørv fra moser er en særlig jordart, der er opstået ved, at nedbrydningen af plantemateriale er standset ved oversvømmelse/iltmangel.');
-INSERT INTO fkg.d_5901_raastof_type VALUES (4,'Ler',1,'En finkornet jordtype, som vægtmæssigt består af mere end 15 procent partikler med en diameter på mindre end 0,002 mm.');
-INSERT INTO fkg.d_5901_raastof_type VALUES (5,'Kridt',1,'En form for kalksten, som hovedsagelig er dannet ved hærdning af slam bestående af kokkolitter og i mindre grad foraminiferer.');
-INSERT INTO fkg.d_5901_raastof_type VALUES (8,'Andet',1,'Andet');
-INSERT INTO fkg.d_5901_raastof_type VALUES (9,'Ukendt',1,'Mangler viden');
--- SELECT * FROM d_5901_raastof_type;
 
 
 INSERT INTO fkg.d_5902_vaeske_type VALUES (1,'Ethanol',1,'Ethylalkohol (alm. sprit som det findes i øl, vin, spiritus og husholdningssprit)');
