@@ -126,6 +126,8 @@ DELETE FROM fkg.d_6200_geologi;
 DELETE FROM fkg.d_6200_jordtype;
 DELETE FROM fkg.d_6200_terraen;
 DELETE FROM fkg.d_6200_kompleksitet;
+-- New lookuptable in 2.5
+DELETE FROM fkg.d_6121_sua;
 DELETE FROM fkg.d_6202_skala;
 DELETE FROM fkg.d_6202_rumlig_afgraensning;
 DELETE FROM fkg.d_6202_kompleksitet;
@@ -204,6 +206,7 @@ INSERT INTO fkg.d_tabel VALUES (5714,'Lærings- og uddannelsesinstitution','P','
 INSERT INTO fkg.d_tabel VALUES (5715,'Botilbud','P','t_5715_botilbud','5.8');
 INSERT INTO fkg.d_tabel VALUES (5716,'Servicetilbud','P','t_5716_servicetilbud','5.8');
 INSERT INTO fkg.d_tabel VALUES (5800,'Facilitet_punkt','P','t_5800_fac_pkt','5.9');
+INSERT INTO fkg.d_tabel VALUES (5801,'Facilitet_flade','F','t_5801_fac_fl','5.9');
 INSERT INTO fkg.d_tabel VALUES (5802,'Facilitet_linje','L','t_5802_fac_li','5.9');
 INSERT INTO fkg.d_tabel VALUES (5900,'Jordflytning','F','t_5900_jordfl','5.10');
 INSERT INTO fkg.d_tabel VALUES (5902,'Jordvarmeanlæg','F','t_5902_jordv_anl','5.10');
@@ -2581,6 +2584,19 @@ INSERT INTO fkg.d_6118_brand_redarea_type VALUES (4,'Redningsareal',1,'Krav i by
 INSERT INTO fkg.d_6118_brand_redarea_type VALUES (8,'Andet',1,'Hvor ovenstående ikke er dækkende.');
 INSERT INTO fkg.d_6118_brand_redarea_type VALUES (9,'Ukendt',1,'Mangler viden om typen af adgangsvej');
 -- SELECT * FROM d_6118_brand_redarea_type;
+
+
+INSERT INTO fkg.d_6121_sua VALUES (1,'Festival',1,'Festival med flere koncerter m.v.');
+INSERT INTO fkg.d_6121_sua VALUES (2,'Dyrskue',1,'Dyreskue');
+INSERT INTO fkg.d_6121_sua VALUES (3,'Forsamlingstelt',1,'Telt med master og barduner, stålramme eller lignende, der anvendes til forsamling af mange mennesker. Flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (4,'Cirkus',1,'Cirkus flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (5,'Koncert',1,'Store udendørs koncerter');
+INSERT INTO fkg.d_6121_sua VALUES (6,'Spejderlejr',1,'Spejderlejr med camping som ikke er omfattet af campingreglementet flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (7,'Kræmmermarked',1,'Kræmmermarked');
+INSERT INTO fkg.d_6121_sua VALUES (8,'Camping',1,'Campingområde som ikke er omfattet af campingreglementet flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (98,'Andet',1,'Hvor andet ikke er dækkende.');
+INSERT INTO fkg.d_6121_sua VALUES (99,'Ukendt',1,'Mangler viden om typen.');
+-- SELECT * FROM fkg.d_6121_sua;
 
 
 INSERT INTO fkg.d_6200_geologi VALUES (1,'A Moræne',1,'Er jord og løse klippestykker, der er blevet efterladt af en gletsjer.');

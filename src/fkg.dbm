@@ -2414,7 +2414,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6003_zone_type">
 	<schema name="fkg"/>
-	<position x="3875.11" y="2483.09"/>
+	<position x="3816.22" y="2498.65"/>
 	<column name="zone_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -6409,7 +6409,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_fremkommelighed">
 	<schema name="fkg"/>
-	<position x="2745.56" y="4342.22"/>
+	<position x="2725.56" y="4332.22"/>
 	<column name="fremkommelighed_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -6424,6 +6424,209 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="d_5802_fremkommelighed_pk" type="pk-constr" table="fkg.d_5802_fremkommelighed">
 		<columns names="fremkommelighed_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_6119_evaku_centr">
+	<schema name="fkg"/>
+	<position x="4455.56" y="4352.22"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="evakucenter_ref">
+		<type name="integer"/>
+	</column>
+	<column name="evakucenter">
+		<type name="character varying" length="150"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="funktionsstatus_kode">
+		<type name="integer"/>
+	</column>
+	<column name="indkvartering_kode">
+		<type name="integer"/>
+	</column>
+	<column name="sovepladser">
+		<type name="integer"/>
+	</column>
+	<column name="forplejning_kode">
+		<type name="integer"/>
+	</column>
+	<column name="spisepladser">
+		<type name="integer"/>
+	</column>
+	<column name="beredskabsplan_kode">
+		<type name="integer"/>
+	</column>
+	<column name="note">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_6119_evaku_centr_pk" type="pk-constr" table="fkg.t_6119_evaku_centr">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_6120_midl_overn">
+	<schema name="fkg"/>
+	<position x="4411.11" y="4735.56"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="institutionsnavn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="antal_personer" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="mid_ov_person" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="mid_ov_tlfnr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="fast_vaagen_vagt_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="note">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_6120_midl_overn_pk" type="pk-constr" table="fkg.t_6120_midl_overn">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_6121_stor_ud_arr">
+	<schema name="fkg"/>
+	<position x="4404.44" y="4988.89"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid"/>
+	</column>
+	<column name="sua_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="arrangement" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="forsamlingstelt_kode">
+		<type name="integer"/>
+	</column>
+	<column name="cirkustelt_kode">
+		<type name="integer"/>
+	</column>
+	<column name="campingområde_kode">
+		<type name="integer"/>
+	</column>
+	<column name="salgsområde_kode">
+		<type name="integer"/>
+	</column>
+	<column name="arrangør">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="adr_i_tekst">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="suppl_sted_beskrivelse">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sua_person" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="sua_tlfnr" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="antal_personer" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="vejkode">
+		<type name="integer"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="char" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer"/>
+	</column>
+	<column name="gyldig_fra" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="gyldig_til">
+		<type name="date"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_6121_stor_ud_arr_pk" type="pk-constr" table="fkg.t_6121_stor_ud_arr">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_6121_sua">
+	<schema name="fkg"/>
+	<position x="4931.11" y="5077.78"/>
+	<column name="sua_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="sua_type" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying"/>
+	</column>
+	<constraint name="d_6121_sua_pk" type="pk-constr" table="fkg.d_6121_sua">
+		<columns names="sua_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -8131,6 +8334,36 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="facilitet_type_kode" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5801_fac_fl_d_basis_belaegning_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_belaegning" table="fkg.t_5801_fac_fl">
+	<columns names="belaegning_kode" ref-type="src-columns"/>
+	<columns names="belaegning_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_handicapegnet_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_handicapegnet" table="fkg.t_5801_fac_fl">
+	<columns names="handicapegnet_kode" ref-type="src-columns"/>
+	<columns names="handicapegnet_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6119_evaku_centr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6119_evaku_centr">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6120_midl_overn_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6120_midl_overn">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6121_stor_ud_arr">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
 <relationship name="rel_generel_d_basis_oprindelse" type="relfk"
 	 src-table="fkg.generel"
 	 dst-table="fkg.d_basis_oprindelse"
@@ -9499,6 +9732,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5801_fac_fl_d_5800_facilitet" type="relfk"
 	 src-table="fkg.t_5801_fac_fl"
 	 dst-table="fkg.d_5800_facilitet"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_d_basis_belaegning" type="relfk"
+	 src-table="fkg.t_5801_fac_fl"
+	 dst-table="fkg.d_basis_belaegning"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_d_basis_handicapegnet" type="relfk"
+	 src-table="fkg.t_5801_fac_fl"
+	 dst-table="fkg.d_basis_handicapegnet"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_generel" type="relfk"
+	 src-table="fkg.t_6119_evaku_centr"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_generel" type="relfk"
+	 src-table="fkg.t_6120_midl_overn"
+	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_generel" type="relfk"
+	 src-table="fkg.t_6121_stor_ud_arr"
+	 dst-table="fkg.generel"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

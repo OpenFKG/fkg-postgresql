@@ -3371,11 +3371,11 @@ CREATE TABLE fkg.d_basis_belaegning(
 -- object: fkg.d_basis_handicapegnet | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.d_basis_handicapegnet CASCADE;
 CREATE TABLE fkg.d_basis_handicapegnet(
-	"handicapegnet _kode" integer NOT NULL,
+	handicapegnet_kode integer NOT NULL,
 	handicapegnet character varying(40) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
-	CONSTRAINT d_basis_handicapegnet_pk PRIMARY KEY ("handicapegnet _kode")
+	CONSTRAINT d_basis_handicapegnet_pk PRIMARY KEY (handicapegnet_kode)
 
 );
 -- ddl-end --
@@ -3412,7 +3412,96 @@ CREATE TABLE fkg.d_5802_fremkommelighed(
 	fremkommelighed character varying(30) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
-	CONSTRAINT d5802_fremkommelighed_pk PRIMARY KEY (fremkommelighed_kode)
+	CONSTRAINT d_5802_fremkommelighed_pk PRIMARY KEY (fremkommelighed_kode)
+
+);
+-- ddl-end --
+
+-- object: fkg.t_6119_evaku_centr | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_6119_evaku_centr CASCADE;
+CREATE TABLE fkg.t_6119_evaku_centr(
+	versions_id uuid NOT NULL,
+	evakucenter_ref integer,
+	evakucenter character varying(150),
+	vejkode integer,
+	cvf_vejkode char(7),
+	husnr character varying(4),
+	postnr integer,
+	funktionsstatus_kode integer,
+	indkvartering_kode integer,
+	sovepladser integer,
+	forplejning_kode integer,
+	spisepladser integer,
+	beredskabsplan_kode integer,
+	note character varying(254),
+	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	CONSTRAINT t_6119_evaku_centr_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+
+-- object: fkg.t_6120_midl_overn | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_6120_midl_overn CASCADE;
+CREATE TABLE fkg.t_6120_midl_overn(
+	versions_id uuid NOT NULL,
+	institutionsnavn character varying(128) NOT NULL,
+	antal_personer integer NOT NULL,
+	mid_ov_person character varying(128) NOT NULL,
+	mid_ov_tlfnr integer NOT NULL,
+	fast_vaagen_vagt_kode integer NOT NULL,
+	vejkode integer,
+	cvf_vejkode char(7),
+	husnr character varying(4),
+	postnr integer,
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	note character varying(254),
+	link character varying(1024),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	CONSTRAINT t_6120_midl_overn_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+
+-- object: fkg.t_6121_stor_ud_arr | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_6121_stor_ud_arr CASCADE;
+CREATE TABLE fkg.t_6121_stor_ud_arr(
+	versions_id uuid NOT NULL,
+	sua_kode integer NOT NULL,
+	arrangement character varying(128) NOT NULL,
+	forsamlingstelt_kode integer,
+	cirkustelt_kode integer,
+	"campingområde_kode" integer,
+	"salgsområde_kode" integer,
+	"arrangør" character varying(128),
+	adr_i_tekst character varying(128),
+	suppl_sted_beskrivelse character varying(128),
+	sua_person character varying(128) NOT NULL,
+	sua_tlfnr integer NOT NULL,
+	antal_personer integer NOT NULL,
+	vejkode integer,
+	cvf_vejkode char(7),
+	husnr character varying(4),
+	postnr integer,
+	gyldig_fra date NOT NULL,
+	gyldig_til date,
+	noegle character varying(128),
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_6121_stor_ud_arr_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_6121_sua | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_6121_sua CASCADE;
+CREATE TABLE fkg.d_6121_sua(
+	sua_kode integer NOT NULL,
+	sua_type character varying(20) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_6121_sua_pk PRIMARY KEY (sua_kode)
 
 );
 -- ddl-end --
@@ -5402,6 +5491,41 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_5800_facilitet_fk CASCADE;
 ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
 REFERENCES fkg.d_5800_facilitet (facilitet_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_belaegning_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_belaegning_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_belaegning_fk FOREIGN KEY (belaegning_kode)
+REFERENCES fkg.d_basis_belaegning (belaegning_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_handicapegnet_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_handicapegnet_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_handicapegnet_fk FOREIGN KEY (handicapegnet_kode)
+REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6119_evaku_centr_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6119_evaku_centr DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_generel_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr ADD CONSTRAINT t_6119_evaku_centr_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6120_midl_overn_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6120_midl_overn DROP CONSTRAINT IF EXISTS t_6120_midl_overn_generel_fk CASCADE;
+ALTER TABLE fkg.t_6120_midl_overn ADD CONSTRAINT t_6120_midl_overn_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_generel_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr ADD CONSTRAINT t_6121_stor_ud_arr_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

@@ -42,6 +42,14 @@ CREATE TABLE fkg.d_5802_fremkommelighed(
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_fremkommelighed_pk PRIMARY KEY (fremkommelighed_kode));
 
+CREATE TABLE fkg.d_6121_sua(
+	sua_kode integer NOT NULL,
+	sua_type character varying(20) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_6121_sua_pk PRIMARY KEY (sua_kode));
+
+
 INSERT INTO fkg.d_basis_belaegning VALUES (1,'Fast belægning',1,'Fast belægning, som fx asfalt, brolægning og beton');
 INSERT INTO fkg.d_basis_belaegning VALUES (2,'Løs belægning',1,'Løs belægning, som fx perlesten, stenmel');
 INSERT INTO fkg.d_basis_belaegning VALUES (3,'Uden belægning',1,'Uden belægning, som fx natursti, skovsti og trampet sti, strand.');
@@ -114,3 +122,62 @@ INSERT INTO fkg.d_5802_fremkommelighed VALUES (2,'Middel fremkommelighed',1,'Str
 INSERT INTO fkg.d_5802_fremkommelighed VALUES (3,'Ringe fremkommelighed',1,'Strækning til fx MTB eller vandrestøvler. Store stigninger og løst underlag kan forekomme.');
 INSERT INTO fkg.d_5802_fremkommelighed VALUES (8,'Andet',1,'Andet');
 INSERT INTO fkg.d_5802_fremkommelighed VALUES (9,'Ukendt',1,'Mangler viden om fremkommeligheden');
+-- SELECT * FROM fkg.d_5802_fremkommelighed;
+
+INSERT INTO fkg.d_6121_sua VALUES (1,'Festival',1,'Festival med flere koncerter m.v.');
+INSERT INTO fkg.d_6121_sua VALUES (2,'Dyrskue',1,'Dyreskue');
+INSERT INTO fkg.d_6121_sua VALUES (3,'Forsamlingstelt',1,'Telt med master og barduner, stålramme eller lignende, der anvendes til forsamling af mange mennesker. Flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (4,'Cirkus',1,'Cirkus flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (5,'Koncert',1,'Store udendørs koncerter');
+INSERT INTO fkg.d_6121_sua VALUES (6,'Spejderlejr',1,'Spejderlejr med camping som ikke er omfattet af campingreglementet flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (7,'Kræmmermarked',1,'Kræmmermarked');
+INSERT INTO fkg.d_6121_sua VALUES (8,'Camping',1,'Campingområde som ikke er omfattet af campingreglementet flere end 150 personer');
+INSERT INTO fkg.d_6121_sua VALUES (98,'Andet',1,'Hvor andet ikke er dækkende.');
+INSERT INTO fkg.d_6121_sua VALUES (99,'Ukendt',1,'Mangler viden om typen.');
+-- SELECT * FROM fkg.d_6121_sua;
+
+-- Nye temaer
+CREATE TABLE fkg.t_5801_fac_fl(
+	versions_id uuid NOT NULL,
+	facilitet_type_kode integer NOT NULL,
+	belaegning_kode integer,
+	handicapegnet_kode integer,
+	ejerstatus_kode integer,
+	navn character varying(50),
+	noegle character varying(128),
+	note character varying(254),
+	vejkode integer,
+	cvf_vejkode char(7),
+	husnr character varying(4),
+	postnr integer,
+	link character varying(1024),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5801_fac_fl_pk PRIMARY KEY (versions_id));
+
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_pkt_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
+REFERENCES fkg.d_5800_facilitet (facilitet_type_kode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_belaegning_fk FOREIGN KEY (belaegning_kode)
+REFERENCES fkg.d_basis_belaegning (belaegning_kode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_handicapegnet_fk FOREIGN KEY (handicapegnet_kode)
+REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+
+
+
+-- Core data
+INSERT INTO fkg.d_tabel VALUES (5801,'Facilitet_flade','F','t_5801_fac_fl','5.9');
