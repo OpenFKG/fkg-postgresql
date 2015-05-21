@@ -235,6 +235,11 @@ INSERT INTO fkg.d_tabel VALUES (6115,'Afbrændingsområde','F','t_6115_afbr_omr'
 INSERT INTO fkg.d_tabel VALUES (6116,'Olieberedskabsplan','F','t_6116_olie_ber_pl','5.12');
 INSERT INTO fkg.d_tabel VALUES (6117,'Indsatspunkt','P','t_6117_inds_pkt','5.12');
 INSERT INTO fkg.d_tabel VALUES (6118,'Brand- og redningsareal','F','t_6118_bran_redn','5.12');
+-- Nye temaer i 2.5:
+INSERT INTO fkg.d_tabel VALUES (6119,'Evakueringscenter','P','t_6119_evaku_centr','5.12');
+INSERT INTO fkg.d_tabel VALUES (6120,'Midlertidig overnatning','P','t_6120_midl_overn','5.12');
+INSERT INTO fkg.d_tabel VALUES (6121,'Større udendørs arrangementer','F','t_6121_stor_ud_arr','5.12');
+--
 INSERT INTO fkg.d_tabel VALUES (6200,'Naturgeografi','F','t_6200_nat_geo','5.13');
 INSERT INTO fkg.d_tabel VALUES (6201,'Kulturgeografi','F','t_6201_kult_geo','5.13');
 INSERT INTO fkg.d_tabel VALUES (6202,'Landskabkarakterområder','F','t_6202_landk_omr','5.13');

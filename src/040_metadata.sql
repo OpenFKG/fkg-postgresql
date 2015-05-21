@@ -3334,9 +3334,9 @@ CREATE TABLE fkg.d_basis_offentlig(
 );
 -- ddl-end --
 
--- object: fkg.t_5801_fac_fl | type: TABLE --
--- DROP TABLE IF EXISTS fkg.t_5801_fac_fl CASCADE;
-CREATE TABLE fkg.t_5801_fac_fl(
+-- object: fkg.t_5801_fac_fl_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_5801_fac_fl_t CASCADE;
+CREATE TABLE fkg.t_5801_fac_fl_t(
 	versions_id uuid NOT NULL,
 	facilitet_type_kode integer NOT NULL,
 	belaegning_kode integer,
@@ -3417,9 +3417,9 @@ CREATE TABLE fkg.d_5802_fremkommelighed(
 );
 -- ddl-end --
 
--- object: fkg.t_6119_evaku_centr | type: TABLE --
--- DROP TABLE IF EXISTS fkg.t_6119_evaku_centr CASCADE;
-CREATE TABLE fkg.t_6119_evaku_centr(
+-- object: fkg.t_6119_evaku_centr_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_6119_evaku_centr_t CASCADE;
+CREATE TABLE fkg.t_6119_evaku_centr_t(
 	versions_id uuid NOT NULL,
 	evakucenter_ref integer,
 	evakucenter character varying(150),
@@ -3436,14 +3436,17 @@ CREATE TABLE fkg.t_6119_evaku_centr(
 	note character varying(254),
 	link character varying(1024),
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
-	CONSTRAINT t_6119_evaku_centr_pk PRIMARY KEY (versions_id)
+	CONSTRAINT t_6119_evaku_centr_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6119_evaku_centr_evakucenter_ref_ck CHECK (evakucenter_ref BETWEEN 1 AND 99999),
+	CONSTRAINT t_6119_evaku_centr_sovepladser_ck CHECK (sovepladser BETWEEN 1 AND 5000),
+	CONSTRAINT t_6119_evaku_centr_spisepladser_ck CHECK (spisepladser BETWEEN 1 AND 5000)
 
 );
 -- ddl-end --
 
--- object: fkg.t_6120_midl_overn | type: TABLE --
--- DROP TABLE IF EXISTS fkg.t_6120_midl_overn CASCADE;
-CREATE TABLE fkg.t_6120_midl_overn(
+-- object: fkg.t_6120_midl_overn_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_6120_midl_overn_t CASCADE;
+CREATE TABLE fkg.t_6120_midl_overn_t(
 	versions_id uuid NOT NULL,
 	institutionsnavn character varying(128) NOT NULL,
 	antal_personer integer NOT NULL,
@@ -3459,22 +3462,24 @@ CREATE TABLE fkg.t_6120_midl_overn(
 	note character varying(254),
 	link character varying(1024),
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
-	CONSTRAINT t_6120_midl_overn_pk PRIMARY KEY (versions_id)
+	CONSTRAINT t_6120_midl_overn_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6120_midl_overn_t_antal_personer_ck CHECK (antal_personer BETWEEN 10 AND 1000),
+	CONSTRAINT t_6120_midl_overn_t_mid_ov_tlfnr_ck CHECK (mid_ov_tlfnr BETWEEN 10000000 AND 99999999)
 
 );
 -- ddl-end --
 
--- object: fkg.t_6121_stor_ud_arr | type: TABLE --
--- DROP TABLE IF EXISTS fkg.t_6121_stor_ud_arr CASCADE;
-CREATE TABLE fkg.t_6121_stor_ud_arr(
+-- object: fkg.t_6121_stor_ud_arr_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_6121_stor_ud_arr_t CASCADE;
+CREATE TABLE fkg.t_6121_stor_ud_arr_t(
 	versions_id uuid NOT NULL,
 	sua_kode integer NOT NULL,
 	arrangement character varying(128) NOT NULL,
 	forsamlingstelt_kode integer,
 	cirkustelt_kode integer,
-	"campingområde_kode" integer,
-	"salgsområde_kode" integer,
-	"arrangør" character varying(128),
+	campingomraade_kode integer,
+	salgsomraade_kode integer,
+	arrangoer character varying(128),
 	adr_i_tekst character varying(128),
 	suppl_sted_beskrivelse character varying(128),
 	sua_person character varying(128) NOT NULL,
@@ -3489,7 +3494,9 @@ CREATE TABLE fkg.t_6121_stor_ud_arr(
 	noegle character varying(128),
 	link character varying(1024),
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
-	CONSTRAINT t_6121_stor_ud_arr_pk PRIMARY KEY (versions_id)
+	CONSTRAINT t_6121_stor_ud_arr_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_6121_stor_ud_arr_t_sua_tlfnr_ck CHECK (sua_tlfnr BETWEEN 10000000 AND 99999999),
+	CONSTRAINT t_6121_stor_ud_arr_t_antal_personer_ck CHECK (antal_personer BETWEEN 0 AND 999999)
 
 );
 -- ddl-end --
@@ -5460,72 +5467,184 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_fl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_generel_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_generel_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_pkt_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_pkt_d_basis_ejerstatus_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_pkt_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_pkt_d_basis_ejerstatus_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_pkt_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
 REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_pkt_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_pkt_d_vejnavn_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_pkt_d_vejnavn_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_fl_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_postnr_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_postnr_fk FOREIGN KEY (postnr)
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_postnr_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_fl_d_5800_facilitet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_5800_facilitet_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_5800_facilitet_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
 REFERENCES fkg.d_5800_facilitet (facilitet_type_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_fl_d_basis_belaegning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_belaegning_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_belaegning_fk FOREIGN KEY (belaegning_kode)
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_belaegning_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_belaegning_fk FOREIGN KEY (belaegning_kode)
 REFERENCES fkg.d_basis_belaegning (belaegning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_fl_d_basis_handicapegnet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_handicapegnet_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl ADD CONSTRAINT t_5801_fac_fl_d_basis_handicapegnet_fk FOREIGN KEY (handicapegnet_kode)
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_handicapegnet_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_handicapegnet_fk FOREIGN KEY (handicapegnet_kode)
 REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_6119_evaku_centr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6119_evaku_centr DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_generel_fk CASCADE;
-ALTER TABLE fkg.t_6119_evaku_centr ADD CONSTRAINT t_6119_evaku_centr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6119_evaku_centr_t DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_generel_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD CONSTRAINT t_6119_evaku_centr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6119_evaku_centr_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6119_evaku_centr_t DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_d_vejnavn_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD CONSTRAINT t_6119_evaku_centr_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6119_evaku_centr_d_basis_postnr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6119_evaku_centr_t DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_d_basis_postnr_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD CONSTRAINT t_6119_evaku_centr_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6119_evaku_centr_d_basis_funktionsstatus_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6119_evaku_centr_t DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_d_basis_funktionsstatus_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD CONSTRAINT t_6119_evaku_centr_d_basis_funktionsstatus_fk FOREIGN KEY (funktionsstatus_kode)
+REFERENCES fkg.d_basis_funktionsstatus (funktionsstatus_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6119_evaku_centr_d_basis_ja_nej_indkvartering_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6119_evaku_centr_t DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_d_basis_ja_nej_indkvartering_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD CONSTRAINT t_6119_evaku_centr_d_basis_ja_nej_indkvartering_fk FOREIGN KEY (indkvartering_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6119_evaku_centr_d_basis_ja_nej_forplejning_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6119_evaku_centr_t DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_d_basis_ja_nej_forplejning_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD CONSTRAINT t_6119_evaku_centr_d_basis_ja_nej_forplejning_fk FOREIGN KEY (forplejning_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6119_evaku_centr_d_basis_ja_nej_beredsskabsplan_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6119_evaku_centr_t DROP CONSTRAINT IF EXISTS t_6119_evaku_centr_d_basis_ja_nej_beredsskabsplan_fk CASCADE;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD CONSTRAINT t_6119_evaku_centr_d_basis_ja_nej_beredsskabsplan_fk FOREIGN KEY (beredskabsplan_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_6120_midl_overn_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6120_midl_overn DROP CONSTRAINT IF EXISTS t_6120_midl_overn_generel_fk CASCADE;
-ALTER TABLE fkg.t_6120_midl_overn ADD CONSTRAINT t_6120_midl_overn_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6120_midl_overn_t DROP CONSTRAINT IF EXISTS t_6120_midl_overn_generel_fk CASCADE;
+ALTER TABLE fkg.t_6120_midl_overn_t ADD CONSTRAINT t_6120_midl_overn_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
+-- object: t_6120_midl_overn_t_d_basis_ja_nej_fast_vaagen_vagt_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6120_midl_overn_t DROP CONSTRAINT IF EXISTS t_6120_midl_overn_t_d_basis_ja_nej_fast_vaagen_vagt_fk CASCADE;
+ALTER TABLE fkg.t_6120_midl_overn_t ADD CONSTRAINT t_6120_midl_overn_t_d_basis_ja_nej_fast_vaagen_vagt_fk FOREIGN KEY (fast_vaagen_vagt_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6120_midl_overn_t_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6120_midl_overn_t DROP CONSTRAINT IF EXISTS t_6120_midl_overn_t_d_vejnavn_fk CASCADE;
+ALTER TABLE fkg.t_6120_midl_overn_t ADD CONSTRAINT t_6120_midl_overn_t_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6120_midl_overn_t_d_basis_postnr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6120_midl_overn_t DROP CONSTRAINT IF EXISTS t_6120_midl_overn_t_d_basis_postnr_fk CASCADE;
+ALTER TABLE fkg.t_6120_midl_overn_t ADD CONSTRAINT t_6120_midl_overn_t_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
 -- object: t_6121_stor_ud_arr_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_6121_stor_ud_arr DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_generel_fk CASCADE;
-ALTER TABLE fkg.t_6121_stor_ud_arr ADD CONSTRAINT t_6121_stor_ud_arr_generel_fk FOREIGN KEY (versions_id)
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_generel_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_t_d_basis_ja_nej_forsamlingstelt_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_basis_ja_nej_forsamlingstelt_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_basis_ja_nej_forsamlingstelt_fk FOREIGN KEY (forsamlingstelt_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_t_d_basis_ja_nej_cirkustelt_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_basis_ja_nej_cirkustelt_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_basis_ja_nej_cirkustelt_fk FOREIGN KEY (cirkustelt_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_t_d_basis_ja_nej_campingomraade_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_basis_ja_nej_campingomraade_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_basis_ja_nej_campingomraade_fk FOREIGN KEY (campingomraade_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_t_d_basis_ja_nej_salgsomraade_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_basis_ja_nej_salgsomraade_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_basis_ja_nej_salgsomraade_fk FOREIGN KEY (salgsomraade_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_t_d_vejnavn_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_vejnavn_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_t_d_basis_postnr_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_basis_postnr_fk CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_6121_stor_ud_arr_t_d_6121_sua | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_6121_sua CASCADE;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_6121_sua FOREIGN KEY (sua_kode)
+REFERENCES fkg.d_6121_sua (sua_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

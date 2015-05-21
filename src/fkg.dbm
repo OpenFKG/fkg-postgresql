@@ -6274,7 +6274,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl">
+<table name="t_5801_fac_fl_t">
 	<schema name="fkg"/>
 	<position x="2237.78" y="3985.56"/>
 	<column name="versions_id" not-null="true">
@@ -6319,7 +6319,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="geometri" not-null="true">
 		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
-	<constraint name="t_5801_fac_fl_pk" type="pk-constr" table="fkg.t_5801_fac_fl">
+	<constraint name="t_5801_fac_fl_pk" type="pk-constr" table="fkg.t_5801_fac_fl_t">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -6427,7 +6427,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6119_evaku_centr">
+<table name="t_6119_evaku_centr_t">
 	<schema name="fkg"/>
 	<position x="4455.56" y="4352.22"/>
 	<column name="versions_id" not-null="true">
@@ -6478,14 +6478,23 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="geometri" not-null="true">
 		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
-	<constraint name="t_6119_evaku_centr_pk" type="pk-constr" table="fkg.t_6119_evaku_centr">
+	<constraint name="t_6119_evaku_centr_pk" type="pk-constr" table="fkg.t_6119_evaku_centr_t">
 		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_6119_evaku_centr_evakucenter_ref_ck" type="ck-constr" table="fkg.t_6119_evaku_centr_t">
+			<expression><![CDATA[evakucenter_ref BETWEEN 1 AND 99999]]></expression>
+	</constraint>
+	<constraint name="t_6119_evaku_centr_sovepladser_ck" type="ck-constr" table="fkg.t_6119_evaku_centr_t">
+			<expression><![CDATA[sovepladser BETWEEN 1 AND 5000]]></expression>
+	</constraint>
+	<constraint name="t_6119_evaku_centr_spisepladser_ck" type="ck-constr" table="fkg.t_6119_evaku_centr_t">
+			<expression><![CDATA[spisepladser BETWEEN 1 AND 5000]]></expression>
 	</constraint>
 </table>
 
-<table name="t_6120_midl_overn">
+<table name="t_6120_midl_overn_t">
 	<schema name="fkg"/>
-	<position x="4411.11" y="4735.56"/>
+	<position x="4431.11" y="4640.56"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -6531,12 +6540,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="geometri" not-null="true">
 		<type name="geometry" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
-	<constraint name="t_6120_midl_overn_pk" type="pk-constr" table="fkg.t_6120_midl_overn">
+	<constraint name="t_6120_midl_overn_pk" type="pk-constr" table="fkg.t_6120_midl_overn_t">
 		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_6120_midl_overn_t_antal_personer_ck" type="ck-constr" table="fkg.t_6120_midl_overn_t">
+			<expression><![CDATA[antal_personer BETWEEN 10 AND 1000]]></expression>
+	</constraint>
+	<constraint name="t_6120_midl_overn_t_mid_ov_tlfnr_ck" type="ck-constr" table="fkg.t_6120_midl_overn_t">
+			<expression><![CDATA[mid_ov_tlfnr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
-<table name="t_6121_stor_ud_arr">
+<table name="t_6121_stor_ud_arr_t">
 	<schema name="fkg"/>
 	<position x="4404.44" y="4988.89"/>
 	<column name="versions_id" not-null="true">
@@ -6554,13 +6569,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="cirkustelt_kode">
 		<type name="integer"/>
 	</column>
-	<column name="campingområde_kode">
+	<column name="campingomraade_kode">
 		<type name="integer"/>
 	</column>
-	<column name="salgsområde_kode">
+	<column name="salgsomraade_kode">
 		<type name="integer"/>
 	</column>
-	<column name="arrangør">
+	<column name="arrangoer">
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="adr_i_tekst">
@@ -6605,8 +6620,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="geometri" not-null="true">
 		<type name="geometry" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
-	<constraint name="t_6121_stor_ud_arr_pk" type="pk-constr" table="fkg.t_6121_stor_ud_arr">
+	<constraint name="t_6121_stor_ud_arr_pk" type="pk-constr" table="fkg.t_6121_stor_ud_arr_t">
 		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_6121_stor_ud_arr_t_sua_tlfnr_ck" type="ck-constr" table="fkg.t_6121_stor_ud_arr_t">
+			<expression><![CDATA[sua_tlfnr BETWEEN 10000000 AND 99999999]]></expression>
+	</constraint>
+	<constraint name="t_6121_stor_ud_arr_t_antal_personer_ck" type="ck-constr" table="fkg.t_6121_stor_ud_arr_t">
+			<expression><![CDATA[antal_personer BETWEEN 0 AND 999999]]></expression>
 	</constraint>
 </table>
 
@@ -8305,63 +8326,159 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="t_5801_fac_fl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5801_fac_fl">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5801_fac_fl_t">
 	<columns names="versions_id" ref-type="src-columns"/>
 	<columns names="versions_id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5801_fac_pkt_d_basis_ejerstatus_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5801_fac_fl">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5801_fac_fl_t">
 	<columns names="ejerstatus_kode" ref-type="src-columns"/>
 	<columns names="ejerstatus_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5801_fac_pkt_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5801_fac_fl">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5801_fac_fl_t">
 	<columns names="vejkode" ref-type="src-columns"/>
 	<columns names="vejkode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5801_fac_fl_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5801_fac_fl">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5801_fac_fl_t">
 	<columns names="postnr" ref-type="src-columns"/>
 	<columns names="postnr" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5801_fac_fl_d_5800_facilitet_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_facilitet" table="fkg.t_5801_fac_fl">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_facilitet" table="fkg.t_5801_fac_fl_t">
 	<columns names="facilitet_type_kode" ref-type="src-columns"/>
 	<columns names="facilitet_type_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5801_fac_fl_d_basis_belaegning_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_belaegning" table="fkg.t_5801_fac_fl">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_belaegning" table="fkg.t_5801_fac_fl_t">
 	<columns names="belaegning_kode" ref-type="src-columns"/>
 	<columns names="belaegning_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5801_fac_fl_d_basis_handicapegnet_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_handicapegnet" table="fkg.t_5801_fac_fl">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_handicapegnet" table="fkg.t_5801_fac_fl_t">
 	<columns names="handicapegnet_kode" ref-type="src-columns"/>
 	<columns names="handicapegnet_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6119_evaku_centr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6119_evaku_centr">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6119_evaku_centr_t">
 	<columns names="versions_id" ref-type="src-columns"/>
 	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6119_evaku_centr_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_6119_evaku_centr_t">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6119_evaku_centr_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_6119_evaku_centr_t">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6119_evaku_centr_d_basis_funktionsstatus_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_funktionsstatus" table="fkg.t_6119_evaku_centr_t">
+	<columns names="funktionsstatus_kode" ref-type="src-columns"/>
+	<columns names="funktionsstatus_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6119_evaku_centr_d_basis_ja_nej_indkvartering_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6119_evaku_centr_t">
+	<columns names="indkvartering_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6119_evaku_centr_d_basis_ja_nej_forplejning_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6119_evaku_centr_t">
+	<columns names="forplejning_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6119_evaku_centr_d_basis_ja_nej_beredsskabsplan_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6119_evaku_centr_t">
+	<columns names="beredskabsplan_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6120_midl_overn_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6120_midl_overn">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6120_midl_overn_t">
 	<columns names="versions_id" ref-type="src-columns"/>
 	<columns names="versions_id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_6120_midl_overn_t_d_basis_ja_nej_fast_vaagen_vagt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6120_midl_overn_t">
+	<columns names="fast_vaagen_vagt_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6120_midl_overn_t_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_6120_midl_overn_t">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6120_midl_overn_t_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_6120_midl_overn_t">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="t_6121_stor_ud_arr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6121_stor_ud_arr">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_6121_stor_ud_arr_t">
 	<columns names="versions_id" ref-type="src-columns"/>
 	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_t_d_basis_ja_nej_forsamlingstelt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6121_stor_ud_arr_t">
+	<columns names="forsamlingstelt_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_t_d_basis_ja_nej_cirkustelt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6121_stor_ud_arr_t">
+	<columns names="cirkustelt_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_t_d_basis_ja_nej_campingomraade_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6121_stor_ud_arr_t">
+	<columns names="campingomraade_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_t_d_basis_ja_nej_salgsomraade_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_6121_stor_ud_arr_t">
+	<columns names="salgsomraade_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_t_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_6121_stor_ud_arr_t">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_t_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_6121_stor_ud_arr_t">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_6121_stor_ud_arr_t_d_6121_sua_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6121_sua" table="fkg.t_6121_stor_ud_arr_t">
+	<columns names="sua_kode" ref-type="src-columns"/>
+	<columns names="sua_kode" ref-type="dst-columns"/>
 </constraint>
 
 <relationship name="rel_generel_d_basis_oprindelse" type="relfk"
@@ -9710,53 +9827,108 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_generel" type="relfk"
-	 src-table="fkg.t_5801_fac_fl"
+	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.generel"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_d_basis_ejerstatus" type="relfk"
-	 src-table="fkg.t_5801_fac_fl"
+	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.d_basis_ejerstatus"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_d_vejnavn" type="relfk"
-	 src-table="fkg.t_5801_fac_fl"
+	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.d_vejnavn"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_d_basis_postnr" type="relfk"
-	 src-table="fkg.t_5801_fac_fl"
+	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.d_basis_postnr"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_d_5800_facilitet" type="relfk"
-	 src-table="fkg.t_5801_fac_fl"
+	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.d_5800_facilitet"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_d_basis_belaegning" type="relfk"
-	 src-table="fkg.t_5801_fac_fl"
+	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.d_basis_belaegning"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_d_basis_handicapegnet" type="relfk"
-	 src-table="fkg.t_5801_fac_fl"
+	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.d_basis_handicapegnet"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_6119_evaku_centr_generel" type="relfk"
-	 src-table="fkg.t_6119_evaku_centr"
+	 src-table="fkg.t_6119_evaku_centr_t"
 	 dst-table="fkg.generel"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_6120_midl_overn_generel" type="relfk"
-	 src-table="fkg.t_6120_midl_overn"
+	 src-table="fkg.t_6120_midl_overn_t"
 	 dst-table="fkg.generel"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_6121_stor_ud_arr_generel" type="relfk"
-	 src-table="fkg.t_6121_stor_ud_arr"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
 	 dst-table="fkg.generel"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_d_vejnavn" type="relfk"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_d_basis_funktionsstatus" type="relfk"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_funktionsstatus"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_t_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_6120_midl_overn_t"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_t_d_vejnavn" type="relfk"
+	 src-table="fkg.t_6120_midl_overn_t"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_t_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_6120_midl_overn_t"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_basis_ja_nej"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_vejnavn" type="relfk"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_vejnavn"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_postnr" type="relfk"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_6121_sua" type="relfk"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_6121_sua"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

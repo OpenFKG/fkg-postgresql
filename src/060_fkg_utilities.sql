@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 
@@ -100,7 +100,10 @@ INSERT INTO fkg_utilities.view_mapping (constraint_name, field_alias, value_fiel
   SELECT 't_6800_parl_fl_d_6800_vedlhold_f_type_fk', 'vedlhold_f_type_lable', 'vedlhold_f_type_lable', 120 UNION
   SELECT 't_6801_parl_li_d_6801_vedlhold_l_type_fk', 'vedlhold_l_type_lable', 'vedlhold_l_type_lable', 120 UNION
   SELECT 't_6802_parl_pkt_d_6802_groenvedligh_punkt_fk', 'vedlhold_p_type_lable', 'vedlhold_p_type_lable', 120;
-  
+
+-- Theme 6121
+UPDATE fkg_utilities.view_mapping SET field_alias='sua_type', value_field='sua_type' WHERE constraint_name = 't_6121_stor_ud_arr_t_d_6121_sua_fk';
+
 -- select * from fkg_utilities.view_mapping where constraint_name like 't_%d_basis_omraade%';
 -- select * from fkg_utilities.view_mapping order by 1;
 
