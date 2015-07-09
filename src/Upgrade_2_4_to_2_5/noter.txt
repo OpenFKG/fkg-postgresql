@@ -1,0 +1,42 @@
+Noter FKG 2.4->2.5
+
+Dokumentation:
+- Opslagstabel for 5801. Typen henviser til en ny tabel (d_5801_facilitet), men i teksten står at d_5800_facilitet skal anvendes. Jeg har genbrugt d_5800_facilitet.
+
+- 5.9.3.3.2   5802 Fremkommelighed (d5802_fremkommelighed) jeg antager der menes d_5802_fremkommelighed
+
+- 4.3.25 Handicapegnet (d_basis_handicapegnet) Tabellen overskrift handicapegnet _kode, jeg antager der ikke skal være mellemrum
+
+- 5.12.22 Større udendørs arrangementer (6121). Opslagstabellen d_6121_sua er ikke med i regnearket. Jeg har implementeret den. Feltet aktiv er medtaget for konsistensens skyld
+
+- Indledning "Der er i alt oprettet 3 nye temaer og 2 er nedlagte i denne version" er forkert. Der er 4 nye temaer
+
+- 5.12.22 Større udendørs arrangementer (6121) Felterne campingområde_kode, campingområde, salgsområde_kode,
+salgsområde, arrangør overholder ikke regel om danske bogstaver. Jeg har implementeret med oe istf ø og aa istf. å
+
+- 5.12.21 Midlertidig overnatning (6120), feltet mid_iv_tlfnr OG
+- 5.12.22 Større udendørs arrangementer (6121), feltet sua_tlfnr har værdiområde på 7 cifre. Det bør nok være 8, 
+  hvis der skal være plads til normale DK telefonnumre. Implementeret med 8 cifre.
+  
+- Tema t_5104_art_invas_t. De tekstuelle beskrivelser af arten erstattes af lookup-tabel. Det betyder, at der er fare for datatab ved opdatering.
+
+- Tema t_5107_art_invas_p_t. Det ser ud som en fejl, at den ikke er svarende til 5104. Implementering foretaget som 5104. Dvs. fremmednøgle invasivart_kode - ist.f.
+  felter, som ikke er defineret ordentligt i dokumentet.
+
+- Tema t_6007_inds_omr_t, ny datatype: vedtagelse (fra string til date). Konvertering KAN give fejl pga. ulovlige datoer i eksisterende tekster
+
+- Tema t_6111_fyrv_till_t nyt felt: fyr_frima_cvr. Implementeret som fyr_firma_cvr
+
+- Lookup-tabel 6112 Depottype (d_6112_depottype) er ikke konsekvensrettet som følge af ændring af feltnavne i tema t_6112_midl_dep. Rettelser til d_6112_depottype
+  er implementeret
+  
+- Som tema 6112 - tilsvarende bemærkninger for strandtype_kode -> strand_type_kode
+
+- d_5800_facilitet - beskrevet som ny lookuptabel. Dette er ikke tilfældet, der er tale om nyt indhold.
+
+- Tema 6202 - beskrevet med 4 navneændringer på feltnavne - kun 3 felter har fået nye navn
+
+- Tema 5802 - Felterne startpunkt_x og startpunkt_y. Implementeret som integer, men bør ikke være double precision
+
+- Tema 5802 - Felterne "afmærket_rute_kode" og "afmærket_rute" ændret til "afmaerket_rute_kode" og "afmaerket_rute"
+
