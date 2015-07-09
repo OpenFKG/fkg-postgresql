@@ -173,7 +173,7 @@ BEGIN
 
   -- Now create the trigger itself
   td = td || E'\n';
-  td = td || E'DROP TRIGGER IF EXISTS ' || interface_name || E'_vw_trg_iud ON ' || schema_name || '.' || interface_name || E';\n';
+  td = td || E'DROP TRIGGER IF EXISTS ' || interface_name || E'_trg_iud ON ' || schema_name || '.' || interface_name || E';\n';
   td = td || E'\n';
   td = td || E'CREATE TRIGGER ' || interface_name || E'_trg_iud' || E'\n';
   td = td || E'    INSTEAD OF INSERT OR DELETE OR UPDATE ON ' || schema_name || '.' || interface_name || E'\n';

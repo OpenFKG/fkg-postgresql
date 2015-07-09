@@ -97,10 +97,25 @@ UPDATE fkg_utilities.view_mapping SET field_alias='omraade', value_field='omraad
 
 -- Append the value columns from lookup tables (special for themes 6800, 6801 and 6802)
 INSERT INTO fkg_utilities.view_mapping (constraint_name, field_alias, value_field, ordinal) 
-  SELECT 't_6800_parl_fl_d_6800_vedlhold_f_type_fk', 'vedlhold_f_type_lable', 'vedlhold_f_type_lable', 120 UNION
-  SELECT 't_6801_parl_li_d_6801_vedlhold_l_type_fk', 'vedlhold_l_type_lable', 'vedlhold_l_type_lable', 120 UNION
-  SELECT 't_6802_parl_pkt_d_6802_groenvedligh_punkt_fk', 'vedlhold_p_type_lable', 'vedlhold_p_type_lable', 120;
-  
+  SELECT 't_6800_parl_fl_d_6800_vedlhold_f_type_fk', 'vedlhold_f_type_label', 'vedlhold_f_type_label', 120 UNION
+  SELECT 't_6801_parl_li_d_6801_vedlhold_l_type_fk', 'vedlhold_l_type_label', 'vedlhold_l_type_label', 120 UNION
+  SELECT 't_6802_parl_pkt_d_6802_groenvedligh_punkt_fk', 'vedlhold_p_type_label', 'vedlhold_p_type_label', 120;
+
+-- Theme 6121
+UPDATE fkg_utilities.view_mapping SET field_alias='sua_type', value_field='sua_type' WHERE constraint_name = 't_6121_stor_ud_arr_t_d_6121_sua_fk';
+
+-- Theme 5104
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ia_dansknavn', value_field = 'ia_dansknavn' WHERE constraint_name = 't_5104_art_invas_t_d_basis_invasivart';
+INSERT INTO fkg_utilities.view_mapping VALUES ('t_5104_art_invas_t_d_basis_invasivart','ia_latinsknavn','ia_latinsknavn',120);
+INSERT INTO fkg_utilities.view_mapping VALUES ('t_5104_art_invas_t_d_basis_invasivart','ia_rige','ia_rige',140);
+
+-- Theme 5107
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ia_dansknavn', value_field = 'ia_dansknavn' WHERE constraint_name = 't_5107_art_invas_p_d_basis_invasivart';
+INSERT INTO fkg_utilities.view_mapping VALUES ('t_5107_art_invas_p_d_basis_invasivart','ia_latinsknavn','ia_latinsknavn',120);
+INSERT INTO fkg_utilities.view_mapping VALUES ('t_5107_art_invas_p_d_basis_invasivart','ia_rige','ia_rige',140);
+--select * from fkg_utilities.view_mapping where constraint_name like '%invasivart%'
+
+
 -- select * from fkg_utilities.view_mapping where constraint_name like 't_%d_basis_omraade%';
 -- select * from fkg_utilities.view_mapping order by 1;
 
