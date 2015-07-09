@@ -707,7 +707,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <textbox name="asd" font-size="9">
 	<position x="22.2856" y="26.9999"/>
-	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS]]></comment>
+	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 2.5]]></comment>
 </textbox>
 
 <textbox name="copyright" font-size="9">
@@ -858,7 +858,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="redn_underomr">
 		<type name="character varying" length="20"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="bygn_kompleks">
@@ -1647,7 +1647,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="noegle">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="link">
@@ -1669,7 +1669,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5106_pleje_type">
 	<schema name="fkg"/>
-	<position x="516.039" y="3639.5"/>
+	<position x="510.039" y="3618.5"/>
 	<column name="pleje_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -1681,6 +1681,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="begrebsdefinition">
 		<type name="character varying"/>
+	</column>
+	<column name="pleje_type_label">
+		<type name="character varying" length="10"/>
 	</column>
 	<constraint name="pleje_type_kode_pk" type="pk-constr" factor="100" table="fkg.d_5106_pleje_type">
 		<columns names="pleje_type_kode" ref-type="src-columns"/>
@@ -2312,13 +2315,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="d_5802_facilitet">
+<table name="d_5802_facilitetl">
 	<schema name="fkg"/>
 	<position x="2746.32" y="4239.01"/>
-	<column name="facilitet_type_kode" not-null="true">
+	<column name="facilitetl_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="facilitet_type" not-null="true">
+	<column name="facilitetl_type" not-null="true">
 		<type name="character varying" length="30"/>
 	</column>
 	<column name="aktiv" not-null="true">
@@ -2327,8 +2330,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="begrebsdefinition">
 		<type name="character varying"/>
 	</column>
-	<constraint name="d_5802_facilitet_pk" type="pk-constr" factor="10" table="fkg.d_5802_facilitet">
-		<columns names="facilitet_type_kode" ref-type="src-columns"/>
+	<constraint name="d_5802_facilitet_pk" type="pk-constr" factor="10" table="fkg.d_5802_facilitetl">
+		<columns names="facilitetl_type_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -2389,26 +2392,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="d_5902_vaeske_type_pk" type="pk-constr" factor="10" table="fkg.d_5902_vaeske_type">
 		<columns names="vaesketype_kode" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<table name="d_6000_kotesystem">
-	<schema name="fkg"/>
-	<position x="3873.45" y="1675.18"/>
-	<column name="kotesystem_kode" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="kotesystem" not-null="true">
-		<type name="character varying" length="250"/>
-	</column>
-	<column name="aktiv" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="begrebsdefinition">
-		<type name="character varying"/>
-	</column>
-	<constraint name="d_6000_kotesystem_pk" type="pk-constr" factor="10" table="fkg.d_6000_kotesystem">
-		<columns names="kotesystem_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -2515,10 +2498,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="d_6112_depottype">
 	<schema name="fkg"/>
 	<position x="4943.3" y="2991.63"/>
-	<column name="depottype_kode" not-null="true">
+	<column name="depot_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="depottype" not-null="true">
+	<column name="depot_type" not-null="true">
 		<type name="character varying" length="50"/>
 	</column>
 	<column name="aktiv" not-null="true">
@@ -2528,7 +2511,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying"/>
 	</column>
 	<constraint name="d_6112_depottype_pk" type="pk-constr" factor="10" table="fkg.d_6112_depottype">
-		<columns names="depottype_kode" ref-type="src-columns"/>
+		<columns names="depot_type_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -2555,10 +2538,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="d_6116_strandtype">
 	<schema name="fkg"/>
 	<position x="4924.59" y="3598.62"/>
-	<column name="strandtype_kode" not-null="true">
+	<column name="strand_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="strandtype" not-null="true">
+	<column name="strand_type" not-null="true">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="aktiv" not-null="true">
@@ -2568,7 +2551,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying"/>
 	</column>
 	<constraint name="d_6116_strandtype_pk" type="pk-constr" factor="10" table="fkg.d_6116_strandtype">
-		<columns names="strandtype_kode" ref-type="src-columns"/>
+		<columns names="strand_type_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -2864,7 +2847,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="aktiv" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="vedlhold_f_type_lable" not-null="true">
+	<column name="vedlhold_f_type_label" not-null="true">
 		<type name="character varying" length="6"/>
 	</column>
 	<column name="begrebsdefinition">
@@ -2887,7 +2870,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="aktiv" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="vedlhold_l_type_lable" not-null="true">
+	<column name="vedlhold_l_type_label" not-null="true">
 		<type name="character varying" length="6"/>
 	</column>
 	<column name="begrebsdefinition">
@@ -2910,7 +2893,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="aktiv" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="vedlhold_p_type_lable" not-null="true">
+	<column name="vedlhold_p_type_label" not-null="true">
 		<type name="character varying" length="6"/>
 	</column>
 	<column name="begrebsdefinition">
@@ -2977,6 +2960,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="t_5401_genbr_st_pk" type="pk-constr" factor="10" table="fkg.t_5401_genbr_st_t">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
+	<constraint name="p_nr_ck" type="ck-constr" table="fkg.t_5401_genbr_st_t">
+			<expression><![CDATA[p_nr BETWEEN 1 AND 99999]]></expression>
+	</constraint>
 </table>
 
 <table name="t_5402_genbr_con_t">
@@ -3032,7 +3018,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="konsekvenszone">
 		<type name="double precision"/>
 	</column>
-	<column name="sagnr">
+	<column name="sagsnr">
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="vejkode">
@@ -3100,7 +3086,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="dosering_vaadvaegt">
 		<type name="double precision"/>
 	</column>
-	<column name="phosphor_indhold">
+	<column name="fosfor_total">
+		<type name="double precision"/>
+	</column>
+	<column name="fosfor_udnyttelse">
+		<type name="double precision"/>
+	</column>
+	<column name="kvaelstof_total">
+		<type name="double precision"/>
+	</column>
+	<column name="kvaelstof_udnyttelse">
+		<type name="double precision"/>
+	</column>
+	<column name="kalium_total">
 		<type name="double precision"/>
 	</column>
 	<column name="udbringning_aar" not-null="true">
@@ -3131,10 +3129,22 @@ CAUTION: Do not modify this file unless you know what you are doing.
 			<expression><![CDATA[dosering_vaadvaegt BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_phosphor_indhold_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression><![CDATA[phosphor_indhold BETWEEN 0.01 AND 9999.99]]></expression>
+			<expression><![CDATA[fosfor_total  BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_udbringning_aar_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
 			<expression><![CDATA[udbringning_aar BETWEEN 1900 AND 2999]]></expression>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_fosfor_udnyttelse_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
+			<expression><![CDATA[fosfor_udnyttelse BETWEEN 0.01 AND 100.0]]></expression>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_kvaelstof_total_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
+			<expression><![CDATA[kvaelstof_total BETWEEN 0.01 AND 9999.99]]></expression>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_kvaelstof_udnyttelse_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
+			<expression><![CDATA[kvaelstof_udnyttelse BETWEEN 0.01 AND 9999.99]]></expression>
+	</constraint>
+	<constraint name="t_5200_aff_prod_udbr_kalium_total_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
+			<expression><![CDATA[kalium_total BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 </table>
 
@@ -3182,7 +3192,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="planstatus_kode" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="link">
@@ -3242,11 +3252,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5800_fac_pkt_t">
 	<schema name="fkg"/>
-	<position x="2240.71" y="3783.42"/>
+	<position x="2241.71" y="3766.42"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
 	<column name="facilitet_type_kode" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="belaegning_kode">
+		<type name="integer"/>
+	</column>
+	<column name="handicapegnet_kode">
 		<type name="integer"/>
 	</column>
 	<column name="ejerstatus_kode">
@@ -3258,7 +3274,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="noegle">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="vejkode">
@@ -3290,7 +3306,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
-	<column name="facilitet_type_kode" not-null="true">
+	<column name="facilitetl_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="ejerstatus_kode">
@@ -3299,10 +3315,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="navn">
 		<type name="character varying" length="50"/>
 	</column>
+	<column name="straekningsnr">
+		<type name="integer"/>
+	</column>
+	<column name="belaegning_kode">
+		<type name="integer"/>
+	</column>
+	<column name="fremkommelighed_kode">
+		<type name="integer"/>
+	</column>
+	<column name="handicapegnet_kode">
+		<type name="integer"/>
+	</column>
+	<column name="startpunkt_x">
+		<type name="integer"/>
+	</column>
+	<column name="startpunkt_y">
+		<type name="integer"/>
+	</column>
+	<column name="afmaerket_rute_kode">
+		<type name="integer"/>
+	</column>
 	<column name="noegle">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="vejkode">
@@ -3343,6 +3380,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="afs_husnr">
 		<type name="character varying" length="4"/>
 	</column>
+	<column name="afs_cvr_kode">
+		<type name="integer"/>
+	</column>
+	<column name="afs_cvr_navn">
+		<type name="character varying" length="128"/>
+	</column>
 	<column name="afs_kommunekode">
 		<type name="integer"/>
 	</column>
@@ -3363,6 +3406,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="modt_husnr">
 		<type name="character varying" length="4"/>
+	</column>
+	<column name="modt_cvr_kode">
+		<type name="integer"/>
+	</column>
+	<column name="modt_cvr_navn">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="modt_kommunekode">
 		<type name="integer"/>
@@ -3414,6 +3463,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 	<constraint name="t_5900_jordfl_jordmaengde_anmeldt_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
 			<expression><![CDATA[jordmaengde_anmeldt BETWEEN 1.0 AND 9999.9]]></expression>
+	</constraint>
+	<constraint name="t_5900_jordfl_afs_cvr_kode_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
+			<expression><![CDATA[afs_cvr_kode BETWEEN 10000000 AND 99999999]]></expression>
+	</constraint>
+	<constraint name="t_5900_jordfl_modt_cvr_kode_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
+			<expression><![CDATA[modt_cvr_kode BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -3485,19 +3540,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
-	<column name="dnavn" not-null="true">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="lnavn">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="nobanis_invasiv_opt">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="rige_dk">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="sortlistet_kode">
+	<column name="invasivart_kode" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="noegle">
@@ -3515,7 +3558,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="sagsnr">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="link">
@@ -3535,19 +3578,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
-	<column name="dnavn" not-null="true">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="lnavn">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="nobanis_invasiv_opt">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="rige_dk">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="sortlistet_kode">
+	<column name="invasivart_kode" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="noegle">
@@ -3565,7 +3596,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="sagsnr">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="link">
@@ -3673,7 +3704,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer"/>
 	</column>
 	<column name="p_pris_time">
-		<type name="integer"/>
+		<type name="double precision"/>
 	</column>
 	<column name="p_pladser_handicap">
 		<type name="integer"/>
@@ -3703,7 +3734,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 			<expression><![CDATA[p_pladser_personbil BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pris_time_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression><![CDATA[p_pris_time BETWEEN 0 AND 9999]]></expression>
+			<expression><![CDATA[p_pris_time BETWEEN 0.01 AND 999.99]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pladser_handicap_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
 			<expression><![CDATA[p_pladser_handicap BETWEEN 0 AND 9999]]></expression>
@@ -3886,6 +3917,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="forening_navn" not-null="true">
 		<type name="character varying" length="50"/>
 	</column>
+	<column name="forening_cvr">
+		<type name="integer"/>
+	</column>
 	<column name="lokalpl_nr">
 		<type name="character varying" length="50"/>
 	</column>
@@ -3921,6 +3955,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 	<constraint name="t_5700_grundej_gf_tlf_ck" type="ck-constr" table="fkg.t_5700_grundej_t">
 			<expression><![CDATA[gf_tlf BETWEEN 11111111 AND 99999999]]></expression>
+	</constraint>
+	<constraint name="t_5700_grundej_forening_cvr_ck" type="ck-constr" table="fkg.t_5700_grundej_t">
+			<expression><![CDATA[forening_cvr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -3965,8 +4002,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="gyldig_til">
 		<type name="date"/>
 	</column>
-	<column name="skorstensfejer" not-null="true">
+	<column name="skorstensfejer_firma" not-null="true">
 		<type name="character varying" length="128"/>
+	</column>
+	<column name="skorstensfejer_cvr">
+		<type name="integer"/>
 	</column>
 	<column name="sf_tlf">
 		<type name="integer"/>
@@ -3995,11 +4035,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="t_5702_skorst_fej_sf_tlf_ck" type="ck-constr" table="fkg.t_5702_skorst_fej_t">
 			<expression><![CDATA[sf_tlf BETWEEN 11111111 AND 99999999]]></expression>
 	</constraint>
+	<constraint name="t_5702_skorst_fej_skorstensfejer_cvr_ck" type="ck-constr" table="fkg.t_5702_skorst_fej_t">
+			<expression><![CDATA[skorstensfejer_cvr BETWEEN 10000000 AND 99999999]]></expression>
+	</constraint>
 </table>
 
 <table name="t_5703_afstem_sted_t">
 	<schema name="fkg"/>
-	<position x="2233.44" y="1398.89"/>
+	<position x="2237.61" y="1384.72"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4007,6 +4050,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="lokalitet">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="opstillingskreds_nr">
+		<type name="integer"/>
+	</column>
+	<column name="opstillingskreds_navn">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="storkreds_nr">
+		<type name="integer"/>
+	</column>
+	<column name="storkreds_navn">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="ansvar_revision">
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="vejkode">
@@ -4033,11 +4091,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="t_5703_afstem_sted_pk" type="pk-constr" factor="10" table="fkg.t_5703_afstem_sted_t">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
+	<constraint name="t_5703_afstem_sted_opstillingskreds_nr_ck" type="ck-constr" table="fkg.t_5703_afstem_sted_t">
+			<expression><![CDATA[opstillingskreds_nr BETWEEN 1 AND 92]]></expression>
+	</constraint>
+	<constraint name="t_5703_afstem_sted_storkreds_nr_ck" type="ck-constr" table="fkg.t_5703_afstem_sted_t">
+			<expression><![CDATA[storkreds_nr BETWEEN 1 AND 10]]></expression>
+	</constraint>
 </table>
 
 <table name="t_5704_afstem_omr_t">
 	<schema name="fkg"/>
-	<position x="2232.67" y="1565.78"/>
+	<position x="2232.67" y="1608.28"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4084,7 +4148,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5705_forp_are_t">
 	<schema name="fkg"/>
-	<position x="2233.67" y="1747.78"/>
+	<position x="2232.84" y="1774.45"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4100,7 +4164,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="landbrug_kode">
 		<type name="integer"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="sagsnr">
@@ -4125,7 +4189,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5706_havn_are_t">
 	<schema name="fkg"/>
-	<position x="2232.67" y="1930.78"/>
+	<position x="2233.5" y="1949.11"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4163,7 +4227,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5707_grunds_t">
 	<schema name="fkg"/>
-	<position x="2230.67" y="2076.78"/>
+	<position x="2232.34" y="2088.45"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
@@ -4988,7 +5052,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="vedtagelse">
-		<type name="character varying" length="50"/>
+		<type name="date" length="50"/>
 	</column>
 	<column name="note">
 		<type name="character varying" length="254"/>
@@ -5242,7 +5306,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="bra_kode">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="net_adr" not-null="true">
+	<column name="net_tlf" not-null="true">
 		<type name="character varying" length="50"/>
 	</column>
 	<column name="cvr_firma">
@@ -5311,7 +5375,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="system_fkt">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="link">
@@ -5358,7 +5422,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="postnr">
 		<type name="integer"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="bemaerkning">
@@ -5408,7 +5472,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="bemaerkning">
 		<type name="character varying" length="254"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="link">
@@ -5428,8 +5492,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
-	<column name="firma" not-null="true">
+	<column name="fyr_firma_navn" not-null="true">
 		<type name="character varying" length="128"/>
+	</column>
+	<column name="fyr_firma_cvr">
+		<type name="integer"/>
 	</column>
 	<column name="vejkode">
 		<type name="integer"/>
@@ -5461,6 +5528,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="t_6111_fyrv_till_pk" type="pk-constr" factor="10" table="fkg.t_6111_fyrv_till_t">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
+	<constraint name="t_6111_fyrv_till_fyr_firma_cvr_ck" type="ck-constr" table="fkg.t_6111_fyrv_till_t">
+			<expression><![CDATA[fyr_firma_cvr BETWEEN 10000000 AND 99999999]]></expression>
+	</constraint>
 </table>
 
 <table name="t_6112_midl_dep_t">
@@ -5469,7 +5539,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="versions_id" not-null="true">
 		<type name="uuid"/>
 	</column>
-	<column name="cvr" not-null="true">
+	<column name="virksomhed_cvr" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="virksomhed_navn">
@@ -5478,7 +5548,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="virksomhed_type">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="depottype_kode" not-null="true">
+	<column name="depot_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="gyldig_fra" not-null="true">
@@ -5497,7 +5567,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6112_midl_dep_cvr_ck" type="ck-constr" table="fkg.t_6112_midl_dep_t">
-			<expression><![CDATA[cvr BETWEEN 11111111 AND 99999999]]></expression>
+			<expression><![CDATA[virksomhed_cvr BETWEEN 11111111 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -5559,7 +5629,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="navn">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="strandtype_kode" not-null="true">
+	<column name="strand_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
 	<column name="prioritet">
@@ -5574,7 +5644,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="sagsnr">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="link">
@@ -5615,7 +5685,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="indsatstype_kode" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="sagsnr">
@@ -5647,7 +5717,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="rednarea_underomr">
 		<type name="character varying" length="20"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="bygn_kompleks">
@@ -5682,10 +5752,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="d_6118_brand_redarea_type">
 	<schema name="fkg"/>
 	<position x="4912.33" y="4188.58"/>
-	<column name="brand_redarea_type_kode" not-null="true">
+	<column name="redarea_type_kode" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="brand_redarea_type" not-null="true">
+	<column name="redarea_type" not-null="true">
 		<type name="character varying" length="15"/>
 	</column>
 	<column name="aktiv" not-null="true">
@@ -5695,7 +5765,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying"/>
 	</column>
 	<constraint name="d_6118_brand_redarea_type_pk" type="pk-constr" factor="10" table="fkg.d_6118_brand_redarea_type">
-		<columns names="brand_redarea_type_kode" ref-type="src-columns"/>
+		<columns names="redarea_type_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -5734,13 +5804,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="kompleksitet_kode" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="vandelementer">
+	<column name="vandelement">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="farvandsomraade">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="strandbredden">
+	<column name="strandbred">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="begrund_afgraensning">
@@ -5822,7 +5892,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="rev_dato">
 		<type name="date"/>
 	</column>
-	<column name="landskabskarakteren" not-null="true">
+	<column name="landskabskarakter" not-null="true">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="tidsdybde_kode">
@@ -5837,7 +5907,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="intakthed_beskr">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="noeglefunktioner">
+	<column name="noeglefunktion">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="afgr_naboomr">
@@ -5879,7 +5949,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="kystforhold">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="oplevelser">
+	<column name="oplevelse">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="analysekort">
@@ -6012,7 +6082,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="noegle">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="vejkode">
@@ -6065,7 +6135,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="konto_nr">
 		<type name="character varying" length="150"/>
 	</column>
-	<column name="udfoerer_enterp">
+	<column name="udfoerer_entrep">
 		<type name="character varying" length="50"/>
 	</column>
 	<column name="kommunal_kontakt">
@@ -6104,7 +6174,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="noegle">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="vejkode">
@@ -6187,7 +6257,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="noegle">
 		<type name="character varying" length="128"/>
 	</column>
-	<column name="noter">
+	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="vejkode">
@@ -6409,7 +6479,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_fremkommelighed">
 	<schema name="fkg"/>
-	<position x="2725.56" y="4332.22"/>
+	<position x="2773.56" y="4376.22"/>
 	<column name="fremkommelighed_kode" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -7185,6 +7255,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="postnr" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5800_fac_pkt_d_basis_belaegning_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_belaegning" table="fkg.t_5800_fac_pkt_t">
+	<columns names="belaegning_kode" ref-type="src-columns"/>
+	<columns names="belaegning_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5800_fac_pkt_d_basis_handicapegnet_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_handicapegnet" table="fkg.t_5800_fac_pkt_t">
+	<columns names="handicapegnet_kode" ref-type="src-columns"/>
+	<columns names="handicapegnet_kode" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="t_5802_fac_li_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5802_fac_li_t">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -7192,9 +7274,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="t_5802_fac_li_d_5802_facilitet_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5802_facilitet" table="fkg.t_5802_fac_li_t">
-	<columns names="facilitet_type_kode" ref-type="src-columns"/>
-	<columns names="facilitet_type_kode" ref-type="dst-columns"/>
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5802_facilitetl" table="fkg.t_5802_fac_li_t">
+	<columns names="facilitetl_type_kode" ref-type="src-columns"/>
+	<columns names="facilitetl_type_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5802_fac_li_d_basis_ejerstatus_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -7213,6 +7295,30 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5802_fac_li_t">
 	<columns names="postnr" ref-type="src-columns"/>
 	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_d_basis_belaegning_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_belaegning" table="fkg.t_5802_fac_li_t">
+	<columns names="belaegning_kode" ref-type="src-columns"/>
+	<columns names="belaegning_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_d_basis_fremkommelighed_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5802_fremkommelighed" table="fkg.t_5802_fac_li_t">
+	<columns names="fremkommelighed_kode" ref-type="src-columns"/>
+	<columns names="fremkommelighed_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_d_basis_handicapegnet_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_handicapegnet" table="fkg.t_5802_fac_li_t">
+	<columns names="handicapegnet_kode" ref-type="src-columns"/>
+	<columns names="handicapegnet_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_d_basis_afmaerket_rute_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5802_fac_li_t">
+	<columns names="afmaerket_rute_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5900_jordfl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -7269,16 +7375,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="versions_id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="t_5104_art_invas_d_basis_ja_nej_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5104_art_invas_t">
-	<columns names="sortlistet_kode" ref-type="src-columns"/>
-	<columns names="ja_nej_kode" ref-type="dst-columns"/>
-</constraint>
-
 <constraint name="t_5104_art_invas_d_basis_antal_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_antal" table="fkg.t_5104_art_invas_t">
 	<columns names="antal_kode" ref-type="src-columns"/>
 	<columns names="antal_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5104_art_invas_t_d_basis_invasivart" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_invasivart" table="fkg.t_5104_art_invas_t">
+	<columns names="invasivart_kode" ref-type="src-columns"/>
+	<columns names="invasivart_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5107_art_invas_p_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -7287,16 +7393,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="versions_id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="t_5107_art_invas_p_d_basis_ja_nej_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5107_art_invas_p_t">
-	<columns names="sortlistet_kode" ref-type="src-columns"/>
-	<columns names="ja_nej_kode" ref-type="dst-columns"/>
-</constraint>
-
 <constraint name="t_5107_art_invas_p_d_basis_antal_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_antal" table="fkg.t_5107_art_invas_p_t">
 	<columns names="antal_kode" ref-type="src-columns"/>
 	<columns names="antal_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5107_art_invas_p_d_basis_invasivart" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_invasivart" table="fkg.t_5107_art_invas_p_t">
+	<columns names="invasivart_kode" ref-type="src-columns"/>
+	<columns names="invasivart_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5600_vintervedl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -7719,8 +7825,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="magasin_kode" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="t_6000_pot" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6000_kotesystem" table="fkg.t_6000_pot_t">
+<constraint name="t_6000_pot_d_basis_kotesystem_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_kotesystem" table="fkg.t_6000_pot_t">
 	<columns names="kotesystem_kode" ref-type="src-columns"/>
 	<columns names="kotesystem_kode" ref-type="dst-columns"/>
 </constraint>
@@ -7743,8 +7849,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="magasin_kode" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="t_6001_pot_m_d_6000_kotesystem_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6000_kotesystem" table="fkg.t_6001_pot_m_t">
+<constraint name="t_6001_pot_m_d_basis_kotesystem_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_kotesystem" table="fkg.t_6001_pot_m_t">
 	<columns names="kotesystem_kode" ref-type="src-columns"/>
 	<columns names="kotesystem_kode" ref-type="dst-columns"/>
 </constraint>
@@ -7991,8 +8097,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <constraint name="t_6112_midl_dep_d_6112_depottype_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6112_depottype" table="fkg.t_6112_midl_dep_t">
-	<columns names="depottype_kode" ref-type="src-columns"/>
-	<columns names="depottype_kode" ref-type="dst-columns"/>
+	<columns names="depot_type_kode" ref-type="src-columns"/>
+	<columns names="depot_type_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6113_besk_nat_b_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8021,8 +8127,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <constraint name="t_6116_olie_ber_pl_d_6116_strandtype_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6116_strandtype" table="fkg.t_6116_olie_ber_pl_t">
-	<columns names="strandtype_kode" ref-type="src-columns"/>
-	<columns names="strandtype_kode" ref-type="dst-columns"/>
+	<columns names="strand_type_kode" ref-type="src-columns"/>
+	<columns names="strand_type_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6116_olie_ber_pl_d_6116_esi_klasse_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8058,7 +8164,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <constraint name="t_6118_bran_redn_d_6118_brand_redarea_type_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_6118_brand_redarea_type" table="fkg.t_6118_bran_redn_t">
 	<columns names="redarea_type_kode" ref-type="src-columns"/>
-	<columns names="brand_redarea_type_kode" ref-type="dst-columns"/>
+	<columns names="redarea_type_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6118_bran_redn_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8883,7 +8989,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <relationship name="rel_t_5802_fac_li_d_5802_facilitet" type="relfk"
 	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5802_facilitet"
+	 dst-table="fkg.d_5802_facilitetl"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5802_fac_li_d_basis_ejerstatus" type="relfk"
@@ -8936,11 +9042,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.generel"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5104_art_invas_d_basis_ja_nej" type="relfk"
-	 src-table="fkg.t_5104_art_invas_t"
-	 dst-table="fkg.d_basis_ja_nej"
-	 src-required="false" dst-required="false"/>
-
 <relationship name="rel_t_5104_art_invas_d_basis_antal" type="relfk"
 	 src-table="fkg.t_5104_art_invas_t"
 	 dst-table="fkg.d_basis_antal"
@@ -8949,11 +9050,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5107_art_invas_p_generel" type="relfk"
 	 src-table="fkg.t_5107_art_invas_p_t"
 	 dst-table="fkg.generel"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5107_art_invas_p_d_basis_ja_nej" type="relfk"
-	 src-table="fkg.t_5107_art_invas_p_t"
-	 dst-table="fkg.d_basis_ja_nej"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5107_art_invas_p_d_basis_antal" type="relfk"
@@ -9331,11 +9427,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.d_basis_magasin"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6000_pot_d_6000_kotesystem" type="relfk"
-	 src-table="fkg.t_6000_pot_t"
-	 dst-table="fkg.d_6000_kotesystem"
-	 src-required="false" dst-required="false"/>
-
 <relationship name="rel_t_6001_pot_m_d_basis_ja_nej" type="relfk"
 	 src-table="fkg.t_6001_pot_m_t"
 	 dst-table="fkg.d_basis_ja_nej"
@@ -9344,11 +9435,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_6001_pot_m_d_basis_magasin" type="relfk"
 	 src-table="fkg.t_6001_pot_m_t"
 	 dst-table="fkg.d_basis_magasin"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6001_pot_m_d_6000_kotesystem" type="relfk"
-	 src-table="fkg.t_6001_pot_m_t"
-	 dst-table="fkg.d_6000_kotesystem"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_6002_indv_d_basis_vandv_nr" type="relfk"
@@ -9929,6 +10015,56 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_6121_stor_ud_arr_t_d_6121_sua" type="relfk"
 	 src-table="fkg.t_6121_stor_ud_arr_t"
 	 dst-table="fkg.d_6121_sua"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6000_pot_t_d_basis_kotesystem" type="relfk"
+	 src-table="fkg.t_6000_pot_t"
+	 dst-table="fkg.d_basis_kotesystem"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6001_pot_m_t_d_basis_kotesystem" type="relfk"
+	 src-table="fkg.t_6001_pot_m_t"
+	 dst-table="fkg.d_basis_kotesystem"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5104_art_invas_t_d_basis_invasivart" type="relfk"
+	 src-table="fkg.t_5104_art_invas_t"
+	 dst-table="fkg.d_basis_invasivart"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5107_art_invas_p_t_d_basis_invasivart" type="relfk"
+	 src-table="fkg.t_5107_art_invas_p_t"
+	 dst-table="fkg.d_basis_invasivart"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_belaegning" type="relfk"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_belaegning"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_handicapegnet" type="relfk"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_handicapegnet"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_belaegning" type="relfk"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_belaegning"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5802_fremkommelighed" type="relfk"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5802_fremkommelighed"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_handicapegnet" type="relfk"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_handicapegnet"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej" type="relfk"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_ja_nej"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
