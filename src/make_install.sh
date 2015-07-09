@@ -30,7 +30,7 @@
 
 # Information about your _build_ database (not your production database!)
 USER=postgres
-PGPASSWORD=3cNnIhLwyxe0
+PGPASSWORD="W<+q~.\$K)lsOW\`^D3m8M"
 DB=fkg_build
 HOST=localhost
 PORT=5432
@@ -58,7 +58,7 @@ cat NOTICE >> INSTALL/$INSTALL_FILE
 echo "*/" >> INSTALL/$INSTALL_FILE
 
 # Remove any BOMs resulting from pgAdmin on Windows
-sed -i '1 s/^\xef\xbb\xbf//' *.txt
+sed -i '1 s/^\xef\xbb\xbf//' *.sql
 
 # Copy scripts to install
 cat 010_create_uuid_extension.sql >> INSTALL/$INSTALL_FILE

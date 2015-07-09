@@ -1,4 +1,4 @@
-﻿/* 
+/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2013 Septima P/S 
 

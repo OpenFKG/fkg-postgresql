@@ -1,4 +1,4 @@
-﻿-- Database generated with pgModeler (PostgreSQL Database Modeler).
+-- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.8.0
 -- PostgreSQL version: 9.4
 -- Project Site: pgmodeler.com.br

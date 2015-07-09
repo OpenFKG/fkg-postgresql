@@ -92,5 +92,3 @@ Dette gøres enklest således:
 En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 - 110 og samle dette i en SQL-fil.
 
 ![FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/FKG-DM-screenshot.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/c99dca67ff866dbe6e8964424477deca "githalytics.com")](http://githalytics.com/OpenFKG/fkg-postgresql)
