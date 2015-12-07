@@ -950,7 +950,7 @@ CREATE TABLE fkg.t_5105_rig_fattig_t(
 	noegle character varying(128),
 	note character varying(254),
 	link character varying(1024),
-	geometri geometry(MULTIPOINT, 25835) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5105_rig_fattig_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5105_rig_fattig_stedid_ck CHECK (stedid BETWEEN 100000 AND 999999),
