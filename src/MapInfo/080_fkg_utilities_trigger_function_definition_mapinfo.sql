@@ -32,7 +32,8 @@ DECLARE
 BEGIN
   mi_schema_name = 'fkg_mapinfo';
   fkg_schema_name = 'fkg';
-  mi_view_name = replace(fkg_view_name, '_vw', '_mi_vw');
+  -- mi_view_name = replace(fkg_view_name, '_vw', '_mi_vw');
+  mi_view_name = fkg_view_name || '_mi';
 
   -- Evaluate name of trigger
   trigger_function_name = mi_schema_name || E'.' || mi_view_name || E'_trg()';
