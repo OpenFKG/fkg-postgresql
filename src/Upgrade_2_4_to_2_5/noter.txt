@@ -1,4 +1,17 @@
 Noter FKG 2.4->2.5
+==================
+
+Generelt:
+=========
+Følgende temaer kræver særlig behandling ifm. opdatering såfremt de indeholder data. Det drejer sig om:
+- t_5800_fac_pkt - Ny version af lookuptabel d_5800_facilitet. Mapning påkrævet
+- t_5104_art_invas - Nyt krævet felt: invasivart_kode. Feltindhold påkrævet
+- t_5107_art_invas_p - Nyt krævet felt: invasivart_kode. Feltindhold påkrævet
+- t_6007_inds_omr_t - tekstfelt ændret til datefelt.
+
+Det anbefales at tage kopiere indholdet af de 4 temaer over i 4 temp-tabeller (NB: fra tabeller IKKE fra views)
+
+
 
 Dokumentation:
 - Opslagstabel for 5801. Typen henviser til en ny tabel (d_5801_facilitet), men i teksten står at d_5800_facilitet skal anvendes. Jeg har genbrugt d_5800_facilitet.
