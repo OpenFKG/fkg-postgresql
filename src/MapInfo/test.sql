@@ -16,3 +16,4 @@ UPDATE fkg_mapinfo.t_5001_maalest_mi SET geometri = ST_Multi(ST_Setsrid(ST_Point
 DELETE FROM fkg_mapinfo.t_5001_maalest_mi WHERE mi_prinx = (SELECT MAX(mi_prinx) FROM fkg_mapinfo.t_5001_maalest_mi);
 
 select ST_Astext(geometri),* from fkg_mapinfo.t_5001_maalest_mi;
+select ST_Astext(geometri),* from fkg_mapinfo.hist_t_5001_maalest_mi;
