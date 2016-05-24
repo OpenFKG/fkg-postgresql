@@ -1,4 +1,4 @@
-﻿/* 
+/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2014 Septima P/S 
 
@@ -69,11 +69,19 @@ BEGIN
     IF _record.data_type IN ('character varying', 'text') AND (_record.character_maximum_length>254 OR _record.character_maximum_length IS NULL) THEN
       vd = vd || E'::character varying(254)';
     END IF;
+    -- Case if column name = geometri => cast to geometry(Geometry, 25832)
+    IF _record.column_name = 'geometri' THEN
+      vd = vd || E'::geometry(Geometry,25832)';
+    END IF;
   END LOOP;
   -- FROM clause
   vd = vd || E'\nFROM\n';
-  vd = vd || E'  ' || fkg_schema_name || E'.' || fkg_view_name || E';\n' ;
-
+  IF view_type = 'B' THEN
+    vd = vd || E'  ' || fkg_schema_name || E'.' || fkg_view_name || E';\n' ;
+  ELSE
+    vd = vd || E'  ' || fkg_schema_name || E'.hist_' || fkg_view_name || E';\n' ;
+  END IF;
+  
   execute vd;
 
   return vd;
@@ -83,5 +91,5 @@ $BODY$
   COST 100;
 
 -- Test
--- select fkg_utilities.get_view_definition_mapinfo('t_5001_maalest_vw', 'B');
--- select fkg_utilities.get_view_definition_mapinfo('t_5008_soe_opl_h_vw', 'H');
+-- select fkg_utilities.get_view_definition_mapinfo('t_5001_maalest', 'B');
+-- select fkg_utilities.get_view_definition_mapinfo('t_5001_maalest', 'H');
