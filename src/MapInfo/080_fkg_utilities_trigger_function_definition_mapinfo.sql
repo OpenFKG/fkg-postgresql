@@ -1,4 +1,4 @@
-﻿/* 
+/* 
     This file is part of the The OpenFKG PostgreSQL implementation of the FKG datamodel
     Copyright (C) 2014 Septima P/S 
 
@@ -67,7 +67,11 @@ BEGIN
   LOOP
     IF _record.column_name NOT IN ('objekt_id', 'versions_id', 'temakode', 'temanavn') THEN
       IF NOT first_column THEN td = td || E','; ELSE first_column=false; END IF;
+      IF _record.column_name = 'geometri' THEN
+        td = td || E'\n        ' || _record.column_name || E'=ST_Multi(NEW.' || _record.column_name || ')';
+      ELSE
         td = td || E'\n        ' || _record.column_name || E'=NEW.' || _record.column_name;
+      END IF;
     END IF;
   END LOOP;
   td = td || E'\n';  
@@ -99,7 +103,11 @@ BEGIN
   LOOP
     IF _record.column_name NOT IN ('objekt_id', 'versions_id', 'temakode','temanavn') THEN
       IF NOT first_column THEN td = td || E','; ELSE first_column=false; END IF;
-      td = td || E'\n        NEW.' || _record.column_name;
+      IF _record.column_name = 'geometri' THEN
+        td = td || E'\n        ST_Multi(NEW.' || _record.column_name || ')';
+      ELSE
+        td = td || E'\n        NEW.' || _record.column_name;
+      END IF;
     END IF;
   END LOOP;
   td = td || E';\n      RETURN NEW;\n';
@@ -123,4 +131,4 @@ $BODY$
   COST 100;
 
 -- Test
--- select fkg_utilities.get_trigger_function_definition_mapinfo('t_5001_maalest_vw');
+-- select fkg_utilities.get_trigger_function_definition_mapinfo('t_5001_maalest');
