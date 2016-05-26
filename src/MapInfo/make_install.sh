@@ -30,7 +30,7 @@
 
 # Information about your _build_ database (not your production database!)
 USER=postgres
-PGPASSWORD=3cNnIhLwyxe0
+PGPASSWORD=W\<+q~.\$K\)lsOW\`^D3m8M
 DB=fkg_build
 HOST=localhost
 PORT=5432
