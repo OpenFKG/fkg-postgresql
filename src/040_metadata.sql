@@ -1,6 +1,6 @@
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.8.0
--- PostgreSQL version: 9.4
+-- pgModeler  version: 0.9.0-alpha1
+-- PostgreSQL version: 9.6
 -- Project Site: pgmodeler.com.br
 -- Model Author: Septima - see license in LICENSE.txt
 
@@ -186,7 +186,7 @@ CREATE TABLE fkg.d_basis_planstatus(
 CREATE TABLE fkg.d_basis_afstemningsomraade(
 	afstemningsomraade_nr character varying(128) NOT NULL,
 	afstemningsomraade_navn character varying(128) NOT NULL,
-	cvr character varying,
+	cvr character varying(1),
 	aktiv integer NOT NULL,
 	CONSTRAINT d_basis_afstemningsomraade_pk PRIMARY KEY (afstemningsomraade_nr)
 	 WITH (FILLFACTOR = 10)
@@ -263,7 +263,7 @@ CREATE TABLE fkg.d_basis_fors_omr_type(
 CREATE TABLE fkg.d_basis_omraade(
 	omraade_nr integer NOT NULL,
 	omraade character varying(128) NOT NULL,
-	cvr_kode character varying,
+	cvr_kode character varying(1),
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_omraade_pk PRIMARY KEY (omraade_nr)
@@ -368,7 +368,7 @@ CREATE TABLE fkg.d_temagruppe(
 CREATE TABLE fkg.d_tabel(
 	tema_kode integer NOT NULL,
 	tema_navn character varying NOT NULL,
-	geo character NOT NULL,
+	geo character(1) NOT NULL,
 	udvekslingsnavn character varying NOT NULL,
 	temagruppe_id character varying NOT NULL,
 	CONSTRAINT d_tabel_pk PRIMARY KEY (tema_kode)
@@ -543,7 +543,7 @@ CREATE TABLE fkg.d_5001_maalest_type(
 	maalest_type_kode integer NOT NULL,
 	maalest_type varchar(20) NOT NULL,
 	aktiv integer NOT NULL,
-	begrebsdefinition varchar,
+	begrebsdefinition character varying,
 	CONSTRAINT d_5001_maalest_type_pk PRIMARY KEY (maalest_type_kode)
 	 WITH (FILLFACTOR = 10)
 
@@ -793,7 +793,7 @@ CREATE TABLE fkg.d_5007_opl(
 	opl_nr integer NOT NULL,
 	opl_navn varchar(128) NOT NULL,
 	aktiv integer NOT NULL,
-	begrebsdefinition varchar,
+	begrebsdefinition character varying,
 	CONSTRAINT d_5007_opl_pk PRIMARY KEY (opl_nr)
 	 WITH (FILLFACTOR = 100)
 
@@ -1259,7 +1259,7 @@ CREATE TABLE fkg.d_5700_forening_type(
 -- object: fkg.d_5700_adr_beskyt | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.d_5700_adr_beskyt CASCADE;
 CREATE TABLE fkg.d_5700_adr_beskyt(
-	gf_adr_beskyt_kode character NOT NULL,
+	gf_adr_beskyt_kode character(1) NOT NULL,
 	gf_adr_beskyt character varying(100) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
@@ -1324,24 +1324,24 @@ CREATE TABLE fkg.d_5707_salg_status(
 -- object: fkg.d_5800_facilitet | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.d_5800_facilitet CASCADE;
 CREATE TABLE fkg.d_5800_facilitet(
-	facilitet_type_kode integer NOT NULL,
-	facilitet_type character varying(30) NOT NULL,
+	facil_ty_k integer NOT NULL,
+	facil_ty character varying(30) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
-	CONSTRAINT d_5800_facilitet_pk PRIMARY KEY (facilitet_type_kode)
+	CONSTRAINT d_5800_facilitet_pk PRIMARY KEY (facil_ty_k)
 	 WITH (FILLFACTOR = 10)
 
 );
 -- ddl-end --
 
--- object: fkg.d_5802_facilitetl | type: TABLE --
--- DROP TABLE IF EXISTS fkg.d_5802_facilitetl CASCADE;
-CREATE TABLE fkg.d_5802_facilitetl(
-	facilitetl_type_kode integer NOT NULL,
-	facilitetl_type character varying(30) NOT NULL,
+-- object: fkg.d_5802_rutetype | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5802_rutetype CASCADE;
+CREATE TABLE fkg.d_5802_rutetype(
+	rute_ty_k integer NOT NULL,
+	rute_ty character varying(30) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
-	CONSTRAINT d_5802_facilitet_pk PRIMARY KEY (facilitetl_type_kode)
+	CONSTRAINT d_5802_facilitet_pk PRIMARY KEY (rute_ty_k)
 	 WITH (FILLFACTOR = 10)
 
 );
@@ -1884,15 +1884,17 @@ CREATE TABLE fkg.t_5507_fiberkabel_t(
 -- DROP TABLE IF EXISTS fkg.t_5800_fac_pkt_t CASCADE;
 CREATE TABLE fkg.t_5800_fac_pkt_t(
 	versions_id uuid NOT NULL,
-	facilitet_type_kode integer NOT NULL,
-	belaegning_kode integer,
-	handicapegnet_kode integer,
-	ejerstatus_kode integer,
+	facil_ty_k integer NOT NULL,
+	handicap_k integer,
 	navn character varying(50),
-	noegle character varying(128),
-	note character varying(254),
+	saeson_k integer,
+	beskrivels character varying(254),
+	ansvar_org character varying(254),
+	kontak_vedl character varying(254),
+	foto_link1 character varying(1024),
+	foto_link2 character varying(1024),
 	vejkode integer,
-	cvf_vejkode char(7),
+	ansvar_v_k integer,
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
@@ -1907,22 +1909,30 @@ CREATE TABLE fkg.t_5800_fac_pkt_t(
 -- DROP TABLE IF EXISTS fkg.t_5802_fac_li_t CASCADE;
 CREATE TABLE fkg.t_5802_fac_li_t(
 	versions_id uuid NOT NULL,
-	facilitetl_type_kode integer NOT NULL,
-	ejerstatus_kode integer,
+	rute_ty_k integer NOT NULL,
+	rute_uty_k integer,
+	kategori_k integer,
+	hierarki_k integer,
+	svaerhed_k integer,
 	navn character varying(50),
-	straekningsnr integer,
-	belaegning_kode integer,
-	fremkommelighed_kode integer,
-	handicapegnet_kode integer,
+	navndels character varying(128),
+	straekn_nr character varying(128),
+	ansvar_org character varying(128),
+	konta_vedl character varying(128),
+	laengde float,
+	folder_k integer,
+	folde_link character varying(1024),
+	gpx_link character varying(1024),
+	foto_link1 character varying(1024),
+	foto_link2 character varying(1024),
+	obs character varying(254),
+	beskrivels character varying(254),
+	belaegn_k integer,
+	handikap_k integer,
+	ansvar_v_k integer,
 	startpunkt_x integer,
 	startpunkt_y integer,
-	afmaerket_rute_kode integer,
-	noegle character varying(128),
-	note character varying(254),
-	vejkode integer,
-	cvf_vejkode char(7),
-	husnr character varying(4),
-	postnr integer,
+	afm_rute_k integer,
 	link character varying(1024),
 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5802_fac_li_pk PRIMARY KEY (versions_id)
@@ -2194,7 +2204,7 @@ CREATE TABLE fkg.t_5700_grundej_t(
 	gf_tlf integer,
 	gf_adresse character varying(254),
 	gf_mail character varying(254),
-	gf_adr_beskyt_kode character,
+	gf_adr_beskyt_kode character(1),
 	vedtaegt_kode integer,
 	noegle character varying(128),
 	link character varying(1024),
@@ -3355,15 +3365,17 @@ CREATE TABLE fkg.d_basis_offentlig(
 -- DROP TABLE IF EXISTS fkg.t_5801_fac_fl_t CASCADE;
 CREATE TABLE fkg.t_5801_fac_fl_t(
 	versions_id uuid NOT NULL,
-	facilitet_type_kode integer NOT NULL,
-	belaegning_kode integer,
-	handicapegnet_kode integer,
-	ejerstatus_kode integer,
+	facil_ty_k integer NOT NULL,
+	handicap_k integer,
 	navn character varying(50),
-	noegle character varying(128),
-	note character varying(254),
+	saeson_k integer,
+	beskrivels character varying(254),
+	ansvar_org character varying(254),
+	kontak_vedl character varying(254),
+	foto_link1 character varying(1024),
+	foto_link2 character varying(1024),
 	vejkode integer,
-	cvf_vejkode char(7),
+	ansvar_v_k integer,
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
@@ -3418,18 +3430,6 @@ CREATE TABLE fkg.d_basis_kotesystem(
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_kotesystem_pk PRIMARY KEY (kotesystem_kode)
-
-);
--- ddl-end --
-
--- object: fkg.d_5802_fremkommelighed | type: TABLE --
--- DROP TABLE IF EXISTS fkg.d_5802_fremkommelighed CASCADE;
-CREATE TABLE fkg.d_5802_fremkommelighed(
-	fremkommelighed_kode integer NOT NULL,
-	fremkommelighed character varying(30) NOT NULL,
-	aktiv integer NOT NULL,
-	begrebsdefinition character varying,
-	CONSTRAINT d_5802_fremkommelighed_pk PRIMARY KEY (fremkommelighed_kode)
 
 );
 -- ddl-end --
@@ -3526,6 +3526,78 @@ CREATE TABLE fkg.d_6121_sua(
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_6121_sua_pk PRIMARY KEY (sua_kode)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_basis_ansvar_v | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_basis_ansvar_v CASCADE;
+CREATE TABLE fkg.d_basis_ansvar_v(
+	ansvar_v_k integer NOT NULL,
+	ansvar_v character varying(30) NOT NULL,
+	aktiv integer NOT NULL DEFAULT 1,
+	begrebsdefinition character varying,
+	CONSTRAINT d_basis_ansv_v_pk PRIMARY KEY (ansvar_v_k)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_5800_saeson | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5800_saeson CASCADE;
+CREATE TABLE fkg.d_5800_saeson(
+	saeson_k integer NOT NULL,
+	saeson character varying(50) NOT NULL,
+	aktiv integer NOT NULL DEFAULT 1,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5800_saeson_pk PRIMARY KEY (saeson_k)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_5802_svaerhed | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5802_svaerhed CASCADE;
+CREATE TABLE fkg.d_5802_svaerhed(
+	svaerhed_k integer NOT NULL,
+	svaerhed character varying(30) NOT NULL,
+	aktiv integer NOT NULL DEFAULT 1,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5802_svaerhed_pk PRIMARY KEY (svaerhed_k)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_5802_hierarki | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5802_hierarki CASCADE;
+CREATE TABLE fkg.d_5802_hierarki(
+	hierarki_k integer NOT NULL,
+	hierarki character varying(30) NOT NULL,
+	aktiv integer NOT NULL DEFAULT 1,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5802_hierarki_pk PRIMARY KEY (hierarki_k)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_5802_rute_uty | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5802_rute_uty CASCADE;
+CREATE TABLE fkg.d_5802_rute_uty(
+	rute_uty_k integer NOT NULL,
+	rute_uty character varying(30) NOT NULL,
+	aktiv integer NOT NULL DEFAULT 1,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5802_rute_uty_pk PRIMARY KEY (rute_uty_k)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_5802_kategori | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5802_kategori CASCADE;
+CREATE TABLE fkg.d_5802_kategori(
+	kategori_k integer NOT NULL,
+	kategori character varying(30) NOT NULL,
+	aktiv integer NOT NULL DEFAULT 1,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5802_kategori_pk PRIMARY KEY (kategori_k)
 
 );
 -- ddl-end --
@@ -4127,15 +4199,8 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- object: t_5800_fac_pkt_d_5800_facilitet_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_5800_facilitet_fk CASCADE;
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
-REFERENCES fkg.d_5800_facilitet (facilitet_type_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5800_fac_pkt_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ejerstatus_fk CASCADE;
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
-REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_5800_facilitet_fk FOREIGN KEY (facil_ty_k)
+REFERENCES fkg.d_5800_facilitet (facil_ty_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -4153,17 +4218,24 @@ REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: t_5800_fac_pkt_d_basis_belaegning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_belaegning_fk CASCADE;
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_belaegning_fk FOREIGN KEY (belaegning_kode)
-REFERENCES fkg.d_basis_belaegning (belaegning_kode) MATCH FULL
+-- object: t_5800_fac_pkt_d_basis_handicapegnet_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_handicapegnet_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_handicapegnet_fk FOREIGN KEY (handicap_k)
+REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: t_5800_fac_pkt_d_basis_handicapegnet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_handicapegnet_fk CASCADE;
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_handicapegnet_fk FOREIGN KEY (handicapegnet_kode)
-REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL
+-- object: t_5800_fac_pkt_d_5800_saeson_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_5800_saeson_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_5800_saeson_fk FOREIGN KEY (saeson_k)
+REFERENCES fkg.d_5800_saeson (saeson_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5800_fac_pkt_d_basis_ansvar_v_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ansvar_v_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
+REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -4174,59 +4246,73 @@ REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: t_5802_fac_li_d_5802_facilitet_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5802_facilitet_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_facilitet_fk FOREIGN KEY (facilitetl_type_kode)
-REFERENCES fkg.d_5802_facilitetl (facilitetl_type_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5802_fac_li_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_ejerstatus_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
-REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5802_fac_li_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_vejnavn_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_vejnavn_fk FOREIGN KEY (vejkode)
-REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5802_fac_li_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_postnr_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_postnr_fk FOREIGN KEY (postnr)
-REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+-- object: t_5802_fac_li_d_5802_rutetype_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5802_rutetype_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_rutetype_fk FOREIGN KEY (rute_ty_k)
+REFERENCES fkg.d_5802_rutetype (rute_ty_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5802_fac_li_d_basis_belaegning_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_belaegning_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_belaegning_fk FOREIGN KEY (belaegning_kode)
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_belaegning_fk FOREIGN KEY (belaegn_k)
 REFERENCES fkg.d_basis_belaegning (belaegning_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5802_fac_li_d_basis_fremkommelighed_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_fremkommelighed_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_fremkommelighed_fk FOREIGN KEY (fremkommelighed_kode)
-REFERENCES fkg.d_5802_fremkommelighed (fremkommelighed_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5802_fac_li_d_basis_handicapegnet_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_handicapegnet_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_handicapegnet_fk FOREIGN KEY (handicapegnet_kode)
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_handicapegnet_fk FOREIGN KEY (handikap_k)
 REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5802_fac_li_d_basis_afmaerket_rute_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_afmaerket_rute_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_afmaerket_rute_fk FOREIGN KEY (afmaerket_rute_kode)
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_afmaerket_rute_fk FOREIGN KEY (afm_rute_k)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_5802_rute_uty_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5802_rute_uty_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_rute_uty_fk FOREIGN KEY (rute_uty_k)
+REFERENCES fkg.d_5802_rute_uty (rute_uty_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_5802_kategori_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5802_kategori_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_kategori_fk FOREIGN KEY (kategori_k)
+REFERENCES fkg.d_5802_kategori (kategori_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_5802_hierarki_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5802_hierarki_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_hierarki_fk FOREIGN KEY (hierarki_k)
+REFERENCES fkg.d_5802_hierarki (hierarki_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_5802_svaerhed_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5802_svaerhed_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_svaerhed_fk FOREIGN KEY (svaerhed_k)
+REFERENCES fkg.d_5802_svaerhed (svaerhed_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_basis_folder_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_folder_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_folder_fk FOREIGN KEY (folder_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_basis_ansvar_v_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_ansvar_v_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
+REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -5532,13 +5618,6 @@ REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: t_5801_fac_pkt_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_pkt_d_basis_ejerstatus_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_pkt_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
-REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
 -- object: t_5801_fac_pkt_d_vejnavn_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_pkt_d_vejnavn_fk CASCADE;
 ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
@@ -5555,22 +5634,29 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- object: t_5801_fac_fl_d_5800_facilitet_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_5800_facilitet_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_5800_facilitet_fk FOREIGN KEY (facilitet_type_kode)
-REFERENCES fkg.d_5800_facilitet (facilitet_type_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5801_fac_fl_d_basis_belaegning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_belaegning_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_belaegning_fk FOREIGN KEY (belaegning_kode)
-REFERENCES fkg.d_basis_belaegning (belaegning_kode) MATCH FULL
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_5800_facilitet_fk FOREIGN KEY (facil_ty_k)
+REFERENCES fkg.d_5800_facilitet (facil_ty_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
 -- object: t_5801_fac_fl_d_basis_handicapegnet_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_handicapegnet_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_handicapegnet_fk FOREIGN KEY (handicapegnet_kode)
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_handicapegnet_fk FOREIGN KEY (handicap_k)
 REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_5800_saeson_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_5800_saeson_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_5800_saeson_fk FOREIGN KEY (saeson_k)
+REFERENCES fkg.d_5800_saeson (saeson_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_ansvar_v_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ansvar_v_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
+REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

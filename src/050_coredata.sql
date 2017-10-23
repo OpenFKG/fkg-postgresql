@@ -105,7 +105,7 @@ DELETE FROM fkg.d_5714_udd_institution_type;
 DELETE FROM fkg.d_5715_botilbud_type;
 DELETE FROM fkg.d_5716_Servicetilbud_type;
 DELETE FROM fkg.d_5800_facilitet;
-DELETE FROM fkg.d_5802_facilitetl;
+DELETE FROM fkg.d_5802_rutetype;
 -- New lookuptable in 2.5 (udgået i 2.5.x)
 -- DELETE FROM fkg.d_5802_fremkommelighed;
 DELETE FROM fkg.d_5902_vaeske_type;
@@ -145,7 +145,6 @@ DELETE FROM fkg.d_6802_groenvedligh_punkt;
 DELETE FROM fkg.d_6803_pg_distrikt;
 -- New lookuptables IN 2.5.x
 DELETE FROM fkg.d_5800_saeson;
-DELETE FROM fkg.d_5802_rutetype;
 DELETE FROM fkg.d_5802_svaerhed;
 DELETE FROM fkg.d_5802_hierarki;
 DELETE FROM fkg.d_5802_rute_uty;
@@ -2481,22 +2480,6 @@ INSERT INTO fkg.d_5800_facilitet VALUES (9991, 'Ukendt', 1, 'Mangler viden om ty
 -- SELECT * FROM fkg.d_5800_facilitet;
 
 
-INSERT INTO fkg.d_5802_facilitetl VALUES (1,'Skirute',1,'Skiløberute på afmærkede og uafmærkede ruter i naturen.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (2,'Løberute',1,'Løberute på afmærkede og uafmærkede ruter langs veje og i naturen.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (3,'Cykelrute',1,'Rute for cykler, afmærket på kort og evt. i terræn.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (4,'Mountainbikerute',1,'Afmærket eller uafmærket rute for mountainbikes.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (5,'Vandrerute',1,'Rute velegnet til vandring.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (6,'Motionsrute',1,'Rute udpeget til motionsformål – typisk løb eller gang.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (7,'Undervandsrute',1,'Afmærket eller uafmærket rute under vand for snorkeldykkere/dykkere.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (8,'Riderute',1,'Afmærket eller uafmærket rute til færdsel til hest.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (9,'Sejlrute',1,'Afmærket eller uafmærket rute for kano- og kajak-sejlads.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (10,'Gratis fiskeri',1,'Strækning med gratis fiskeri.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (11,'Rekreativ sti',1,'Vandresti med fokus på det rekreative.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (12,'Adgangsvej',1,'Sti eller spor med fri adgang, der fører hen til facilitet.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (98,'Andet',1,'Hvor andre facilitetsbetegnelser ikke er dækkende.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (99,'Ukendt',1,'Mangler viden om typen.');
--- SELECT * FROM d_5802_facilitet;
-
 -- Udgået i 2.5.x
 -- INSERT INTO fkg.d_5802_fremkommelighed VALUES (1,'Stor fremkommelighed',1,'Strækning med ingen eller små stigninger. Egnet til barnevogn mm');
 -- INSERT INTO fkg.d_5802_fremkommelighed VALUES (2,'Middel fremkommelighed',1,'Strækning med middel fremkommelighed. Stigninger og strækninger uden belægning  kan forekomme.');
@@ -2504,13 +2487,6 @@ INSERT INTO fkg.d_5802_facilitetl VALUES (99,'Ukendt',1,'Mangler viden om typen.
 -- INSERT INTO fkg.d_5802_fremkommelighed VALUES (8,'Andet',1,'Andet');
 -- INSERT INTO fkg.d_5802_fremkommelighed VALUES (9,'Ukendt',1,'Mangler viden om fremkommeligheden');
 -- SELECT * FROM fkg.d_5802_fremkommelighed;
-
-INSERT INTO fkg.d_basis_ansvar_v VALUES
-(1, 'Privat/forening',  1, 'Vedligeholdes af privatpersoner/organisationer/foreninger og lign.'),
-(2, 'Kommune',          1, 'Vedligeholdes af kommune.'),
-(3, 'Staten',           1, 'Vedligeholdes af staten eller en myndighed under staten f.eks. Naturstyrelsen.'),
-(8, 'Andet',            1, 'Andet'),
-(9, 'Ukendt',           1, 'Mangler viden om vedligeholder');
 
 INSERT INTO fkg.d_5800_saeson VALUES
 (1, 'Helårsåbent',      1, 'Faciliteten er åbent hele året'),
