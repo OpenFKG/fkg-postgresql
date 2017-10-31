@@ -3286,7 +3286,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="vejkode">
 		<type name="integer" length="1"/>
 	</column>
-	<column name="ansvar_v_k">
+	<column name="ansva_v_k">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="husnr">
@@ -3369,16 +3369,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="belaegn_k">
 		<type name="integer" length="1"/>
 	</column>
-	<column name="handikap_k">
+	<column name="handicap_k">
 		<type name="integer" length="1"/>
 	</column>
-	<column name="ansvar_v_k">
+	<column name="ansva_v_k">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="startpunkt_x">
+	<column name="startpkt_x">
 		<type name="integer" length="1"/>
 	</column>
-	<column name="startpunkt_y">
+	<column name="startpkt_y">
 		<type name="integer" length="1"/>
 	</column>
 	<column name="afm_rute_k">
@@ -6410,7 +6410,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="vejkode">
 		<type name="integer" length="1"/>
 	</column>
-	<column name="ansvar_v_k">
+	<column name="ansva_v_k">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="husnr">
@@ -6737,13 +6737,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="d_basis_ansvar_v">
+<table name="d_basis_ansva_v">
 	<schema name="fkg"/>
 	<position x="1180" y="740"/>
-	<column name="ansvar_v_k" not-null="true">
+	<column name="ansva_v_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="ansvar_v" not-null="true">
+	<column name="ansva_v" not-null="true">
 		<type name="character varying" length="30"/>
 	</column>
 	<column name="aktiv" not-null="true" default-value="1">
@@ -6752,8 +6752,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="begrebsdefinition">
 		<type name="character varying" length="0"/>
 	</column>
-	<constraint name="d_basis_ansv_v_pk" type="pk-constr" table="fkg.d_basis_ansvar_v">
-		<columns names="ansvar_v_k" ref-type="src-columns"/>
+	<constraint name="d_basis_ansv_v_pk" type="pk-constr" table="fkg.d_basis_ansva_v">
+		<columns names="ansva_v_k" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -7398,9 +7398,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="t_5800_fac_pkt_d_basis_ansvar_v_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansvar_v" table="fkg.t_5800_fac_pkt_t">
-	<columns names="ansvar_v_k" ref-type="src-columns"/>
-	<columns names="ansvar_v_k" ref-type="dst-columns"/>
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansva_v" table="fkg.t_5800_fac_pkt_t">
+	<columns names="ansva_v_k" ref-type="src-columns"/>
+	<columns names="ansva_v_k" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5802_fac_li_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -7423,7 +7423,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <constraint name="t_5802_fac_li_d_basis_handicapegnet_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_handicapegnet" table="fkg.t_5802_fac_li_t">
-	<columns names="handikap_k" ref-type="src-columns"/>
+	<columns names="handicap_k" ref-type="src-columns"/>
 	<columns names="handicapegnet_kode" ref-type="dst-columns"/>
 </constraint>
 
@@ -7464,9 +7464,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="t_5802_fac_li_d_basis_ansvar_v_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansvar_v" table="fkg.t_5802_fac_li_t">
-	<columns names="ansvar_v_k" ref-type="src-columns"/>
-	<columns names="ansvar_v_k" ref-type="dst-columns"/>
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansva_v" table="fkg.t_5802_fac_li_t">
+	<columns names="ansva_v_k" ref-type="src-columns"/>
+	<columns names="ansva_v_k" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5900_jordfl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8616,9 +8616,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="t_5801_fac_fl_d_basis_ansvar_v_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansvar_v" table="fkg.t_5801_fac_fl_t">
-	<columns names="ansvar_v_k" ref-type="src-columns"/>
-	<columns names="ansvar_v_k" ref-type="dst-columns"/>
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansva_v" table="fkg.t_5801_fac_fl_t">
+	<columns names="ansva_v_k" ref-type="src-columns"/>
+	<columns names="ansva_v_k" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6119_evaku_centr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -10198,7 +10198,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <relationship name="rel_t_5800_fac_pkt_t_d_basis_ansvar_v" type="relfk"
 	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.d_basis_ansvar_v"
+	 dst-table="fkg.d_basis_ansva_v"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_t_d_5800_saeson" type="relfk"
@@ -10212,7 +10212,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <relationship name="rel_t_5801_fac_fl_t_d_basis_ansvar_v" type="relfk"
 	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_basis_ansvar_v"
+	 dst-table="fkg.d_basis_ansva_v"
 	 src-required="false" dst-required="false">
 	<label ref-type="src-label">
 		<position x="0" y="0"/>
@@ -10245,7 +10245,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <relationship name="rel_t_5802_fac_li_t_d_basis_ansvar_v" type="relfk"
 	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_ansvar_v"
+	 dst-table="fkg.d_basis_ansva_v"
 	 src-required="false" dst-required="false">
 	<label ref-type="src-label">
 		<position x="0" y="0"/>
