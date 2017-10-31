@@ -1894,7 +1894,7 @@ CREATE TABLE fkg.t_5800_fac_pkt_t(
 	foto_link1 character varying(1024),
 	foto_link2 character varying(1024),
 	vejkode integer,
-	ansvar_v_k integer,
+	ansva_v_k integer,
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
@@ -1928,10 +1928,10 @@ CREATE TABLE fkg.t_5802_fac_li_t(
 	obs character varying(254),
 	beskrivels character varying(254),
 	belaegn_k integer,
-	handikap_k integer,
-	ansvar_v_k integer,
-	startpunkt_x integer,
-	startpunkt_y integer,
+	handicap_k integer,
+	ansva_v_k integer,
+	startpkt_x integer,
+	startpkt_y integer,
 	afm_rute_k integer,
 	link character varying(1024),
 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
@@ -3375,7 +3375,7 @@ CREATE TABLE fkg.t_5801_fac_fl_t(
 	foto_link1 character varying(1024),
 	foto_link2 character varying(1024),
 	vejkode integer,
-	ansvar_v_k integer,
+	ansva_v_k integer,
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
@@ -3530,14 +3530,14 @@ CREATE TABLE fkg.d_6121_sua(
 );
 -- ddl-end --
 
--- object: fkg.d_basis_ansvar_v | type: TABLE --
--- DROP TABLE IF EXISTS fkg.d_basis_ansvar_v CASCADE;
-CREATE TABLE fkg.d_basis_ansvar_v(
-	ansvar_v_k integer NOT NULL,
-	ansvar_v character varying(30) NOT NULL,
+-- object: fkg.d_basis_ansva_v | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_basis_ansva_v CASCADE;
+CREATE TABLE fkg.d_basis_ansva_v(
+	ansva_v_k integer NOT NULL,
+	ansva_v character varying(30) NOT NULL,
 	aktiv integer NOT NULL DEFAULT 1,
 	begrebsdefinition character varying,
-	CONSTRAINT d_basis_ansv_v_pk PRIMARY KEY (ansvar_v_k)
+	CONSTRAINT d_basis_ansv_v_pk PRIMARY KEY (ansva_v_k)
 
 );
 -- ddl-end --
@@ -4234,8 +4234,8 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- object: t_5800_fac_pkt_d_basis_ansvar_v_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ansvar_v_fk CASCADE;
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
-REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ansvar_v_fk FOREIGN KEY (ansva_v_k)
+REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -4262,7 +4262,7 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- object: t_5802_fac_li_d_basis_handicapegnet_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_handicapegnet_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_handicapegnet_fk FOREIGN KEY (handikap_k)
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_handicapegnet_fk FOREIGN KEY (handicap_k)
 REFERENCES fkg.d_basis_handicapegnet (handicapegnet_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
@@ -4311,8 +4311,8 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- object: t_5802_fac_li_d_basis_ansvar_v_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_ansvar_v_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
-REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ansvar_v_fk FOREIGN KEY (ansva_v_k)
+REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -5655,8 +5655,8 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- object: t_5801_fac_fl_d_basis_ansvar_v_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ansvar_v_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
-REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ansvar_v_fk FOREIGN KEY (ansva_v_k)
+REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
