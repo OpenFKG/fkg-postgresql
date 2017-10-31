@@ -1,6 +1,7 @@
 -- New basic lookuptable
-CREATE TABLE fkg.d_basis_ansvar_v(ansvar_v_k integer NOT NULL, ansvar_v character varying(30) NOT NULL, aktiv integer NOT NULL DEFAULT 1, begrebsdefinition character varying,
-  CONSTRAINT d_basis_ansv_v_pk PRIMARY KEY (ansvar_v_k));
+BEGIN TRANSACTION;
+CREATE TABLE fkg.d_basis_ansva_v(ansva_v_k integer NOT NULL, ansva_v character varying(30) NOT NULL, aktiv integer NOT NULL DEFAULT 1, begrebsdefinition character varying,
+  CONSTRAINT d_basis_ansv_v_pk PRIMARY KEY (ansva_v_k));
 
 -- New themespecific looktables
 CREATE TABLE fkg.d_5800_saeson(saeson_k integer NOT NULL, saeson character varying(50) NOT NULL, aktiv integer NOT NULL DEFAULT 1, begrebsdefinition character varying,
@@ -43,14 +44,14 @@ ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN ansvar_org character varying(254);
 ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN kontak_vedl character varying(254);
 ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN foto_link1 character varying(1024);
 ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN foto_link2 character varying(1024);
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN ansvar_v_k integer;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN ansva_v_k integer;
 
 ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_5800_saeson_fk FOREIGN KEY (saeson_k)
 REFERENCES fkg.d_5800_saeson (saeson_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
-REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ansvar_v_fk FOREIGN KEY (ansva_v_k)
+REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Changes to t_5801
@@ -66,17 +67,20 @@ ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN ansvar_org character varying(254);
 ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN kontak_vedl character varying(254);
 ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN foto_link1 character varying(1024);
 ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN foto_link2 character varying(1024);
-ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN ansvar_v_k integer;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN ansva_v_k integer;
 
 ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_5800_saeson_fk FOREIGN KEY (saeson_k)
 REFERENCES fkg.d_5800_saeson (saeson_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
-REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ansva_v_fk FOREIGN KEY (ansva_v_k)
+REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Changes to t_5802
+ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN startpunkt_x TO startpkt_x;
+ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN startpunkt_y TO startpkt_y;
+
 ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN facilitetl_type_kode TO rute_ty_k;
 ALTER TABLE fkg.t_5802_fac_li_t DROP COLUMN ejerstatus_kode CASCADE;
 ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN rute_uty_k integer;
@@ -98,8 +102,8 @@ ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN foto_link2 character varying(1024);
 ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN obs character varying(254);
 ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN beskrivels character varying(254);
 ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN belaegning_kode TO belaegn_k;
-ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN handicapegnet_kode TO handikap_k;
-ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN ansvar_v_k integer;
+ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN handicapegnet_kode TO handicap_k;
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN ansva_v_k integer;
 ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN afmaerket_rute_kode TO afm_rute_k;
 ALTER TABLE fkg.t_5802_fac_li_t DROP COLUMN noegle;
 ALTER TABLE fkg.t_5802_fac_li_t DROP COLUMN note;
@@ -133,8 +137,8 @@ ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_folder_fk F
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ansvar_v_fk FOREIGN KEY (ansvar_v_k)
-REFERENCES fkg.d_basis_ansvar_v (ansvar_v_k) MATCH FULL
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ansva_v_fk FOREIGN KEY (ansva_v_k)
+REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
@@ -143,7 +147,7 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 INSERT INTO fkg.d_basis_handicapegnet VALUES
 (4,'Handicapvenligt', 1, 'Der er taget hensyn til adgang for handicappede.');
 
-INSERT INTO fkg.d_basis_ansvar_v VALUES
+INSERT INTO fkg.d_basis_ansva_v VALUES
 (1, 'Privat/forening',  1, 'Vedligeholdes af privatpersoner/organisationer/foreninger og lign.'),
 (2, 'Kommune',          1, 'Vedligeholdes af kommune.'),
 (3, 'Staten',           1, 'Vedligeholdes af staten eller en myndighed under staten f.eks. Naturstyrelsen.'),
@@ -233,8 +237,6 @@ INSERT INTO
   fkg.d_5800_facilitet
 SELECT * FROM nye;
 
-
-
 DROP VIEW IF EXISTS fkg.t_5800_fac_pkt;
 CREATE VIEW fkg.t_5800_fac_pkt AS
 SELECT
@@ -269,8 +271,8 @@ SELECT
   t.foto_link2,
   t.vejkode,
   k4.vejnavn AS vejnavn,
-  t.ansvar_v_k,
-  k5.ansvar_v AS ansvar_v,
+  t.ansva_v_k,
+  k5.ansva_v AS ansva_v,
   t.husnr,
   t.postnr,
   k6.postnr_by AS postnr_by,
@@ -287,7 +289,7 @@ FROM
   fkg.d_basis_handicapegnet k2 ON (t.handicap_k = k2.handicapegnet_kode) LEFT JOIN
   fkg.d_5800_saeson k3 ON (t.saeson_k = k3.saeson_k) LEFT JOIN
   fkg.d_vejnavn k4 ON (t.vejkode = k4.vejkode) LEFT JOIN
-  fkg.d_basis_ansvar_v k5 ON (t.ansvar_v_k = k5.ansvar_v_k) LEFT JOIN
+  fkg.d_basis_ansva_v k5 ON (t.ansva_v_k = k5.ansva_v_k) LEFT JOIN
   fkg.d_basis_postnr k6 ON (t.postnr = k6.postnr)
 WHERE g.systid_til IS NULL;
 DROP VIEW IF EXISTS fkg.t_5802_fac_li;
@@ -336,12 +338,12 @@ SELECT
   t.beskrivels,
   t.belaegn_k,
   k7.belaegning AS belaegn,
-  t.handikap_k,
+  t.handicap_k,
   k8.handicapegnet AS handikap,
-  t.ansvar_v_k,
-  k9.ansvar_v AS ansvar_v,
-  t.startpunkt_x,
-  t.startpunkt_y,
+  t.ansva_v_k,
+  k9.ansva_v AS ansva_v,
+  t.startpkt_x,
+  t.startpkt_y,
   t.afm_rute_k,
   k10.ja_nej AS afm_rute,
   t.link,
@@ -360,8 +362,8 @@ FROM
   fkg.d_5802_svaerhed k5 ON (t.svaerhed_k = k5.svaerhed_k) LEFT JOIN
   fkg.d_basis_ja_nej k6 ON (t.folder_k = k6.ja_nej_kode) LEFT JOIN
   fkg.d_basis_belaegning k7 ON (t.belaegn_k = k7.belaegning_kode) LEFT JOIN
-  fkg.d_basis_handicapegnet k8 ON (t.handikap_k = k8.handicapegnet_kode) LEFT JOIN
-  fkg.d_basis_ansvar_v k9 ON (t.ansvar_v_k = k9.ansvar_v_k) LEFT JOIN
+  fkg.d_basis_handicapegnet k8 ON (t.handicap_k = k8.handicapegnet_kode) LEFT JOIN
+  fkg.d_basis_ansva_v k9 ON (t.ansva_v_k = k9.ansva_v_k) LEFT JOIN
   fkg.d_basis_ja_nej k10 ON (t.afm_rute_k = k10.ja_nej_kode)
 WHERE g.systid_til IS NULL;
 DROP VIEW IF EXISTS fkg.t_5801_fac_fl;
@@ -398,8 +400,8 @@ SELECT
   t.foto_link2,
   t.vejkode,
   k4.vejnavn AS vejnavn,
-  t.ansvar_v_k,
-  k5.ansvar_v AS ansvar_v,
+  t.ansva_v_k,
+  k5.ansva_v AS ansva_v,
   t.husnr,
   t.postnr,
   k6.postnr_by AS postnr_by,
@@ -416,7 +418,7 @@ FROM
   fkg.d_basis_handicapegnet k2 ON (t.handicap_k = k2.handicapegnet_kode) LEFT JOIN
   fkg.d_5800_saeson k3 ON (t.saeson_k = k3.saeson_k) LEFT JOIN
   fkg.d_vejnavn k4 ON (t.vejkode = k4.vejkode) LEFT JOIN
-  fkg.d_basis_ansvar_v k5 ON (t.ansvar_v_k = k5.ansvar_v_k) LEFT JOIN
+  fkg.d_basis_ansva_v k5 ON (t.ansva_v_k = k5.ansva_v_k) LEFT JOIN
   fkg.d_basis_postnr k6 ON (t.postnr = k6.postnr)
 WHERE g.systid_til IS NULL;
 
@@ -454,8 +456,8 @@ SELECT
   t.foto_link2,
   t.vejkode,
   k4.vejnavn AS vejnavn,
-  t.ansvar_v_k,
-  k5.ansvar_v AS ansvar_v,
+  t.ansva_v_k,
+  k5.ansva_v AS ansva_v,
   t.husnr,
   t.postnr,
   k6.postnr_by AS postnr_by,
@@ -472,7 +474,7 @@ FROM
   fkg.d_basis_handicapegnet k2 ON (t.handicap_k = k2.handicapegnet_kode) LEFT JOIN
   fkg.d_5800_saeson k3 ON (t.saeson_k = k3.saeson_k) LEFT JOIN
   fkg.d_vejnavn k4 ON (t.vejkode = k4.vejkode) LEFT JOIN
-  fkg.d_basis_ansvar_v k5 ON (t.ansvar_v_k = k5.ansvar_v_k) LEFT JOIN
+  fkg.d_basis_ansva_v k5 ON (t.ansva_v_k = k5.ansva_v_k) LEFT JOIN
   fkg.d_basis_postnr k6 ON (t.postnr = k6.postnr);
 DROP VIEW IF EXISTS fkg.hist_t_5802_fac_li;
 CREATE VIEW fkg.hist_t_5802_fac_li AS
@@ -520,12 +522,12 @@ SELECT
   t.beskrivels,
   t.belaegn_k,
   k7.belaegning AS belaegn,
-  t.handikap_k,
+  t.handicap_k,
   k8.handicapegnet AS handikap,
-  t.ansvar_v_k,
-  k9.ansvar_v AS ansvar_v,
-  t.startpunkt_x,
-  t.startpunkt_y,
+  t.ansva_v_k,
+  k9.ansva_v AS ansva_v,
+  t.startpkt_x,
+  t.startpkt_y,
   t.afm_rute_k,
   k10.ja_nej AS afm_rute,
   t.link,
@@ -544,8 +546,8 @@ FROM
   fkg.d_5802_svaerhed k5 ON (t.svaerhed_k = k5.svaerhed_k) LEFT JOIN
   fkg.d_basis_ja_nej k6 ON (t.folder_k = k6.ja_nej_kode) LEFT JOIN
   fkg.d_basis_belaegning k7 ON (t.belaegn_k = k7.belaegning_kode) LEFT JOIN
-  fkg.d_basis_handicapegnet k8 ON (t.handikap_k = k8.handicapegnet_kode) LEFT JOIN
-  fkg.d_basis_ansvar_v k9 ON (t.ansvar_v_k = k9.ansvar_v_k) LEFT JOIN
+  fkg.d_basis_handicapegnet k8 ON (t.handicap_k = k8.handicapegnet_kode) LEFT JOIN
+  fkg.d_basis_ansva_v k9 ON (t.ansva_v_k = k9.ansva_v_k) LEFT JOIN
   fkg.d_basis_ja_nej k10 ON (t.afm_rute_k = k10.ja_nej_kode);
 DROP VIEW IF EXISTS fkg.hist_t_5801_fac_fl;
 CREATE VIEW fkg.hist_t_5801_fac_fl AS
@@ -581,8 +583,8 @@ SELECT
   t.foto_link2,
   t.vejkode,
   k4.vejnavn AS vejnavn,
-  t.ansvar_v_k,
-  k5.ansvar_v AS ansvar_v,
+  t.ansva_v_k,
+  k5.ansva_v AS ansva_v,
   t.husnr,
   t.postnr,
   k6.postnr_by AS postnr_by,
@@ -599,9 +601,8 @@ FROM
   fkg.d_basis_handicapegnet k2 ON (t.handicap_k = k2.handicapegnet_kode) LEFT JOIN
   fkg.d_5800_saeson k3 ON (t.saeson_k = k3.saeson_k) LEFT JOIN
   fkg.d_vejnavn k4 ON (t.vejkode = k4.vejkode) LEFT JOIN
-  fkg.d_basis_ansvar_v k5 ON (t.ansvar_v_k = k5.ansvar_v_k) LEFT JOIN
+  fkg.d_basis_ansva_v k5 ON (t.ansva_v_k = k5.ansva_v_k) LEFT JOIN
   fkg.d_basis_postnr k6 ON (t.postnr = k6.postnr);
-
 CREATE OR REPLACE FUNCTION fkg.t_5800_fac_pkt_trg() RETURNS trigger AS $$
   BEGIN
     IF (TG_OP = 'DELETE') THEN
@@ -633,9 +634,9 @@ CREATE OR REPLACE FUNCTION fkg.t_5800_fac_pkt_trg() RETURNS trigger AS $$
         NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;
 
       -- Insert into theme
-      INSERT INTO fkg.t_5800_fac_pkt_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansvar_v_k, husnr, postnr, link, geometri)
+      INSERT INTO fkg.t_5800_fac_pkt_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansva_v_k, husnr, postnr, link, geometri)
       SELECT
-        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansvar_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
+        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansva_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
 
       -- Close the old version
       UPDATE fkg.generel SET systid_til = current_timestamp WHERE versions_id=OLD.versions_id;
@@ -662,9 +663,9 @@ CREATE OR REPLACE FUNCTION fkg.t_5800_fac_pkt_trg() RETURNS trigger AS $$
         NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;
 
       -- Insert into t_5800_fac_pkt_t
-      INSERT INTO fkg.t_5800_fac_pkt_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansvar_v_k, husnr, postnr, link, geometri)
+      INSERT INTO fkg.t_5800_fac_pkt_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansva_v_k, husnr, postnr, link, geometri)
       SELECT
-        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansvar_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
+        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansva_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
       RETURN NEW;
     END IF;
   END;
@@ -727,9 +728,9 @@ CREATE OR REPLACE FUNCTION fkg.t_5802_fac_li_trg() RETURNS trigger AS $$
         NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;
 
       -- Insert into theme
-      INSERT INTO fkg.t_5802_fac_li_t (versions_id, rute_ty_k, rute_uty_k, kategori_k, hierarki_k, svaerhed_k, navn, navndels, straekn_nr, ansvar_org, konta_vedl, laengde, folder_k, folde_link, gpx_link, foto_link1, foto_link2, obs, beskrivels, belaegn_k, handikap_k, ansvar_v_k, startpunkt_x, startpunkt_y, afm_rute_k, link, geometri)
+      INSERT INTO fkg.t_5802_fac_li_t (versions_id, rute_ty_k, rute_uty_k, kategori_k, hierarki_k, svaerhed_k, navn, navndels, straekn_nr, ansvar_org, konta_vedl, laengde, folder_k, folde_link, gpx_link, foto_link1, foto_link2, obs, beskrivels, belaegn_k, handicap_k, ansva_v_k, startpkt_x, startpkt_y, afm_rute_k, link, geometri)
       SELECT
-        NEW.versions_id, NEW.rute_ty_k, NEW.rute_uty_k, NEW.kategori_k, NEW.hierarki_k, NEW.svaerhed_k, NEW.navn, NEW.navndels, NEW.straekn_nr, NEW.ansvar_org, NEW.konta_vedl, NEW.laengde, NEW.folder_k, NEW.folde_link, NEW.gpx_link, NEW.foto_link1, NEW.foto_link2, NEW.obs, NEW.beskrivels, NEW.belaegn_k, NEW.handikap_k, NEW.ansvar_v_k, NEW.startpunkt_x, NEW.startpunkt_y, NEW.afm_rute_k, NEW.link, NEW.geometri;
+        NEW.versions_id, NEW.rute_ty_k, NEW.rute_uty_k, NEW.kategori_k, NEW.hierarki_k, NEW.svaerhed_k, NEW.navn, NEW.navndels, NEW.straekn_nr, NEW.ansvar_org, NEW.konta_vedl, NEW.laengde, NEW.folder_k, NEW.folde_link, NEW.gpx_link, NEW.foto_link1, NEW.foto_link2, NEW.obs, NEW.beskrivels, NEW.belaegn_k, NEW.handicap_k, NEW.ansva_v_k, NEW.startpkt_x, NEW.startpkt_y, NEW.afm_rute_k, NEW.link, NEW.geometri;
 
       -- Close the old version
       UPDATE fkg.generel SET systid_til = current_timestamp WHERE versions_id=OLD.versions_id;
@@ -756,9 +757,9 @@ CREATE OR REPLACE FUNCTION fkg.t_5802_fac_li_trg() RETURNS trigger AS $$
         NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;
 
       -- Insert into t_5802_fac_li_t
-      INSERT INTO fkg.t_5802_fac_li_t (versions_id, rute_ty_k, rute_uty_k, kategori_k, hierarki_k, svaerhed_k, navn, navndels, straekn_nr, ansvar_org, konta_vedl, laengde, folder_k, folde_link, gpx_link, foto_link1, foto_link2, obs, beskrivels, belaegn_k, handikap_k, ansvar_v_k, startpunkt_x, startpunkt_y, afm_rute_k, link, geometri)
+      INSERT INTO fkg.t_5802_fac_li_t (versions_id, rute_ty_k, rute_uty_k, kategori_k, hierarki_k, svaerhed_k, navn, navndels, straekn_nr, ansvar_org, konta_vedl, laengde, folder_k, folde_link, gpx_link, foto_link1, foto_link2, obs, beskrivels, belaegn_k, handicap_k, ansva_v_k, startpkt_x, startpkt_y, afm_rute_k, link, geometri)
       SELECT
-        NEW.versions_id, NEW.rute_ty_k, NEW.rute_uty_k, NEW.kategori_k, NEW.hierarki_k, NEW.svaerhed_k, NEW.navn, NEW.navndels, NEW.straekn_nr, NEW.ansvar_org, NEW.konta_vedl, NEW.laengde, NEW.folder_k, NEW.folde_link, NEW.gpx_link, NEW.foto_link1, NEW.foto_link2, NEW.obs, NEW.beskrivels, NEW.belaegn_k, NEW.handikap_k, NEW.ansvar_v_k, NEW.startpunkt_x, NEW.startpunkt_y, NEW.afm_rute_k, NEW.link, NEW.geometri;
+        NEW.versions_id, NEW.rute_ty_k, NEW.rute_uty_k, NEW.kategori_k, NEW.hierarki_k, NEW.svaerhed_k, NEW.navn, NEW.navndels, NEW.straekn_nr, NEW.ansvar_org, NEW.konta_vedl, NEW.laengde, NEW.folder_k, NEW.folde_link, NEW.gpx_link, NEW.foto_link1, NEW.foto_link2, NEW.obs, NEW.beskrivels, NEW.belaegn_k, NEW.handicap_k, NEW.ansva_v_k, NEW.startpkt_x, NEW.startpkt_y, NEW.afm_rute_k, NEW.link, NEW.geometri;
       RETURN NEW;
     END IF;
   END;
@@ -821,9 +822,9 @@ CREATE OR REPLACE FUNCTION fkg.t_5801_fac_fl_trg() RETURNS trigger AS $$
         NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;
 
       -- Insert into theme
-      INSERT INTO fkg.t_5801_fac_fl_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansvar_v_k, husnr, postnr, link, geometri)
+      INSERT INTO fkg.t_5801_fac_fl_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansva_v_k, husnr, postnr, link, geometri)
       SELECT
-        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansvar_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
+        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansva_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
 
       -- Close the old version
       UPDATE fkg.generel SET systid_til = current_timestamp WHERE versions_id=OLD.versions_id;
@@ -850,9 +851,9 @@ CREATE OR REPLACE FUNCTION fkg.t_5801_fac_fl_trg() RETURNS trigger AS $$
         NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;
 
       -- Insert into t_5801_fac_fl_t
-      INSERT INTO fkg.t_5801_fac_fl_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansvar_v_k, husnr, postnr, link, geometri)
+      INSERT INTO fkg.t_5801_fac_fl_t (versions_id, facil_ty_k, handicap_k, navn, saeson_k, beskrivels, ansvar_org, kontak_vedl, foto_link1, foto_link2, vejkode, ansva_v_k, husnr, postnr, link, geometri)
       SELECT
-        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansvar_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
+        NEW.versions_id, NEW.facil_ty_k, NEW.handicap_k, NEW.navn, NEW.saeson_k, NEW.beskrivels, NEW.ansvar_org, NEW.kontak_vedl, NEW.foto_link1, NEW.foto_link2, NEW.vejkode, NEW.ansva_v_k, NEW.husnr, NEW.postnr, NEW.link, NEW.geometri;
       RETURN NEW;
     END IF;
   END;
@@ -888,6 +889,8 @@ DROP INDEX IF EXISTS fkg.t_5800_fac_pkt_t_gist;CREATE INDEX t_5800_fac_pkt_t_gis
 DROP INDEX IF EXISTS fkg.t_5802_fac_li_t_gist;CREATE INDEX t_5802_fac_li_t_gist ON fkg.t_5802_fac_li_t USING gist (geometri);
 DROP INDEX IF EXISTS fkg.t_5801_fac_fl_t_gist;CREATE INDEX t_5801_fac_fl_t_gist ON fkg.t_5801_fac_fl_t USING gist (geometri);
 
+
+ROLLBACK TRANSACTION;
 -- Noter
 
 -- Tekst på lookupværdi 9 i d_basis_ansvar_v:
