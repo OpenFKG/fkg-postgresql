@@ -52,7 +52,7 @@ DELETE FROM fkg.d_basis_handicapegnet;
 DELETE FROM fkg.d_basis_invasivart;
 DELETE FROM fkg.d_basis_kotesystem;
 -- New lookup tables in 2.5.X
-DELETE FROM fkg.fkg.d_basis_ansvar_v;
+DELETE FROM fkg.fkg.d_basis_ansva_v;
 
 
 -- Temaspecific lookup-tables
@@ -1691,7 +1691,7 @@ INSERT INTO fkg.d_basis_kotesystem VALUES (9,'Ukendt',1,'Ukendt');
 -- SELECT * FROM fkg.d_basis_kotesystem;
 
 -- New lookup-tables in 2.5.X:
-INSERT INTO fkg.d_basis_ansvar_v VALUES
+INSERT INTO fkg.d_basis_ansva_v VALUES
 (1, 'Privat/forening', 1, 'Vedligeholdes af privatpersoner/organisationer/foreninger og lign.'),
 (2, 'Kommune',         1, 'Vedligeholdes af kommune.'),
 (3, 'Staten',          1, 'Vedligeholdes af staten eller en myndighed under staten f.eks. Naturstyrelsen.'),
