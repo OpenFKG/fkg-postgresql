@@ -126,11 +126,11 @@ UPDATE fkg_utilities.view_mapping SET field_alias = 'handicap', value_field = 'h
 UPDATE fkg_utilities.view_mapping SET field_alias = 'saeson', value_field = 'saeson' WHERE constraint_name ='t_5800_fac_pkt_d_5800_saeson_fk';
 
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk'
-UPDATE fkg_utilities.view_mapping SET field_alias = 'ansvar_v', value_field = 'ansvar_v' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk';
 
 -- Theme 5801
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5801_fac_fl_d_basis_ansvar_v_fk'
-UPDATE fkg_utilities.view_mapping SET field_alias = 'ansvar_v', value_field = 'ansvar_v' WHERE constraint_name ='t_5801_fac_fl_d_basis_ansvar_v_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5801_fac_fl_d_basis_ansvar_v_fk';
 
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5801_fac_fl_d_5800_facilitet_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'facil_ty', value_field = 'facil_ty' WHERE constraint_name ='t_5801_fac_fl_d_5800_facilitet_fk';
@@ -167,7 +167,7 @@ UPDATE fkg_utilities.view_mapping SET field_alias = 'belaegn', value_field = 'be
 UPDATE fkg_utilities.view_mapping SET field_alias = 'handikap', value_field = 'handicapegnet' WHERE constraint_name ='t_5802_fac_li_d_basis_handicapegnet_fk';
 
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_ansvar_v_fk'
-UPDATE fkg_utilities.view_mapping SET field_alias = 'ansvar_v', value_field = 'ansvar_v' WHERE constraint_name ='t_5802_fac_li_d_basis_ansvar_v_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5802_fac_li_d_basis_ansvar_v_fk';
 
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_afmaerket_rute_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'afm_rute', value_field = 'ja_nej' WHERE constraint_name ='t_5802_fac_li_d_basis_afmaerket_rute_fk';
