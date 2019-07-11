@@ -115,8 +115,63 @@ INSERT INTO fkg_utilities.view_mapping VALUES ('t_5107_art_invas_p_d_basis_invas
 INSERT INTO fkg_utilities.view_mapping VALUES ('t_5107_art_invas_p_d_basis_invasivart','ia_rige','ia_rige',140);
 --select * from fkg_utilities.view_mapping where constraint_name like '%invasivart%'
 
+-- Theme 5800
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_5800_facilitet_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'facil_ty', value_field = 'facil_ty' WHERE constraint_name ='t_5800_fac_pkt_d_5800_facilitet_fk';
 
--- select * from fkg_utilities.view_mapping where constraint_name like 't_%d_basis_omraade%';
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_basis_handicapegnet_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'handicap', value_field = 'handicapegnet' WHERE constraint_name ='t_5800_fac_pkt_d_basis_handicapegnet_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_5800_saeson_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'saeson', value_field = 'saeson' WHERE constraint_name ='t_5800_fac_pkt_d_5800_saeson_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk';
+
+-- Theme 5801
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5801_fac_fl_d_basis_ansvar_v_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5801_fac_fl_d_basis_ansvar_v_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5801_fac_fl_d_5800_facilitet_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'facil_ty', value_field = 'facil_ty' WHERE constraint_name ='t_5801_fac_fl_d_5800_facilitet_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5801_fac_fl_d_basis_handicapegnet_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'handicap', value_field = 'handicapegnet' WHERE constraint_name ='t_5801_fac_fl_d_basis_handicapegnet_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5801_fac_fl_d_5800_saeson_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'saeson', value_field = 'saeson' WHERE constraint_name ='t_5801_fac_fl_d_5800_saeson_fk';
+
+-- Theme 5801
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_5802_rutetype_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'rute_ty', value_field = 'rute_ty' WHERE constraint_name ='t_5802_fac_li_d_5802_rutetype_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_5802_rute_uty_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'rute_uty', value_field = 'rute_uty' WHERE constraint_name ='t_5802_fac_li_d_5802_rute_uty_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_5802_kategori_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'kategori', value_field = 'kategori' WHERE constraint_name ='t_5802_fac_li_d_5802_kategori_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_5802_hierarki_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'hierarki', value_field = 'hierarki' WHERE constraint_name ='t_5802_fac_li_d_5802_hierarki_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_5802_svaerhed_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'svaerhed', value_field = 'svaerhed' WHERE constraint_name ='t_5802_fac_li_d_5802_svaerhed_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_folder_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'folder', value_field = 'ja_nej' WHERE constraint_name ='t_5802_fac_li_d_basis_folder_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_belaegning_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'belaegn', value_field = 'belaegning' WHERE constraint_name ='t_5802_fac_li_d_basis_belaegning_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_handicapegnet_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'handikap', value_field = 'handicapegnet' WHERE constraint_name ='t_5802_fac_li_d_basis_handicapegnet_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_ansvar_v_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5802_fac_li_d_basis_ansvar_v_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_afmaerket_rute_fk'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'afm_rute', value_field = 'ja_nej' WHERE constraint_name ='t_5802_fac_li_d_basis_afmaerket_rute_fk';
+
 -- select * from fkg_utilities.view_mapping order by 1;
 
 -- ---- End of manipulation ----

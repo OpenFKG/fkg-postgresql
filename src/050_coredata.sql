@@ -51,6 +51,9 @@ DELETE FROM fkg.d_basis_belaegning;
 DELETE FROM fkg.d_basis_handicapegnet;
 DELETE FROM fkg.d_basis_invasivart;
 DELETE FROM fkg.d_basis_kotesystem;
+-- New lookup tables in 2.5.X
+DELETE FROM fkg.fkg.d_basis_ansva_v;
+
 
 -- Temaspecific lookup-tables
 DELETE FROM fkg.d_5000_vandl_type;
@@ -102,9 +105,9 @@ DELETE FROM fkg.d_5714_udd_institution_type;
 DELETE FROM fkg.d_5715_botilbud_type;
 DELETE FROM fkg.d_5716_Servicetilbud_type;
 DELETE FROM fkg.d_5800_facilitet;
-DELETE FROM fkg.d_5802_facilitetl;
--- New lookuptable in 2.5
-DELETE FROM fkg.d_5802_fremkommelighed;
+DELETE FROM fkg.d_5802_rutetype;
+-- New lookuptable in 2.5 (udgået i 2.5.x)
+-- DELETE FROM fkg.d_5802_fremkommelighed;
 DELETE FROM fkg.d_5902_vaeske_type;
 -- DELETE FROM fkg.d_6000_kotesystem;
 DELETE FROM fkg.d_6003_zone_type;
@@ -140,6 +143,12 @@ DELETE FROM fkg.d_6800_vedlhold_f_type;
 DELETE FROM fkg.d_6801_vedlhold_l_type;
 DELETE FROM fkg.d_6802_groenvedligh_punkt;
 DELETE FROM fkg.d_6803_pg_distrikt;
+-- New lookuptables IN 2.5.x
+DELETE FROM fkg.d_5800_saeson;
+DELETE FROM fkg.d_5802_svaerhed;
+DELETE FROM fkg.d_5802_hierarki;
+DELETE FROM fkg.d_5802_rute_uty;
+DELETE FROM fkg.d_5802_kategori;
 
 
 INSERT INTO fkg.d_temagruppe VALUES ('5.1', 5000, 5099,'Overfladevand');
@@ -1623,6 +1632,7 @@ INSERT INTO fkg.d_basis_belaegning VALUES (9,'Ukendt',1,'Mangler viden om belæg
 INSERT INTO fkg.d_basis_handicapegnet VALUES (1,'Handicapegnet',1,'Faciliteten er egnet for handicappede');
 INSERT INTO fkg.d_basis_handicapegnet VALUES (2,'Delvist handicapegnet',1,'Faciliteten er delvist egnet for handicappede, fx kørestolsegnet, men intet handicaptoilet.');
 INSERT INTO fkg.d_basis_handicapegnet VALUES (3,'Ikke handicapegnet',1,'Faciliteten er ikke egnet for handicappede');
+INSERT INTO fkg.d_basis_handicapegnet VALUES (4,'Handicapvenligt', 1, 'Der er taget hensyn til adgang for handicappede.');
 INSERT INTO fkg.d_basis_handicapegnet VALUES (8,'Andet',1,'Andet');
 INSERT INTO fkg.d_basis_handicapegnet VALUES (9,'Ukendt',1,'Mangler viden om egnethed for handicappede.');
 -- SELECT * FROM fkg.d_basis_handicapegnet;
@@ -1679,6 +1689,14 @@ INSERT INTO fkg.d_basis_kotesystem VALUES (2,'DVR90',1,'Dansk Vertikal Reference
 INSERT INTO fkg.d_basis_kotesystem VALUES (8,'Andet',1,'Andet');
 INSERT INTO fkg.d_basis_kotesystem VALUES (9,'Ukendt',1,'Ukendt');
 -- SELECT * FROM fkg.d_basis_kotesystem;
+
+-- New lookup-tables in 2.5.X:
+INSERT INTO fkg.d_basis_ansva_v VALUES
+(1, 'Privat/forening', 1, 'Vedligeholdes af privatpersoner/organisationer/foreninger og lign.'),
+(2, 'Kommune',         1, 'Vedligeholdes af kommune.'),
+(3, 'Staten',          1, 'Vedligeholdes af staten eller en myndighed under staten f.eks. Naturstyrelsen.'),
+(8, 'Andet',           1, 'Andet'),
+(9, 'Ukendt',          1, 'Mangler viden om vedligeholder');
 
 INSERT INTO fkg.d_5000_vandl_type VALUES (1,'Almindelig',1,'Åbent vandløb');
 INSERT INTO fkg.d_5000_vandl_type VALUES (2,'Rørlagt',1,'Administrativ registrering af rørlagt forløb. Kan registreres, hvor myndigheden mener, at registreringen har funktionsmæssig betydning for vandløbsnetværket.');
@@ -2462,29 +2480,71 @@ INSERT INTO fkg.d_5800_facilitet VALUES (9991, 'Ukendt', 1, 'Mangler viden om ty
 -- SELECT * FROM fkg.d_5800_facilitet;
 
 
-INSERT INTO fkg.d_5802_facilitetl VALUES (1,'Skirute',1,'Skiløberute på afmærkede og uafmærkede ruter i naturen.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (2,'Løberute',1,'Løberute på afmærkede og uafmærkede ruter langs veje og i naturen.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (3,'Cykelrute',1,'Rute for cykler, afmærket på kort og evt. i terræn.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (4,'Mountainbikerute',1,'Afmærket eller uafmærket rute for mountainbikes.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (5,'Vandrerute',1,'Rute velegnet til vandring.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (6,'Motionsrute',1,'Rute udpeget til motionsformål – typisk løb eller gang.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (7,'Undervandsrute',1,'Afmærket eller uafmærket rute under vand for snorkeldykkere/dykkere.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (8,'Riderute',1,'Afmærket eller uafmærket rute til færdsel til hest.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (9,'Sejlrute',1,'Afmærket eller uafmærket rute for kano- og kajak-sejlads.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (10,'Gratis fiskeri',1,'Strækning med gratis fiskeri.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (11,'Rekreativ sti',1,'Vandresti med fokus på det rekreative.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (12,'Adgangsvej',1,'Sti eller spor med fri adgang, der fører hen til facilitet.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (98,'Andet',1,'Hvor andre facilitetsbetegnelser ikke er dækkende.');
-INSERT INTO fkg.d_5802_facilitetl VALUES (99,'Ukendt',1,'Mangler viden om typen.');
--- SELECT * FROM d_5802_facilitet;
-
-
-INSERT INTO fkg.d_5802_fremkommelighed VALUES (1,'Stor fremkommelighed',1,'Strækning med ingen eller små stigninger. Egnet til barnevogn mm');
-INSERT INTO fkg.d_5802_fremkommelighed VALUES (2,'Middel fremkommelighed',1,'Strækning med middel fremkommelighed. Stigninger og strækninger uden belægning  kan forekomme.');
-INSERT INTO fkg.d_5802_fremkommelighed VALUES (3,'Ringe fremkommelighed',1,'Strækning til fx MTB eller vandrestøvler. Store stigninger og løst underlag kan forekomme.');
-INSERT INTO fkg.d_5802_fremkommelighed VALUES (8,'Andet',1,'Andet');
-INSERT INTO fkg.d_5802_fremkommelighed VALUES (9,'Ukendt',1,'Mangler viden om fremkommeligheden');
+-- Udgået i 2.5.x
+-- INSERT INTO fkg.d_5802_fremkommelighed VALUES (1,'Stor fremkommelighed',1,'Strækning med ingen eller små stigninger. Egnet til barnevogn mm');
+-- INSERT INTO fkg.d_5802_fremkommelighed VALUES (2,'Middel fremkommelighed',1,'Strækning med middel fremkommelighed. Stigninger og strækninger uden belægning  kan forekomme.');
+-- INSERT INTO fkg.d_5802_fremkommelighed VALUES (3,'Ringe fremkommelighed',1,'Strækning til fx MTB eller vandrestøvler. Store stigninger og løst underlag kan forekomme.');
+-- INSERT INTO fkg.d_5802_fremkommelighed VALUES (8,'Andet',1,'Andet');
+-- INSERT INTO fkg.d_5802_fremkommelighed VALUES (9,'Ukendt',1,'Mangler viden om fremkommeligheden');
 -- SELECT * FROM fkg.d_5802_fremkommelighed;
+
+INSERT INTO fkg.d_5800_saeson VALUES
+(1, 'Helårsåbent',      1, 'Faciliteten er åbent hele året'),
+(2, 'Sæsonåbent',       1, 'Faciliteten er åbent kun i sæsonen. Sæson/åbningstider kan noteres i beskrivelsesfeltet'),
+(7, 'Ej relevant',      1, 'Angivelse af sæson er ikke relevant-'),
+(8, 'Andet',            1, 'Andet'),
+(9, 'Ukendt',           1, 'Mangler viden om fremkommeligheden');
+
+INSERT INTO fkg.d_5802_rutetype VALUES
+(1, 'Skirute',          1, 'Skiløberute på afmærkede og uafmærkede ruter i naturen.'),
+(2, 'Løberute',         1, 'Løberute på afmærkede og uafmærkede ruter langs veje og i naturen.'),
+(3, 'Cykelrute',        1, 'Rute for cykler, afmærket på kort og evt. i terræn.'),
+(4, 'Mountainbikerute', 1, 'Afmærket eller uafmærket rute for mountainbikes.'),
+(5, 'Vandrerute',       1, 'Rute velegnet til vandring.'),
+(6, 'Motionsrute',      1, 'Rute udpeget til motionsformål – typisk løb eller gang.'),
+(7, 'Undervandsrute',   1, 'Afmærket eller uafmærket rute under vand for snorkeldykkere/dykkere.'),
+(8, 'Riderute',	        1, 'Afmærket eller uafmærket rute til færdsel til hest.'),
+(9, 'Sejlrute',	        1, 'Afmærket eller uafmærket rute for kano- og kajak-sejlads.'),
+(10,'Gratis fiskeri',	0, 'Strækning med gratis fiskeri.'),
+(11,'Rekreativ sti',	1, 'Vandresti med fokus på det rekreative.'),
+(12,'Adgangsvej',	0, 'Sti eller spor med fri adgang, der fører hen til facilitet.'),
+(98,'Andet',            1, 'Hvor andre facilitetsbetegnelser ikke er dækkende.'),
+(99,'Ukendt',           1, 'Mangler viden om rutetypen.');
+
+INSERT INTO fkg.d_5802_svaerhed VALUES
+(1, 'Meget let',        1, 'MTB: MTB rytter nybegynder/uden grundlæggende færdigheder'),
+(2, 'Let',              1, 'Vandreruter: Asfalt, stenmel eller andet fast underlag. Fortrinsvis flad rute, moderate stigninger ingen stejle op og nedgange. Cykelruter: Landeveje og cykelstier, asfalt underlag, ingen eller få/korte svære passager, egnet til ryttercykel. MTB: MTB rytter med grundlæggende færdigheder'),
+(3, 'Middel/Moderat',   1, 'Vandreruter: Blandet underlag f.eks. asfalt, stenmel eller andet fast underlag, men også mere udfordrende og blødt underlag i form af f.eks. skovstier og spor. Mere udfordrende stigninger og nedgange kan forekomme (varieret terræn!), med broovergange, klaplåger, trapper og lignende. Cykelruter: Blanding af asfalt og grusveje, kan indeholde sværere passager, egnet til turcykling. MTB: Den øvede MTB rytter'),
+(4, 'Svær/udfordrende', 1, 'Vandreruter: Trampestier i åbent og lukket terræn – skove, kyster mv. Udfordrende stigninger og nedgange kan forekomme (stejlt terræn), med stenter, gangbrædder, trin og lignende. Mange typer af udfordringer kan forekomme. Cykelruter: Forvent skovveje og mindre vedligeholdte spor, bedst egnet til kraftigere turcykler med brede dæk. MTB: Ekspert MTB rytter'),
+(5, 'Ekstrem',          1, 'MTB: Specialiserede discipliner og ofte højrisiko MTB kørsel'),
+(8, 'Andet',            1, 'Andet'),
+(9, 'Ukendt',           1, 'Mangler viden om sværhedsgraden');
+
+INSERT INTO fkg.d_5802_hierarki VALUES
+(1, 'Hovedrute',        1, 'Den primære rute.'),
+(2, 'Sløjfe',           1, 'Ekstra sløjfer på en hovedrute.'),
+(3, 'Genvej',           1, 'Forbindelse som afkorter en hovedrute.'),
+(4, 'Adgangssti',       1, 'Forbindelse til en hovedrute, en facilitet eller seværdighed.'),
+(8, 'Andet',            1, 'Andet'),
+(9, 'Ukendt',           1, 'Mangler viden om hieraki');
+
+INSERT INTO fkg.d_5802_rute_uty VALUES
+(1, 'Sundhedsspor',     1, 'Sundhedsspor er Naturstyrelsens landsdækkende koncept. Et sundhedsspor er en afmærket naturrute på 1-2½ km, som kan gås eller løbes på tid. Ved ruterne er der sat tavler op, som viser BMI og kondital ift. tid og alder.'),
+(2, 'Kløversti',        1, 'Kløverstier er Friluftsrådets landsdækkende koncept. En Kløversti består af fire ruter, der alle udgår fra en centralt placeret Kløversti pæl. Hver af de fire ruter har en bestemt længde og farve, afmærket med Friluftsrådets Kløversti logo.'),
+(3, 'Hjertesti',        1, 'Hjertestier er Hjerteforeningens landsdækkende koncept. En hjertesti er en afmærket motionsrute, hvor der langs ruten er opsat skilte med Hjerteforeningens logo.'),
+(4, 'Spor i landskabet',1, 'Spor i Landskabet er spor er ”Spor i Landskabets” landsdækkende koncept. Sporene bliver lavet på baggrund af en frivillig aftale med lodsejerne om vandreadgang på deres private jord. Sporene er normalt ikke markerede men skal findes via foldere/hjemmeside.'),
+(5, 'Panoramarute',     1, 'Dagsture koblet på de nationale cykelruter. Ruten skal være en rundtur og være mellem 20 og 50 km lang.'),
+(8, 'Andet',            1, 'Andet'),
+(9, 'Ukendt',           1, 'Mangler viden om rutetype');
+
+INSERT INTO fkg.d_5802_kategori VALUES
+(1, 'Lokal',            1, 'En lokal rute er planlagt af en eller flere kommuner. Den lokale cykelrute er typisk beregnet til udflugts eller hverdagsture, dvs. kortere rundture eller direkte ture mellem bolig og arbejdsplads / skole / indkøbsmuligheder. Bedre definition til at den passer til både vandre-, cykler og rideruter.'),
+(2, 'Regional',         1, 'En regional rute forløber gennem flere kommuner. Den regionale rute er typisk lidt længere end beregnet til en dagstur.'),
+(3, 'National',         1, 'En national rute er af national betydning, går gennem flere landsdele (for cykelruter mindst 200 km lang).'),
+(7, 'Ej relevant',      1, 'Ikke relevant for dette objekt.'),
+(8, 'Andet',            1, 'Andet'),
+(9, 'Ukendt',           1, 'Mangler viden om kategori');
+
 
 
 INSERT INTO fkg.d_5902_vaeske_type VALUES (1,'Ethanol',1,'Ethylalkohol (alm. sprit som det findes i øl, vin, spiritus og husholdningssprit)');
