@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" author="Septima - see license in LICENSE.txt" last-position="0,0" last-zoom="1" max-obj-count="356">
+<dbmodel pgmodeler-ver="0.9.2-alpha1" author="Septima - see license in LICENSE.txt" last-position="1022,3579" last-zoom="1" max-obj-count="360">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
 
@@ -458,7 +458,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<extension name="postgis" sql-disabled="true">
+<extension name="postgis">
 </extension>
 
 <table name="d_temagruppe" layer="0" collapse-mode="2" max-obj-count="4">
@@ -717,7 +717,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6100_brandhane_pk" type="pk-constr" factor="10" table="fkg.t_6100_brandhane_t">
@@ -793,7 +793,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6102_redningsvej_pk" type="pk-constr" factor="10" table="fkg.t_6102_redn_vej_t">
@@ -848,7 +848,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5001_maalest_pk" type="pk-constr" factor="10" table="fkg.t_5001_maalest_t">
@@ -929,7 +929,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5002_faunasp_pk" type="pk-constr" factor="10" table="fkg.t_5002_faunasp_t">
@@ -1016,7 +1016,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5003_draenledn_pk" type="pk-constr" factor="100" table="fkg.t_5003_draenledn_t">
@@ -1080,7 +1080,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5004_draenomr_pk" type="pk-constr" factor="100" table="fkg.t_5004_draenomr_t">
@@ -1196,7 +1196,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5005_soe_pk" type="pk-constr" factor="100" table="fkg.t_5005_soe_t">
@@ -1246,7 +1246,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5006_dybdekurv_pk" type="pk-constr" factor="100" table="fkg.t_5006_dybdekurv_t">
@@ -1330,7 +1330,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5007_vandl_opl_pk" type="pk-constr" factor="100" table="fkg.t_5007_vandl_opl_t">
@@ -1379,7 +1379,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5008_soe_opl_pk" type="pk-constr" factor="100" table="fkg.t_5008_soe_opl_t">
@@ -1431,7 +1431,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5009_pumpelag_pk" type="pk-constr" factor="100" table="fkg.t_5009_pumpelag_t">
@@ -1498,7 +1498,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="adgangsforhold">
 		<type name="character varying" length="100"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5010_vandl_elm_pk" type="pk-constr" factor="100" table="fkg.t_5010_vandl_elm_t">
@@ -1564,7 +1564,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5105_rig_fattig_pk" type="pk-constr" factor="100" table="fkg.t_5105_rig_fattig_t">
@@ -1690,7 +1690,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5106_nat_pl_pk" type="pk-constr" factor="100" table="fkg.t_5106_nat_pl_t">
@@ -1753,7 +1753,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5108_groent_part_pk" type="pk-constr" factor="100" table="fkg.t_5108_groent_part_t">
@@ -1788,7 +1788,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="versions_id_pk" type="pk-constr" factor="100" table="fkg.t_5300_genopd_ret_t">
@@ -1852,7 +1852,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5400_affalds_dis_pk" type="pk-constr" factor="100" table="fkg.t_5400_affalds_dis_t">
@@ -2865,7 +2865,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5401_genbr_st_pk" type="pk-constr" factor="10" table="fkg.t_5401_genbr_st_t">
@@ -2897,7 +2897,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5402_genbr_con_pk" type="pk-constr" factor="10" table="fkg.t_5402_genbr_con_t">
@@ -2944,7 +2944,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="note">
 		<type name="character varying" length="254"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5508_husst_moel_pk" type="pk-constr" factor="10" table="fkg.t_5508_husst_moel_t">
@@ -3024,7 +3024,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5200_aff_prod_udbr_pk" type="pk-constr" factor="10" table="fkg.t_5200_aff_prod_udbr_t">
@@ -3077,7 +3077,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5500_elfors_omr_pk" type="pk-constr" factor="10" table="fkg.t_5500_elfors_omr_t">
@@ -3109,7 +3109,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5506_spildev_pl_pkt_pk" type="pk-constr" factor="10" table="fkg.t_5506_spildev_pl_pkt_t">
@@ -3141,7 +3141,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5507_fiberkabel_pk" type="pk-constr" factor="10" table="fkg.t_5507_fiberkabel_t">
@@ -3161,26 +3161,35 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="19">
+<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="33">
 	<schema name="fkg"/>
-	<position x="2300" y="3760"/>
+	<position x="2240" y="3760"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
 	<column name="facil_ty_k" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
-	<column name="handicap_k">
-		<type name="integer" length="1"/>
-	</column>
 	<column name="navn">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="saeson_k">
-		<type name="integer" length="0"/>
-	</column>
 	<column name="beskrivels">
 		<type name="character varying" length="254"/>
+	</column>
+	<column name="lang_beskr">
+		<type name="character varying" length="1000"/>
+	</column>
+	<column name="uk_k_beskr">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="uk_l_beskr">
+		<type name="character varying" length="1000"/>
+	</column>
+	<column name="d_k_beskr">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="d_l_beskr">
+		<type name="character varying" length="1000"/>
 	</column>
 	<column name="ansvar_org">
 		<type name="character varying" length="254"/>
@@ -3188,38 +3197,74 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="kontak_vedl">
 		<type name="character varying" length="254"/>
 	</column>
+	<column name="handicap_k">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="saeson_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="saeson_st">
+		<type name="date" length="0"/>
+	</column>
+	<column name="saeson_sl">
+		<type name="date" length="0"/>
+	</column>
+	<column name="doegnaab_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="vandhane_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="bemand_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="betaling_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="book_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="antal_pl">
+		<type name="integer" length="0"/>
+	</column>
 	<column name="foto_link1">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="foto_link2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="vejkode">
-		<type name="integer" length="1"/>
+	<column name="filmlink">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="adr_id">
+		<type name="uuid" length="0"/>
 	</column>
 	<column name="ansva_v_k">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="husnr">
-		<type name="character varying" length="4"/>
-	</column>
-	<column name="postnr">
-		<type name="integer" length="1"/>
+	<column name="geometri" not-null="true">
+		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
-		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
-	</column>
 	<constraint name="t_5800_fac_pkt_pk" type="pk-constr" factor="10" table="fkg.t_5800_fac_pkt_t">
 		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
+			<expression><![CDATA[date_part('year', saeson_st) = 1]]></expression>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
+			<expression><![CDATA[date_part('year', saeson_st) = 1]]></expression>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_antal_pl_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
+			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 </table>
 
 <table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="32">
 	<schema name="fkg"/>
-	<position x="2240" y="4320"/>
+	<position x="2240" y="4780"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3298,7 +3343,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5802_fac_li_pk" type="pk-constr" factor="10" table="fkg.t_5802_fac_li_t">
@@ -3378,7 +3423,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5900_jordfl_pk" type="pk-constr" factor="10" table="fkg.t_5900_jordfl_t">
@@ -3455,7 +3500,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5902_jordv_anl_pk" type="pk-constr" factor="10" table="fkg.t_5902_jordv_anl_t">
@@ -3505,7 +3550,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5104_art_invas_pk" type="pk-constr" factor="10" table="fkg.t_5104_art_invas_t">
@@ -3543,7 +3588,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5107_art_invas_p_pk" type="pk-constr" factor="10" table="fkg.t_5107_art_invas_p_t">
@@ -3595,7 +3640,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5600_vintervedl_pk" type="pk-constr" factor="100" table="fkg.t_5600_vintervedl_t">
@@ -3618,7 +3663,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5601_hasti_daemp_pk_pk" type="pk-constr" factor="100" table="fkg.t_5601_hasti_daemp_t">
@@ -3665,7 +3710,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5602_p_zoner_pk" type="pk-constr" factor="100" table="fkg.t_5602_p_zoner_t">
@@ -3709,7 +3754,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5603_hasti_zone_pk" type="pk-constr" factor="100" table="fkg.t_5603_hasti_zone_t">
@@ -3741,7 +3786,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5604_koer_begr_pk" type="pk-constr" factor="100" table="fkg.t_5604_koer_begr_t">
@@ -3788,7 +3833,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5605_vejbyggel_pk" type="pk-constr" factor="100" table="fkg.t_5605_vejbyggel_t">
@@ -3823,7 +3868,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5606_vejinv_pk" type="pk-constr" factor="100" table="fkg.t_5606_vejinv_t">
@@ -3888,7 +3933,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5700_grundej_pk" type="pk-constr" factor="10" table="fkg.t_5700_grundej_t">
@@ -3917,7 +3962,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5701_lok_omr_pk" type="pk-constr" factor="10" table="fkg.t_5701_lok_omr_t">
@@ -3964,7 +4009,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5702_skorst_fej_pk" type="pk-constr" factor="10" table="fkg.t_5702_skorst_fej_t">
@@ -4026,7 +4071,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5703_afstem_sted_pk" type="pk-constr" factor="10" table="fkg.t_5703_afstem_sted_t">
@@ -4073,7 +4118,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5704_afstem_omr_pk" type="pk-constr" factor="10" table="fkg.t_5704_afstem_omr_t">
@@ -4120,7 +4165,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5705_forp_are_pk" type="pk-constr" factor="10" table="fkg.t_5705_forp_are_t">
@@ -4152,7 +4197,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5706_havn_are_pk" type="pk-constr" factor="10" table="fkg.t_5706_havn_are_t">
@@ -4220,7 +4265,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5707_grunds_pk" type="pk-constr" factor="10" table="fkg.t_5707_grunds_t">
@@ -4273,7 +4318,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5710_born_skole_dis_pk" type="pk-constr" factor="10" table="fkg.t_5710_born_skole_dis_t">
@@ -4305,7 +4350,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5711_and_dis_pk" type="pk-constr" factor="10" table="fkg.t_5711_and_dis_t">
@@ -4340,7 +4385,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5712_plej_aeldr_dis_pk" type="pk-constr" factor="10" table="fkg.t_5712_plej_aeldr_dis_t">
@@ -4375,7 +4420,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5713_prog_stat_dis_pk" type="pk-constr" factor="10" table="fkg.t_5713_prog_stat_dis_t">
@@ -4425,7 +4470,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5714_laering_udd_inst_pk" type="pk-constr" factor="10" table="fkg.t_5714_laering_udd_inst_t">
@@ -4435,7 +4480,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5715_botilbud_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="2240" y="3400"/>
+	<position x="2260" y="3320"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4466,7 +4511,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5715_botilbud_pk" type="pk-constr" factor="10" table="fkg.t_5715_botilbud_t">
@@ -4476,7 +4521,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5716_servicetilbud_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="2240" y="3580"/>
+	<position x="2240" y="3520"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4507,7 +4552,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5716_servicetilbud_pk" type="pk-constr" factor="10" table="fkg.t_5716_servicetilbud_t">
@@ -4725,7 +4770,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6000_pot_pk" type="pk-constr" factor="100" table="fkg.t_6000_pot_t">
@@ -4784,7 +4829,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6001_pot_m_pk" type="pk-constr" factor="100" table="fkg.t_6001_pot_m_t">
@@ -4840,7 +4885,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6002_indv_pk" type="pk-constr" factor="100" table="fkg.t_6002_indv_t">
@@ -4902,7 +4947,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6003_besk_zone_pk" type="pk-constr" factor="100" table="fkg.t_6003_besk_zone_t">
@@ -4937,7 +4982,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6004_vandv_fs_pk" type="pk-constr" factor="100" table="fkg.t_6004_vandv_fs_t">
@@ -4969,7 +5014,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6006_grundv_opl_pk" type="pk-constr" factor="100" table="fkg.t_6006_grundv_opl_t">
@@ -5001,7 +5046,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6007_inds_omr_pk" type="pk-constr" factor="100" table="fkg.t_6007_inds_omr_t">
@@ -5024,7 +5069,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6008_maks_bor_pk" type="pk-constr" factor="100" table="fkg.t_6008_maks_bor_t">
@@ -5059,7 +5104,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6009_indv_ovflv_pk" type="pk-constr" factor="100" table="fkg.t_6009_indv_ovflv_t">
@@ -5116,7 +5161,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6101_beskyt_rum_pk" type="pk-constr" factor="10" table="fkg.t_6101_beskyt_rum_t">
@@ -5151,7 +5196,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" sql-disabled="true">
+	<column name="geometri">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6103_bered_omr_pk" type="pk-constr" factor="10" table="fkg.t_6103_bered_omr_t">
@@ -5183,7 +5228,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6104_risiko_virk_pk" type="pk-constr" factor="10" table="fkg.t_6104_risiko_virk_t">
@@ -5221,7 +5266,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6105_sbygn_omr_pk" type="pk-constr" factor="10" table="fkg.t_6105_sbygn_omr_t">
@@ -5322,7 +5367,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6107_forholds_pk" type="pk-constr" factor="10" table="fkg.t_6107_forholds_t">
@@ -5375,7 +5420,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6108_moedepl_pk" type="pk-constr" factor="10" table="fkg.t_6108_moedepl_t">
@@ -5419,7 +5464,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6110_noegle_pk" type="pk-constr" factor="10" table="fkg.t_6110_noegle_t">
@@ -5463,7 +5508,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6111_fyrv_till_pk" type="pk-constr" factor="10" table="fkg.t_6111_fyrv_till_t">
@@ -5501,7 +5546,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6112_midl_dep_pk" type="pk-constr" factor="10" table="fkg.t_6112_midl_dep_t">
@@ -5524,7 +5569,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6113_besk_nat_b_pk" type="pk-constr" factor="10" table="fkg.t_6113_besk_nat_b_t">
@@ -5550,7 +5595,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6115_afbr_omr_pk" type="pk-constr" factor="10" table="fkg.t_6115_afbr_omr_t">
@@ -5591,7 +5636,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6116_olie_ber_pl_pk" type="pk-constr" factor="10" table="fkg.t_6116_olie_ber_pl_t">
@@ -5635,7 +5680,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6117_inds_pkt_pk" type="pk-constr" factor="10" table="fkg.t_6117_inds_pkt_t">
@@ -5682,7 +5727,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6118_bran_redn_pk" type="pk-constr" factor="10" table="fkg.t_6118_bran_redn_t">
@@ -5769,7 +5814,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6200_nat_geo_pk" type="pk-constr" factor="10" table="fkg.t_6200_nat_geo_t">
@@ -5807,7 +5852,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6201_kult_geo_pk" type="pk-constr" factor="10" table="fkg.t_6201_kult_geo_t">
@@ -5905,7 +5950,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6202_landk_omr_pk" type="pk-constr" factor="10" table="fkg.t_6202_landk_omr_t">
@@ -5961,7 +6006,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6203_landk_vur_pk" type="pk-constr" factor="10" table="fkg.t_6203_landk_vur_t">
@@ -6032,7 +6077,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6800_parl_fl_pk" type="pk-constr" factor="10" table="fkg.t_6800_parl_fl_t">
@@ -6124,7 +6169,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6801_parl_li_pk" type="pk-constr" factor="10" table="fkg.t_6801_parl_li_t">
@@ -6207,7 +6252,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6802_parl_pkt_pk" type="pk-constr" factor="10" table="fkg.t_6802_parl_pkt_t">
@@ -6260,7 +6305,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6803_parl_omr_pk" type="pk-constr" factor="10" table="fkg.t_6803_parl_omr_t">
@@ -6287,7 +6332,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="19">
 	<schema name="fkg"/>
-	<position x="2240" y="4020"/>
+	<position x="2240" y="4280"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6333,7 +6378,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5801_fac_fl_pk" type="pk-constr" table="fkg.t_5801_fac_fl_t">
@@ -6472,7 +6517,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6119_evaku_centr_pk" type="pk-constr" table="fkg.t_6119_evaku_centr_t">
@@ -6534,7 +6579,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6120_midl_overn_pk" type="pk-constr" table="fkg.t_6120_midl_overn_t">
@@ -6614,7 +6659,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_6121_stor_ud_arr_pk" type="pk-constr" table="fkg.t_6121_stor_ud_arr_t">
@@ -6837,7 +6882,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="geometri" not-null="true" sql-disabled="true">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5000_vandl_pk" type="pk-constr" factor="10" table="fkg.t_5000_vandl_t">
@@ -6882,66 +6927,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_offentlig" table="fkg.generel">
 	<columns names="off_kode" ref-type="src-columns"/>
 	<columns names="off_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5000_vandl_t">
-	<columns names="versions_id" ref-type="src-columns"/>
-	<columns names="versions_id" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_5000_klasse_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_klasse" table="fkg.t_5000_vandl_t">
-	<columns names="klasse_kode" ref-type="src-columns"/>
-	<columns names="klasse_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_5000_vandl_type_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_vandl_type" table="fkg.t_5000_vandl_t">
-	<columns names="vandl_type_kode" ref-type="src-columns"/>
-	<columns names="vandl_type_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_basis_ejerstatus_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5000_vandl_t">
-	<columns names="ejerstatus_kode" ref-type="src-columns"/>
-	<columns names="ejerstatus_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_basis_ja_nej_tidl_amt_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl_t">
-	<columns names="tidl_amt_kode" ref-type="src-columns"/>
-	<columns names="ja_nej_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl_t">
-	<columns names="p3vandloeb_kode" ref-type="src-columns"/>
-	<columns names="ja_nej_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_basis_dvfi_bedoemmelse_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_dvfi_bedoemmelse" table="fkg.t_5000_vandl_t">
-	<columns names="dvfi_bedoemmelse_kode" ref-type="src-columns"/>
-	<columns names="dvfi_bedoemmelse_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl_t">
-	<columns names="maalsaetning_opfyldt_kode" ref-type="src-columns"/>
-	<columns names="ja_nej_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_basis_trussel_vand_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_trussel_vand" table="fkg.t_5000_vandl_t">
-	<columns names="trussel_vand_kode" ref-type="src-columns"/>
-	<columns names="trussel_vand_kode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5000_vandl_d_5000_maalsaetning_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_maalsaetning" table="fkg.t_5000_vandl_t">
-	<columns names="maalsaetning_kode" ref-type="src-columns"/>
-	<columns names="maalsaetning_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="d_tabel_d_temagruppe_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -7376,18 +7361,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="facil_ty_k" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="t_5800_fac_pkt_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5800_fac_pkt_t">
-	<columns names="vejkode" ref-type="src-columns"/>
-	<columns names="vejkode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5800_fac_pkt_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5800_fac_pkt_t">
-	<columns names="postnr" ref-type="src-columns"/>
-	<columns names="postnr" ref-type="dst-columns"/>
-</constraint>
-
 <constraint name="t_5800_fac_pkt_d_basis_handicapegnet_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_handicapegnet" table="fkg.t_5800_fac_pkt_t">
 	<columns names="handicap_k" ref-type="src-columns"/>
@@ -7404,6 +7377,36 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansva_v" table="fkg.t_5800_fac_pkt_t">
 	<columns names="ansva_v_k" ref-type="src-columns"/>
 	<columns names="ansva_v_k" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5800_fac_pkt_t">
+	<columns names="doegnaab_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5800_fac_pkt_t">
+	<columns names="vandhane_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5800_fac_pkt_d_basis_ja_nej_bemand_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5800_fac_pkt_t">
+	<columns names="bemand_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5800_fac_pkt_d_basis_ja_nej_betaling_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5800_fac_pkt_t">
+	<columns names="betaling_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5800_fac_pkt_d_basis_ja_nej_book_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5800_fac_pkt_t">
+	<columns names="book_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5802_fac_li_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8738,6 +8741,66 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="sua_kode" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5000_vandl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5000_vandl_t">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_5000_klasse_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_klasse" table="fkg.t_5000_vandl_t">
+	<columns names="klasse_kode" ref-type="src-columns"/>
+	<columns names="klasse_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_5000_vandl_type_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_vandl_type" table="fkg.t_5000_vandl_t">
+	<columns names="vandl_type_kode" ref-type="src-columns"/>
+	<columns names="vandl_type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_basis_ejerstatus_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ejerstatus" table="fkg.t_5000_vandl_t">
+	<columns names="ejerstatus_kode" ref-type="src-columns"/>
+	<columns names="ejerstatus_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_basis_ja_nej_tidl_amt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl_t">
+	<columns names="tidl_amt_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl_t">
+	<columns names="p3vandloeb_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_basis_dvfi_bedoemmelse_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_dvfi_bedoemmelse" table="fkg.t_5000_vandl_t">
+	<columns names="dvfi_bedoemmelse_kode" ref-type="src-columns"/>
+	<columns names="dvfi_bedoemmelse_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5000_vandl_t">
+	<columns names="maalsaetning_opfyldt_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_basis_trussel_vand_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_trussel_vand" table="fkg.t_5000_vandl_t">
+	<columns names="trussel_vand_kode" ref-type="src-columns"/>
+	<columns names="trussel_vand_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5000_vandl_d_5000_maalsaetning_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5000_maalsaetning" table="fkg.t_5000_vandl_t">
+	<columns names="maalsaetning_kode" ref-type="src-columns"/>
+	<columns names="maalsaetning_kode" ref-type="dst-columns"/>
+</constraint>
+
 <relationship name="rel_generel_d_basis_oprindelse" type="relfk" layer="0"
 	 src-table="fkg.generel"
 	 dst-table="fkg.d_basis_oprindelse" reference-fk="generel_d_basis_oprindelse_fk"
@@ -9116,16 +9179,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5800_fac_pkt_d_5800_facilitet" type="relfk" layer="0"
 	 src-table="fkg.t_5800_fac_pkt_t"
 	 dst-table="fkg.d_5800_facilitet" reference-fk="t_5800_fac_pkt_d_5800_facilitet_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5800_fac_pkt_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5800_fac_pkt_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5800_fac_pkt_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5800_fac_pkt_d_basis_postnr_fk"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5802_fac_li_generel" type="relfk" layer="0"
@@ -10254,5 +10307,30 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<position x="0" y="0"/>
 	</label>
 </relationship>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej1" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej2" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_bemand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej3" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_betaling_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej4" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_book_fk"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>
