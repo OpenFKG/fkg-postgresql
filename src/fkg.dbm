@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" author="Septima - see license in LICENSE.txt" last-position="1022,3579" last-zoom="1" max-obj-count="360">
+<dbmodel pgmodeler-ver="0.9.2-alpha1" author="Septima - see license in LICENSE.txt" last-position="1022,3579" last-zoom="1" max-obj-count="363">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
 
@@ -3242,11 +3242,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ansva_v_k">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="geometri" not-null="true">
-		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
-	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geometri" not-null="true">
+		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5800_fac_pkt_pk" type="pk-constr" factor="10" table="fkg.t_5800_fac_pkt_t">
 		<columns names="versions_id" ref-type="src-columns"/>
@@ -3255,7 +3255,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 			<expression><![CDATA[date_part('year', saeson_st) = 1]]></expression>
 	</constraint>
 	<constraint name="t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
-			<expression><![CDATA[date_part('year', saeson_st) = 1]]></expression>
+			<expression><![CDATA[date_part('year', saeson_sl) = 1]]></expression>
 	</constraint>
 	<constraint name="t_5800_fac_pkt_antal_pl_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
 			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
@@ -6330,7 +6330,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="19">
+<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="33">
 	<schema name="fkg"/>
 	<position x="2240" y="4280"/>
 	<column name="versions_id" not-null="true">
@@ -6339,17 +6339,26 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="facil_ty_k" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
-	<column name="handicap_k">
-		<type name="integer" length="1"/>
-	</column>
 	<column name="navn">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="saeson_k">
-		<type name="integer" length="0"/>
-	</column>
 	<column name="beskrivels">
 		<type name="character varying" length="254"/>
+	</column>
+	<column name="lang_beskr">
+		<type name="character varying" length="1000"/>
+	</column>
+	<column name="uk_k_beskr">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="uk_l_beskr">
+		<type name="character varying" length="1000"/>
+	</column>
+	<column name="d_k_beskr">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="d_l_beskr">
+		<type name="character varying" length="1000"/>
 	</column>
 	<column name="ansvar_org">
 		<type name="character varying" length="254"/>
@@ -6357,23 +6366,50 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="kontak_vedl">
 		<type name="character varying" length="254"/>
 	</column>
+	<column name="handicap_k">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="saeson_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="saeson_st">
+		<type name="date" length="0"/>
+	</column>
+	<column name="saeson_sl">
+		<type name="date" length="0"/>
+	</column>
+	<column name="doegnaab_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="vandhane_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="bemand_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="betaling_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="book_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="antal_pl">
+		<type name="integer" length="0"/>
+	</column>
 	<column name="foto_link1">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="foto_link2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="vejkode">
-		<type name="integer" length="1"/>
+	<column name="filmlink">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="adr_id">
+		<type name="uuid" length="0"/>
 	</column>
 	<column name="ansva_v_k">
 		<type name="integer" length="0"/>
-	</column>
-	<column name="husnr">
-		<type name="character varying" length="4"/>
-	</column>
-	<column name="postnr">
-		<type name="integer" length="1"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
@@ -6383,6 +6419,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="t_5801_fac_fl_pk" type="pk-constr" table="fkg.t_5801_fac_fl_t">
 		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5801_fac_fl_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
+			<expression><![CDATA[date_part('year', saeson_st) = 1]]></expression>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
+			<expression><![CDATA[date_part('year', saeson_sl) = 1]]></expression>
+	</constraint>
+	<constraint name="t_5801_fac_fl_antal_pl_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
+			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 </table>
 
@@ -8591,18 +8636,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="versions_id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="t_5801_fac_pkt_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5801_fac_fl_t">
-	<columns names="vejkode" ref-type="src-columns"/>
-	<columns names="vejkode" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="t_5801_fac_fl_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5801_fac_fl_t">
-	<columns names="postnr" ref-type="src-columns"/>
-	<columns names="postnr" ref-type="dst-columns"/>
-</constraint>
-
 <constraint name="t_5801_fac_fl_d_5800_facilitet_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_facilitet" table="fkg.t_5801_fac_fl_t">
 	<columns names="facil_ty_k" ref-type="src-columns"/>
@@ -8625,6 +8658,36 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ansva_v" table="fkg.t_5801_fac_fl_t">
 	<columns names="ansva_v_k" ref-type="src-columns"/>
 	<columns names="ansva_v_k" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
+	<columns names="doegnaab_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_ja_nej_vandhane_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
+	<columns names="vandhane_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_ja_nej_bemand_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
+	<columns names="bemand_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_ja_nej_betaling_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
+	<columns names="betaling_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_ja_nej_book_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
+	<columns names="book_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6119_evaku_centr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -10105,16 +10168,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.generel" reference-fk="t_5801_fac_fl_generel_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5801_fac_fl_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5801_fac_pkt_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5801_fac_fl_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5801_fac_fl_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
 <relationship name="rel_t_5801_fac_fl_d_5800_facilitet" type="relfk" layer="0"
 	 src-table="fkg.t_5801_fac_fl_t"
 	 dst-table="fkg.d_5800_facilitet" reference-fk="t_5801_fac_fl_d_5800_facilitet_fk"
@@ -10331,6 +10384,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej4" type="relfk" layer="0"
 	 src-table="fkg.t_5800_fac_pkt_t"
 	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_book_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej1" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_vandhane_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej2" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_bemand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej3" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_betaling_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej4" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_book_fk"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
