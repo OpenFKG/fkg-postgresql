@@ -149,6 +149,8 @@ DELETE FROM fkg.d_5802_svaerhed;
 DELETE FROM fkg.d_5802_hierarki;
 DELETE FROM fkg.d_5802_rute_uty;
 DELETE FROM fkg.d_5802_kategori;
+-- New lookuptables in 2.6.0.2
+DELETE FROM fkg.d_5802_certifi;
 
 
 INSERT INTO fkg.d_temagruppe VALUES ('5.1', 5000, 5099,'Overfladevand');
@@ -2383,32 +2385,37 @@ INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (99,'Ukendt',1,'Ukendt');
 -- SELECT * FROM d_5716_Servicetilbud_type;
 
 
-INSERT INTO fkg.d_5800_facilitet VALUES (1012, 'Toilet', 1, 'WC i bygning, der er åbent for offentligheden.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1012, 'Toilet', 1, 'WC i bygning/muldtoilet, der er åbent for offentligheden.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1022, 'Bålplads', 1, 'Afgrænset plads til bål eller grill til offentlig brug.  Ikke alle bålsteder har grill-muligheden.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1031, 'Legeplads', 1, 'En legeplads er et afgrænset sted udendørs, som er tilrettelagt for at børn kan lege der.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1041, 'Naturlegeplads', 1, 'Legeplads ude i naturen typisk bygget med naturens egne matrialer. Træstammer og sten m.v.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1051, 'Badestrand', 1, 'Område, der anvendes til badning.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1061, 'Blå Flag strand', 1, 'Badeområde, der er tildelt Blå Flag.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1051, 'Badestrand/-sted', 1, 'Område, der anvendes til badning. Særligt udpegede, servicerede ikke nødvendigvis certificerede. Fælles navn for hav- og søbade.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1061, 'Blå Flag strand', 1, 'Badeområde eller havne, der er tildelt Blå Flag.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1072, 'Blå Flag facilitet', 1, 'Faciliteter til Blå Flag badestrande, f.eks. infostandere, redningsposter mm.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1082, 'Spejderhytte', 1, 'Bygning, hvor en eller flere spejdergrupper holder til.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1091, 'Friluftsbad/Svømmebad', 1, 'Område med et eller flere badebassinner, der kan være overdækket eller under åben himmel. Dækker også havnebad.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1102, 'Slæbested', 1, 'Anlæg til ophaling eller isætning af mindre både, evt. med spil.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1112, 'Motionsmødested', 1, 'Sted i bygning eller i naturen, hvor man mødes med andre motionister, som udgangspunkt for fælles motion.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1122, 'Cykelpumpestation', 1, 'Opstillet cykelpumpe.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1132, 'Tørvejrsrum', 1, 'Halvåbent, overdækket sted, hvor du kan raste og spise medbragt mad. Også kaldetmadpakkehus.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1112, 'Motionsmødested', 1, 'Herunder trailhead og lignende. Mødested hvorfra flere rekreative ruter udgår, som kan være udgangspunkt for fælles motion og aktivitet. Ved et Trailhead findes infotavler eller anden form for information, p-plads og evt. andre simple faciliteter i umiddelbar nærhed.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1122, 'Cykelpumpestation/-servicepost', 1, 'Sted hvor der er opstillet cykelpumpe og evt. andre faciliteter til service af cykler.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1132, 'Tørvejrsrum/Madpakkehus', 1, 'Halvåbent, overdækket sted, hvor du kan raste og spise medbragt mad.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1142, 'Virtuelt oplevelsespunkt', 1, 'Virtuelle oplevelsespunkter/Hotspots, som kan tilgås fx via apps eller lignende.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1152, 'Info-tavle', 1, 'Opstillet skilt, planche eller tavle med information om et område og dets muligheder.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1162, 'Cykelparkering', 1, 'Opstillet cykelstativ eller anden fast opstilling, der gør det muligt at parkere sin cykel.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1172, 'Ladestationer', 1, 'Ladestationer til elbiler.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1172, 'Ladestation', 1, 'Ladestation til el-cykler.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1182, 'Turistinformation', 1, 'Kontor/lokaler, der har til formål at informere turister om lokalområdet.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1191, 'Hundeskov/Hundepark', 1, 'Særligt udpeget og eventuelt indhegnet område for hundeluftning. Kommunale og private områder.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1201, 'Picnic', 1, 'Plads med borde, siddepladser, evt. hængekøjer og andre ting til roligt ophold.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1191, 'Hundeskov/Hundepark/fritløbsareal', 1, 'Særligt udpeget og eventuelt indhegnet område for hundeluftning, hvor hunde må løbe frit, under forudsætning af ”fuld kontrol af hunden”. Kommunale og private områder.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1201, 'Borde-bænke/Picnic', 1, 'Plads med borde, siddepladser, evt. hængekøjer og andre ting til roligt ophold.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1211, 'Vandlegeplads', 1, 'Legeplads med særlige redskaber og faciliteter til leg med vand.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1222, 'Vandpost', 1, 'Offentligt tilgængeligt drikkevand. Kan være lukket om vinteren.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1232, 'Trækfærge', 1, 'En trækfærge er en pram som er forbundet med en wire. Trækfærgen forbinder bredderne på en å eller et vandløb så man kan med egen trækkraft komme over på den anden side.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1242, 'Livreddertårn', 1, 'Bemandet redningspost (rød og hvidstribet tårn) af specieluddannede kystlivreddere og udstyret med blandt andet hjertestartere, rescue boards og førstehjælpsudstyr.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1252, 'Livredderpost', 1, 'Ubemandet redningspost der typisk indeholder: Vejlednig, 1 redningskrans, 1 sejldugstaske med 22o m nylon line, 2 redningsveste, 2 gjordbælter med karbinhage og evt. isstige og issyle.');
-INSERT INTO fkg.d_5800_facilitet VALUES (2012, 'Fugletårn', 1, 'Fugletårn er en indretning rejst ved en fuglelokalitet for at give offentligheden udsyn til områdets fugleliv og ofte skjule observatørerne således at fuglene ikke forstyrres.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1252, 'Livredderpost', 1, 'Ubemandet redningspost der typisk indeholder: Vejlednig, 1 redningskrans, 1 sejldugstaske med 220 m nylon line, 2 redningsveste, 2 gjordbælter med karbinhage og evt. isstige og issyle.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1261, 'Badevandsflag',	1, 'Badeområde der er tildelt badevandsflag, der ikke er Blå Flag.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1272, 'Badevandsflag facilitet', 1, 'Faciliteter til strande med badevandsflag, der ikke er Blå Flag, f.eks. førstehjælpskasser, skilte på vandkvalitetsmålinger, nødtelefon.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1281, 'Hesteophold', 1, 'Mindre indhegning m.v. til heste, som kan benyttes i forbindelse med midlertidigt ophold. Evt. en del af et høhotel.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1291, 'Parkeringplads', 1, 'P-plads i tilknytning til rekreative områder/faciliteter og som ikke er registreret andre steder (vejregister). Man kan angive om parkeringspladsen er egnet til f.eks. hestetrailer i beskrivelsesfeltet.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1302, 'Formidlingscenter', 1, 'Herunder trailcenter, gateway, port mv. Sted eller bygning som er udgangs- og knudepunkt for formidling af natur og aktiviteter samt oplevelser og ophold i det omkringliggende landskab. Indeholder relevante services og faciliteter eller skiltning/vejvisning dertil.');
+INSERT INTO fkg.d_5800_facilitet VALUES (2012, 'Fugletårn/Udsigtstårn', 1, 'Platform, tårn eller skjul som giver mulighed for udsigt over et område eller særlige seværdigheder, fx udsyn til områdets fugle, dyreliv, landskab mv.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2022, 'Udsigtspunkt', 1, 'Punkt med en god udsigt. Ofte på toppen af en høj eller skrænt. Kan også være fra en bygning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2031, 'Fiskesø', 1, 'Put&take sø. Sted hvor man kan købe dagskort til at fiske efter udsatte fisk.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2041, 'Rekreativt naturområde', 1, 'Naturområde hvor borgere kan opholde sig og rekreere. Fordybelsessted.');
@@ -2424,12 +2431,21 @@ INSERT INTO fkg.d_5800_facilitet VALUES (2132, 'Kælkebakke', 1, 'Område med mu
 INSERT INTO fkg.d_5800_facilitet VALUES (2141, 'Terapihave', 1, 'Specielt indrettede haveanlæg med terapeutisk og stressforebyggende formål.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2151, 'Spiselig vegetation', 1, 'Areal med offentligt tilgængelige spiselige planter, frugt, nødder, grønsager mm.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2161, 'Oplevelsespunkt', 1, 'Plads i naturområde eller friluftsanlæg med mulighed for ophold, naturoplevelser, evt. lån af grej, bålplads, information mm. Herunder oplevelsespunkt i havne f.eks. kaldet Oplevelseshavn.');
-INSERT INTO fkg.d_5800_facilitet VALUES (3012, 'Shelter', 1, 'En lav træbarak, traditionelt åben på den ene langside, gulvet hævet ca. 0,5 m over jorden og stort tagudhæng, således at man er relativt beskyttet mod regn.');
-INSERT INTO fkg.d_5800_facilitet VALUES (3022, 'Kano overnatningsplads', 1, 'Kanorasteplads til kanofarer, med mulighed for overnatning.');
+INSERT INTO fkg.d_5800_facilitet VALUES (2171, 'Frit fiskeri',	1, 'Område ved sø eller å, hvor der er en udvidet ret ud over den almindelig ret til at fiske ved danske kyster med gyldigt dansk fisketegn.');
+INSERT INTO fkg.d_5800_facilitet VALUES (2183, 'Geopark', 1, 'Et særligt udpeget naturområde, hvor den geologiske historie kan studeres og opleves. Geoparker har til formål at beskytte, formidle og understøtte den geologiske arv.');
+INSERT INTO fkg.d_5800_facilitet VALUES (2191, 'Seværdighed - Fauna', 1, 'Seværdighed indenfor dyreriget');
+INSERT INTO fkg.d_5800_facilitet VALUES (2201, 'Seværdighed – Flora', 1, 'Seværdighed indenfor planteriget');
+INSERT INTO fkg.d_5800_facilitet VALUES (2211, 'Seværdighed – Geologi', 1, 'Geologisk seværdighed ');
+INSERT INTO fkg.d_5800_facilitet VALUES (2223, 'Naturkanon', 1	, 'Statens udpegede steder. Naturkanon steder/områder. Indmeldes kun af staten/MST.');
+INSERT INTO fkg.d_5800_facilitet VALUES (3012, 'Shelter', 1, 'Primitiv overdækket overnatningsmulighed. En shelter kan være alt fra nogle stolper og en presenning, over klassiske sheltere, til simple hytter med overnatningspladser. Åbne i en eller flere sider eller helt lukkede.');
+INSERT INTO fkg.d_5800_facilitet VALUES (3022, 'Kano/kajak overnatningsplads', 1, 'Rasteplads til kano-/kajakfarer med mulighed for overnatning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3031, 'Teltplads', 1, 'Sted til at slå telt op for overnatning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3041, 'Campingplads', 1, 'Overnatningssted til campingvogne og telte.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3051, 'Hytter og Lejrskoler', 1, 'Udlejningshytter med plads til mange. Typiske med sovesale og storkøkken.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3061, 'Feriecenter', 1, 'En samling ferielejligheder, der danner rammen om familiens ophold på feriecenteret, samt en række fælles faciliteter, hvor der tilbydes en bred vifte af aktiviteter.');
+INSERT INTO fkg.d_5800_facilitet VALUES (3071, 'Fri teltning', 1, 'Større område, hvor der frit må slås telt op og overnattes en enkelt nat, uden at der skal søges tilladelse i forvejen. Der må højest slå to telte og teltene må maks være trepersoners telte.');
+INSERT INTO fkg.d_5800_facilitet VALUES (3081, 'Hængekøjelund', 1, 'Område indrettet enten med træer eller pæle, som er placeret med en afstand, som passer til at opsætte hængekøjer imellem. De anvendes ofte til overnatning af store grupper, som ønsker at sove i hængekøje.');
+INSERT INTO fkg.d_5800_facilitet VALUES (3091, 'Bålhytte', 1, 'Overdækket bålsted. Ofte med delvis sidebeklædning og hul i taget, så røgen kan slippe ud.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4011, 'Idrætshal', 1, 'Kaldes også for sportshal. Stor hal hvor i der kan dyrkes en eller flere former for fysisk sport.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4021, 'Svømmehal', 1, 'Opvarmet svømmebassin inde i en bygning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4031, 'Idrætsanlæg', 1, 'Bane hvor på der kan dyrkes en eller flere former for fysisk sport, f.eks. atletik, fodbold, baseball mm.');
@@ -2447,11 +2463,11 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4142, 'Skateranlæg', 1, 'Anlæg, plads
 INSERT INTO fkg.d_5800_facilitet VALUES (4152, 'Parkouranlæg', 1, 'Plads/område med særlige faciliteter til at udøve parkour i.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4161, 'Rideanlæg', 1, 'Placering for ridecenter eller –klub.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4172, 'Beachvolleybane', 1, 'Udendørs areal afsat til spillet beachvolley.');
-INSERT INTO fkg.d_5800_facilitet VALUES (4182, 'Dykkerspot', 1, 'Seværdighed under vand.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4182, 'Dykkerspot', 1, 'Område med seværdigheder og oplevelsesmuligheder under vand, fx vrag, rev, dyreliv mv.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4191, 'Kitesurf område', 1, 'Område anvist til kitesurfing.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4201, 'Windsurfområde', 1, 'Område anvist til windsurfing.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4211, 'Kitebuggyområde', 1, 'Område anvist til kørsel med kitebuggy.');
-INSERT INTO fkg.d_5800_facilitet VALUES (4222, 'Motionsplads', 1, 'Sted i naturen, hvor der er opstillet div. motionsredskaber til fri afbenyttelse, fx  sundhedsplads, motionsplads, fitnessplads, pulspark.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4222, 'Udendørs Fitness/Motionsplads', 1, 'Baner, områder og redskaber under åben himmel, evt. i naturen som er designet til at dyrke motion og fitness, fx naturfitness, sundhedsplads, motionsplads, pulspark mv.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4231, 'Flugtskydningsbane', 1, 'Lerdueskydningsbane.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4241, 'Motorsportsbane', 1, 'Bane, hvor der udøves motorsport.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4251, 'Ketchersportsanlæg', 1, 'Udendørs og/eller indendørs anlæg eller bane til ketchersport, herunder tennis og squash.');
@@ -2460,6 +2476,14 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4272, 'Klatreanlæg', 1, 'Område med o
 INSERT INTO fkg.d_5800_facilitet VALUES (4281, 'Cricketbane', 1, 'Bane til spillet Cricket');
 INSERT INTO fkg.d_5800_facilitet VALUES (4291, 'Krolfbane', 1, 'Bane til spillet Krolf');
 INSERT INTO fkg.d_5800_facilitet VALUES (4301, 'UV-jagtspot', 1, 'Område der er velegnet til undervands-jagt.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4311, 'Snorkelsti/-område', 1, 'Rute/område under vandet til snorkling, markeret f.eks. med et tov langs bunden eller med bøjer. Der kan i forbindelse med ruten formidles om de ting der kan opleves, fx via billeder, tekst eller effekter.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4322, 'Orienteringsrute startpunkt', 1, '"Find vej i"/orienteringsrute med afmærkede poster, hvor det handler om at finde vej til de opsatte poster ved hjælp af et kort. Viser blot startpunktet/-pælen.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4332, 'Orienteringsrute slutpunkt', 1, '"Find vej i"/orienteringsrute med afmærkede poster, hvor det handler om at finde vej til de opsatte poster ved hjælp af et kort. Viser blot slutpunktet/-pælen.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4342, 'Bindebom', 1, 'Sted hvor man kan tøjre en hest');
+INSERT INTO fkg.d_5800_facilitet VALUES (4351, 'Skibakke', 1, 'Område med mulighed for at stå på ski i forbindelse med snevejr.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4361, 'Fodboldgolf', 1, 'Anlæg/bane til fodboldgolf.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4371, 'Bueskydning', 1, 'Bane til bueskydning.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4381, 'Strandhåndboldbane', 1, 'Bane hvor man kan spille strandhåndbold.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5011, 'Forsamlingshus', 1, 'Et forsamlingshus er byens kulturhus og mødested.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5021, 'Museum', 1, 'Museum er en permanent institution med udstilling og formidling af f.eks. kunst, kulturhistorie eller naturhistorie.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5031, 'Teater', 1, 'Sted, hvor der opføres teater eller andre kulturelle opførelser. Herunder også amfiteater.');
@@ -2474,7 +2498,10 @@ INSERT INTO fkg.d_5800_facilitet VALUES (6011, 'Bådplads', 1, 'Fortøjningssted
 INSERT INTO fkg.d_5800_facilitet VALUES (6021, 'Rostadion', 1, 'Område på sø til konkurrence roning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (6031, 'Umotoriseret sejlads tilladt', 1, 'Område, hvor det er tilladt at sejle i kano el. lign. Udpeges f.eks. på vandflade, hvor der ellers er generelt sejlforbud.');
 INSERT INTO fkg.d_5800_facilitet VALUES (6042, 'Sejlsports- og roklub', 1, 'Klubhus, hvorfra der udøves sejlsport.');
-INSERT INTO fkg.d_5800_facilitet VALUES (6052, 'Kanorasteplads', 1, 'Rasteplads til kanofarer.');
+INSERT INTO fkg.d_5800_facilitet VALUES (6052, 'Kano-/kajakrasteplads', 1, 'Rasteplads til kano- og/eller kajakfarer samt SUP (StandUpPadleboard).');
+INSERT INTO fkg.d_5800_facilitet VALUES (6062, 'Ophaler-/isætningsplads', 1, 'Plads til isætning optagning af ikke motoriserede småbåde (kano, kajak o.lign.)');
+INSERT INTO fkg.d_5800_facilitet VALUES (6071, 'Svajeplads', 1, 'Svajeplads/Bøje med mulighed for opankning.');
+INSERT INTO fkg.d_5800_facilitet VALUES (6081, 'Vandscooter tilladt', 1, 'Sejlads med vandscooter tilladt. Dog i 300m-kystzonen kun vinkelret på kysten og med max 5 knob.');
 INSERT INTO fkg.d_5800_facilitet VALUES (9981, 'Andet', 1, 'Hvor andre facilitetsbetegnelser ikke er dækkende.');
 INSERT INTO fkg.d_5800_facilitet VALUES (9991, 'Ukendt', 1, 'Mangler viden om typen.');
 -- SELECT * FROM fkg.d_5800_facilitet;
@@ -2490,7 +2517,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (9991, 'Ukendt', 1, 'Mangler viden om ty
 
 INSERT INTO fkg.d_5800_saeson VALUES
 (1, 'Helårsåbent',      1, 'Faciliteten er åbent hele året'),
-(2, 'Sæsonåbent',       1, 'Faciliteten er åbent kun i sæsonen. Sæson/åbningstider kan noteres i beskrivelsesfeltet'),
+(2, 'Sæsonåbent',       1, 'Faciliteten er åbent kun i sæsonen. Sæson/åbningstider kan/bør noteres i andre felter'),
 (7, 'Ej relevant',      1, 'Angivelse af sæson er ikke relevant-'),
 (8, 'Andet',            1, 'Andet'),
 (9, 'Ukendt',           1, 'Mangler viden om fremkommeligheden');
@@ -2506,8 +2533,10 @@ INSERT INTO fkg.d_5802_rutetype VALUES
 (8, 'Riderute',	        1, 'Afmærket eller uafmærket rute til færdsel til hest.'),
 (9, 'Sejlrute',	        1, 'Afmærket eller uafmærket rute for kano- og kajak-sejlads.'),
 (10,'Gratis fiskeri',	0, 'Strækning med gratis fiskeri.'),
-(11,'Rekreativ sti',	1, 'Vandresti med fokus på det rekreative.'),
-(12,'Adgangsvej',	0, 'Sti eller spor med fri adgang, der fører hen til facilitet.'),
+(11,'Rekreativ sti',	0, 'Vandresti med fokus på det rekreative.'),
+(12,'Adgangsvej',	    0, 'Sti eller spor med fri adgang, der fører hen til facilitet.'),
+(13,'Margueritruten',   1, 'Skiltet rute forbi seværdigheder og smuk natur. Tiltænkt til biler og motorcyklister. Store dele også velegnet for cyklister.'),
+(14,'Trec-bane',        1, 'Rideaktivitetsbane i naturen for heste og ryttere.'),
 (98,'Andet',            1, 'Hvor andre facilitetsbetegnelser ikke er dækkende.'),
 (99,'Ukendt',           1, 'Mangler viden om rutetypen.');
 
@@ -2545,7 +2574,22 @@ INSERT INTO fkg.d_5802_kategori VALUES
 (8, 'Andet',            1, 'Andet'),
 (9, 'Ukendt',           1, 'Mangler viden om kategori');
 
-
+INSERT INTO fkg.d_5802_certifi VALUES
+( 0, 'Ikke certificeret',               1, 'Ej certificeret'),
+( 1, 'Premiumrute - rundvandrerute ',   1, 'Vandrerute certificeret af Deutsches Wanderinstitut. https://www.wanderinstitut.de/deutsches-wandersiegel/premiumwegtypen/'),
+( 2, 'Premiumrute – let-vandrerute',    1, 'Vandrerute certificeret af Deutsches Wanderinstitut. https://www.wanderinstitut.de/premium-spazierwanderwege/'),
+( 3, 'Premiumrute - langdistancerute',  1, 'Vandrerute certificeret af Deutsches Wanderinstitut. https://www.wanderinstitut.de/deutsches-wandersiegel/premiumwegtypen/'),
+( 4, 'Premiumrute – byvandrerute',      1, 'Vandrerute certificeret af Deutsches Wanderinstitut. https://www.wanderinstitut.de/premium-stadtwanderwege/'),
+( 5, 'Leading Quality Trail',           1, 'Vandrerute certificeret efter European Ramblers Associaltions ordning. https://www.era-ewv-ferp.org/lqt/'),
+( 6, 'Kvalitetssti – Vandresti',        1, 'Vandrerute godkendt af Dansk Vandrelaug https://dvl.dk/kvalitetssti/'),
+( 7, 'Kvalitetssti – Natursti',         1, 'Vandrerute godkendt af Dansk Vandrelaug https://dvl.dk/kvalitetssti/'),
+( 8, 'Kvalitetssti – Kultursti',        1, 'Vandrerute godkendt af Dansk Vandrelaug https://dvl.dk/kvalitetssti/'),
+( 9, 'Kvalitetssti – Gastronomisk sti', 1, 'Vandrerute godkendt af Dansk Vandrelaug https://dvl.dk/kvalitetssti/'),
+(10, 'Kvalitetssti – Familiesti',       1, 'Vandrerute godkendt af Dansk Vandrelaug https://dvl.dk/kvalitetssti/'),
+(11, 'Kvalitetssti – Komfortsti',       1, 'Vandrerute godkendt af Dansk Vandrelaug https://dvl.dk/kvalitetssti/'),
+(12, 'Kvalitetssti – Bysti',            1, 'Vandrerute godkendt af Dansk Vandrelaug https://dvl.dk/kvalitetssti/'),
+(98, 'Anden',                           1, 'Anden certificering'),
+(99, 'Ukendt',                          1, 'Mangler viden om certificereing');
 
 INSERT INTO fkg.d_5902_vaeske_type VALUES (1,'Ethanol',1,'Ethylalkohol (alm. sprit som det findes i øl, vin, spiritus og husholdningssprit)');
 INSERT INTO fkg.d_5902_vaeske_type VALUES (2,'IPA-sprit',1,'Blandingen ethanol + isopropanol i forholdet 90:10 (altså 90% ethanol og 10% isopropanol) kaldes IPA-sprit, og bruges af nogle som erstatning for ren isopropanol');

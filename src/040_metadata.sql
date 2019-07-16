@@ -310,12 +310,12 @@ CREATE TABLE fkg.d_5000_klasse (
 );
 -- ddl-end --
 
--- -- object: postgis | type: EXTENSION --
--- -- DROP EXTENSION IF EXISTS postgis CASCADE;
--- CREATE EXTENSION postgis
--- ;
--- -- ddl-end --
--- 
+-- object: postgis | type: EXTENSION --
+-- DROP EXTENSION IF EXISTS postgis CASCADE;
+CREATE EXTENSION postgis
+;
+-- ddl-end --
+
 -- object: fkg.d_temagruppe | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.d_temagruppe CASCADE;
 CREATE TABLE fkg.d_temagruppe (
@@ -460,7 +460,7 @@ CREATE TABLE fkg.t_6100_brandhane_t (
 	aktiv_kode integer,
 	senest_tilsyn date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6100_brandhane_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6100_brandhane_brandhane_id_ck CHECK (brandhane_id BETWEEN 1 AND 99999),
@@ -498,7 +498,7 @@ CREATE TABLE fkg.t_6102_redn_vej_t (
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6102_redningsvej_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -530,7 +530,7 @@ CREATE TABLE fkg.t_5001_maalest_t (
 	dvfi_bedoemmelse_kode integer,
 	dmu_nr character varying(20),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5001_maalest_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -579,7 +579,7 @@ CREATE TABLE fkg.t_5002_faunasp_t (
 	prioritet integer,
 	passage_ansvarlig character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5002_faunasp_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5002_faunasp_saneret_aar_ck CHECK (saneret_aar >= 1800 AND saneret_aar <= 2999),
@@ -630,7 +630,7 @@ CREATE TABLE fkg.t_5003_draenledn_t (
 	dimension integer,
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832),
+	geometri geometry(MULTILINESTRING, 25832),
 	CONSTRAINT t_5003_draenledn_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5003_draenledn_anlaeg_aar_ck CHECK (anlaeg_aar >= 1800 AND anlaeg_aar <= 2999),
@@ -666,7 +666,7 @@ CREATE TABLE fkg.t_5004_draenomr_t (
 	noegle character varying(128),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5004_draenomr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5004_draenomr_anlaeg_aar_ck CHECK (anlaeg_aar >= 1700 AND anlaeg_aar <= 2999)
@@ -734,7 +734,7 @@ CREATE TABLE fkg.t_5005_soe_t (
 	volumen double precision,
 	fot_id integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5005_soe_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5005_soe_opholdstid_ck CHECK (opholdstid >= 0.1 AND opholdstid <= 99.9),
@@ -758,7 +758,7 @@ CREATE TABLE fkg.t_5006_dybdekurv_t (
 	maalt_aar integer,
 	opm_metode character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5006_dybdekurv_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5006_dybdekurv_dybde_ck CHECK (dybde >= 0.0 AND dybde <= 999.9),
@@ -808,7 +808,7 @@ CREATE TABLE fkg.t_5007_vandl_opl_t (
 	opl_type_kode integer NOT NULL,
 	hydro_ref character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5007_vandl_opl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -839,7 +839,7 @@ CREATE TABLE fkg.t_5008_soe_opl_t (
 	soe_nr character varying(50),
 	hydro_ref character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5008_soe_opl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5008_soe_opl_soe_opl_nr_ck CHECK (soe_opl_nr >= 1 AND soe_opl_nr <= 9999)
@@ -871,7 +871,7 @@ CREATE TABLE fkg.t_5009_pumpelag_t (
 	ejerstatus_kode integer,
 	vandloebsystem character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5009_pumpelag_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -908,7 +908,7 @@ CREATE TABLE fkg.t_5010_vandl_elm_t (
 	broend_data character varying(100),
 	toemningsfrekvens character varying(20),
 	adgangsforhold character varying(100),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5010_vandl_elm_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5010_vandl_elm_vstation_ck CHECK (vstation >= 0.0 AND vstation <= 200000),
@@ -942,7 +942,7 @@ CREATE TABLE fkg.t_5105_rig_fattig_t (
 	noegle character varying(128),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5105_rig_fattig_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5105_rig_fattig_stedid_ck CHECK (stedid BETWEEN 100000 AND 999999),
@@ -1003,7 +1003,7 @@ CREATE TABLE fkg.t_5106_nat_pl_t (
 	mail character varying(250),
 	ajour date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5106_nat_pl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5106_nat_pl_omr_nr_ck CHECK (omr_nr BETWEEN 1 AND 99999),
@@ -1031,7 +1031,7 @@ CREATE TABLE fkg.t_5108_groent_part_t (
 	sagsnr character varying(128),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5108_groent_part_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -1049,7 +1049,7 @@ CREATE TABLE fkg.t_5300_genopd_ret_t (
 	genoptaget integer NOT NULL,
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT versions_id_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5300_genopd_ret_genoptaget_ck CHECK (genoptaget BETWEEN 1999 AND 2999)
@@ -1083,7 +1083,7 @@ CREATE TABLE fkg.t_5400_affalds_dis_t (
 	afh_dag character varying(8),
 	renovatoer_cvr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5400_affalds_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5400_affalds_dis_affalddistrikt_nr_ck CHECK (affalddistrikt_nr BETWEEN 1 AND 99999),
@@ -1731,7 +1731,7 @@ CREATE TABLE fkg.t_5401_genbr_st_t (
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5401_genbr_st_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT p_nr_ck CHECK (p_nr BETWEEN 1 AND 99999)
@@ -1748,7 +1748,7 @@ CREATE TABLE fkg.t_5402_genbr_con_t (
 	t_frekvens character varying(50),
 	t_dato date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5402_genbr_con_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5402_genbr_con_t_dato_ck CHECK (t_dato BETWEEN '1900-01-01' AND '2999-12-31')
@@ -1770,7 +1770,7 @@ CREATE TABLE fkg.t_5508_husst_moel_t (
 	husnr character varying(4),
 	postnr integer,
 	note character varying(254),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5508_husst_moel_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5508_husst_moel_hoejde_ck CHECK (hoejde BETWEEN 0.1 AND 49.9),
@@ -1803,7 +1803,7 @@ CREATE TABLE fkg.t_5200_aff_prod_udbr_t (
 	noegle character varying(128),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5200_aff_prod_udbr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5200_aff_prod_udbr_ejd_nr_ck CHECK (ejd_nr BETWEEN 1000000000 AND 9999999999),
@@ -1827,7 +1827,7 @@ CREATE TABLE fkg.t_5500_elfors_omr_t (
 	fs_cvr integer NOT NULL,
 	fs_navn character varying(128) NOT NULL,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5500_elfors_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5500_elfors_omr_net_s_nr_ck CHECK (net_s_nr BETWEEN 0 AND 99999999),
@@ -1844,7 +1844,7 @@ CREATE TABLE fkg.t_5506_spildev_pl_pkt_t (
 	planstatus_kode integer NOT NULL,
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5506_spildev_pl_pkt_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -1861,7 +1861,7 @@ CREATE TABLE fkg.t_5507_fiberkabel_t (
 	aar_i_jord integer,
 	antal_kabler integer,
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5507_fiberkabel_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5507_fiberkabel_fs_cvr_ck CHECK (fs_cvr BETWEEN 10000000 AND 99999999),
@@ -1877,22 +1877,37 @@ CREATE TABLE fkg.t_5507_fiberkabel_t (
 CREATE TABLE fkg.t_5800_fac_pkt_t (
 	versions_id uuid NOT NULL,
 	facil_ty_k integer NOT NULL,
-	handicap_k integer,
 	navn character varying(50),
-	saeson_k integer,
 	beskrivels character varying(254),
+	lang_beskr character varying(1000),
+	uk_k_beskr character varying(254),
+	uk_l_beskr character varying(1000),
+	d_k_beskr character varying(254),
+	d_l_beskr character varying(1000),
 	ansvar_org character varying(254),
 	kontak_vedl character varying(254),
+	handicap_k integer,
+	saeson_k integer,
+	saeson_st date,
+	saeson_sl date,
+	doegnaab_k integer,
+	vandhane_k integer,
+	bemand_k integer,
+	betaling_k integer,
+	book_k integer,
+	antal_pl integer,
 	foto_link1 character varying(1024),
 	foto_link2 character varying(1024),
-	vejkode integer,
+	filmlink character varying(1024),
+	adr_id uuid,
 	ansva_v_k integer,
-	husnr character varying(4),
-	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5800_fac_pkt_pk PRIMARY KEY (versions_id)
-	 WITH (FILLFACTOR = 10)
+	 WITH (FILLFACTOR = 10),
+	CONSTRAINT t_5800_fac_pkt_saeson_st_aar_skal_vaere_1_ck CHECK (date_part('year', saeson_st) = 1),
+	CONSTRAINT t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck CHECK (date_part('year', saeson_sl) = 1),
+	CONSTRAINT t_5800_fac_pkt_antal_pl_ck CHECK (antal_pl BETWEEN 0 AND 9999)
 
 );
 -- ddl-end --
@@ -1903,30 +1918,40 @@ CREATE TABLE fkg.t_5802_fac_li_t (
 	versions_id uuid NOT NULL,
 	rute_ty_k integer NOT NULL,
 	rute_uty_k integer,
-	kategori_k integer,
-	hierarki_k integer,
-	svaerhed_k integer,
 	navn character varying(50),
 	navndels character varying(128),
-	straekn_nr character varying(128),
-	ansvar_org character varying(128),
-	konta_vedl character varying(128),
+	afm_rute_k integer,
 	laengde float,
-	folder_k integer,
-	folde_link character varying(1024),
-	gpx_link character varying(1024),
-	foto_link1 character varying(1024),
-	foto_link2 character varying(1024),
-	obs character varying(254),
 	beskrivels character varying(254),
+	lang_beskr character varying(1000),
+	uk_k_beskr character varying(254),
+	uk_l_beskr character varying(1000),
+	d_k_beskr character varying(254),
+	d_l_beskr character varying(1000),
+	ansvar_org character varying(128),
+	kontak_ved character varying(128),
+	betaling_k integer,
 	belaegn_k integer,
 	handicap_k integer,
 	ansva_v_k integer,
 	startpkt_x integer,
 	startpkt_y integer,
-	afm_rute_k integer,
+	slutpkt_x integer,
+	slutpkt_y integer,
+	svaerhed_k integer,
+	obs character varying(254),
+	kategori_k integer,
+	certifi_k integer,
+	hierarki_k integer,
+	folder_k integer,
+	folde_link character varying(1024),
+	foto_link1 character varying(1024),
+	foto_link2 character varying(1024),
+	fillmlink character varying(1024),
+	gpx_link character varying(1024),
+	adr_ud uuid,
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5802_fac_li_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -1959,7 +1984,7 @@ CREATE TABLE fkg.t_5900_jordfl_t (
 	noegle character varying(128),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5900_jordfl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5900_jordfl_afs_kommunekode_ck CHECK (afs_kommunekode BETWEEN 100 AND 999),
@@ -1991,7 +2016,7 @@ CREATE TABLE fkg.t_5902_jordv_anl_t (
 	sag_status_kode integer,
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5902_jordv_anl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5902_jordv_anl_strenge_antal_ck CHECK (strenge_antal BETWEEN 1 AND 999),
@@ -2014,7 +2039,7 @@ CREATE TABLE fkg.t_5104_art_invas_t (
 	sagsnr character varying(128),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5104_art_invas_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2033,7 +2058,7 @@ CREATE TABLE fkg.t_5107_art_invas_p_t (
 	sagsnr character varying(128),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5107_art_invas_p_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2063,7 +2088,7 @@ CREATE TABLE fkg.t_5600_vintervedl_t (
 	rute_entreprenoer_salt character varying(128),
 	rute_nr_salt character varying(50),
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5600_vintervedl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -2077,7 +2102,7 @@ CREATE TABLE fkg.t_5601_hasti_daemp_t (
 	hasti_type_kode integer NOT NULL,
 	hastighed_kode integer NOT NULL,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5601_hasti_daemp_pk_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -2099,7 +2124,7 @@ CREATE TABLE fkg.t_5602_p_zoner_t (
 	p_pladser_mc integer,
 	p_pladser_cykel integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5602_p_zoner_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5602_p_zoner_p_pladser_personbil_ck CHECK (p_pladser_personbil BETWEEN 0 AND 9999),
@@ -2120,7 +2145,7 @@ CREATE TABLE fkg.t_5603_hasti_zone_t (
 	hastighed_kode integer NOT NULL,
 	anbefalet_hastighed_kode integer NOT NULL,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5603_hasti_zone_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -2137,7 +2162,7 @@ CREATE TABLE fkg.t_5604_koer_begr_t (
 	vaegtbegr_totalv integer,
 	fot_id integer,
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832),
+	geometri geometry(MULTILINESTRING, 25832),
 	CONSTRAINT t_5604_koer_begr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5604_koer_begr_vaegtbegr_akselt_ck CHECK (vaegtbegr_akselt BETWEEN 1 AND 999),
@@ -2159,7 +2184,7 @@ CREATE TABLE fkg.t_5605_vejbyggel_t (
 	forskydning double precision,
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5605_vejbyggel_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5605_vejbyggel_bredde_ck CHECK (bredde BETWEEN 0.01 AND 999.99),
@@ -2177,7 +2202,7 @@ CREATE TABLE fkg.t_5606_vejinv_t (
 	model character varying(50),
 	tilstand_kode integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832),
+	geometri geometry(MULTIPOINT, 25832),
 	CONSTRAINT t_5606_vejinv_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -2200,7 +2225,7 @@ CREATE TABLE fkg.t_5700_grundej_t (
 	vedtaegt_kode integer,
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832),
+	geometri geometry(MULTIPOLYGON, 25832),
 	CONSTRAINT t_5700_grundej_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5700_grundej_gf_tlf_ck CHECK (gf_tlf BETWEEN 11111111 AND 99999999),
@@ -2216,7 +2241,7 @@ CREATE TABLE fkg.t_5701_lok_omr_t (
 	lokalraad_navn character varying(128) NOT NULL,
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832),
+	geometri geometry(MULTIPOLYGON, 25832),
 	CONSTRAINT t_5701_lok_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2238,7 +2263,7 @@ CREATE TABLE fkg.t_5702_skorst_fej_t (
 	sf_mail character varying(254),
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5702_skorst_fej_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5702_skorst_fej_skorstenf_distrikt_nr_ck CHECK (skorstenf_distrikt_nr BETWEEN 1 AND 99999),
@@ -2265,7 +2290,7 @@ CREATE TABLE fkg.t_5703_afstem_sted_t (
 	postnr integer,
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832),
+	geometri geometry(MULTIPOINT, 25832),
 	CONSTRAINT t_5703_afstem_sted_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5703_afstem_sted_opstillingskreds_nr_ck CHECK (opstillingskreds_nr BETWEEN 1 AND 92),
@@ -2287,7 +2312,7 @@ CREATE TABLE fkg.t_5704_afstem_omr_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832),
+	geometri geometry(MULTIPOLYGON, 25832),
 	CONSTRAINT t_5704_afstem_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5704_afstem_omr_opstillingskreds_nr_ck CHECK (opstillingskreds_nr BETWEEN 1 AND 92),
@@ -2309,7 +2334,7 @@ CREATE TABLE fkg.t_5705_forp_are_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5705_forp_are_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2326,7 +2351,7 @@ CREATE TABLE fkg.t_5706_havn_are_t (
 	cvr_havn integer,
 	ejer_admin character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832),
+	geometri geometry(MULTIPOLYGON, 25832),
 	CONSTRAINT t_5706_havn_are_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5706_havn_are_havn_nr_ck CHECK (havn_nr BETWEEN 1 AND 99999),
@@ -2355,7 +2380,7 @@ CREATE TABLE fkg.t_5707_grunds_t (
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5707_grunds_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5707_grunds_pris_ck CHECK (pris BETWEEN 1 AND 99999999),
@@ -2379,7 +2404,7 @@ CREATE TABLE fkg.t_5710_born_skole_dis_t (
 	noegle character varying(128),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5710_born_skole_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2396,7 +2421,7 @@ CREATE TABLE fkg.t_5711_and_dis_t (
 	noegle character varying(128),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5711_and_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5711_and_dis_an_distrikt_nr_ck CHECK (an_distrikt_nr BETWEEN 1 AND 99999)
@@ -2414,7 +2439,7 @@ CREATE TABLE fkg.t_5712_plej_aeldr_dis_t (
 	noegle character varying(128),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5712_plej_aeldr_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5712_plej_aeldr_dis_plej_distrikt_nr_ck CHECK (plej_distrikt_nr BETWEEN 1 AND 99999)
@@ -2432,7 +2457,7 @@ CREATE TABLE fkg.t_5713_prog_stat_dis_t (
 	noegle character varying(128),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5713_prog_stat_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5713_prog_stat_dis_prog_distrikt_nr_ck CHECK (prog_distrikt_nr BETWEEN 1 AND 99999)
@@ -2455,7 +2480,7 @@ CREATE TABLE fkg.t_5714_laering_udd_inst_t (
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5714_laering_udd_inst_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2475,7 +2500,7 @@ CREATE TABLE fkg.t_5715_botilbud_t (
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5715_botilbud_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2495,7 +2520,7 @@ CREATE TABLE fkg.t_5716_servicetilbud_t (
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5716_servicetilbud_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2623,7 +2648,7 @@ CREATE TABLE fkg.t_6000_pot_t (
 	kotesystem_kode integer,
 	usikkerhed character varying(250),
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_6000_pot_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6000_pot_kote_ck CHECK (kote BETWEEN -999.99 AND 999.99),
@@ -2649,7 +2674,7 @@ CREATE TABLE fkg.t_6001_pot_m_t (
 	kotesystem_kode integer,
 	usikkerhed character varying(250),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6001_pot_m_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6001_pot_m_dybde_ck CHECK (dybde BETWEEN 1 AND 999.99),
@@ -2674,7 +2699,7 @@ CREATE TABLE fkg.t_6002_indv_t (
 	indtag character varying(50),
 	dato_beregn date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832),
+	geometri geometry(MULTIPOLYGON, 25832),
 	CONSTRAINT t_6002_indv_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6002_indv_indv_maengde_aar_ck CHECK (indv_maengde_aar BETWEEN 0.1 AND 99999.9),
@@ -2701,7 +2726,7 @@ CREATE TABLE fkg.t_6003_besk_zone_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6003_besk_zone_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6003_besk_zone_tilladelse_ck CHECK (tilladelse BETWEEN 1 AND 999999),
@@ -2719,7 +2744,7 @@ CREATE TABLE fkg.t_6004_vandv_fs_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6004_vandv_fs_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -2736,7 +2761,7 @@ CREATE TABLE fkg.t_6006_grundv_opl_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6006_grundv_opl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -2753,7 +2778,7 @@ CREATE TABLE fkg.t_6007_inds_omr_t (
 	vedtagelse date,
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6007_inds_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
 
@@ -2767,7 +2792,7 @@ CREATE TABLE fkg.t_6008_maks_bor_t (
 	boredybde integer NOT NULL,
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6008_maks_bor_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6008_maks_bor_boredybde_ck CHECK (boredybde BETWEEN 1 AND 99)
@@ -2785,7 +2810,7 @@ CREATE TABLE fkg.t_6009_indv_ovflv_t (
 	indvinder_kontakt character varying(50),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6009_indv_ovflv_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6009_indv_ovflv_indv_kapacitet_ck CHECK (indv_kapacitet BETWEEN 0.01 AND 99999.99)
@@ -2815,7 +2840,7 @@ CREATE TABLE fkg.t_6101_beskyt_rum_t (
 	pladser integer NOT NULL,
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6101_beskyt_rum_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2833,7 +2858,7 @@ CREATE TABLE fkg.t_6103_bered_omr_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832),
+	geometri geometry(MULTIPOLYGON, 25832),
 	CONSTRAINT t_6103_bered_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6103_bered_omr_bereds_distrikt_nr_ck CHECK (bereds_distrikt_nr BETWEEN 1 AND 99999)
@@ -2850,7 +2875,7 @@ CREATE TABLE fkg.t_6104_risiko_virk_t (
 	kontakt_tlf integer NOT NULL,
 	brandhaem_kode integer NOT NULL,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6104_risiko_virk_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6104_risiko_virk_cvr_risi_virk_ck CHECK (cvr_risi_virk BETWEEN 10000000 AND 99999999),
@@ -2869,7 +2894,7 @@ CREATE TABLE fkg.t_6105_sbygn_omr_t (
 	kontakt_info character varying(128) NOT NULL,
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6105_sbygn_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6105_sbygn_omr_saer_distrikt_nr_ck CHECK (saer_distrikt_nr BETWEEN 1 AND 99999)
@@ -2909,7 +2934,7 @@ CREATE TABLE fkg.t_6107_forholds_t (
 	system_fkt character varying(128),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6107_forholds_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6107_forholds_cvr_firma_ck CHECK (cvr_firma BETWEEN 10000000 AND 99999999),
@@ -2933,7 +2958,7 @@ CREATE TABLE fkg.t_6108_moedepl_t (
 	bemaerkning character varying(254),
 	link_tegn character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6108_moedepl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2954,7 +2979,7 @@ CREATE TABLE fkg.t_6110_noegle_t (
 	bemaerkning character varying(254),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6110_noegle_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -2975,7 +3000,7 @@ CREATE TABLE fkg.t_6111_fyrv_till_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6111_fyrv_till_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6111_fyrv_till_fyr_firma_cvr_ck CHECK (fyr_firma_cvr BETWEEN 10000000 AND 99999999)
@@ -2994,7 +3019,7 @@ CREATE TABLE fkg.t_6112_midl_dep_t (
 	gyldig_fra date NOT NULL,
 	gyldig_til date,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6112_midl_dep_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6112_midl_dep_cvr_ck CHECK (virksomhed_cvr BETWEEN 11111111 AND 99999999)
@@ -3008,7 +3033,7 @@ CREATE TABLE fkg.t_6113_besk_nat_b_t (
 	versions_id uuid NOT NULL,
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6113_besk_nat_b_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -3023,7 +3048,7 @@ CREATE TABLE fkg.t_6115_afbr_omr_t (
 	afbr_navn character varying(128),
 	afbr_type_kode integer NOT NULL,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6115_afbr_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6115_afbr_omr_afbr_nr_ck CHECK (afbr_nr BETWEEN 1 AND 99999)
@@ -3043,7 +3068,7 @@ CREATE TABLE fkg.t_6116_olie_ber_pl_t (
 	sagsnr character varying(128),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6116_olie_ber_pl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6116_olie_ber_pl_prioritet_ck CHECK (prioritet BETWEEN 1 AND 9)
@@ -3064,7 +3089,7 @@ CREATE TABLE fkg.t_6117_inds_pkt_t (
 	note character varying(254),
 	sagsnr character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6117_inds_pkt_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6117_inds_pkt_vej_afstand_ck CHECK (vej_afstand BETWEEN 1 AND 9999)
@@ -3086,7 +3111,7 @@ CREATE TABLE fkg.t_6118_bran_redn_t (
 	husnr character varying(4),
 	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6118_bran_redn_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -3126,7 +3151,7 @@ CREATE TABLE fkg.t_6200_nat_geo_t (
 	farvand_strand_ref character varying(1024),
 	naturgeo_beskrivelse character varying(1024),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6200_nat_geo_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -3145,7 +3170,7 @@ CREATE TABLE fkg.t_6201_kult_geo_t (
 	link_reg_skema character varying(1024),
 	kulturgeo_beskrivelse character varying(1024),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6201_kult_geo_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -3184,7 +3209,7 @@ CREATE TABLE fkg.t_6202_landk_omr_t (
 	link_reg_skema character varying(1024),
 	link_vejledning character varying(1024),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6202_landk_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6202_landk_omr_dato_besigtig_ck CHECK (dato_besigtig BETWEEN '2006-12-31' AND '2999-12-31'),
@@ -3209,7 +3234,7 @@ CREATE TABLE fkg.t_6203_landk_vur_t (
 	saarbarhed_notat character varying(1024),
 	tiltag character varying(1024),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6203_landk_vur_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -3239,7 +3264,7 @@ CREATE TABLE fkg.t_6800_parl_fl_t (
 	note character varying(254),
 	vejkode integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6800_parl_fl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6800_parl_fl_anlaegsaar_ck CHECK (anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31'),
@@ -3276,7 +3301,7 @@ CREATE TABLE fkg.t_6801_parl_li_t (
 	note character varying(254),
 	vejkode integer,
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_6801_parl_li_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6801_parl_li_anlaegsaar_ck CHECK (anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31'),
@@ -3310,7 +3335,7 @@ CREATE TABLE fkg.t_6802_parl_pkt_t (
 	note character varying(254),
 	vejkode integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6802_parl_pkt_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6802_parl_pkt_anlaegsaar_ck CHECK (anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31'),
@@ -3334,7 +3359,7 @@ CREATE TABLE fkg.t_6803_parl_omr_t (
 	kommunal_kontakt character varying(150),
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6803_parl_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
 
@@ -3358,21 +3383,36 @@ CREATE TABLE fkg.d_basis_offentlig (
 CREATE TABLE fkg.t_5801_fac_fl_t (
 	versions_id uuid NOT NULL,
 	facil_ty_k integer NOT NULL,
-	handicap_k integer,
 	navn character varying(50),
-	saeson_k integer,
 	beskrivels character varying(254),
+	lang_beskr character varying(1000),
+	uk_k_beskr character varying(254),
+	uk_l_beskr character varying(1000),
+	d_k_beskr character varying(254),
+	d_l_beskr character varying(1000),
 	ansvar_org character varying(254),
 	kontak_vedl character varying(254),
+	handicap_k integer,
+	saeson_k integer,
+	saeson_st date,
+	saeson_sl date,
+	doegnaab_k integer,
+	vandhane_k integer,
+	bemand_k integer,
+	betaling_k integer,
+	book_k integer,
+	antal_pl integer,
 	foto_link1 character varying(1024),
 	foto_link2 character varying(1024),
-	vejkode integer,
+	filmlink character varying(1024),
+	adr_id uuid,
 	ansva_v_k integer,
-	husnr character varying(4),
-	postnr integer,
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
-	CONSTRAINT t_5801_fac_fl_pk PRIMARY KEY (versions_id)
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	CONSTRAINT t_5801_fac_fl_pk PRIMARY KEY (versions_id),
+	CONSTRAINT t_5801_fac_fl_saeson_st_aar_skal_vaere_1_ck CHECK (date_part('year', saeson_st) = 1),
+	CONSTRAINT t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck CHECK (date_part('year', saeson_sl) = 1),
+	CONSTRAINT t_5801_fac_fl_antal_pl_ck CHECK (antal_pl BETWEEN 0 AND 9999)
 
 );
 -- ddl-end --
@@ -3444,7 +3484,7 @@ CREATE TABLE fkg.t_6119_evaku_centr_t (
 	beredskabsplan_kode integer,
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6119_evaku_centr_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_6119_evaku_centr_evakucenter_ref_ck CHECK (evakucenter_ref BETWEEN 1 AND 99999),
 	CONSTRAINT t_6119_evaku_centr_sovepladser_ck CHECK (sovepladser BETWEEN 1 AND 5000),
@@ -3470,7 +3510,7 @@ CREATE TABLE fkg.t_6120_midl_overn_t (
 	gyldig_til date,
 	note character varying(254),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6120_midl_overn_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_6120_midl_overn_t_antal_personer_ck CHECK (antal_personer BETWEEN 10 AND 1000),
 	CONSTRAINT t_6120_midl_overn_t_mid_ov_tlfnr_ck CHECK (mid_ov_tlfnr BETWEEN 10000000 AND 99999999)
@@ -3502,7 +3542,7 @@ CREATE TABLE fkg.t_6121_stor_ud_arr_t (
 	gyldig_til date,
 	noegle character varying(128),
 	link character varying(1024),
--- 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6121_stor_ud_arr_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_6121_stor_ud_arr_t_sua_tlfnr_ck CHECK (sua_tlfnr BETWEEN 10000000 AND 99999999),
 	CONSTRAINT t_6121_stor_ud_arr_t_antal_personer_ck CHECK (antal_personer BETWEEN 0 AND 999999)
@@ -3619,7 +3659,7 @@ CREATE TABLE fkg.t_5000_vandl_t (
 	fot_id integer,
 	trussel_vand_kode integer,
 	link character varying(1024),
--- 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
+	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5000_vandl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5000_vandl_station_fra_ck CHECK (station_fra >= 0.0 AND station_fra <= 200000.0),
@@ -3627,6 +3667,18 @@ CREATE TABLE fkg.t_5000_vandl_t (
 	CONSTRAINT t_5000_vandl_vandloebs_bredde_ck CHECK (vandloebs_bredde >= 0.1 AND vandloebs_bredde <=99.9),
 	CONSTRAINT t_5000_vandl_vandfoeringsforhold_ck CHECK (vandfoeringsforhold >= 9 AND vandfoeringsforhold <= 45),
 	CONSTRAINT t_5000_vandl_fot_id_ck CHECK (fot_id >=0 AND fot_id <= 2147483648)
+
+);
+-- ddl-end --
+
+-- object: fkg.d_5802_certifi | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5802_certifi CASCADE;
+CREATE TABLE fkg.d_5802_certifi (
+	certifi_k integer NOT NULL,
+	certifi character varying(40) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5802_certifi_pk PRIMARY KEY (certifi_k)
 
 );
 -- ddl-end --
@@ -3656,76 +3708,6 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.generel DROP CONSTRAINT IF EXISTS generel_d_basis_offentlig_fk CASCADE;
 ALTER TABLE fkg.generel ADD CONSTRAINT generel_d_basis_offentlig_fk FOREIGN KEY (off_kode)
 REFERENCES fkg.d_basis_offentlig (off_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_generel_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_generel_fk FOREIGN KEY (versions_id)
-REFERENCES fkg.generel (versions_id) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_5000_klasse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_5000_klasse_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_klasse_fk FOREIGN KEY (klasse_kode)
-REFERENCES fkg.d_5000_klasse (klasse_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_5000_vandl_type_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_5000_vandl_type_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_vandl_type_fk FOREIGN KEY (vandl_type_kode)
-REFERENCES fkg.d_5000_vandl_type (vandl_type_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_basis_ejerstatus_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ejerstatus_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
-REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_basis_ja_nej_tidl_amt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ja_nej_tidl_amt_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_tidl_amt_fk FOREIGN KEY (tidl_amt_kode)
-REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk FOREIGN KEY (p3vandloeb_kode)
-REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_basis_dvfi_bedoemmelse_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_dvfi_bedoemmelse_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_dvfi_bedoemmelse_fk FOREIGN KEY (dvfi_bedoemmelse_kode)
-REFERENCES fkg.d_basis_dvfi_bedoemmelse (dvfi_bedoemmelse_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk FOREIGN KEY (maalsaetning_opfyldt_kode)
-REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_basis_trussel_vand_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_trussel_vand_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_trussel_vand_fk FOREIGN KEY (trussel_vand_kode)
-REFERENCES fkg.d_basis_trussel_vand (trussel_vand_kode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5000_vandl_d_5000_maalsaetning_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_5000_maalsaetning_fk CASCADE;
-ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_maalsaetning_fk FOREIGN KEY (maalsaetning_kode)
-REFERENCES fkg.d_5000_maalsaetning (maalsaetning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -4233,20 +4215,6 @@ REFERENCES fkg.d_5800_facilitet (facil_ty_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: t_5800_fac_pkt_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_vejnavn_fk CASCADE;
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
-REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5800_fac_pkt_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_postnr_fk CASCADE;
-ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_postnr_fk FOREIGN KEY (postnr)
-REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
 -- object: t_5800_fac_pkt_d_basis_handicapegnet_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_handicapegnet_fk CASCADE;
 ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_handicapegnet_fk FOREIGN KEY (handicap_k)
@@ -4265,6 +4233,41 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ansvar_v_fk CASCADE;
 ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ansvar_v_fk FOREIGN KEY (ansva_v_k)
 REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk FOREIGN KEY (doegnaab_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk FOREIGN KEY (vandhane_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5800_fac_pkt_d_basis_ja_nej_bemand_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ja_nej_bemand_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ja_nej_bemand_fk FOREIGN KEY (bemand_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5800_fac_pkt_d_basis_ja_nej_betaling_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ja_nej_betaling_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ja_nej_betaling_fk FOREIGN KEY (betaling_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5800_fac_pkt_d_basis_ja_nej_book_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_basis_ja_nej_book_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ja_nej_book_fk FOREIGN KEY (book_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -4342,6 +4345,20 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_ansvar_v_fk CASCADE;
 ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ansvar_v_fk FOREIGN KEY (ansva_v_k)
 REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_basis_ja_nej_betaling_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_ja_nej_betaling_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ja_nej_betaling_fk FOREIGN KEY (betaling_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_d_5802_certifi_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5802_certifi_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5802_certifi_fk FOREIGN KEY (certifi_k)
+REFERENCES fkg.d_5802_certifi (certifi_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -5647,20 +5664,6 @@ REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: t_5801_fac_pkt_d_vejnavn_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_pkt_d_vejnavn_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
-REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: t_5801_fac_fl_d_basis_postnr_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_postnr_fk CASCADE;
-ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_postnr_fk FOREIGN KEY (postnr)
-REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
 -- object: t_5801_fac_fl_d_5800_facilitet_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_5800_facilitet_fk CASCADE;
 ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_5800_facilitet_fk FOREIGN KEY (facil_ty_k)
@@ -5686,6 +5689,41 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ansvar_v_fk CASCADE;
 ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ansvar_v_fk FOREIGN KEY (ansva_v_k)
 REFERENCES fkg.d_basis_ansva_v (ansva_v_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk FOREIGN KEY (doegnaab_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_ja_nej_vandhane_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ja_nej_vandhane_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ja_nej_vandhane_fk FOREIGN KEY (vandhane_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_ja_nej_bemand_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ja_nej_bemand_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ja_nej_bemand_fk FOREIGN KEY (bemand_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_ja_nej_betaling_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ja_nej_betaling_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ja_nej_betaling_fk FOREIGN KEY (betaling_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_basis_ja_nej_book_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_ja_nej_book_fk CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ja_nej_book_fk FOREIGN KEY (book_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -5819,6 +5857,76 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_6121_stor_ud_arr_t DROP CONSTRAINT IF EXISTS t_6121_stor_ud_arr_t_d_6121_sua_fk CASCADE;
 ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD CONSTRAINT t_6121_stor_ud_arr_t_d_6121_sua_fk FOREIGN KEY (sua_kode)
 REFERENCES fkg.d_6121_sua (sua_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_generel_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_5000_klasse_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_5000_klasse_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_klasse_fk FOREIGN KEY (klasse_kode)
+REFERENCES fkg.d_5000_klasse (klasse_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_5000_vandl_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_5000_vandl_type_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_vandl_type_fk FOREIGN KEY (vandl_type_kode)
+REFERENCES fkg.d_5000_vandl_type (vandl_type_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_basis_ejerstatus_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ejerstatus_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ejerstatus_fk FOREIGN KEY (ejerstatus_kode)
+REFERENCES fkg.d_basis_ejerstatus (ejerstatus_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_basis_ja_nej_tidl_amt_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ja_nej_tidl_amt_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_tidl_amt_fk FOREIGN KEY (tidl_amt_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk FOREIGN KEY (p3vandloeb_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_basis_dvfi_bedoemmelse_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_dvfi_bedoemmelse_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_dvfi_bedoemmelse_fk FOREIGN KEY (dvfi_bedoemmelse_kode)
+REFERENCES fkg.d_basis_dvfi_bedoemmelse (dvfi_bedoemmelse_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk FOREIGN KEY (maalsaetning_opfyldt_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_basis_trussel_vand_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_basis_trussel_vand_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_basis_trussel_vand_fk FOREIGN KEY (trussel_vand_kode)
+REFERENCES fkg.d_basis_trussel_vand (trussel_vand_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5000_vandl_d_5000_maalsaetning_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_5000_maalsaetning_fk CASCADE;
+ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_maalsaetning_fk FOREIGN KEY (maalsaetning_kode)
+REFERENCES fkg.d_5000_maalsaetning (maalsaetning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

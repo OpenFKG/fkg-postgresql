@@ -128,6 +128,19 @@ UPDATE fkg_utilities.view_mapping SET field_alias = 'saeson', value_field = 'sae
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk';
 
+t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk
+t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk
+t_5800_fac_pkt_d_basis_ja_nej_bemand_fk
+t_5800_fac_pkt_d_basis_ja_nej_betaling_fk
+t_5800_fac_pkt_d_basis_ja_nej_book_fk
+
+t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk
+t_5801_fac_fl_d_basis_ja_nej_vandhane_fk
+t_5801_fac_fl_d_basis_ja_nej_bemand_fk
+t_5801_fac_fl_d_basis_ja_nej_betaling_fk
+t_5801_fac_fl_d_basis_ja_nej_book_fk
+
+
 -- Theme 5801
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5801_fac_fl_d_basis_ansvar_v_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5801_fac_fl_d_basis_ansvar_v_fk';
