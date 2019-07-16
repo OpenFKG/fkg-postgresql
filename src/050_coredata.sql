@@ -52,7 +52,7 @@ DELETE FROM fkg.d_basis_handicapegnet;
 DELETE FROM fkg.d_basis_invasivart;
 DELETE FROM fkg.d_basis_kotesystem;
 -- New lookup tables in 2.5.X
-DELETE FROM fkg.fkg.d_basis_ansva_v;
+DELETE FROM fkg.d_basis_ansva_v;
 
 
 -- Temaspecific lookup-tables
