@@ -122,23 +122,28 @@ UPDATE fkg_utilities.view_mapping SET field_alias = 'facil_ty', value_field = 'f
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_basis_handicapegnet_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'handicap', value_field = 'handicapegnet' WHERE constraint_name ='t_5800_fac_pkt_d_basis_handicapegnet_fk';
 
---select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_5800_saeson_fk'
+--select * from fkg_utilities.view_mapping where constraint_name like 't_5800_fac_pkt%'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'saeson', value_field = 'saeson' WHERE constraint_name ='t_5800_fac_pkt_d_5800_saeson_fk';
 
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk';
 
-t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk
-t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk
-t_5800_fac_pkt_d_basis_ja_nej_bemand_fk
-t_5800_fac_pkt_d_basis_ja_nej_betaling_fk
-t_5800_fac_pkt_d_basis_ja_nej_book_fk
+UPDATE fkg_utilities.view_mapping SET field_alias = 'doegnaab' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ja_nej_doegnaab_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'vandhane' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ja_nej_vandhane_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'bemand' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ja_nej_bemand_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'betaling' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ja_nej_betaling_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'book' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ja_nej_book_fk';
 
-t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk
-t_5801_fac_fl_d_basis_ja_nej_vandhane_fk
-t_5801_fac_fl_d_basis_ja_nej_bemand_fk
-t_5801_fac_fl_d_basis_ja_nej_betaling_fk
-t_5801_fac_fl_d_basis_ja_nej_book_fk
+--select * from fkg_utilities.view_mapping where constraint_name like 't_5801_fac_fl%'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'doegnaab' WHERE constraint_name ='t_5801_fac_fl_d_basis_ja_nej_doegnaab_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'vandhane' WHERE constraint_name ='t_5801_fac_fl_d_basis_ja_nej_vandhane_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'bemand' WHERE constraint_name ='t_5801_fac_fl_d_basis_ja_nej_bemand_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'betaling' WHERE constraint_name ='t_5801_fac_fl_d_basis_ja_nej_betaling_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'book' WHERE constraint_name ='t_5801_fac_fl_d_basis_ja_nej_book_fk';
+
+--select * from fkg_utilities.view_mapping where constraint_name like 't_5802_fac_li%'
+UPDATE fkg_utilities.view_mapping SET field_alias = 'betaling' WHERE constraint_name ='t_5802_fac_li_d_basis_ja_nej_betaling_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'certifi' WHERE constraint_name ='t_5802_fac_li_d_5802_certifi_fk';
 
 
 -- Theme 5801
