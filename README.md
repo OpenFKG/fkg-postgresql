@@ -47,6 +47,10 @@ Der er lagt et stort stykke arbejde med at udvikle programmellet, så hele basis
 
 Primo juli 2015 blev der foretaget en opdatering fra version 2.4 til 2.5 økonomisk fra [KL](http://kl.dk). Alle temaer er således bragt op på version 2.5 og modellen er fuldt klar til brug.
 
+I efteråret 2017 blev der udviklet en midlertidig "branch" på Datamodellen, som primært omhandlede ændringer til de 3 frilufttemaer `FACILITET_PUNKT (5800)` `FACILITET_FLADE (5801)` og `FACILITET_LINJE (5802)`. Disse ændringer er efterfølgende merget i hovedmodellen i version 2_6_0_1.
+
+Medio juli 2019 er FKG datamodellen opdateret til version 2_6_0_2. Ændringer omfatter de 3 friluftstemaer, samt understøttelse for lagring af eksterne billed-filer. 
+
 Bidrag
 ------------
 Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
@@ -68,6 +72,10 @@ Projektet blev endeligt frigivet som Open Source i begyndelsen af juli 2013 med 
 Sommer 2014 blev alle temaer i version 2.4 implementeret / opgraderet med økonomisk støtte fra [KL](http://kl.dk).
 
 Primo juli 2015 blev der foretaget en opdatering fra version 2.4 til 2.5 økonomisk fra [KL](http://kl.dk).
+
+Efterår 2017 er datamodellen opgraderet fra 2.5 til version 2_6_0_1 (i særskilt branch) med økonomisk støtte fra [KL](http://kl.dk).
+
+Sommer 2019 er datamodellen opgraderet fra version 2_6_0_1 til version 2_6_0_2 med økonomisk støtte fra [KL](http://kl.dk).
 
 
 For udviklere
