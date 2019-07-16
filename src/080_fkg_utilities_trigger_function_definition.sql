@@ -193,7 +193,7 @@ BEGIN
   td = td || E'    END IF;' || E'\n';
   td = td || E'    RETURN NEW;' || E'\n';
   td = td || E'  END;' || E'\n';
-  td = td || E'$$LANGUAGE plpgsql VOLATILE' || E'\n';
+  td = td || E'$$ LANGUAGE plpgsql VOLATILE' || E'\n';
   td = td || E'  COST 100;' || E'\n';
   td = td || E'\n';
   td = td || E'DROP TRIGGER IF EXISTS make_multi_trg ON ' || schema_name || '.' || base_table_name || ';' || E'\n';
