@@ -313,7 +313,7 @@ CREATE TABLE fkg.d_5000_klasse (
 -- object: postgis | type: EXTENSION --
 -- DROP EXTENSION IF EXISTS postgis CASCADE;
 CREATE EXTENSION postgis
-;
+      WITH SCHEMA public;
 -- ddl-end --
 
 -- object: fkg.d_temagruppe | type: TABLE --
@@ -1317,7 +1317,7 @@ CREATE TABLE fkg.d_5707_salg_status (
 -- DROP TABLE IF EXISTS fkg.d_5800_facilitet CASCADE;
 CREATE TABLE fkg.d_5800_facilitet (
 	facil_ty_k integer NOT NULL,
-	facil_ty character varying(30) NOT NULL,
+	facil_ty character varying(35) NOT NULL,
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5800_facilitet_pk PRIMARY KEY (facil_ty_k)
@@ -1885,7 +1885,7 @@ CREATE TABLE fkg.t_5800_fac_pkt_t (
 	d_k_beskr character varying(254),
 	d_l_beskr character varying(1000),
 	ansvar_org character varying(254),
-	kontak_vedl character varying(254),
+	kontak_ved character varying(254),
 	handicap_k integer,
 	saeson_k integer,
 	saeson_st date,
@@ -1947,9 +1947,9 @@ CREATE TABLE fkg.t_5802_fac_li_t (
 	folde_link character varying(1024),
 	foto_link1 character varying(1024),
 	foto_link2 character varying(1024),
-	fillmlink character varying(1024),
+	filmlink character varying(1024),
 	gpx_link character varying(1024),
-	adr_ud uuid,
+	adr_id uuid,
 	link character varying(1024),
 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5802_fac_li_pk PRIMARY KEY (versions_id)
@@ -3391,7 +3391,7 @@ CREATE TABLE fkg.t_5801_fac_fl_t (
 	d_k_beskr character varying(254),
 	d_l_beskr character varying(1000),
 	ansvar_org character varying(254),
-	kontak_vedl character varying(254),
+	kontak_ved character varying(254),
 	handicap_k integer,
 	saeson_k integer,
 	saeson_st date,
@@ -3681,6 +3681,12 @@ CREATE TABLE fkg.d_5802_certifi (
 	CONSTRAINT d_5802_certifi_pk PRIMARY KEY (certifi_k)
 
 );
+-- ddl-end --
+
+-- object: "uuid-ossp" | type: EXTENSION --
+-- DROP EXTENSION IF EXISTS "uuid-ossp" CASCADE;
+CREATE EXTENSION "uuid-ossp"
+      WITH SCHEMA public;
 -- ddl-end --
 
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
