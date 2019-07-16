@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" author="Septima - see license in LICENSE.txt" last-position="1021,4386" last-zoom="1" max-obj-count="367">
+<dbmodel pgmodeler-ver="0.9.2-alpha1" author="Septima - see license in LICENSE.txt" last-position="1197,4556" last-zoom="1" max-obj-count="367">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
 
@@ -459,6 +459,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <extension name="postgis">
+	<schema name="public"/>
 </extension>
 
 <table name="d_temagruppe" layer="0" collapse-mode="2" max-obj-count="4">
@@ -2213,7 +2214,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="1"/>
 	</column>
 	<column name="facil_ty" not-null="true">
-		<type name="character varying" length="30"/>
+		<type name="character varying" length="35"/>
 	</column>
 	<column name="aktiv" not-null="true">
 		<type name="integer" length="1"/>
@@ -3194,7 +3195,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ansvar_org">
 		<type name="character varying" length="254"/>
 	</column>
-	<column name="kontak_vedl">
+	<column name="kontak_ved">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="handicap_k">
@@ -3361,13 +3362,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="foto_link2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="fillmlink">
+	<column name="filmlink">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="gpx_link">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="adr_ud">
+	<column name="adr_id">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="link">
@@ -6393,7 +6394,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="ansvar_org">
 		<type name="character varying" length="254"/>
 	</column>
-	<column name="kontak_vedl">
+	<column name="kontak_ved">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="handicap_k">
@@ -6850,7 +6851,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_rute_uty" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="3020" y="4900"/>
+	<position x="3040" y="4880"/>
 	<column name="rute_uty_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6999,6 +7000,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="certifi_k" ref-type="src-columns"/>
 	</constraint>
 </table>
+
+<extension name="uuid-ossp">
+	<schema name="public"/>
+</extension>
 
 <constraint name="generel_d_basis_oprindelse_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_oprindelse" table="fkg.generel">
