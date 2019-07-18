@@ -2,7 +2,7 @@
 -- pgModeler  version: 0.9.2-alpha1
 -- PostgreSQL version: 11.0
 -- Project Site: pgmodeler.io
--- Model Author: Septima - see license in LICENSE.txt
+-- Model Author: ---
 
 
 -- Database creation must be done outside a multicommand file.
@@ -3689,6 +3689,22 @@ CREATE EXTENSION "uuid-ossp"
       WITH SCHEMA public;
 -- ddl-end --
 
+-- object: fkg.l_fotoforbindelse_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.l_fotoforbindelse_t CASCADE;
+CREATE TABLE fkg.l_fotoforbindelse_t (
+	versions_id uuid NOT NULL,
+	geometri geometry(POINT),
+	noegle character varying(128),
+	note character varying(254),
+	tema_kode integer NOT NULL,
+	foto_objek uuid NOT NULL,
+	foto_prefix uuid NOT NULL,
+	foto_navn character varying(128),
+	CONSTRAINT l_fotoforbindelse_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.generel DROP CONSTRAINT IF EXISTS generel_d_basis_oprindelse_fk CASCADE;
 ALTER TABLE fkg.generel ADD CONSTRAINT generel_d_basis_oprindelse_fk FOREIGN KEY (oprindkode)
@@ -5933,6 +5949,20 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5000_vandl_t DROP CONSTRAINT IF EXISTS t_5000_vandl_d_5000_maalsaetning_fk CASCADE;
 ALTER TABLE fkg.t_5000_vandl_t ADD CONSTRAINT t_5000_vandl_d_5000_maalsaetning_fk FOREIGN KEY (maalsaetning_kode)
 REFERENCES fkg.d_5000_maalsaetning (maalsaetning_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: l_fotoforbindelse_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.l_fotoforbindelse_t DROP CONSTRAINT IF EXISTS l_fotoforbindelse_generel_fk CASCADE;
+ALTER TABLE fkg.l_fotoforbindelse_t ADD CONSTRAINT l_fotoforbindelse_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: l_fotoforbindelse_d_tabel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.l_fotoforbindelse_t DROP CONSTRAINT IF EXISTS l_fotoforbindelse_d_tabel_fk CASCADE;
+ALTER TABLE fkg.l_fotoforbindelse_t ADD CONSTRAINT l_fotoforbindelse_d_tabel_fk FOREIGN KEY (tema_kode)
+REFERENCES fkg.d_tabel (tema_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

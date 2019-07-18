@@ -3,7 +3,8 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" author="Septima - see license in LICENSE.txt" last-position="1197,4556" last-zoom="1" max-obj-count="367">
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,0" last-zoom="1" max-obj-count="387"
+	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
 
@@ -619,7 +620,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <textbox name="Heading" layer="0" font-size="9">
 	<position x="20" y="20"/>
-	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 2.6.0.1]]></comment>
+	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 2.6.0.2]]></comment>
 </textbox>
 
 <textbox name="copyright" layer="0" font-size="9">
@@ -7005,6 +7006,38 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 </extension>
 
+<table name="l_fotoforbindelse_t" layer="0" collapse-mode="2" max-obj-count="9">
+	<schema name="fkg"/>
+	<position x="140" y="580"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" length="0" spatial-type="POINT" variation="0" srid="0"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="note">
+		<type name="character varying" length="254"/>
+	</column>
+	<column name="tema_kode" not-null="true">
+		<type name="integer" length="50"/>
+	</column>
+	<column name="foto_objek" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="foto_prefix" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="foto_navn">
+		<type name="character varying" length="128"/>
+	</column>
+	<constraint name="l_fotoforbindelse_pk" type="pk-constr" table="fkg.l_fotoforbindelse_t">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
 <constraint name="generel_d_basis_oprindelse_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_oprindelse" table="fkg.generel">
 	<columns names="oprindkode" ref-type="src-columns"/>
@@ -8931,6 +8964,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="maalsaetning_kode" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="l_fotoforbindelse_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.l_fotoforbindelse_t">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="l_fotoforbindelse_d_tabel_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_tabel" table="fkg.l_fotoforbindelse_t">
+	<columns names="tema_kode" ref-type="src-columns"/>
+	<columns names="tema_kode" ref-type="dst-columns"/>
+</constraint>
+
 <relationship name="rel_generel_d_basis_oprindelse" type="relfk" layer="0"
 	 src-table="fkg.generel"
 	 dst-table="fkg.d_basis_oprindelse" reference-fk="generel_d_basis_oprindelse_fk"
@@ -8946,1397 +8991,369 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.d_basis_ansvarlig_myndighed" reference-fk="generel_d_basis_ansvarlig_myndighed_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5000_vandl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.generel" reference-fk="t_5000_vandl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5000_vandl_d_5000_klasse" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.d_5000_klasse" reference-fk="t_5000_vandl_d_5000_klasse_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5000_vandl_d_5000_vandl_type" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.d_5000_vandl_type" reference-fk="t_5000_vandl_d_5000_vandl_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5000_vandl_d_basis_ejerstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5000_vandl_d_basis_ejerstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5000_vandl_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5000_vandl_d_basis_ja_nej_tidl_amt_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5000_vandl_d_basis_dvfi_bedoemmelse" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.d_basis_dvfi_bedoemmelse" reference-fk="t_5000_vandl_d_basis_dvfi_bedoemmelse_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5000_vandl_d_5000_maalsaetning" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.d_5000_maalsaetning" reference-fk="t_5000_vandl_d_5000_maalsaetning_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_tema_temagruppe" type="relfk" layer="0"
-	 src-table="fkg.d_tabel"
-	 dst-table="fkg.d_temagruppe" reference-fk="d_tabel_d_temagruppe_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6100_brandhane_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6100_brandhane_t"
-	 dst-table="fkg.generel" reference-fk="t_6100_brandhane_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6100_brandhane_d_6100_brandhane" type="relfk" layer="0"
-	 src-table="fkg.t_6100_brandhane_t"
-	 dst-table="fkg.d_6100_brandhane" reference-fk="t_6100_brandhane_d_6100_brandhane_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6100_brandhane_d_6100_placering" type="relfk" layer="0"
-	 src-table="fkg.t_6100_brandhane_t"
-	 dst-table="fkg.d_6100_placering" reference-fk="t_6100_brandhane_d_6100_placering_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6100_brandhane_d_basis_funktionsstatus" type="relfk" layer="0"
-	 src-table="fkg.t_6100_brandhane_t"
-	 dst-table="fkg.d_basis_funktionsstatus" reference-fk="t_6100_brandhane_d_basis_funktionsstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6102_redningsvej_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6102_redn_vej_t"
-	 dst-table="fkg.generel" reference-fk="t_6102_redningsvej_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6102_redningsvej_d_6102_redvej_type" type="relfk" layer="0"
-	 src-table="fkg.t_6102_redn_vej_t"
-	 dst-table="fkg.d_6102_redvej_type" reference-fk="t_6102_redningsvej_d_6102_redvej_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5001_maalest_d_5001_maalest_type" type="relfk" layer="0"
-	 src-table="fkg.t_5001_maalest_t"
-	 dst-table="fkg.d_5001_maalest_type" reference-fk="t_5001_maalest_d_5001_maalest_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5001_maalest_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5001_maalest_t"
-	 dst-table="fkg.generel" reference-fk="t_5001_maalest_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5001_maalest_d_basis_dvfi_bedoemmelse" type="relfk" layer="0"
-	 src-table="fkg.t_5001_maalest_t"
-	 dst-table="fkg.d_basis_dvfi_bedoemmelse" reference-fk="t_5001_maalest_d_basisdvfi_bedoemmelse_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5001_maalest_d_basis_ejerstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5001_maalest_t"
-	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5001_maalest_d_basis_ejerstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5002_faunasp_d_5002_spaerring" type="relfk" layer="0"
-	 src-table="fkg.t_5002_faunasp_t"
-	 dst-table="fkg.d_5002_spaerring" reference-fk="t_5002_faunasp_d_5002_spaerring_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5002_faunasp_d_5002_passage" type="relfk" layer="0"
-	 src-table="fkg.t_5002_faunasp_t"
-	 dst-table="fkg.d_5002_passage" reference-fk="t_5002_faunasp_d_5002_passage_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5002_faunasp_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5002_faunasp_t"
-	 dst-table="fkg.generel" reference-fk="t_5002_faunasp_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5003_draenledn_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5003_draenledn_t"
-	 dst-table="fkg.generel" reference-fk="t_5003_draenledn_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5003_draenledn_d_5003_ledn_type" type="relfk" layer="0"
-	 src-table="fkg.t_5003_draenledn_t"
-	 dst-table="fkg.d_5003_ledn_type" reference-fk="t_5003_draenledn_d_5003_ledn_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5003_draenledn_d_5003_klasse" type="relfk" layer="0"
-	 src-table="fkg.t_5003_draenledn_t"
-	 dst-table="fkg.d_5003_klasse" reference-fk="t_5003_draenledn_d_5003_klasse_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5004_draenomr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5004_draenomr_t"
-	 dst-table="fkg.generel" reference-fk="t_5004_draenomr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5004_draenomr_d_5004_omr_type" type="relfk" layer="0"
-	 src-table="fkg.t_5004_draenomr_t"
-	 dst-table="fkg.d_5004_omr_type" reference-fk="t_5004_draenomr_d_5004_omr_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5005_soe_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5005_soe_t"
-	 dst-table="fkg.generel" reference-fk="t_5005_soe_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5005_soe_d_5005_maalsaetning" type="relfk" layer="0"
-	 src-table="fkg.t_5005_soe_t"
-	 dst-table="fkg.d_5005_maalsaetning" reference-fk="t_5005_soe_d_5005_maalsaetning_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5005_soe_d_5005_soe_type" type="relfk" layer="0"
-	 src-table="fkg.t_5005_soe_t"
-	 dst-table="fkg.d_5005_soe_type" reference-fk="t_5005_soe_d_5005_soe_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5005_soe_d_5005_habitat_type" type="relfk" layer="0"
-	 src-table="fkg.t_5005_soe_t"
-	 dst-table="fkg.d_5005_habitat_type" reference-fk="t_5005_soe_d_5005_habitat_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5005_soe_d_basis_trussel_vand" type="relfk" layer="0"
-	 src-table="fkg.t_5005_soe_t"
-	 dst-table="fkg.d_basis_trussel_vand" reference-fk="t_5005_soe_d_basis_trussel_vand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5005_dybdekurv_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5006_dybdekurv_t"
-	 dst-table="fkg.generel" reference-fk="t_5006_dybdekurv_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5007_vandl_opl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5007_vandl_opl_t"
-	 dst-table="fkg.generel" reference-fk="t_5007_vandl_opl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5007_vandl_opl_d_5007_opl" type="relfk" layer="0"
-	 src-table="fkg.t_5007_vandl_opl_t"
-	 dst-table="fkg.d_5007_opl" reference-fk="t_5007_vandl_opl_d_5007_opl_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5007_vandl_opl_d_5007_opl_type" type="relfk" layer="0"
-	 src-table="fkg.t_5007_vandl_opl_t"
-	 dst-table="fkg.d_5007_opl_type" reference-fk="t_5007_vandl_opl_d_5007_opl_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5008_soe_opl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5008_soe_opl_t"
-	 dst-table="fkg.generel" reference-fk="t_5008_soe_opl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5008_soe_opl_d_5008_opl" type="relfk" layer="0"
-	 src-table="fkg.t_5008_soe_opl_t"
-	 dst-table="fkg.d_5008_opl" reference-fk="t_5008_soe_opl_d_5008_opl_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5009_pumpelag_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5009_pumpelag_t"
-	 dst-table="fkg.generel" reference-fk="t_5009_pumpelag_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5009_pumpelag_d_5009_lag_type" type="relfk" layer="0"
-	 src-table="fkg.t_5009_pumpelag_t"
-	 dst-table="fkg.d_5009_lag_type" reference-fk="t_5009_pumpelag_d_5009_lag_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5009_pumpelag_d_basis_ejerstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5009_pumpelag_t"
-	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5009_pumpelag_d_basis_erjerstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5010_vandl_elm_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5010_vandl_elm_t"
-	 dst-table="fkg.generel" reference-fk="t_5010_vandl_elm_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5010_vandl_elm_d_5010_element_type" type="relfk" layer="0"
-	 src-table="fkg.t_5010_vandl_elm_t"
-	 dst-table="fkg.d_5010_element_type" reference-fk="t_5010_vandl_elm_d_5010_element_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5010_vandl_elm_d_basis_tilstand" type="relfk" layer="0"
-	 src-table="fkg.t_5010_vandl_elm_t"
-	 dst-table="fkg.d_basis_tilstand" reference-fk="t_5010_vandl_elm_d_basis_tilstand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5105_rig_fattig_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5105_rig_fattig_t"
-	 dst-table="fkg.generel" reference-fk="t_5105_rig_fattig_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5105_rig_fattig_d_5105_kaer_type" type="relfk" layer="0"
-	 src-table="fkg.t_5105_rig_fattig_t"
-	 dst-table="fkg.d_5105_kaer_type" reference-fk="t_5105_rig_fattig_d_5105_kaer_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5106_nat_pl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5106_nat_pl_t"
-	 dst-table="fkg.generel" reference-fk="t_5106_nat_pl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5106_nat_pl_d_5106_pleje_type" type="relfk" layer="0"
-	 src-table="fkg.t_5106_nat_pl_t"
-	 dst-table="fkg.d_5106_pleje_type" reference-fk="t_5106_nat_pl_d_5106_pleje_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5106_nat_pl_d_5106_faciliteter" type="relfk" layer="0"
-	 src-table="fkg.t_5106_nat_pl_t"
-	 dst-table="fkg.d_5106_faciliteter" reference-fk="t_5106_nat_pl_d_5106_faciliteter_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5106_nat_pl_d_basis_ejerstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5106_nat_pl_t"
-	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5106_nat_pl_d_basis_ejerstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5108_groent_part_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5108_groent_part_t"
-	 dst-table="fkg.generel" reference-fk="t_5108_groent_part_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5300_genopd_ret_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5300_genopd_ret_t"
-	 dst-table="fkg.generel" reference-fk="t_5300_genopd_ret_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5400_affalds_dis_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5400_affalds_dis_t"
-	 dst-table="fkg.generel" reference-fk="t_5400_affalds_dis_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5400_affalds_dis_d_5400_affalds_type" type="relfk" layer="0"
-	 src-table="fkg.t_5400_affalds_dis_t"
-	 dst-table="fkg.d_5400_affalds_type" reference-fk="t_5400_affalds_dis_d_5400_affalds_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5401_genbr_st_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5401_genbr_st_t"
-	 dst-table="fkg.generel" reference-fk="t_5401_genbr_st_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5401_genbr_st_d_5401_gs_type" type="relfk" layer="0"
-	 src-table="fkg.t_5401_genbr_st_t"
-	 dst-table="fkg.d_5401_gs_type" reference-fk="t_5401_genbr_st_d_5401_gs_type"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5401_genbr_st_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5401_genbr_st_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5401_genbr_st_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5401_genbr_st_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5401_genbr_st_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5401_genbr_st_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5402_genbr_con_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5402_genbr_con_t"
-	 dst-table="fkg.generel" reference-fk="t_5402_genbr_con_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5402_genbr_con_d_5402_gc_type" type="relfk" layer="0"
-	 src-table="fkg.t_5402_genbr_con_t"
-	 dst-table="fkg.d_5402_gc_type" reference-fk="t_5402_genbr_con_d_5402_gc_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5403_husst_moel_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5508_husst_moel_t"
-	 dst-table="fkg.generel" reference-fk="t_5508_husst_moel_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5403_husst_moel_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5508_husst_moel_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5508_husst_moel_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5403_husst_moel_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5508_husst_moel_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5508_husst_moel_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5200_aff_prod_udbr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5200_aff_prod_udbr_t"
-	 dst-table="fkg.generel" reference-fk="t_5200_aff_prod_udbr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5200_aff_prod_udbr_d_5200_affald" type="relfk" layer="0"
-	 src-table="fkg.t_5200_aff_prod_udbr_t"
-	 dst-table="fkg.d_5200_affald" reference-fk="t_5200_aff_prod_udbr_d_5200_affald_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5200_aff_prod_udbr_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5200_aff_prod_udbr_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5200_aff_prod_udbr_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5200_aff_prod_udbr_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5200_aff_prod_udbr_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5200_aff_prod_udbr_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5500_elfors_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5500_elfors_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_5500_elfors_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5506_spildev_pl_pkt_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5506_spildev_pl_pkt_t"
-	 dst-table="fkg.generel" reference-fk="t_5506_spildev_pl_pkt_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5506_spildev_pl_pkt_d_5506_anlaegtype" type="relfk" layer="0"
-	 src-table="fkg.t_5506_spildev_pl_pkt_t"
-	 dst-table="fkg.d_5506_anlaegtype" reference-fk="t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5506_spildev_pl_pkt_d_basis_planstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5506_spildev_pl_pkt_t"
-	 dst-table="fkg.d_basis_planstatus" reference-fk="t_5506_spildev_pl_pkt_d_basis_planstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5507_fiberkabel_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5507_fiberkabel_t"
-	 dst-table="fkg.generel" reference-fk="t_5507_fiberkabel_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5800_fac_pkt_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.generel" reference-fk="t_5800_fac_pkt_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5800_fac_pkt_d_5800_facilitet" type="relfk" layer="0"
-	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.d_5800_facilitet" reference-fk="t_5800_fac_pkt_d_5800_facilitet_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.generel" reference-fk="t_5802_fac_li_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_d_5802_facilitet" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5802_rutetype" reference-fk="t_5802_fac_li_d_5802_rutetype_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
-<relationship name="rel_t_5900_jordfl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5900_jordfl_t"
-	 dst-table="fkg.generel" reference-fk="t_5900_jordfl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5900_jordfl_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5900_jordfl_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5900_jordfl_d_vejnavn_afs_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5900_jordfl_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5900_jordfl_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5900_jordfl_d_basis_postnr_afs_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5902_jordv_anl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5902_jordv_anl_t"
-	 dst-table="fkg.generel" reference-fk="t_5902_jordv_anl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5902_jordv_anl_d_5902_vaeske_type" type="relfk" layer="0"
-	 src-table="fkg.t_5902_jordv_anl_t"
-	 dst-table="fkg.d_5902_vaeske_type" reference-fk="t_5902_jordv_anl_d_5902_vaeske_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5902_jordv_anl_d_basis_sag_status" type="relfk" layer="0"
-	 src-table="fkg.t_5902_jordv_anl_t"
-	 dst-table="fkg.d_basis_sag_status" reference-fk="t_5902_jordv_anl_d_basis_sag_status_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5104_art_invas_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5104_art_invas_t"
-	 dst-table="fkg.generel" reference-fk="t_5104_art_invas_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5104_art_invas_d_basis_antal" type="relfk" layer="0"
-	 src-table="fkg.t_5104_art_invas_t"
-	 dst-table="fkg.d_basis_antal" reference-fk="t_5104_art_invas_d_basis_antal_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5107_art_invas_p_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5107_art_invas_p_t"
-	 dst-table="fkg.generel" reference-fk="t_5107_art_invas_p_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5107_art_invas_p_d_basis_antal" type="relfk" layer="0"
-	 src-table="fkg.t_5107_art_invas_p_t"
-	 dst-table="fkg.d_basis_antal" reference-fk="t_5107_art_invas_p_d_basis_antal_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5508_husst_moel_d_5508_stoej" type="relfk" layer="0"
-	 src-table="fkg.t_5508_husst_moel_t"
-	 dst-table="fkg.d_5508_stoej" reference-fk="t_5508_husst_moel_d5508_stoej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5600_vintervedl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5600_vintervedl_t"
-	 dst-table="fkg.generel" reference-fk="t_5600_vintervedl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5600_vintervedl_d_5600_rute" type="relfk" layer="0"
-	 src-table="fkg.t_5600_vintervedl_t"
-	 dst-table="fkg.d_5600_rute" reference-fk="t_5600_vintervedl_d_5600_rute_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5601_hasti_daemp_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5601_hasti_daemp_t"
-	 dst-table="fkg.generel" reference-fk="t_5601_hasti_daemp_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5601_hasti_daemp_d_5601_hasti_type" type="relfk" layer="0"
-	 src-table="fkg.t_5601_hasti_daemp_t"
-	 dst-table="fkg.d_5601_hasti_type" reference-fk="t_5601_hasti_daemp_d_5601_hasti_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5601_hasti_daemp_d_basis_hastighed" type="relfk" layer="0"
-	 src-table="fkg.t_5601_hasti_daemp_t"
-	 dst-table="fkg.d_basis_hastighed" reference-fk="t_5601_hasti_daemp_d_basis_hastighed_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5602_p_zoner_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5602_p_zoner_t"
-	 dst-table="fkg.generel" reference-fk="t_5602_p_zoner_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5602_p_zoner_d_5602_p_type" type="relfk" layer="0"
-	 src-table="fkg.t_5602_p_zoner_t"
-	 dst-table="fkg.d_5602_p_type" reference-fk="t_5602_p_zoner_d_5602_p_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5602_p_zoner_d_5602_p_tid" type="relfk" layer="0"
-	 src-table="fkg.t_5602_p_zoner_t"
-	 dst-table="fkg.d_5602_p_tid" reference-fk="t_5602_p_zoner_d_5602_p_tid_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5603_hasti_zone_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5603_hasti_zone_t"
-	 dst-table="fkg.generel" reference-fk="t_5603_hasti_zone_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5603_hasti_zone_d_basis_hastighed" type="relfk" layer="0"
-	 src-table="fkg.t_5603_hasti_zone_t"
-	 dst-table="fkg.d_basis_hastighed" reference-fk="t_5603_hasti_zone_d_basis_hastighed_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5604_koer_begr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5604_koer_begr_t"
-	 dst-table="fkg.generel" reference-fk="t_5604_koer_begr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5604_koer_begr_d_5604_begr_type" type="relfk" layer="0"
-	 src-table="fkg.t_5604_koer_begr_t"
-	 dst-table="fkg.d_5604_begr_type" reference-fk="t_5604_koer_begr_d_5604_begr_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5605_vejbyggel_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5605_vejbyggel_t"
-	 dst-table="fkg.generel" reference-fk="t_5605_vejbyggel_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5605_vejbyggel_d_5605_dekl_type" type="relfk" layer="0"
-	 src-table="fkg.t_5605_vejbyggel_t"
-	 dst-table="fkg.d_5605_dekl_type" reference-fk="t_5605_vejbyggel_d_5605_dekl_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5605_vejbyggel_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5605_vejbyggel_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5605_vejbyggel_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5606_vejinv_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5606_vejinv_t"
-	 dst-table="fkg.generel" reference-fk="t_5606_vejinv_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5606_vejinv_d_5606_inventar_type" type="relfk" layer="0"
-	 src-table="fkg.t_5606_vejinv_t"
-	 dst-table="fkg.d_5606_inventar_type" reference-fk="t_5606_vejinv_d_5606_inventar_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5606_vejinv_d_basis_tilstand" type="relfk" layer="0"
-	 src-table="fkg.t_5606_vejinv_t"
-	 dst-table="fkg.d_basis_tilstand" reference-fk="t_5606_vejinv_d_basis_tilstand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5700_grundej_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5700_grundej_t"
-	 dst-table="fkg.generel" reference-fk="t_5700_grundej_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5701_lok_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5701_lok_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_5701_lok_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5702_skorst_fej_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5702_skorst_fej_t"
-	 dst-table="fkg.generel" reference-fk="t_5702_skorst_fej_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5703_afstem_sted_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5703_afstem_sted_t"
-	 dst-table="fkg.generel" reference-fk="t_5703_afstem_sted_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5704_afstem_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5704_afstem_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_5704_afstem_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5705_forp_are_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5705_forp_are_t"
-	 dst-table="fkg.generel" reference-fk="t_5705_forp_are_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5706_havn_are_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5706_havn_are_t"
-	 dst-table="fkg.generel" reference-fk="t_5706_havn_are_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5707_grunds_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5707_grunds_t"
-	 dst-table="fkg.generel" reference-fk="t_5707_grunds_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5710_born_skole_dis_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5710_born_skole_dis_t"
-	 dst-table="fkg.generel" reference-fk="t_5710_born_skole_dis_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5711_and_dis_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5711_and_dis_t"
-	 dst-table="fkg.generel" reference-fk="t_5711_and_dis_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5712_plej_aeldr_dis_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5712_plej_aeldr_dis_t"
-	 dst-table="fkg.generel" reference-fk="t_5712_plej_aeldr_dis_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5713_prog_stat_dis_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5713_prog_stat_dis_t"
-	 dst-table="fkg.generel" reference-fk="t_5713_prog_stat_dis_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5714_laering_udd_inst_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5714_laering_udd_inst_t"
-	 dst-table="fkg.generel" reference-fk="t_5714_laering_udd_inst_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5715_botilbud_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5715_botilbud_t"
-	 dst-table="fkg.generel" reference-fk="t_5715_botilbud_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5716_servicetilbud_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5716_servicetilbud_t"
-	 dst-table="fkg.generel" reference-fk="t_5716_servicetilbud_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5700_grundej_d_5700_forening_type" type="relfk" layer="0"
-	 src-table="fkg.t_5700_grundej_t"
-	 dst-table="fkg.d_5700_forening_type" reference-fk="t_5700_grundej_d_5700_forening_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5700_grundej_d_5700_adr_beskyt" type="relfk" layer="0"
-	 src-table="fkg.t_5700_grundej_t"
-	 dst-table="fkg.d_5700_adr_beskyt" reference-fk="t_5700_grundej_d_5700_adr_beskyt_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5700_grundej_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_5700_grundej_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5700_grundej_d_basis_ja_nej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5703_afstem_sted_d_basis_afstemningsomraade" type="relfk" layer="0"
-	 src-table="fkg.t_5703_afstem_sted_t"
-	 dst-table="fkg.d_basis_afstemningsomraade" reference-fk="t_5703_afstem_sted_d_basis_afstemningsomraade_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5703_afstem_sted_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5703_afstem_sted_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5703_afstem_sted_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5703_afstem_sted_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5703_afstem_sted_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5703_afstem_sted_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5704_afstem_omr_d_basis_afstemningsomraade" type="relfk" layer="0"
-	 src-table="fkg.t_5704_afstem_omr_t"
-	 dst-table="fkg.d_basis_afstemningsomraade" reference-fk="t_5704_afstem_omr_d_basis_afstemningsomraade_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5705_forp_are_d_5705_udlejning" type="relfk" layer="0"
-	 src-table="fkg.t_5705_forp_are_t"
-	 dst-table="fkg.d_5705_udlejning" reference-fk="t_5705_forp_are_d_5705_udlejning_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5705_forp_are_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_5705_forp_are_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5705_forp_are_d_basis_ja_nej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5706_havn_are_d_5706_havn_type" type="relfk" layer="0"
-	 src-table="fkg.t_5706_havn_are_t"
-	 dst-table="fkg.d_5706_havn_type" reference-fk="t_5706_havn_are_d_5706_havn_type"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5707_grunds_d_5707_grund_type" type="relfk" layer="0"
-	 src-table="fkg.t_5707_grunds_t"
-	 dst-table="fkg.d_5707_grund_type" reference-fk="t_5707_grunds_d5707_grund_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5707_grunds_d_5707_salg_status" type="relfk" layer="0"
-	 src-table="fkg.t_5707_grunds_t"
-	 dst-table="fkg.d_5707_salg_status" reference-fk="t_5707_grunds_d5707_salg_status_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5707_grunds_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5707_grunds_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5707_grunds_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5707_grunds_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5707_grunds_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5707_grunds_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5710_born_skole_dis_d_5710_udd_distrikt_type" type="relfk" layer="0"
-	 src-table="fkg.t_5710_born_skole_dis_t"
-	 dst-table="fkg.d_5710_udd_distrikt_type" reference-fk="t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5711_and_dis_d_5711_an_distrikt_type" type="relfk" layer="0"
-	 src-table="fkg.t_5711_and_dis_t"
-	 dst-table="fkg.d_5711_an_distrikt_type" reference-fk="t_5711_and_dis_d_5711_an_distrikt_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type" type="relfk" layer="0"
-	 src-table="fkg.t_5712_plej_aeldr_dis_t"
-	 dst-table="fkg.d_5712_plej_distrikt_type" reference-fk="t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5713_prog_stat_dis_d_5713_prog_distrikt_type" type="relfk" layer="0"
-	 src-table="fkg.t_5713_prog_stat_dis_t"
-	 dst-table="fkg.d_5713_prog_distrikt_type" reference-fk="t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5714_laering_udd_inst_d_5714_udd_institution_type" type="relfk" layer="0"
-	 src-table="fkg.t_5714_laering_udd_inst_t"
-	 dst-table="fkg.d_5714_udd_institution_type" reference-fk="t_5714_laering_udd_inst_d_5714_udd_institution_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5714_laering_udd_inst_d_basis_trin" type="relfk" layer="0"
-	 src-table="fkg.t_5714_laering_udd_inst_t"
-	 dst-table="fkg.d_basis_trin" reference-fk="t_5714_laering_udd_inst_d_basis_trin_starttrin_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5714_laering_udd_inst_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5714_laering_udd_inst_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5714_laering_udd_inst_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5714_laering_udd_inst_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5714_laering_udd_inst_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5714_laering_udd_inst_d_basis_postnr"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5715_botilbud_d_5715_botilbud_type" type="relfk" layer="0"
-	 src-table="fkg.t_5715_botilbud_t"
-	 dst-table="fkg.d_5715_botilbud_type" reference-fk="t_5715_botilbud_d_5715_botilbud_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5715_botilbud_d_basis_ejerstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5715_botilbud_t"
-	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5715_botilbud_d_basis_ejerstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5715_botilbud_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5715_botilbud_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5715_botilbud_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5715_botilbud_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5715_botilbud_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5715_botilbud_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="&quot;rel_t_5716_servicetilbud_d_5716_Servicetilbud_type&quot;" type="relfk" layer="0"
-	 src-table="fkg.t_5716_servicetilbud_t"
-	 dst-table="fkg.d_5716_servicetilbud_type" reference-fk="t_5716_servicetilbud_d_5716_servicetilbud_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5716_servicetilbud_d_basis_ejerstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5716_servicetilbud_t"
-	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5716_servicetilbud_d_basis_ejerstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5716_servicetilbud_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5716_servicetilbud_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5716_servicetilbud_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5716_servicetilbud_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5716_servicetilbud_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5716_servicetilbud_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6000_pot_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6000_pot_t"
-	 dst-table="fkg.generel" reference-fk="t_6000_pot_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6001_pot_m_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6001_pot_m_t"
-	 dst-table="fkg.generel" reference-fk="t_6001_pot_m_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6002_indv_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6002_indv_t"
-	 dst-table="fkg.generel" reference-fk="t_6002_indv_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6003_besk_zone_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6003_besk_zone_t"
-	 dst-table="fkg.generel" reference-fk="t_6003_besk_zone_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6004_vandv_fs_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6004_vandv_fs_t"
-	 dst-table="fkg.generel" reference-fk="t_6004_vandv_fs_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6006_grundv_opl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6006_grundv_opl_t"
-	 dst-table="fkg.generel" reference-fk="t_6006_grundv_opl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6007_inds_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6007_inds_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_6007_inds_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6008_maks_bor_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6008_maks_bor_t"
-	 dst-table="fkg.generel" reference-fk="t_6008_maks_bor_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6009_indv_ovflv_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6009_indv_ovflv_t"
-	 dst-table="fkg.generel" reference-fk="t_6009_indv_ovflv_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6000_pot_d_basis_magasin" type="relfk" layer="0"
-	 src-table="fkg.t_6000_pot_t"
-	 dst-table="fkg.d_basis_magasin" reference-fk="t_6000_pot_d_basis_magasin_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6001_pot_m_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6001_pot_m_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6001_pot_m_d_basis_ja_nej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6001_pot_m_d_basis_magasin" type="relfk" layer="0"
-	 src-table="fkg.t_6001_pot_m_t"
-	 dst-table="fkg.d_basis_magasin" reference-fk="t_6001_pot_m_d_basis_magasin_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6002_indv_d_basis_vandv_nr" type="relfk" layer="0"
-	 src-table="fkg.t_6002_indv_t"
-	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6002_indv_d_basis_vandv_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6003_besk_zone_d_basis_vandv_nr" type="relfk" layer="0"
-	 src-table="fkg.t_6003_besk_zone_t"
-	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6003_besk_zone_d_basis_vandv_nr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6003_besk_zone_d_6003_zone_type" type="relfk" layer="0"
-	 src-table="fkg.t_6003_besk_zone_t"
-	 dst-table="fkg.d_6003_zone_type" reference-fk="t_6003_besk_zone_d_6003_zone_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6004_vandv_fs_d_basis_vandv_nr" type="relfk" layer="0"
-	 src-table="fkg.t_6004_vandv_fs_t"
-	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6004_vandv_fs_d_basis_vandv_nr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6004_vandv_fs_d_basis_fors_omr_type" type="relfk" layer="0"
-	 src-table="fkg.t_6004_vandv_fs_t"
-	 dst-table="fkg.d_basis_fors_omr_type" reference-fk="t_6004_vandv_fs_d_basis_fors_omr_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6006_grundv_opl_d_basis_vandv_nr" type="relfk" layer="0"
-	 src-table="fkg.t_6006_grundv_opl_t"
-	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6006_grundv_opl_d_basis_vandv_nr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6103_bered_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6103_bered_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_6103_bered_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6104_risiko_virk_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6104_risiko_virk_t"
-	 dst-table="fkg.generel" reference-fk="t_6104_risiko_virk_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6105_sbygn_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6105_sbygn_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_6105_sbygn_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6107_forholds_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6107_forholds_t"
-	 dst-table="fkg.generel" reference-fk="t_6107_forholds_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6108_moedepl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6108_moedepl_t"
-	 dst-table="fkg.generel" reference-fk="t_6108_moedepl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6110_noegle_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6110_noegle_t"
-	 dst-table="fkg.generel" reference-fk="t_6110_noegle_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6111_fyrv_till_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6111_fyrv_till_t"
-	 dst-table="fkg.generel" reference-fk="t_6111_fyrv_till_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6112_midl_dep_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6112_midl_dep_t"
-	 dst-table="fkg.generel" reference-fk="t_6112_midl_dep_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6113_besk_nat_b_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6113_besk_nat_b_t"
-	 dst-table="fkg.generel" reference-fk="t_6113_besk_nat_b_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6115_afbr_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6115_afbr_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_6115_afbr_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6116_olie_ber_pl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6116_olie_ber_pl_t"
-	 dst-table="fkg.generel" reference-fk="t_6116_olie_ber_pl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6117_inds_pkt_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6117_inds_pkt_t"
-	 dst-table="fkg.generel" reference-fk="t_6117_inds_pkt_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6118_bran_redn_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6118_bran_redn_t"
-	 dst-table="fkg.generel" reference-fk="t_6118_bran_redn_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6101_beskyt_rum_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6101_beskyt_rum_t"
-	 dst-table="fkg.generel" reference-fk="t_6101_beskyt_rum_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6200_nat_geo_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6200_nat_geo_t"
-	 dst-table="fkg.generel" reference-fk="t_6200_nat_geo_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6201_kult_geo_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6201_kult_geo_t"
-	 dst-table="fkg.generel" reference-fk="t_6201_kult_geo_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_6202_landk_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6203_landk_vur_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6203_landk_vur_t"
-	 dst-table="fkg.generel" reference-fk="t_6203_landk_vur_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6800_parl_fl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6800_parl_fl_t"
-	 dst-table="fkg.generel" reference-fk="t_6800_parl_fl_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6801_parl_li_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6801_parl_li_t"
-	 dst-table="fkg.generel" reference-fk="t_6801_parl_li_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6802_parl_pkt_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6802_parl_pkt_t"
-	 dst-table="fkg.generel" reference-fk="t_6802_parl_pkt_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6803_parl_omr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6803_parl_omr_t"
-	 dst-table="fkg.generel" reference-fk="t_6803_parl_omr_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6100_brandhane_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6100_brandhane_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6100_brandhane_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6100_brandhane_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6100_brandhane_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6100_brandhane_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6100_brandhane_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6100_brandhane_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6100_brandhane_d_basis_ja_nej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6101_beskyt_rum_d_6101_beskyt_rum" type="relfk" layer="0"
-	 src-table="fkg.t_6101_beskyt_rum_t"
-	 dst-table="fkg.d_6101_beskyt_rum" reference-fk="t_6101_beskyt_rum_d_6101_beskyt_rum_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6101_beskyt_rum_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6101_beskyt_rum_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6101_beskyt_rum_d_basis_ja_nej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6102_redn_vej_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6102_redn_vej_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6102_redn_vej_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6102_redn_vej_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6102_redn_vej_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6102_redn_vej_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6104_risiko_virk_d_6104_risikotype" type="relfk" layer="0"
-	 src-table="fkg.t_6104_risiko_virk_t"
-	 dst-table="fkg.d_6104_risikotype" reference-fk="t_6104_risiko_virk_d_6104_risikotype_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6104_risiko_virk_d_6104_brandhaem" type="relfk" layer="0"
-	 src-table="fkg.t_6104_risiko_virk_t"
-	 dst-table="fkg.d_6104_brandhaem" reference-fk="t_6104_risiko_virk_d_6104_brandhaem_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6107_forholds_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6107_forholds_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6107_forholds_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6107_forholds_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6107_forholds_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6107_forholds_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6107_forholds_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6107_forholds_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6107_forholds_d_basis_ja_nej_aba_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6108_moedepl_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6108_moedepl_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6108_moedepl_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6108_moedepl_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6108_moedepl_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6108_moedepl_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6110_noegle_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6110_noegle_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6110_noegle_d_basis_ja_nej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6110_noegle_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6110_noegle_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6110_noegle_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6110_noegle_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6110_noegle_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6110_noegle_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6111_fyrv_till_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6111_fyrv_till_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6111_fyrv_till_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6111_fyrv_till_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6111_fyrv_till_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6111_fyrv_till_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6111_fyrv_till_d_6111_tilladelse" type="relfk" layer="0"
-	 src-table="fkg.t_6111_fyrv_till_t"
-	 dst-table="fkg.d_6111_tilladelse" reference-fk="t_6111_fyrv_till_d_6111_tilladelse_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6112_midl_dep_d_6112_depottype" type="relfk" layer="0"
-	 src-table="fkg.t_6112_midl_dep_t"
-	 dst-table="fkg.d_6112_depottype" reference-fk="t_6112_midl_dep_d_6112_depottype_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6115_afbr_omr_d_6115_afbr_type" type="relfk" layer="0"
-	 src-table="fkg.t_6115_afbr_omr_t"
-	 dst-table="fkg.d_6115_afbr_type" reference-fk="t_6115_afbr_omr_d_6115_afbr_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6116_olie_ber_pl_d_6116_strandtype" type="relfk" layer="0"
-	 src-table="fkg.t_6116_olie_ber_pl_t"
-	 dst-table="fkg.d_6116_strandtype" reference-fk="t_6116_olie_ber_pl_d_6116_strandtype_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6116_olie_ber_pl_d_6116_esi_klasse" type="relfk" layer="0"
-	 src-table="fkg.t_6116_olie_ber_pl_t"
-	 dst-table="fkg.d_6116_esi_klasse" reference-fk="t_6116_olie_ber_pl_d_6116_esi_klasse_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6116_olie_ber_pl_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6116_olie_ber_pl_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6116_olie_ber_pl_d_basis_ja_nej_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6117_inds_pkt_d_6117_indsatstype" type="relfk" layer="0"
-	 src-table="fkg.t_6117_inds_pkt_t"
-	 dst-table="fkg.d_6117_indsatstype" reference-fk="t_6117_inds_pkt_d_6117_indsatstype_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6118_bran_redn_d_6118_brand_redarea_type" type="relfk" layer="0"
-	 src-table="fkg.t_6118_bran_redn_t"
-	 dst-table="fkg.d_6118_brand_redarea_type" reference-fk="t_6118_bran_redn_d_6118_brand_redarea_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6118_bran_redn_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6118_bran_redn_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6118_bran_redn_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6118_bran_redn_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6118_bran_redn_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6118_bran_redn_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6200_nat_geo_d_basis_omraade" type="relfk" layer="0"
-	 src-table="fkg.t_6200_nat_geo_t"
-	 dst-table="fkg.d_basis_omraade" reference-fk="t_6200_nat_geo_d_basis_omraade_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6200_nat_geo_d_6200_geologi" type="relfk" layer="0"
-	 src-table="fkg.t_6200_nat_geo_t"
-	 dst-table="fkg.d_6200_geologi" reference-fk="t_6200_nat_geo_d_6200_geologi_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6200_nat_geo_d_6200_jordtype" type="relfk" layer="0"
-	 src-table="fkg.t_6200_nat_geo_t"
-	 dst-table="fkg.d_6200_jordtype" reference-fk="t_6200_nat_geo_d_6200_jordtype_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6200_nat_geo_d_6200_terraen" type="relfk" layer="0"
-	 src-table="fkg.t_6200_nat_geo_t"
-	 dst-table="fkg.d_6200_terraen" reference-fk="t_6200_nat_geo_d_6200_terraen_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6200_nat_geo_d_6200_kompleksitet" type="relfk" layer="0"
-	 src-table="fkg.t_6200_nat_geo_t"
-	 dst-table="fkg.d_6200_kompleksitet" reference-fk="t_6200_nat_geo_6200_kompleksitet_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6201_kult_geo_d_basis_omraade" type="relfk" layer="0"
-	 src-table="fkg.t_6201_kult_geo_t"
-	 dst-table="fkg.d_basis_omraade" reference-fk="t_6201_kult_geo_d_basis_omraade_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_basis_omraade" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_basis_omraade" reference-fk="t_6202_landk_omr_d_basis_omraade_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_6202_tidsdybde" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_6202_tidsdybde" reference-fk="t_6202_landk_omr_d_6202_tidsdybde_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_basis_tilstand" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6202_landk_omr_d_basis_tilstand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_6202_skala" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_6202_skala" reference-fk="t_6202_landk_omr_d_6202_skala_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_6202_rumlig_afgraensning" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_6202_rumlig_afgraensning" reference-fk="t_6202_landk_omr_d_6202_rumlig_afgraensning_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_6202_kompleksitet" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_6202_kompleksitet" reference-fk="t_6202_landk_omr_d_6202_kompleksitet_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_6202_struktur" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_6202_struktur" reference-fk="t_6202_landk_omr_d_6202_struktur_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6202_landk_omr_d_6202_visuel_uro" type="relfk" layer="0"
-	 src-table="fkg.t_6202_landk_omr_t"
-	 dst-table="fkg.d_6202_visuel_uro" reference-fk="t_6202_landk_omr_d_6202_visuel_uro_kode_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6203_landk_vur_d_basis_omraade" type="relfk" layer="0"
-	 src-table="fkg.t_6203_landk_vur_t"
-	 dst-table="fkg.d_basis_omraade" reference-fk="t_6203_landk_vur_d_basis_omraade_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6203_landk_vur_d_basis_tilstand" type="relfk" layer="0"
-	 src-table="fkg.t_6203_landk_vur_t"
-	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6203_landk_vur_d_basis_tilstand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6203_landk_vur_d_6203_saarbarhed" type="relfk" layer="0"
-	 src-table="fkg.t_6203_landk_vur_t"
-	 dst-table="fkg.d_6203_saarbarhed" reference-fk="t_6203_landk_vur_d_6203_saarbarhed_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6203_landk_vur_d_6203_karakterstyrke" type="relfk" layer="0"
-	 src-table="fkg.t_6203_landk_vur_t"
-	 dst-table="fkg.d_6203_karakterstyrke" reference-fk="t_6203_landk_vur_d_6203_karakterstyrke_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6800_parl_fl_d_6800_vedlhold_f_type" type="relfk" layer="0"
-	 src-table="fkg.t_6800_parl_fl_t"
-	 dst-table="fkg.d_6800_vedlhold_f_type" reference-fk="t_6800_parl_fl_d_6800_vedlhold_f_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6800_parl_fl_d_basis_driftniv" type="relfk" layer="0"
-	 src-table="fkg.t_6800_parl_fl_t"
-	 dst-table="fkg.d_basis_driftniv" reference-fk="t_6800_parl_fl_d_basis_driftniv_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6800_parl_fl_d_basis_ukrudtsbek" type="relfk" layer="0"
-	 src-table="fkg.t_6800_parl_fl_t"
-	 dst-table="fkg.d_basis_ukrudtsbek" reference-fk="t_6800_parl_fl_d_basis_ukrudtsbek_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6801_parl_li_d_6801_vedlhold_l_type" type="relfk" layer="0"
-	 src-table="fkg.t_6801_parl_li_t"
-	 dst-table="fkg.d_6801_vedlhold_l_type" reference-fk="t_6801_parl_li_d_6801_vedlhold_l_type_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6801_parl_li_d_basis_driftniv" type="relfk" layer="0"
-	 src-table="fkg.t_6801_parl_li_t"
-	 dst-table="fkg.d_basis_driftniv" reference-fk="t_6801_parl_li_d_basis_driftniv_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6801_parl_li_d_basis_ukrudtsbek" type="relfk" layer="0"
-	 src-table="fkg.t_6801_parl_li_t"
-	 dst-table="fkg.d_basis_ukrudtsbek" reference-fk="t_6801_parl_li_d_basis_ukrudtsbek_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6801_parl_li_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6801_parl_li_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6801_parl_li_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6802_parl_pkt_d_6802_groenvedligh_punkt" type="relfk" layer="0"
-	 src-table="fkg.t_6802_parl_pkt_t"
-	 dst-table="fkg.d_6802_groenvedligh_punkt" reference-fk="t_6802_parl_pkt_d_6802_groenvedligh_punkt_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6802_parl_pkt_d_basis_driftniv" type="relfk" layer="0"
-	 src-table="fkg.t_6802_parl_pkt_t"
-	 dst-table="fkg.d_basis_driftniv" reference-fk="t_6802_parl_pkt_d_basis_driftniv_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6802_parl_pkt_d_basis_ukrudtsbek" type="relfk" layer="0"
-	 src-table="fkg.t_6802_parl_pkt_t"
-	 dst-table="fkg.d_basis_ukrudtsbek" reference-fk="t_6802_parl_pkt_d_basis_ukrudtsbek_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6802_parl_pkt_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6802_parl_pkt_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6802_parl_pkt_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6803_parl_omr_d_6803_pg_distrikt" type="relfk" layer="0"
-	 src-table="fkg.t_6803_parl_omr_t"
-	 dst-table="fkg.d_6803_pg_distrikt" reference-fk="t_6803_parl_omr_d_6803_pg_distrikt_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5710_born_skole_dis_d_basis_trin" type="relfk" layer="0"
-	 src-table="fkg.t_5710_born_skole_dis_t"
-	 dst-table="fkg.d_basis_trin" reference-fk="t_5710_born_skole_dis_d_basis_trin_starttrin_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5000_vandl_d_basis_trussel_vand" type="relfk" layer="0"
-	 src-table="fkg.t_5000_vandl_t"
-	 dst-table="fkg.d_basis_trussel_vand" reference-fk="t_5000_vandl_d_basis_trussel_vand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5714_laering_udd_inst_d_basis_ejerstatus" type="relfk" layer="0"
-	 src-table="fkg.t_5714_laering_udd_inst_t"
-	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5714_laering_udd_inst_d_basis_ejerstatus_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6800_parl_fl_d_basis_tilstand" type="relfk" layer="0"
-	 src-table="fkg.t_6800_parl_fl_t"
-	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6800_parl_fl_d_basis_tilstand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6800_parl_fl_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6800_parl_fl_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6800_parl_fl_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6801_parl_li_d_basis_tilstand" type="relfk" layer="0"
-	 src-table="fkg.t_6801_parl_li_t"
-	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6801_parl_li_d_basis_tilstand_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_6802_parl_pkt_d_basis_tilstand" type="relfk" layer="0"
-	 src-table="fkg.t_6802_parl_pkt_t"
-	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6802_parl_pkt_d_basis_tilstand_fk"
-	 src-required="false" dst-required="false"/>
-
 <relationship name="rel_generel_d_basis_offentlig" type="relfk" layer="0"
 	 src-table="fkg.generel"
 	 dst-table="fkg.d_basis_offentlig" reference-fk="generel_d_basis_offentlig_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5801_fac_fl_generel" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.generel" reference-fk="t_5801_fac_fl_generel_fk"
+<relationship name="rel_d_tabel_d_temagruppe" type="relfk" layer="0"
+	 src-table="fkg.d_tabel"
+	 dst-table="fkg.d_temagruppe" reference-fk="d_tabel_d_temagruppe_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5801_fac_fl_d_5800_facilitet" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_5800_facilitet" reference-fk="t_5801_fac_fl_d_5800_facilitet_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
-<relationship name="rel_t_5801_fac_fl_d_basis_handicapegnet" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_basis_handicapegnet" reference-fk="t_5801_fac_fl_d_basis_handicapegnet_fk"
+<relationship name="rel_t_6100_brandhane_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6100_brandhane_t"
+	 dst-table="fkg.generel" reference-fk="t_6100_brandhane_generel_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6119_evaku_centr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6119_evaku_centr_t"
-	 dst-table="fkg.generel" reference-fk="t_6119_evaku_centr_generel_fk"
+<relationship name="rel_t_6100_brandhane_t_d_6100_brandhane" type="relfk" layer="0"
+	 src-table="fkg.t_6100_brandhane_t"
+	 dst-table="fkg.d_6100_brandhane" reference-fk="t_6100_brandhane_d_6100_brandhane_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6120_midl_overn_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6120_midl_overn_t"
-	 dst-table="fkg.generel" reference-fk="t_6120_midl_overn_generel_fk"
+<relationship name="rel_t_6100_brandhane_t_d_6100_placering" type="relfk" layer="0"
+	 src-table="fkg.t_6100_brandhane_t"
+	 dst-table="fkg.d_6100_placering" reference-fk="t_6100_brandhane_d_6100_placering_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6121_stor_ud_arr_generel" type="relfk" layer="0"
-	 src-table="fkg.t_6121_stor_ud_arr_t"
-	 dst-table="fkg.generel" reference-fk="t_6121_stor_ud_arr_generel_fk"
+<relationship name="rel_t_6100_brandhane_t_d_basis_funktionsstatus" type="relfk" layer="0"
+	 src-table="fkg.t_6100_brandhane_t"
+	 dst-table="fkg.d_basis_funktionsstatus" reference-fk="t_6100_brandhane_d_basis_funktionsstatus_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6119_evaku_centr_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6119_evaku_centr_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6119_evaku_centr_d_vejnavn_fk"
+<relationship name="rel_t_6100_brandhane_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6100_brandhane_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6100_brandhane_d_vejnavn_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6119_evaku_centr_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6119_evaku_centr_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6119_evaku_centr_d_basis_postnr_fk"
+<relationship name="rel_t_6100_brandhane_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6100_brandhane_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6100_brandhane_d_basis_postnr_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6119_evaku_centr_d_basis_funktionsstatus" type="relfk" layer="0"
-	 src-table="fkg.t_6119_evaku_centr_t"
-	 dst-table="fkg.d_basis_funktionsstatus" reference-fk="t_6119_evaku_centr_d_basis_funktionsstatus_fk"
+<relationship name="rel_t_6100_brandhane_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6100_brandhane_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6100_brandhane_d_basis_ja_nej_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6119_evaku_centr_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6119_evaku_centr_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6119_evaku_centr_d_basis_ja_nej_indkvartering_fk"
+<relationship name="rel_t_6102_redn_vej_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6102_redn_vej_t"
+	 dst-table="fkg.generel" reference-fk="t_6102_redningsvej_generel_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6120_midl_overn_t_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6120_midl_overn_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6120_midl_overn_t_d_basis_ja_nej_fast_vaagen_vagt_fk"
+<relationship name="rel_t_6102_redn_vej_t_d_6102_redvej_type" type="relfk" layer="0"
+	 src-table="fkg.t_6102_redn_vej_t"
+	 dst-table="fkg.d_6102_redvej_type" reference-fk="t_6102_redningsvej_d_6102_redvej_type_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6120_midl_overn_t_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6120_midl_overn_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6120_midl_overn_t_d_vejnavn_fk"
+<relationship name="rel_t_6102_redn_vej_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6102_redn_vej_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6102_redn_vej_d_vejnavn_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6120_midl_overn_t_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6120_midl_overn_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6120_midl_overn_t_d_basis_postnr_fk"
+<relationship name="rel_t_6102_redn_vej_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6102_redn_vej_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6102_redn_vej_d_basis_postnr_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_6121_stor_ud_arr_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6121_stor_ud_arr_t_d_basis_ja_nej_forsamlingstelt_fk"
+<relationship name="rel_t_5001_maalest_t_d_5001_maalest_type" type="relfk" layer="0"
+	 src-table="fkg.t_5001_maalest_t"
+	 dst-table="fkg.d_5001_maalest_type" reference-fk="t_5001_maalest_d_5001_maalest_type_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6121_stor_ud_arr_t_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_6121_stor_ud_arr_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_6121_stor_ud_arr_t_d_vejnavn_fk"
+<relationship name="rel_t_5001_maalest_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5001_maalest_t"
+	 dst-table="fkg.generel" reference-fk="t_5001_maalest_generel_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_6121_stor_ud_arr_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_6121_stor_ud_arr_t_d_basis_postnr_fk"
+<relationship name="rel_t_5001_maalest_t_d_basis_dvfi_bedoemmelse" type="relfk" layer="0"
+	 src-table="fkg.t_5001_maalest_t"
+	 dst-table="fkg.d_basis_dvfi_bedoemmelse" reference-fk="t_5001_maalest_d_basisdvfi_bedoemmelse_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6121_stor_ud_arr_t_d_6121_sua" type="relfk" layer="0"
-	 src-table="fkg.t_6121_stor_ud_arr_t"
-	 dst-table="fkg.d_6121_sua" reference-fk="t_6121_stor_ud_arr_t_d_6121_sua_fk"
+<relationship name="rel_t_5001_maalest_t_d_basis_ejerstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5001_maalest_t"
+	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5001_maalest_d_basis_ejerstatus_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6000_pot_t_d_basis_kotesystem" type="relfk" layer="0"
-	 src-table="fkg.t_6000_pot_t"
-	 dst-table="fkg.d_basis_kotesystem" reference-fk="t_6000_pot_d_basis_kotesystem_fk"
+<relationship name="rel_t_5002_faunasp_t_d_5002_spaerring" type="relfk" layer="0"
+	 src-table="fkg.t_5002_faunasp_t"
+	 dst-table="fkg.d_5002_spaerring" reference-fk="t_5002_faunasp_d_5002_spaerring_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_6001_pot_m_t_d_basis_kotesystem" type="relfk" layer="0"
-	 src-table="fkg.t_6001_pot_m_t"
-	 dst-table="fkg.d_basis_kotesystem" reference-fk="t_6001_pot_m_d_basis_kotesystem_fk"
+<relationship name="rel_t_5002_faunasp_t_d_5002_passage" type="relfk" layer="0"
+	 src-table="fkg.t_5002_faunasp_t"
+	 dst-table="fkg.d_5002_passage" reference-fk="t_5002_faunasp_d_5002_passage_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5104_art_invas_t_d_basis_invasivart" type="relfk" layer="0"
-	 src-table="fkg.t_5104_art_invas_t"
-	 dst-table="fkg.d_basis_invasivart" reference-fk="t_5104_art_invas_t_d_basis_invasivart"
+<relationship name="rel_t_5002_faunasp_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5002_faunasp_t"
+	 dst-table="fkg.generel" reference-fk="t_5002_faunasp_generel_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5107_art_invas_p_t_d_basis_invasivart" type="relfk" layer="0"
-	 src-table="fkg.t_5107_art_invas_p_t"
-	 dst-table="fkg.d_basis_invasivart" reference-fk="t_5107_art_invas_p_d_basis_invasivart"
+<relationship name="rel_t_5003_draenledn_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5003_draenledn_t"
+	 dst-table="fkg.generel" reference-fk="t_5003_draenledn_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5003_draenledn_t_d_5003_ledn_type" type="relfk" layer="0"
+	 src-table="fkg.t_5003_draenledn_t"
+	 dst-table="fkg.d_5003_ledn_type" reference-fk="t_5003_draenledn_d_5003_ledn_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5003_draenledn_t_d_5003_klasse" type="relfk" layer="0"
+	 src-table="fkg.t_5003_draenledn_t"
+	 dst-table="fkg.d_5003_klasse" reference-fk="t_5003_draenledn_d_5003_klasse_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5004_draenomr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5004_draenomr_t"
+	 dst-table="fkg.generel" reference-fk="t_5004_draenomr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5004_draenomr_t_d_5004_omr_type" type="relfk" layer="0"
+	 src-table="fkg.t_5004_draenomr_t"
+	 dst-table="fkg.d_5004_omr_type" reference-fk="t_5004_draenomr_d_5004_omr_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5005_soe_t"
+	 dst-table="fkg.generel" reference-fk="t_5005_soe_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_t_d_5005_maalsaetning" type="relfk" layer="0"
+	 src-table="fkg.t_5005_soe_t"
+	 dst-table="fkg.d_5005_maalsaetning" reference-fk="t_5005_soe_d_5005_maalsaetning_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_t_d_5005_soe_type" type="relfk" layer="0"
+	 src-table="fkg.t_5005_soe_t"
+	 dst-table="fkg.d_5005_soe_type" reference-fk="t_5005_soe_d_5005_soe_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_t_d_5005_habitat_type" type="relfk" layer="0"
+	 src-table="fkg.t_5005_soe_t"
+	 dst-table="fkg.d_5005_habitat_type" reference-fk="t_5005_soe_d_5005_habitat_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5005_soe_t_d_basis_trussel_vand" type="relfk" layer="0"
+	 src-table="fkg.t_5005_soe_t"
+	 dst-table="fkg.d_basis_trussel_vand" reference-fk="t_5005_soe_d_basis_trussel_vand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5006_dybdekurv_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5006_dybdekurv_t"
+	 dst-table="fkg.generel" reference-fk="t_5006_dybdekurv_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5007_vandl_opl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5007_vandl_opl_t"
+	 dst-table="fkg.generel" reference-fk="t_5007_vandl_opl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5007_vandl_opl_t_d_5007_opl" type="relfk" layer="0"
+	 src-table="fkg.t_5007_vandl_opl_t"
+	 dst-table="fkg.d_5007_opl" reference-fk="t_5007_vandl_opl_d_5007_opl_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5007_vandl_opl_t_d_5007_opl_type" type="relfk" layer="0"
+	 src-table="fkg.t_5007_vandl_opl_t"
+	 dst-table="fkg.d_5007_opl_type" reference-fk="t_5007_vandl_opl_d_5007_opl_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5008_soe_opl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5008_soe_opl_t"
+	 dst-table="fkg.generel" reference-fk="t_5008_soe_opl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5008_soe_opl_t_d_5008_opl" type="relfk" layer="0"
+	 src-table="fkg.t_5008_soe_opl_t"
+	 dst-table="fkg.d_5008_opl" reference-fk="t_5008_soe_opl_d_5008_opl_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5009_pumpelag_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5009_pumpelag_t"
+	 dst-table="fkg.generel" reference-fk="t_5009_pumpelag_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5009_pumpelag_t_d_5009_lag_type" type="relfk" layer="0"
+	 src-table="fkg.t_5009_pumpelag_t"
+	 dst-table="fkg.d_5009_lag_type" reference-fk="t_5009_pumpelag_d_5009_lag_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5009_pumpelag_t_d_basis_ejerstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5009_pumpelag_t"
+	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5009_pumpelag_d_basis_erjerstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5010_vandl_elm_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5010_vandl_elm_t"
+	 dst-table="fkg.generel" reference-fk="t_5010_vandl_elm_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5010_vandl_elm_t_d_5010_element_type" type="relfk" layer="0"
+	 src-table="fkg.t_5010_vandl_elm_t"
+	 dst-table="fkg.d_5010_element_type" reference-fk="t_5010_vandl_elm_d_5010_element_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5010_vandl_elm_t_d_basis_tilstand" type="relfk" layer="0"
+	 src-table="fkg.t_5010_vandl_elm_t"
+	 dst-table="fkg.d_basis_tilstand" reference-fk="t_5010_vandl_elm_d_basis_tilstand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5105_rig_fattig_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5105_rig_fattig_t"
+	 dst-table="fkg.generel" reference-fk="t_5105_rig_fattig_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5105_rig_fattig_t_d_5105_kaer_type" type="relfk" layer="0"
+	 src-table="fkg.t_5105_rig_fattig_t"
+	 dst-table="fkg.d_5105_kaer_type" reference-fk="t_5105_rig_fattig_d_5105_kaer_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5106_nat_pl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5106_nat_pl_t"
+	 dst-table="fkg.generel" reference-fk="t_5106_nat_pl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5106_nat_pl_t_d_5106_pleje_type" type="relfk" layer="0"
+	 src-table="fkg.t_5106_nat_pl_t"
+	 dst-table="fkg.d_5106_pleje_type" reference-fk="t_5106_nat_pl_d_5106_pleje_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5106_nat_pl_t_d_5106_faciliteter" type="relfk" layer="0"
+	 src-table="fkg.t_5106_nat_pl_t"
+	 dst-table="fkg.d_5106_faciliteter" reference-fk="t_5106_nat_pl_d_5106_faciliteter_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5106_nat_pl_t_d_basis_ejerstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5106_nat_pl_t"
+	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5106_nat_pl_d_basis_ejerstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5108_groent_part_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5108_groent_part_t"
+	 dst-table="fkg.generel" reference-fk="t_5108_groent_part_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5300_genopd_ret_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5300_genopd_ret_t"
+	 dst-table="fkg.generel" reference-fk="t_5300_genopd_ret_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5400_affalds_dis_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5400_affalds_dis_t"
+	 dst-table="fkg.generel" reference-fk="t_5400_affalds_dis_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5400_affalds_dis_t_d_5400_affalds_type" type="relfk" layer="0"
+	 src-table="fkg.t_5400_affalds_dis_t"
+	 dst-table="fkg.d_5400_affalds_type" reference-fk="t_5400_affalds_dis_d_5400_affalds_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5401_genbr_st_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5401_genbr_st_t"
+	 dst-table="fkg.generel" reference-fk="t_5401_genbr_st_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5401_genbr_st_t_d_5401_gs_type" type="relfk" layer="0"
+	 src-table="fkg.t_5401_genbr_st_t"
+	 dst-table="fkg.d_5401_gs_type" reference-fk="t_5401_genbr_st_d_5401_gs_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5401_genbr_st_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5401_genbr_st_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5401_genbr_st_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5401_genbr_st_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5401_genbr_st_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5401_genbr_st_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5402_genbr_con_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5402_genbr_con_t"
+	 dst-table="fkg.generel" reference-fk="t_5402_genbr_con_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5402_genbr_con_t_d_5402_gc_type" type="relfk" layer="0"
+	 src-table="fkg.t_5402_genbr_con_t"
+	 dst-table="fkg.d_5402_gc_type" reference-fk="t_5402_genbr_con_d_5402_gc_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5508_husst_moel_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5508_husst_moel_t"
+	 dst-table="fkg.generel" reference-fk="t_5508_husst_moel_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5508_husst_moel_t_d_5508_stoej" type="relfk" layer="0"
+	 src-table="fkg.t_5508_husst_moel_t"
+	 dst-table="fkg.d_5508_stoej" reference-fk="t_5508_husst_moel_d5508_stoej_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5508_husst_moel_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5508_husst_moel_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5508_husst_moel_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5508_husst_moel_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5508_husst_moel_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5508_husst_moel_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5200_aff_prod_udbr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5200_aff_prod_udbr_t"
+	 dst-table="fkg.generel" reference-fk="t_5200_aff_prod_udbr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5200_aff_prod_udbr_t_d_5200_affald" type="relfk" layer="0"
+	 src-table="fkg.t_5200_aff_prod_udbr_t"
+	 dst-table="fkg.d_5200_affald" reference-fk="t_5200_aff_prod_udbr_d_5200_affald_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5200_aff_prod_udbr_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5200_aff_prod_udbr_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5200_aff_prod_udbr_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5200_aff_prod_udbr_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5200_aff_prod_udbr_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5200_aff_prod_udbr_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5500_elfors_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5500_elfors_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_5500_elfors_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5506_spildev_pl_pkt_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5506_spildev_pl_pkt_t"
+	 dst-table="fkg.generel" reference-fk="t_5506_spildev_pl_pkt_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5506_spildev_pl_pkt_t_d_5506_anlaegtype" type="relfk" layer="0"
+	 src-table="fkg.t_5506_spildev_pl_pkt_t"
+	 dst-table="fkg.d_5506_anlaegtype" reference-fk="t_5506_spildev_pl_pkt_d_5506_anlaegtype_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5506_spildev_pl_pkt_t_d_basis_planstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5506_spildev_pl_pkt_t"
+	 dst-table="fkg.d_basis_planstatus" reference-fk="t_5506_spildev_pl_pkt_d_basis_planstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5507_fiberkabel_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5507_fiberkabel_t"
+	 dst-table="fkg.generel" reference-fk="t_5507_fiberkabel_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.generel" reference-fk="t_5800_fac_pkt_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_5800_facilitet" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_5800_facilitet" reference-fk="t_5800_fac_pkt_d_5800_facilitet_fk"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5800_fac_pkt_t_d_basis_handicapegnet" type="relfk" layer="0"
@@ -10344,89 +9361,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.d_basis_handicapegnet" reference-fk="t_5800_fac_pkt_d_basis_handicapegnet_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5802_fac_li_t_d_basis_belaegning" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_belaegning" reference-fk="t_5802_fac_li_d_basis_belaegning_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
-<relationship name="rel_t_5802_fac_li_t_d_basis_handicapegnet" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_handicapegnet" reference-fk="t_5802_fac_li_d_basis_handicapegnet_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_afmaerket_rute_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
 <relationship name="rel_t_5800_fac_pkt_t_d_5800_saeson" type="relfk" layer="0"
 	 src-table="fkg.t_5800_fac_pkt_t"
 	 dst-table="fkg.d_5800_saeson" reference-fk="t_5800_fac_pkt_d_5800_saeson_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5800_fac_pkt_t_d_basis_ansvar_v" type="relfk" layer="0"
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ansva_v" type="relfk" layer="0"
 	 src-table="fkg.t_5800_fac_pkt_t"
 	 dst-table="fkg.d_basis_ansva_v" reference-fk="t_5800_fac_pkt_d_basis_ansvar_v_fk"
 	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5801_fac_fl_t_d_5800_saeson" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_5800_saeson" reference-fk="t_5801_fac_fl_d_5800_saeson_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
-<relationship name="rel_t_5801_fac_fl_t_d_basis_ansvar_v" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_basis_ansva_v" reference-fk="t_5801_fac_fl_d_basis_ansvar_v_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
-<relationship name="rel_t_5802_fac_li_t_d_5802_rute_uty" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5802_rute_uty" reference-fk="t_5802_fac_li_d_5802_rute_uty_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_5802_kategori" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5802_kategori" reference-fk="t_5802_fac_li_d_5802_kategori_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="name-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
-<relationship name="rel_t_5802_fac_li_t_d_5802_hierarki" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5802_hierarki" reference-fk="t_5802_fac_li_d_5802_hierarki_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_5802_svaerhed" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5802_svaerhed" reference-fk="t_5802_fac_li_d_5802_svaerhed_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_basis_ansvar_v" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_ansva_v" reference-fk="t_5802_fac_li_d_basis_ansvar_v_fk"
-	 src-required="false" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
 
 <relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej" type="relfk" layer="0"
 	 src-table="fkg.t_5800_fac_pkt_t"
@@ -10451,6 +9394,1021 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej4" type="relfk" layer="0"
 	 src-table="fkg.t_5800_fac_pkt_t"
 	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_book_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.generel" reference-fk="t_5802_fac_li_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5802_rutetype" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5802_rutetype" reference-fk="t_5802_fac_li_d_5802_rutetype_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_belaegning" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_belaegning" reference-fk="t_5802_fac_li_d_basis_belaegning_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_handicapegnet" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_handicapegnet" reference-fk="t_5802_fac_li_d_basis_handicapegnet_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_afmaerket_rute_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5802_rute_uty" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5802_rute_uty" reference-fk="t_5802_fac_li_d_5802_rute_uty_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5802_kategori" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5802_kategori" reference-fk="t_5802_fac_li_d_5802_kategori_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5802_hierarki" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5802_hierarki" reference-fk="t_5802_fac_li_d_5802_hierarki_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5802_svaerhed" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5802_svaerhed" reference-fk="t_5802_fac_li_d_5802_svaerhed_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej1" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_folder_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_ansva_v" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_ansva_v" reference-fk="t_5802_fac_li_d_basis_ansvar_v_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej2" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_ja_nej_betaling_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5802_certifi" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5802_certifi" reference-fk="t_5802_fac_li_d_5802_certifi_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5900_jordfl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5900_jordfl_t"
+	 dst-table="fkg.generel" reference-fk="t_5900_jordfl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5900_jordfl_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5900_jordfl_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5900_jordfl_d_vejnavn_afs_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5900_jordfl_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5900_jordfl_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5900_jordfl_d_basis_postnr_afs_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5900_jordfl_t_d_vejnavn1" type="relfk" layer="0"
+	 src-table="fkg.t_5900_jordfl_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5900_jordfl_d_vejnavn_modt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5900_jordfl_t_d_basis_postnr1" type="relfk" layer="0"
+	 src-table="fkg.t_5900_jordfl_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5900_jordfl_d_basis_postnr_modt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5902_jordv_anl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5902_jordv_anl_t"
+	 dst-table="fkg.generel" reference-fk="t_5902_jordv_anl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5902_jordv_anl_t_d_5902_vaeske_type" type="relfk" layer="0"
+	 src-table="fkg.t_5902_jordv_anl_t"
+	 dst-table="fkg.d_5902_vaeske_type" reference-fk="t_5902_jordv_anl_d_5902_vaeske_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5902_jordv_anl_t_d_basis_sag_status" type="relfk" layer="0"
+	 src-table="fkg.t_5902_jordv_anl_t"
+	 dst-table="fkg.d_basis_sag_status" reference-fk="t_5902_jordv_anl_d_basis_sag_status_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5104_art_invas_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5104_art_invas_t"
+	 dst-table="fkg.generel" reference-fk="t_5104_art_invas_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5104_art_invas_t_d_basis_antal" type="relfk" layer="0"
+	 src-table="fkg.t_5104_art_invas_t"
+	 dst-table="fkg.d_basis_antal" reference-fk="t_5104_art_invas_d_basis_antal_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5104_art_invas_t_d_basis_invasivart" type="relfk" layer="0"
+	 src-table="fkg.t_5104_art_invas_t"
+	 dst-table="fkg.d_basis_invasivart" reference-fk="t_5104_art_invas_t_d_basis_invasivart"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5107_art_invas_p_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5107_art_invas_p_t"
+	 dst-table="fkg.generel" reference-fk="t_5107_art_invas_p_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5107_art_invas_p_t_d_basis_antal" type="relfk" layer="0"
+	 src-table="fkg.t_5107_art_invas_p_t"
+	 dst-table="fkg.d_basis_antal" reference-fk="t_5107_art_invas_p_d_basis_antal_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5107_art_invas_p_t_d_basis_invasivart" type="relfk" layer="0"
+	 src-table="fkg.t_5107_art_invas_p_t"
+	 dst-table="fkg.d_basis_invasivart" reference-fk="t_5107_art_invas_p_d_basis_invasivart"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5600_vintervedl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5600_vintervedl_t"
+	 dst-table="fkg.generel" reference-fk="t_5600_vintervedl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5600_vintervedl_t_d_5600_rute" type="relfk" layer="0"
+	 src-table="fkg.t_5600_vintervedl_t"
+	 dst-table="fkg.d_5600_rute" reference-fk="t_5600_vintervedl_d_5600_rute_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5601_hasti_daemp_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5601_hasti_daemp_t"
+	 dst-table="fkg.generel" reference-fk="t_5601_hasti_daemp_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5601_hasti_daemp_t_d_5601_hasti_type" type="relfk" layer="0"
+	 src-table="fkg.t_5601_hasti_daemp_t"
+	 dst-table="fkg.d_5601_hasti_type" reference-fk="t_5601_hasti_daemp_d_5601_hasti_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5601_hasti_daemp_t_d_basis_hastighed" type="relfk" layer="0"
+	 src-table="fkg.t_5601_hasti_daemp_t"
+	 dst-table="fkg.d_basis_hastighed" reference-fk="t_5601_hasti_daemp_d_basis_hastighed_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5602_p_zoner_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5602_p_zoner_t"
+	 dst-table="fkg.generel" reference-fk="t_5602_p_zoner_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5602_p_zoner_t_d_5602_p_type" type="relfk" layer="0"
+	 src-table="fkg.t_5602_p_zoner_t"
+	 dst-table="fkg.d_5602_p_type" reference-fk="t_5602_p_zoner_d_5602_p_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5602_p_zoner_t_d_5602_p_tid" type="relfk" layer="0"
+	 src-table="fkg.t_5602_p_zoner_t"
+	 dst-table="fkg.d_5602_p_tid" reference-fk="t_5602_p_zoner_d_5602_p_tid_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5603_hasti_zone_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5603_hasti_zone_t"
+	 dst-table="fkg.generel" reference-fk="t_5603_hasti_zone_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5603_hasti_zone_t_d_basis_hastighed" type="relfk" layer="0"
+	 src-table="fkg.t_5603_hasti_zone_t"
+	 dst-table="fkg.d_basis_hastighed" reference-fk="t_5603_hasti_zone_d_basis_hastighed_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5603_hasti_zone_t_d_basis_hastighed1" type="relfk" layer="0"
+	 src-table="fkg.t_5603_hasti_zone_t"
+	 dst-table="fkg.d_basis_hastighed" reference-fk="t_5603_hasti_zone_d_basis_hastighed_anbefalet_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5604_koer_begr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5604_koer_begr_t"
+	 dst-table="fkg.generel" reference-fk="t_5604_koer_begr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5604_koer_begr_t_d_5604_begr_type" type="relfk" layer="0"
+	 src-table="fkg.t_5604_koer_begr_t"
+	 dst-table="fkg.d_5604_begr_type" reference-fk="t_5604_koer_begr_d_5604_begr_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5605_vejbyggel_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5605_vejbyggel_t"
+	 dst-table="fkg.generel" reference-fk="t_5605_vejbyggel_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5605_vejbyggel_t_d_5605_dekl_type" type="relfk" layer="0"
+	 src-table="fkg.t_5605_vejbyggel_t"
+	 dst-table="fkg.d_5605_dekl_type" reference-fk="t_5605_vejbyggel_d_5605_dekl_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5605_vejbyggel_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5605_vejbyggel_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5605_vejbyggel_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5606_vejinv_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5606_vejinv_t"
+	 dst-table="fkg.generel" reference-fk="t_5606_vejinv_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5606_vejinv_t_d_5606_inventar_type" type="relfk" layer="0"
+	 src-table="fkg.t_5606_vejinv_t"
+	 dst-table="fkg.d_5606_inventar_type" reference-fk="t_5606_vejinv_d_5606_inventar_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5606_vejinv_t_d_basis_tilstand" type="relfk" layer="0"
+	 src-table="fkg.t_5606_vejinv_t"
+	 dst-table="fkg.d_basis_tilstand" reference-fk="t_5606_vejinv_d_basis_tilstand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5700_grundej_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5700_grundej_t"
+	 dst-table="fkg.generel" reference-fk="t_5700_grundej_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5700_grundej_t_d_5700_forening_type" type="relfk" layer="0"
+	 src-table="fkg.t_5700_grundej_t"
+	 dst-table="fkg.d_5700_forening_type" reference-fk="t_5700_grundej_d_5700_forening_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5700_grundej_t_d_5700_adr_beskyt" type="relfk" layer="0"
+	 src-table="fkg.t_5700_grundej_t"
+	 dst-table="fkg.d_5700_adr_beskyt" reference-fk="t_5700_grundej_d_5700_adr_beskyt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5700_grundej_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_5700_grundej_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5700_grundej_d_basis_ja_nej_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5701_lok_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5701_lok_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_5701_lok_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5702_skorst_fej_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5702_skorst_fej_t"
+	 dst-table="fkg.generel" reference-fk="t_5702_skorst_fej_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5703_afstem_sted_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5703_afstem_sted_t"
+	 dst-table="fkg.generel" reference-fk="t_5703_afstem_sted_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5703_afstem_sted_t_d_basis_afstemningsomraade" type="relfk" layer="0"
+	 src-table="fkg.t_5703_afstem_sted_t"
+	 dst-table="fkg.d_basis_afstemningsomraade" reference-fk="t_5703_afstem_sted_d_basis_afstemningsomraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5703_afstem_sted_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5703_afstem_sted_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5703_afstem_sted_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5703_afstem_sted_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5703_afstem_sted_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5703_afstem_sted_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5704_afstem_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5704_afstem_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_5704_afstem_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5704_afstem_omr_t_d_basis_afstemningsomraade" type="relfk" layer="0"
+	 src-table="fkg.t_5704_afstem_omr_t"
+	 dst-table="fkg.d_basis_afstemningsomraade" reference-fk="t_5704_afstem_omr_d_basis_afstemningsomraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5705_forp_are_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5705_forp_are_t"
+	 dst-table="fkg.generel" reference-fk="t_5705_forp_are_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5705_forp_are_t_d_5705_udlejning" type="relfk" layer="0"
+	 src-table="fkg.t_5705_forp_are_t"
+	 dst-table="fkg.d_5705_udlejning" reference-fk="t_5705_forp_are_d_5705_udlejning_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5705_forp_are_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_5705_forp_are_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5705_forp_are_d_basis_ja_nej_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5706_havn_are_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5706_havn_are_t"
+	 dst-table="fkg.generel" reference-fk="t_5706_havn_are_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5706_havn_are_t_d_5706_havn_type" type="relfk" layer="0"
+	 src-table="fkg.t_5706_havn_are_t"
+	 dst-table="fkg.d_5706_havn_type" reference-fk="t_5706_havn_are_d_5706_havn_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5707_grunds_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5707_grunds_t"
+	 dst-table="fkg.generel" reference-fk="t_5707_grunds_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5707_grunds_t_d_5707_grund_type" type="relfk" layer="0"
+	 src-table="fkg.t_5707_grunds_t"
+	 dst-table="fkg.d_5707_grund_type" reference-fk="t_5707_grunds_d5707_grund_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5707_grunds_t_d_5707_salg_status" type="relfk" layer="0"
+	 src-table="fkg.t_5707_grunds_t"
+	 dst-table="fkg.d_5707_salg_status" reference-fk="t_5707_grunds_d5707_salg_status_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5707_grunds_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5707_grunds_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5707_grunds_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5707_grunds_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5707_grunds_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5707_grunds_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5710_born_skole_dis_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5710_born_skole_dis_t"
+	 dst-table="fkg.generel" reference-fk="t_5710_born_skole_dis_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5710_born_skole_dis_t_d_5710_udd_distrikt_type" type="relfk" layer="0"
+	 src-table="fkg.t_5710_born_skole_dis_t"
+	 dst-table="fkg.d_5710_udd_distrikt_type" reference-fk="t_5710_born_skole_dis_d_5710_udd_distrikt_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5710_born_skole_dis_t_d_basis_trin" type="relfk" layer="0"
+	 src-table="fkg.t_5710_born_skole_dis_t"
+	 dst-table="fkg.d_basis_trin" reference-fk="t_5710_born_skole_dis_d_basis_trin_starttrin_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5710_born_skole_dis_t_d_basis_trin1" type="relfk" layer="0"
+	 src-table="fkg.t_5710_born_skole_dis_t"
+	 dst-table="fkg.d_basis_trin" reference-fk="t_5710_born_skole_dis_d_basis_trin_sluttrin_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5711_and_dis_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5711_and_dis_t"
+	 dst-table="fkg.generel" reference-fk="t_5711_and_dis_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5711_and_dis_t_d_5711_an_distrikt_type" type="relfk" layer="0"
+	 src-table="fkg.t_5711_and_dis_t"
+	 dst-table="fkg.d_5711_an_distrikt_type" reference-fk="t_5711_and_dis_d_5711_an_distrikt_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5712_plej_aeldr_dis_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5712_plej_aeldr_dis_t"
+	 dst-table="fkg.generel" reference-fk="t_5712_plej_aeldr_dis_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5712_plej_aeldr_dis_t_d_5712_plej_distrikt_type" type="relfk" layer="0"
+	 src-table="fkg.t_5712_plej_aeldr_dis_t"
+	 dst-table="fkg.d_5712_plej_distrikt_type" reference-fk="t_5712_plej_aeldr_dis_d_5712_plej_distrikt_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5713_prog_stat_dis_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5713_prog_stat_dis_t"
+	 dst-table="fkg.generel" reference-fk="t_5713_prog_stat_dis_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5713_prog_stat_dis_t_d_5713_prog_distrikt_type" type="relfk" layer="0"
+	 src-table="fkg.t_5713_prog_stat_dis_t"
+	 dst-table="fkg.d_5713_prog_distrikt_type" reference-fk="t_5713_prog_stat_dis_d_5713_prog_distrikt_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5714_laering_udd_inst_t"
+	 dst-table="fkg.generel" reference-fk="t_5714_laering_udd_inst_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_t_d_5714_udd_institution_type" type="relfk" layer="0"
+	 src-table="fkg.t_5714_laering_udd_inst_t"
+	 dst-table="fkg.d_5714_udd_institution_type" reference-fk="t_5714_laering_udd_inst_d_5714_udd_institution_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_t_d_basis_trin" type="relfk" layer="0"
+	 src-table="fkg.t_5714_laering_udd_inst_t"
+	 dst-table="fkg.d_basis_trin" reference-fk="t_5714_laering_udd_inst_d_basis_trin_starttrin_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_t_d_basis_trin1" type="relfk" layer="0"
+	 src-table="fkg.t_5714_laering_udd_inst_t"
+	 dst-table="fkg.d_basis_trin" reference-fk="t_5714_laering_udd_inst_d_basis_trin_sluttrin_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5714_laering_udd_inst_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5714_laering_udd_inst_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5714_laering_udd_inst_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5714_laering_udd_inst_d_basis_postnr"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5714_laering_udd_inst_t_d_basis_ejerstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5714_laering_udd_inst_t"
+	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5714_laering_udd_inst_d_basis_ejerstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5715_botilbud_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5715_botilbud_t"
+	 dst-table="fkg.generel" reference-fk="t_5715_botilbud_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5715_botilbud_t_d_5715_botilbud_type" type="relfk" layer="0"
+	 src-table="fkg.t_5715_botilbud_t"
+	 dst-table="fkg.d_5715_botilbud_type" reference-fk="t_5715_botilbud_d_5715_botilbud_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5715_botilbud_t_d_basis_ejerstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5715_botilbud_t"
+	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5715_botilbud_d_basis_ejerstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5715_botilbud_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5715_botilbud_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5715_botilbud_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5715_botilbud_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5715_botilbud_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5715_botilbud_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5716_servicetilbud_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5716_servicetilbud_t"
+	 dst-table="fkg.generel" reference-fk="t_5716_servicetilbud_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5716_servicetilbud_t_d_5716_servicetilbud_type" type="relfk" layer="0"
+	 src-table="fkg.t_5716_servicetilbud_t"
+	 dst-table="fkg.d_5716_servicetilbud_type" reference-fk="t_5716_servicetilbud_d_5716_servicetilbud_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5716_servicetilbud_t_d_basis_ejerstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5716_servicetilbud_t"
+	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5716_servicetilbud_d_basis_ejerstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5716_servicetilbud_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5716_servicetilbud_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5716_servicetilbud_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5716_servicetilbud_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5716_servicetilbud_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5716_servicetilbud_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6000_pot_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6000_pot_t"
+	 dst-table="fkg.generel" reference-fk="t_6000_pot_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6000_pot_t_d_basis_magasin" type="relfk" layer="0"
+	 src-table="fkg.t_6000_pot_t"
+	 dst-table="fkg.d_basis_magasin" reference-fk="t_6000_pot_d_basis_magasin_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6000_pot_t_d_basis_kotesystem" type="relfk" layer="0"
+	 src-table="fkg.t_6000_pot_t"
+	 dst-table="fkg.d_basis_kotesystem" reference-fk="t_6000_pot_d_basis_kotesystem_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6001_pot_m_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6001_pot_m_t"
+	 dst-table="fkg.generel" reference-fk="t_6001_pot_m_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6001_pot_m_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6001_pot_m_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6001_pot_m_d_basis_ja_nej_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6001_pot_m_t_d_basis_magasin" type="relfk" layer="0"
+	 src-table="fkg.t_6001_pot_m_t"
+	 dst-table="fkg.d_basis_magasin" reference-fk="t_6001_pot_m_d_basis_magasin_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6001_pot_m_t_d_basis_kotesystem" type="relfk" layer="0"
+	 src-table="fkg.t_6001_pot_m_t"
+	 dst-table="fkg.d_basis_kotesystem" reference-fk="t_6001_pot_m_d_basis_kotesystem_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6002_indv_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6002_indv_t"
+	 dst-table="fkg.generel" reference-fk="t_6002_indv_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6002_indv_t_d_basis_vandv_nr" type="relfk" layer="0"
+	 src-table="fkg.t_6002_indv_t"
+	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6002_indv_d_basis_vandv_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6003_besk_zone_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6003_besk_zone_t"
+	 dst-table="fkg.generel" reference-fk="t_6003_besk_zone_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6003_besk_zone_t_d_basis_vandv_nr" type="relfk" layer="0"
+	 src-table="fkg.t_6003_besk_zone_t"
+	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6003_besk_zone_d_basis_vandv_nr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6003_besk_zone_t_d_6003_zone_type" type="relfk" layer="0"
+	 src-table="fkg.t_6003_besk_zone_t"
+	 dst-table="fkg.d_6003_zone_type" reference-fk="t_6003_besk_zone_d_6003_zone_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6004_vandv_fs_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6004_vandv_fs_t"
+	 dst-table="fkg.generel" reference-fk="t_6004_vandv_fs_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6004_vandv_fs_t_d_basis_vandv_nr" type="relfk" layer="0"
+	 src-table="fkg.t_6004_vandv_fs_t"
+	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6004_vandv_fs_d_basis_vandv_nr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6004_vandv_fs_t_d_basis_fors_omr_type" type="relfk" layer="0"
+	 src-table="fkg.t_6004_vandv_fs_t"
+	 dst-table="fkg.d_basis_fors_omr_type" reference-fk="t_6004_vandv_fs_d_basis_fors_omr_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6006_grundv_opl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6006_grundv_opl_t"
+	 dst-table="fkg.generel" reference-fk="t_6006_grundv_opl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6006_grundv_opl_t_d_basis_vandv_nr" type="relfk" layer="0"
+	 src-table="fkg.t_6006_grundv_opl_t"
+	 dst-table="fkg.d_basis_vandv_nr" reference-fk="t_6006_grundv_opl_d_basis_vandv_nr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6007_inds_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6007_inds_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_6007_inds_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6008_maks_bor_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6008_maks_bor_t"
+	 dst-table="fkg.generel" reference-fk="t_6008_maks_bor_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6009_indv_ovflv_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6009_indv_ovflv_t"
+	 dst-table="fkg.generel" reference-fk="t_6009_indv_ovflv_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6101_beskyt_rum_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6101_beskyt_rum_t"
+	 dst-table="fkg.generel" reference-fk="t_6101_beskyt_rum_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6101_beskyt_rum_t_d_6101_beskyt_rum" type="relfk" layer="0"
+	 src-table="fkg.t_6101_beskyt_rum_t"
+	 dst-table="fkg.d_6101_beskyt_rum" reference-fk="t_6101_beskyt_rum_d_6101_beskyt_rum_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6101_beskyt_rum_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6101_beskyt_rum_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6101_beskyt_rum_d_basis_ja_nej_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6103_bered_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6103_bered_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_6103_bered_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6104_risiko_virk_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6104_risiko_virk_t"
+	 dst-table="fkg.generel" reference-fk="t_6104_risiko_virk_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6104_risiko_virk_t_d_6104_risikotype" type="relfk" layer="0"
+	 src-table="fkg.t_6104_risiko_virk_t"
+	 dst-table="fkg.d_6104_risikotype" reference-fk="t_6104_risiko_virk_d_6104_risikotype_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6104_risiko_virk_t_d_6104_brandhaem" type="relfk" layer="0"
+	 src-table="fkg.t_6104_risiko_virk_t"
+	 dst-table="fkg.d_6104_brandhaem" reference-fk="t_6104_risiko_virk_d_6104_brandhaem_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6105_sbygn_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6105_sbygn_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_6105_sbygn_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6107_forholds_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6107_forholds_t"
+	 dst-table="fkg.generel" reference-fk="t_6107_forholds_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6107_forholds_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6107_forholds_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6107_forholds_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6107_forholds_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6107_forholds_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6107_forholds_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6107_forholds_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6107_forholds_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6107_forholds_d_basis_ja_nej_aba_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6107_forholds_t_d_basis_ja_nej1" type="relfk" layer="0"
+	 src-table="fkg.t_6107_forholds_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6107_forholds_d_basis_ja_nej_avs_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6107_forholds_t_d_basis_ja_nej2" type="relfk" layer="0"
+	 src-table="fkg.t_6107_forholds_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6107_forholds_d_basis_ja_nej_ars_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6107_forholds_t_d_basis_ja_nej3" type="relfk" layer="0"
+	 src-table="fkg.t_6107_forholds_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6107_forholds_d_basis_ja_nej_noegleboks_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6108_moedepl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6108_moedepl_t"
+	 dst-table="fkg.generel" reference-fk="t_6108_moedepl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6108_moedepl_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6108_moedepl_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6108_moedepl_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6108_moedepl_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6108_moedepl_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6108_moedepl_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6110_noegle_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6110_noegle_t"
+	 dst-table="fkg.generel" reference-fk="t_6110_noegle_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6110_noegle_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6110_noegle_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6110_noegle_d_basis_ja_nej_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6110_noegle_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6110_noegle_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6110_noegle_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6110_noegle_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6110_noegle_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6110_noegle_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6111_fyrv_till_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6111_fyrv_till_t"
+	 dst-table="fkg.generel" reference-fk="t_6111_fyrv_till_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6111_fyrv_till_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6111_fyrv_till_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6111_fyrv_till_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6111_fyrv_till_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6111_fyrv_till_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6111_fyrv_till_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6111_fyrv_till_t_d_6111_tilladelse" type="relfk" layer="0"
+	 src-table="fkg.t_6111_fyrv_till_t"
+	 dst-table="fkg.d_6111_tilladelse" reference-fk="t_6111_fyrv_till_d_6111_tilladelse_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6112_midl_dep_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6112_midl_dep_t"
+	 dst-table="fkg.generel" reference-fk="t_6112_midl_dep_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6112_midl_dep_t_d_6112_depottype" type="relfk" layer="0"
+	 src-table="fkg.t_6112_midl_dep_t"
+	 dst-table="fkg.d_6112_depottype" reference-fk="t_6112_midl_dep_d_6112_depottype_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6113_besk_nat_b_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6113_besk_nat_b_t"
+	 dst-table="fkg.generel" reference-fk="t_6113_besk_nat_b_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6115_afbr_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6115_afbr_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_6115_afbr_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6115_afbr_omr_t_d_6115_afbr_type" type="relfk" layer="0"
+	 src-table="fkg.t_6115_afbr_omr_t"
+	 dst-table="fkg.d_6115_afbr_type" reference-fk="t_6115_afbr_omr_d_6115_afbr_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6116_olie_ber_pl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6116_olie_ber_pl_t"
+	 dst-table="fkg.generel" reference-fk="t_6116_olie_ber_pl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6116_olie_ber_pl_t_d_6116_strandtype" type="relfk" layer="0"
+	 src-table="fkg.t_6116_olie_ber_pl_t"
+	 dst-table="fkg.d_6116_strandtype" reference-fk="t_6116_olie_ber_pl_d_6116_strandtype_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6116_olie_ber_pl_t_d_6116_esi_klasse" type="relfk" layer="0"
+	 src-table="fkg.t_6116_olie_ber_pl_t"
+	 dst-table="fkg.d_6116_esi_klasse" reference-fk="t_6116_olie_ber_pl_d_6116_esi_klasse_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6116_olie_ber_pl_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6116_olie_ber_pl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6116_olie_ber_pl_d_basis_ja_nej_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6117_inds_pkt_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6117_inds_pkt_t"
+	 dst-table="fkg.generel" reference-fk="t_6117_inds_pkt_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6117_inds_pkt_t_d_6117_indsatstype" type="relfk" layer="0"
+	 src-table="fkg.t_6117_inds_pkt_t"
+	 dst-table="fkg.d_6117_indsatstype" reference-fk="t_6117_inds_pkt_d_6117_indsatstype_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6118_bran_redn_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6118_bran_redn_t"
+	 dst-table="fkg.generel" reference-fk="t_6118_bran_redn_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6118_bran_redn_t_d_6118_brand_redarea_type" type="relfk" layer="0"
+	 src-table="fkg.t_6118_bran_redn_t"
+	 dst-table="fkg.d_6118_brand_redarea_type" reference-fk="t_6118_bran_redn_d_6118_brand_redarea_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6118_bran_redn_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6118_bran_redn_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6118_bran_redn_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6118_bran_redn_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6118_bran_redn_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6118_bran_redn_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6200_nat_geo_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6200_nat_geo_t"
+	 dst-table="fkg.generel" reference-fk="t_6200_nat_geo_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6200_nat_geo_t_d_basis_omraade" type="relfk" layer="0"
+	 src-table="fkg.t_6200_nat_geo_t"
+	 dst-table="fkg.d_basis_omraade" reference-fk="t_6200_nat_geo_d_basis_omraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6200_nat_geo_t_d_6200_geologi" type="relfk" layer="0"
+	 src-table="fkg.t_6200_nat_geo_t"
+	 dst-table="fkg.d_6200_geologi" reference-fk="t_6200_nat_geo_d_6200_geologi_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6200_nat_geo_t_d_6200_jordtype" type="relfk" layer="0"
+	 src-table="fkg.t_6200_nat_geo_t"
+	 dst-table="fkg.d_6200_jordtype" reference-fk="t_6200_nat_geo_d_6200_jordtype_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6200_nat_geo_t_d_6200_terraen" type="relfk" layer="0"
+	 src-table="fkg.t_6200_nat_geo_t"
+	 dst-table="fkg.d_6200_terraen" reference-fk="t_6200_nat_geo_d_6200_terraen_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6200_nat_geo_t_d_6200_kompleksitet" type="relfk" layer="0"
+	 src-table="fkg.t_6200_nat_geo_t"
+	 dst-table="fkg.d_6200_kompleksitet" reference-fk="t_6200_nat_geo_6200_kompleksitet_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6201_kult_geo_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6201_kult_geo_t"
+	 dst-table="fkg.generel" reference-fk="t_6201_kult_geo_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6201_kult_geo_t_d_basis_omraade" type="relfk" layer="0"
+	 src-table="fkg.t_6201_kult_geo_t"
+	 dst-table="fkg.d_basis_omraade" reference-fk="t_6201_kult_geo_d_basis_omraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_6202_landk_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_basis_omraade" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_basis_omraade" reference-fk="t_6202_landk_omr_d_basis_omraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_6202_tidsdybde" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_6202_tidsdybde" reference-fk="t_6202_landk_omr_d_6202_tidsdybde_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_basis_tilstand" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6202_landk_omr_d_basis_tilstand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_6202_skala" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_6202_skala" reference-fk="t_6202_landk_omr_d_6202_skala_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_6202_rumlig_afgraensning" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_6202_rumlig_afgraensning" reference-fk="t_6202_landk_omr_d_6202_rumlig_afgraensning_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_6202_kompleksitet" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_6202_kompleksitet" reference-fk="t_6202_landk_omr_d_6202_kompleksitet_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_6202_struktur" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_6202_struktur" reference-fk="t_6202_landk_omr_d_6202_struktur_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6202_landk_omr_t_d_6202_visuel_uro" type="relfk" layer="0"
+	 src-table="fkg.t_6202_landk_omr_t"
+	 dst-table="fkg.d_6202_visuel_uro" reference-fk="t_6202_landk_omr_d_6202_visuel_uro_kode_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6203_landk_vur_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6203_landk_vur_t"
+	 dst-table="fkg.generel" reference-fk="t_6203_landk_vur_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6203_landk_vur_t_d_basis_omraade" type="relfk" layer="0"
+	 src-table="fkg.t_6203_landk_vur_t"
+	 dst-table="fkg.d_basis_omraade" reference-fk="t_6203_landk_vur_d_basis_omraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6203_landk_vur_t_d_basis_tilstand" type="relfk" layer="0"
+	 src-table="fkg.t_6203_landk_vur_t"
+	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6203_landk_vur_d_basis_tilstand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6203_landk_vur_t_d_6203_saarbarhed" type="relfk" layer="0"
+	 src-table="fkg.t_6203_landk_vur_t"
+	 dst-table="fkg.d_6203_saarbarhed" reference-fk="t_6203_landk_vur_d_6203_saarbarhed_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6203_landk_vur_t_d_6203_karakterstyrke" type="relfk" layer="0"
+	 src-table="fkg.t_6203_landk_vur_t"
+	 dst-table="fkg.d_6203_karakterstyrke" reference-fk="t_6203_landk_vur_d_6203_karakterstyrke_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6800_parl_fl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6800_parl_fl_t"
+	 dst-table="fkg.generel" reference-fk="t_6800_parl_fl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6800_parl_fl_t_d_6800_vedlhold_f_type" type="relfk" layer="0"
+	 src-table="fkg.t_6800_parl_fl_t"
+	 dst-table="fkg.d_6800_vedlhold_f_type" reference-fk="t_6800_parl_fl_d_6800_vedlhold_f_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6800_parl_fl_t_d_basis_driftniv" type="relfk" layer="0"
+	 src-table="fkg.t_6800_parl_fl_t"
+	 dst-table="fkg.d_basis_driftniv" reference-fk="t_6800_parl_fl_d_basis_driftniv_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6800_parl_fl_t_d_basis_ukrudtsbek" type="relfk" layer="0"
+	 src-table="fkg.t_6800_parl_fl_t"
+	 dst-table="fkg.d_basis_ukrudtsbek" reference-fk="t_6800_parl_fl_d_basis_ukrudtsbek_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6800_parl_fl_t_d_basis_tilstand" type="relfk" layer="0"
+	 src-table="fkg.t_6800_parl_fl_t"
+	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6800_parl_fl_d_basis_tilstand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6800_parl_fl_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6800_parl_fl_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6800_parl_fl_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6801_parl_li_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6801_parl_li_t"
+	 dst-table="fkg.generel" reference-fk="t_6801_parl_li_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6801_parl_li_t_d_6801_vedlhold_l_type" type="relfk" layer="0"
+	 src-table="fkg.t_6801_parl_li_t"
+	 dst-table="fkg.d_6801_vedlhold_l_type" reference-fk="t_6801_parl_li_d_6801_vedlhold_l_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6801_parl_li_t_d_basis_driftniv" type="relfk" layer="0"
+	 src-table="fkg.t_6801_parl_li_t"
+	 dst-table="fkg.d_basis_driftniv" reference-fk="t_6801_parl_li_d_basis_driftniv_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6801_parl_li_t_d_basis_ukrudtsbek" type="relfk" layer="0"
+	 src-table="fkg.t_6801_parl_li_t"
+	 dst-table="fkg.d_basis_ukrudtsbek" reference-fk="t_6801_parl_li_d_basis_ukrudtsbek_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6801_parl_li_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6801_parl_li_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6801_parl_li_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6801_parl_li_t_d_basis_tilstand" type="relfk" layer="0"
+	 src-table="fkg.t_6801_parl_li_t"
+	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6801_parl_li_d_basis_tilstand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6802_parl_pkt_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6802_parl_pkt_t"
+	 dst-table="fkg.generel" reference-fk="t_6802_parl_pkt_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6802_parl_pkt_t_d_6802_groenvedligh_punkt" type="relfk" layer="0"
+	 src-table="fkg.t_6802_parl_pkt_t"
+	 dst-table="fkg.d_6802_groenvedligh_punkt" reference-fk="t_6802_parl_pkt_d_6802_groenvedligh_punkt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6802_parl_pkt_t_d_basis_driftniv" type="relfk" layer="0"
+	 src-table="fkg.t_6802_parl_pkt_t"
+	 dst-table="fkg.d_basis_driftniv" reference-fk="t_6802_parl_pkt_d_basis_driftniv_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6802_parl_pkt_t_d_basis_ukrudtsbek" type="relfk" layer="0"
+	 src-table="fkg.t_6802_parl_pkt_t"
+	 dst-table="fkg.d_basis_ukrudtsbek" reference-fk="t_6802_parl_pkt_d_basis_ukrudtsbek_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6802_parl_pkt_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6802_parl_pkt_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6802_parl_pkt_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6802_parl_pkt_t_d_basis_tilstand" type="relfk" layer="0"
+	 src-table="fkg.t_6802_parl_pkt_t"
+	 dst-table="fkg.d_basis_tilstand" reference-fk="t_6802_parl_pkt_d_basis_tilstand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6803_parl_omr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6803_parl_omr_t"
+	 dst-table="fkg.generel" reference-fk="t_6803_parl_omr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6803_parl_omr_t_d_6803_pg_distrikt" type="relfk" layer="0"
+	 src-table="fkg.t_6803_parl_omr_t"
+	 dst-table="fkg.d_6803_pg_distrikt" reference-fk="t_6803_parl_omr_d_6803_pg_distrikt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.generel" reference-fk="t_5801_fac_fl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_5800_facilitet" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_5800_facilitet" reference-fk="t_5801_fac_fl_d_5800_facilitet_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_handicapegnet" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_handicapegnet" reference-fk="t_5801_fac_fl_d_basis_handicapegnet_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_5800_saeson" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_5800_saeson" reference-fk="t_5801_fac_fl_d_5800_saeson_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ansva_v" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ansva_v" reference-fk="t_5801_fac_fl_d_basis_ansvar_v_fk"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej" type="relfk" layer="0"
@@ -10478,19 +10436,159 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_book_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej1" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_folder_fk"
+<relationship name="rel_t_6119_evaku_centr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.generel" reference-fk="t_6119_evaku_centr_generel_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej2" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_ja_nej_betaling_fk"
+<relationship name="rel_t_6119_evaku_centr_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6119_evaku_centr_d_vejnavn_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_t_5802_fac_li_t_d_5802_certifi" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5802_certifi" reference-fk="t_5802_fac_li_d_5802_certifi_fk"
+<relationship name="rel_t_6119_evaku_centr_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6119_evaku_centr_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_t_d_basis_funktionsstatus" type="relfk" layer="0"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_funktionsstatus" reference-fk="t_6119_evaku_centr_d_basis_funktionsstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6119_evaku_centr_d_basis_ja_nej_indkvartering_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_t_d_basis_ja_nej1" type="relfk" layer="0"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6119_evaku_centr_d_basis_ja_nej_forplejning_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6119_evaku_centr_t_d_basis_ja_nej2" type="relfk" layer="0"
+	 src-table="fkg.t_6119_evaku_centr_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6119_evaku_centr_d_basis_ja_nej_beredsskabsplan_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6120_midl_overn_t"
+	 dst-table="fkg.generel" reference-fk="t_6120_midl_overn_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6120_midl_overn_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6120_midl_overn_t_d_basis_ja_nej_fast_vaagen_vagt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6120_midl_overn_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6120_midl_overn_t_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6120_midl_overn_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6120_midl_overn_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6120_midl_overn_t_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.generel" reference-fk="t_6121_stor_ud_arr_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6121_stor_ud_arr_t_d_basis_ja_nej_forsamlingstelt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_ja_nej1" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6121_stor_ud_arr_t_d_basis_ja_nej_cirkustelt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_ja_nej2" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6121_stor_ud_arr_t_d_basis_ja_nej_campingomraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_ja_nej3" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_6121_stor_ud_arr_t_d_basis_ja_nej_salgsomraade_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_6121_stor_ud_arr_t_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_6121_stor_ud_arr_t_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_6121_stor_ud_arr_t_d_6121_sua" type="relfk" layer="0"
+	 src-table="fkg.t_6121_stor_ud_arr_t"
+	 dst-table="fkg.d_6121_sua" reference-fk="t_6121_stor_ud_arr_t_d_6121_sua_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_generel" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.generel" reference-fk="t_5000_vandl_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_5000_klasse" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_5000_klasse" reference-fk="t_5000_vandl_d_5000_klasse_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_5000_vandl_type" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_5000_vandl_type" reference-fk="t_5000_vandl_d_5000_vandl_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_basis_ejerstatus" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_basis_ejerstatus" reference-fk="t_5000_vandl_d_basis_ejerstatus_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5000_vandl_d_basis_ja_nej_tidl_amt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_basis_ja_nej1" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5000_vandl_d_basis_ja_nej_p3vandloeb_kode_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_basis_dvfi_bedoemmelse" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_basis_dvfi_bedoemmelse" reference-fk="t_5000_vandl_d_basis_dvfi_bedoemmelse_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_basis_ja_nej2" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5000_vandl_d_basis_ja_nej_maalsaetning_opfyldt_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_basis_trussel_vand" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_basis_trussel_vand" reference-fk="t_5000_vandl_d_basis_trussel_vand_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5000_vandl_t_d_5000_maalsaetning" type="relfk" layer="0"
+	 src-table="fkg.t_5000_vandl_t"
+	 dst-table="fkg.d_5000_maalsaetning" reference-fk="t_5000_vandl_d_5000_maalsaetning_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_l_fotoforbindelse_t_generel" type="relfk" layer="0"
+	 src-table="fkg.l_fotoforbindelse_t"
+	 dst-table="fkg.generel" reference-fk="l_fotoforbindelse_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_l_fotoforbindelse_t_d_tabel" type="relfk" layer="0"
+	 src-table="fkg.l_fotoforbindelse_t"
+	 dst-table="fkg.d_tabel" reference-fk="l_fotoforbindelse_d_tabel_fk"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
