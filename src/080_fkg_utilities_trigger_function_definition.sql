@@ -97,6 +97,7 @@ BEGIN
        column_name_old = _record.column_name;
     END IF;
   END LOOP;
+  column_name_old = '';
   td = td || E')' || E'\n';
   td = td || E'      SELECT' || E'\n';
   td = td || E'        NEW.versions_id';
@@ -109,6 +110,7 @@ BEGIN
        column_name_old = _record.column_name;
     END IF;
   END LOOP;
+  column_name_old = '';
   td = td || E';' || E'\n';
   td = td || E'\n';
   td = td || E'      -- Close the old version' || E'\n';
@@ -152,6 +154,7 @@ BEGIN
        column_name_old = _record.column_name;
     END IF;
   END LOOP;
+  column_name_old = '';
   td = td || E')' || E'\n';
   td = td || E'      SELECT' || E'\n';
   td = td || E'        NEW.versions_id';
@@ -164,6 +167,7 @@ BEGIN
        column_name_old = _record.column_name;
     END IF;
   END LOOP;
+  column_name_old = '';
 
   td = td || E';\n';
   td = td || E'      RETURN NEW;' || E'\n';
