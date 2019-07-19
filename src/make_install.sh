@@ -61,17 +61,11 @@ echo "*/" >> INSTALL/$INSTALL_FILE
 sed -i '1 s/^\xef\xbb\xbf//' *.sql
 
 # Copy scripts to install
-cat 010_create_uuid_extension.sql >> INSTALL/$INSTALL_FILE
-cat 020_create_postgis_extension.sql >> INSTALL/$INSTALL_FILE
 cat 040_metadata.sql >> INSTALL/$INSTALL_FILE
 cat 050_coredata.sql >> INSTALL/$INSTALL_FILE
 
 # Run the scripting files like this
 # psql --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=
-
-# Create the extensions on the local DB
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=010_create_uuid_extension.sql
-psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=020_create_postgis_extension.sql
 
 # CLEAN the build database of any signs of old builds
 psql --quiet --tuples-only --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=030_clean.sql
@@ -105,6 +99,10 @@ cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 # Create the indeces and store output
 psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=110_create_indeces.sql  -o INSTALL/_tmp.sql
 cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
+
+# Create the fotoforbindelse support table
+psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=120_create_l_fotoforbindelse.sql  
+cat 120_create_l_fotoforbindelse.sql >> INSTALL/$INSTALL_FILE
 
 # remove tmp file
 rm INSTALL/_tmp.sql
