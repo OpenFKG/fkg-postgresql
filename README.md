@@ -47,6 +47,10 @@ Der er lagt et stort stykke arbejde med at udvikle programmellet, så hele basis
 
 Primo juli 2015 blev der foretaget en opdatering fra version 2.4 til 2.5 økonomisk fra [KL](http://kl.dk). Alle temaer er således bragt op på version 2.5 og modellen er fuldt klar til brug.
 
+I efteråret 2017 blev der udviklet en midlertidig "branch" på Datamodellen, som primært omhandlede ændringer til de 3 frilufttemaer `FACILITET_PUNKT (5800)` `FACILITET_FLADE (5801)` og `FACILITET_LINJE (5802)`. Disse ændringer er efterfølgende merget i hovedmodellen i version 2_6_0_1.
+
+Medio juli 2019 er FKG datamodellen opdateret til version 2_6_0_2. Ændringer omfatter de 3 friluftstemaer, samt understøttelse for lagring af eksterne billed-filer. 
+
 Bidrag
 ------------
 Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
@@ -69,6 +73,10 @@ Sommer 2014 blev alle temaer i version 2.4 implementeret / opgraderet med økono
 
 Primo juli 2015 blev der foretaget en opdatering fra version 2.4 til 2.5 økonomisk fra [KL](http://kl.dk).
 
+Efterår 2017 er datamodellen opgraderet fra 2.5 til version 2_6_0_1 (i særskilt branch) med økonomisk støtte fra [KL](http://kl.dk).
+
+Sommer 2019 er datamodellen opgraderet fra version 2_6_0_1 til version 2_6_0_2 med økonomisk støtte fra [KL](http://kl.dk).
+
 
 For udviklere
 -----------
@@ -83,7 +91,7 @@ Det er enklest at køre denne proces ved at bruge installations/kompileringsscri
 Dette gøres enklest således:
 
 1. Lav dine ændringer i modellen - fkg.dbm - i PgModeler
-2. Eksportér dine ændringer fra PgModeler til filen [040_metadata.sql](src/040_metadata.sql)  (gem som PostgreSQL 9.3)
+2. Eksportér dine ændringer fra PgModeler til filen [040_metadata.sql](src/040_metadata.sql)  (gem som seneste PostgreSQL version)
 3. Lav de nødvendige ændringer i [050_coredata.sql](src/050_coredata.sql) og [060_fkg_utilities.sql](src/060_fkg_utilities.sql)
 4. Ændr dine *build*-database-indstillinger og installationsfilens navn i toppen af [make_install.sh](src/make_install.sh)
 5. Kør [make_install.sh](src/make_install.sh) i terminalen 

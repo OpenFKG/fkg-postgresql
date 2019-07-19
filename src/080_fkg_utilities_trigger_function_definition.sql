@@ -89,6 +89,7 @@ BEGIN
   td = td || E'      -- Insert into theme' || E'\n';
   td = td || E'      INSERT INTO ' || schema_name || '.' || base_table_name || ' (versions_id';
   -- Loop through the columns in theme-table (column-NAME-list)
+  column_name_old = '';
   FOR _record IN select * FROM fkg_utilities.column_metadata WHERE table_name = base_table_name AND column_name <> 'versions_id' ORDER BY ordinal_position, ordinal
   LOOP
     -- The code_field (if not already inserted)
@@ -102,6 +103,7 @@ BEGIN
   td = td || E'      SELECT' || E'\n';
   td = td || E'        NEW.versions_id';
   -- Loop through the columns in theme-table (column-VALUE-list)
+  column_name_old = '';
   FOR _record IN select * FROM fkg_utilities.column_metadata WHERE table_name = base_table_name AND column_name <> 'versions_id' ORDER BY ordinal_position, ordinal
   LOOP
     -- The code_field (if not already inserted)
@@ -146,6 +148,7 @@ BEGIN
   td = td || E'      -- Insert into ' || base_table_name || E'\n';
   td = td || E'      INSERT INTO ' || schema_name || '.' || base_table_name || ' (versions_id';
   -- Loop through the columns in theme-table (column-NAME-list)
+  column_name_old = '';
   FOR _record IN select * FROM fkg_utilities.column_metadata WHERE table_name = base_table_name AND column_name <> 'versions_id' ORDER BY ordinal_position, ordinal
   LOOP
     -- The code_field (if not already inserted)
@@ -159,6 +162,7 @@ BEGIN
   td = td || E'      SELECT' || E'\n';
   td = td || E'        NEW.versions_id';
   -- Loop through the columns in theme-table (column-VALUE-list)
+  column_name_old = '';
   FOR _record IN select * FROM fkg_utilities.column_metadata WHERE table_name = base_table_name AND column_name <> 'versions_id' ORDER BY ordinal_position, ordinal
   LOOP
     -- The code_field (if not already inserted)
@@ -197,7 +201,7 @@ BEGIN
   td = td || E'    END IF;' || E'\n';
   td = td || E'    RETURN NEW;' || E'\n';
   td = td || E'  END;' || E'\n';
-  td = td || E'$$LANGUAGE plpgsql VOLATILE' || E'\n';
+  td = td || E'$$ LANGUAGE plpgsql VOLATILE' || E'\n';
   td = td || E'  COST 100;' || E'\n';
   td = td || E'\n';
   td = td || E'DROP TRIGGER IF EXISTS make_multi_trg ON ' || schema_name || '.' || base_table_name || ';' || E'\n';
