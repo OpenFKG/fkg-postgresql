@@ -1920,6 +1920,7 @@ CREATE TABLE fkg.t_5802_fac_li_t (
 	rute_uty_k integer,
 	navn character varying(50),
 	navndels character varying(128),
+	straekn_nr character varying(128),
 	afm_rute_k integer,
 	laengde float,
 	beskrivels character varying(254),
