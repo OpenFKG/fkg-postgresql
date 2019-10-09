@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,0" last-zoom="1" max-obj-count="387"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="1931,4483" last-zoom="1" max-obj-count="387"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -3264,9 +3264,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="44">
+<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="45">
 	<schema name="fkg"/>
-	<position x="2260" y="4860"/>
+	<position x="2260" y="4880"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3280,6 +3280,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="50"/>
 	</column>
 	<column name="navndels">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="straekn_nr">
 		<type name="character varying" length="128"/>
 	</column>
 	<column name="afm_rute_k">
@@ -6984,7 +6987,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_certifi" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2680" y="4840"/>
+	<position x="2900" y="4680"/>
 	<column name="certifi_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
