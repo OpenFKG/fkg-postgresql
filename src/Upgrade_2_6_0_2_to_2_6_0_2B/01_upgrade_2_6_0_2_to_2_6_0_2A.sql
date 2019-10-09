@@ -47,6 +47,7 @@ SELECT
   t.uk_l_beskr,
   t.d_k_beskr,
   t.d_l_beskr,
+  t.straekn_nr,
   t.ansvar_org,
   t.kontak_ved,
   t.betaling_k,
