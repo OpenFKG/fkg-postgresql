@@ -1,4 +1,3 @@
-BEGIN TRANSACTION;
 -- Upgrade script FKG datamodel 2_6_0_2A to 2_6_0_3
 -- l_fotoforbindelse replaced by t_7900_fotoforbindelse
 -- New t_7901_foto
@@ -389,4 +388,3 @@ DROP TRIGGER IF EXISTS make_multi_trg ON fkg.t_7900_fotoforbindelse_t;
 CREATE TRIGGER make_multi_trg BEFORE INSERT OR UPDATE
    ON fkg.t_7900_fotoforbindelse_t FOR EACH ROW
    EXECUTE PROCEDURE fkg.make_multi();
-ROLLBACK TRANSACTION;
