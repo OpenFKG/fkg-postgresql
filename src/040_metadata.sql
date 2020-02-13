@@ -3690,20 +3690,45 @@ CREATE EXTENSION "uuid-ossp"
       WITH SCHEMA public;
 -- ddl-end --
 
--- object: fkg.l_fotoforbindelse_t | type: TABLE --
--- DROP TABLE IF EXISTS fkg.l_fotoforbindelse_t CASCADE;
-CREATE TABLE fkg.l_fotoforbindelse_t (
+-- object: fkg.t_7900_fotoforbindelse_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_7900_fotoforbindelse_t CASCADE;
+CREATE TABLE fkg.t_7900_fotoforbindelse_t (
 	versions_id uuid NOT NULL,
-	geometri geometry(POINT),
-	noegle character varying(128),
 	note character varying(254),
-	tema_kode integer NOT NULL,
+	fkg_tema character varying(50) NOT NULL,
 	foto_objek uuid NOT NULL,
-	foto_prefix uuid NOT NULL,
+	foto_lokat uuid NOT NULL,
 	foto_navn character varying(128),
-	CONSTRAINT l_fotoforbindelse_pk PRIMARY KEY (versions_id)
+	primaer_kode integer NOT NULL,
+	CONSTRAINT t_7900_fotoforbindelse_pk PRIMARY KEY (versions_id),
+	CONSTRAINT primaer_kode_ck CHECK (primaer_kode IN (0,1))
 
 );
+-- ddl-end --
+
+-- object: fkg.t_7901_foto_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_7901_foto_t CASCADE;
+CREATE TABLE fkg.t_7901_foto_t (
+	versions_id uuid NOT NULL,
+	note character varying(254),
+	geometri geometry(POINT, 25832),
+	copyright character varying(124),
+	CONSTRAINT t_7901_foto_pk PRIMARY KEY (versions_id)
+
+);
+-- ddl-end --
+ALTER TABLE fkg.t_7901_foto_t OWNER TO postgres;
+-- ddl-end --
+
+-- object: primaer_kode_unique_idx | type: INDEX --
+-- DROP INDEX IF EXISTS fkg.primaer_kode_unique_idx CASCADE;
+CREATE UNIQUE INDEX primaer_kode_unique_idx ON fkg.t_7900_fotoforbindelse_t
+	USING btree
+	(
+	  foto_objek,
+	  primaer_kode
+	)
+	WHERE (primaer_kode = 1);
 -- ddl-end --
 
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
@@ -5953,17 +5978,24 @@ REFERENCES fkg.d_5000_maalsaetning (maalsaetning_kode) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: l_fotoforbindelse_generel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.l_fotoforbindelse_t DROP CONSTRAINT IF EXISTS l_fotoforbindelse_generel_fk CASCADE;
-ALTER TABLE fkg.l_fotoforbindelse_t ADD CONSTRAINT l_fotoforbindelse_generel_fk FOREIGN KEY (versions_id)
+-- object: t_7900_fotoforbindelse_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_7900_fotoforbindelse_t DROP CONSTRAINT IF EXISTS t_7900_fotoforbindelse_generel_fk CASCADE;
+ALTER TABLE fkg.t_7900_fotoforbindelse_t ADD CONSTRAINT t_7900_fotoforbindelse_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: l_fotoforbindelse_d_tabel_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.l_fotoforbindelse_t DROP CONSTRAINT IF EXISTS l_fotoforbindelse_d_tabel_fk CASCADE;
-ALTER TABLE fkg.l_fotoforbindelse_t ADD CONSTRAINT l_fotoforbindelse_d_tabel_fk FOREIGN KEY (tema_kode)
-REFERENCES fkg.d_tabel (tema_kode) MATCH FULL
+-- object: t_7900_fotoforbindelse_d_basis_ja_nej | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_7900_fotoforbindelse_t DROP CONSTRAINT IF EXISTS t_7900_fotoforbindelse_d_basis_ja_nej CASCADE;
+ALTER TABLE fkg.t_7900_fotoforbindelse_t ADD CONSTRAINT t_7900_fotoforbindelse_d_basis_ja_nej FOREIGN KEY (primaer_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_7901_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_7901_foto_t DROP CONSTRAINT IF EXISTS t_7901_generel_fk CASCADE;
+ALTER TABLE fkg.t_7901_foto_t ADD CONSTRAINT t_7901_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

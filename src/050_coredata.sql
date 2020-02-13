@@ -167,6 +167,7 @@ INSERT INTO fkg.d_temagruppe VALUES ('5.11', 6000, 6099,'Grundvand');
 INSERT INTO fkg.d_temagruppe VALUES ('5.12', 6100, 6199,'Beredskab');
 INSERT INTO fkg.d_temagruppe VALUES ('5.13', 6200, 6299,'Planlægning');
 INSERT INTO fkg.d_temagruppe VALUES ('5.19', 6800, 6899,'Park og Grønne områder');
+INSERT INTO fkg.d_temagruppe VALUES ('5.20', 7900, 7999,'Fotos');
 -- SELECT * FROM temagruppe
 
 INSERT INTO fkg.d_tabel VALUES (5000,'Vandløb','L','t_5000_vandl','5.1');
@@ -259,6 +260,10 @@ INSERT INTO fkg.d_tabel VALUES (6800,'Park og grønne områder flade','F','t_680
 INSERT INTO fkg.d_tabel VALUES (6801,'Park og grønne områder linje','L','t_6801_parl_li','5.19');
 INSERT INTO fkg.d_tabel VALUES (6802,'Park og grønne områder punkt','P','t_6802_parl_pkt','5.19');
 INSERT INTO fkg.d_tabel VALUES (6803,'Park og grønne områders distrikt','F','t_6803_parl_omr','5.19');
+-- Nye temaer i 2.6.3:
+INSERT INTO fkg.d_tabel VALUES (7900,'Fotoforbindelse','P','t_7900_fotoforbindelse','5.20');
+INSERT INTO fkg.d_tabel VALUES (7901,'Foto','P','t_7901_foto','5.20');
+
 --SELECT * FROM tema
 
 INSERT INTO fkg.d_basis_oprindelse VALUES (0,'Ikke udfyldt', 1, NULL);
