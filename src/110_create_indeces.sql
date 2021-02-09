@@ -19,7 +19,14 @@
 */
 
 -- One liner that generates gist indexes for every present table
-SELECT fkg_utilities.get_index_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
+SELECT
+  fkg_utilities.get_index_definition(t.table_name::TEXT)
+FROM
+  information_schema.tables t JOIN 
+  information_schema.columns c ON (c.table_name = t.table_name AND c.table_schema = t.table_schema AND c.column_name = 'geometri')
+WHERE
+  t.table_schema = 'fkg' AND
+  t.table_type = 'BASE TABLE' AND t.table_name IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
 
 -- For 5800, 5801 and 5802
 /*

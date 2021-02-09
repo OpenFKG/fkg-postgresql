@@ -48,7 +48,7 @@ BEGIN
   INTO theme_code
   USING interface_name;
   IF theme_code IS NULL THEN
-    RAISE EXCEPTION 'Entry for basetable: "%" is missing in "%.tema"', base_table_name, schema_name;
+    RAISE EXCEPTION 'Entry for basetable: "%" is missing in "%.d_tabel"', base_table_name, schema_name;
   END IF;
 
   -- Evaluate name of view.
