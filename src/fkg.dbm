@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="1686,0" last-zoom="1" max-obj-count="388"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,2484" last-zoom="1" max-obj-count="388"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -2898,7 +2898,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5508_husst_moel_t" layer="0" collapse-mode="2" max-obj-count="13">
+<table name="t_5508_husst_moel_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
 	<position x="1100" y="2860"/>
 	<column name="versions_id" not-null="true">
@@ -2924,6 +2924,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="vejkode">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character varying" length="7"/>
 	</column>
 	<column name="husnr">
 		<type name="character varying" length="4"/>

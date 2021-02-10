@@ -4,7 +4,7 @@
 BEGIN TRANSACTION;
 ALTER TABLE fkg.generel
   ADD COLUMN noegle character varying(128) NULL,
-  ADD COLUMN note character varying(254);
+  ADD COLUMN note character varying(254) NULL;
 -- Overfør data fra kolonne noegle i specific tables til generel (undgå at miste data):
 UPDATE fkg.generel SET noegle = t.noegle FROM fkg.t_5003_draenledn_t t WHERE fkg.generel.versions_id = t.versions_id;
 UPDATE fkg.generel SET noegle = t.noegle FROM fkg.t_5004_draenomr_t t WHERE fkg.generel.versions_id = t.versions_id;
@@ -126,7 +126,8 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33157274, 'Naturstyrelsen',
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33284114, 'Styrelsen for Dataforsyning og Effektivisering', NULL, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private', NULL, 1);
 
-
+-- Nyt fejlt i t_5508_husst_moel_t (https://github.com/OpenFKG/fkg-postgresql/issues/60)
+ALTER TABLE fkg.t_5508_husst_moel_t ADD COLUMN cvf_vejkode character varying(7) NULL;
 
 
 ROLLBACK TRANSACTION;
