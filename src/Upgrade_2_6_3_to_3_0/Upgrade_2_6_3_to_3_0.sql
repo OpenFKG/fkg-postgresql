@@ -129,5 +129,18 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private'
 -- Nyt fejlt i t_5508_husst_moel_t (https://github.com/OpenFKG/fkg-postgresql/issues/60)
 ALTER TABLE fkg.t_5508_husst_moel_t ADD COLUMN cvf_vejkode character varying(7) NULL;
 
+-- Ændring i lookup-tabeller (https://github.com/OpenFKG/fkg-postgresql/issues/62)
+INSERT INTO fkg.d_basis_trin VALUES (97,'Ej relevant',1,'Ikke relevant for dette objekt');
+UPDATE fkg.d_basis_trin SET begrebsdefinition = 'Andet' WHERE trin_kode = 98;
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (30, 'Dagcenter', 1, 'Aktivitetsprægede tilbud med formål at øge og bevare brugernes muligheder for at klare sig selv, f.eks. ved at forebygge forringelse af den fysiske funktionsevne eller af social isolation.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (31, 'Fysioterapiklinik', 1, 'Klinik til genoptræning til afhjælpning af fysisk funktionsnedsættelse');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (32, 'Behandlingscenter', 1, 'Institution der tilbyder ambulant behandling af misbrugsproblemer (stof og/eller alkohol) el. andre psykiske og fysiske lidelser.   Kommunalbestyrelsen skal tilbyde behandling af stofmisbrugere jf. Servicelovens § 101 og alkoholbehandling jf. Sundhedslovens §141.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (33, 'Værested', 1, 'Sted hvor man kan komme, tilbringe tiden og møde andre især om opholdssted for fx børn og unge, hjemløse, psykisk syge el. narkomaner der kommer ind fra gaden og får rådgivning m.m. af frivillige');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (34, 'Sygeplejeklinik', 1, 'På sygeplejeklinikker tilbydes kommunale sygeplejeydelser. Sygeplejeydelser kan også tilbydes i borgerens eget hjem.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (35, 'Krisecenter', 1, 'Krisecentre tilbyder husly og støtte til kvinder og børn, der har været udsat for vold eller trusler om vold i hjemmet. Man har mulighed for at bo på krisecentret i en kortere eller længere periode.    Tilbud om ophold på krisecenter er jf. servicelovens § 109.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1062, 'Badepunkt', 1, 'Badested tildelt Det nordiske kystflag.'); --https://github.com/OpenFKG/fkg-postgresql/issues/62
+UPDATE fkg.d_5800_facilitet SET begrebsdefinition = 'Primitiv overdækket overnatningsmulighed. En shelter kan være alt fra nogle stolper og en presenning, over klassiske sheltere, til simple hytter med overnatningspladser. Åbne i en eller flere sider.' WHERE facil_ty_k = 3012;
+UPDATE fkg.d_5802_rutetype SET begrebsdefinition = 'Afmærket eller beskrevet rute for kano- og kajak-sejlads.' WHERE rute_ty_k = 9;
+
 
 ROLLBACK TRANSACTION;
