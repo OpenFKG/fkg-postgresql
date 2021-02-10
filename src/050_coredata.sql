@@ -388,6 +388,12 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 28856075,'Ærø Kommune', 4
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189854,'Aabenraa Kommune', 580, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189420,'Aalborg Kommune', 851, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 55133018,'Aarhus Kommune', 751, 1);
+-- Nye myndigheder version 3.0 (Miljøstyrelsen genopstår):
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376, 'Miljøstyrelsen', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33157274, 'Naturstyrelsen', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33284114, 'Styrelsen for Dataforsyning og Effektivisering', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private', NULL, 1);
+
 -- SELECT * FROM d_basis_ansvarlig_myndighed;
 
 INSERT INTO fkg.d_basis_offentlig VALUES (1,'Synlig for alle',1);

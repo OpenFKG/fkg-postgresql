@@ -120,5 +120,13 @@ ALTER TABLE fkg.t_6803_parl_omr_t DROP COLUMN note CASCADE;
 ALTER TABLE fkg.t_7900_fotoforbindelse_t DROP COLUMN note CASCADE;
 ALTER TABLE fkg.t_7901_foto_t DROP COLUMN note CASCADE;
 
+-- Nye rækker i ansvarlig (https://github.com/OpenFKG/fkg-postgresql/issues/57)
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376, 'Miljøstyrelsen', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33157274, 'Naturstyrelsen', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33284114, 'Styrelsen for Dataforsyning og Effektivisering', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private', NULL, 1);
+
+
+
 
 ROLLBACK TRANSACTION;
