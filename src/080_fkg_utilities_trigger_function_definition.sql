@@ -82,9 +82,9 @@ BEGIN
   td = td || E'\n';
   td = td || E'      -- Insert into general' || E'\n';
   td = td || E'      INSERT INTO ' || schema_name || '.generel (' || E'\n';
-  td = td || E'        versions_id, objekt_id, systid_fra, systid_til, oprettet, cvr_kode, bruger_id, oprindkode, statuskode, off_kode)' || E'\n';
+  td = td || E'        versions_id, objekt_id, systid_fra, systid_til, oprettet, cvr_kode, bruger_id, oprindkode, statuskode, off_kode, noegle, note)' || E'\n';
   td = td || E'      SELECT' || E'\n';
-  td = td || E'        NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;' || E'\n';
+  td = td || E'        NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode, NEW.noegle, NEW.note;' || E'\n';
   td = td || E'\n';
   td = td || E'      -- Insert into theme' || E'\n';
   td = td || E'      INSERT INTO ' || schema_name || '.' || base_table_name || ' (versions_id';
@@ -139,9 +139,9 @@ BEGIN
   td = td || E'      NEW.oprettet = current_timestamp;' || E'\n';
   td = td || E'\n';
   td = td || E'      -- Insert into general' || E'\n';
-  td = td || E'      INSERT INTO ' || schema_name || '.generel (versions_id, objekt_id, systid_fra, systid_til, oprettet, cvr_kode, bruger_id, oprindkode, statuskode, off_kode)' || E'\n';
+  td = td || E'      INSERT INTO ' || schema_name || '.generel (versions_id, objekt_id, systid_fra, systid_til, oprettet, cvr_kode, bruger_id, oprindkode, statuskode, off_kode, noegle, note)' || E'\n';
   td = td || E'      SELECT' || E'\n';
-  td = td || E'        NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode;' || E'\n';
+  td = td || E'        NEW.versions_id, NEW.objekt_id, NEW.systid_fra, NEW.systid_til, NEW.oprettet, NEW.cvr_kode, NEW.bruger_id, NEW.oprindkode, NEW.statuskode, NEW.off_kode, NEW.noegle, NEW.note;' || E'\n';
   td = td || E'\n';
 
       -- Insert into theme
