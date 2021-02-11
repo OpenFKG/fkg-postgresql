@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,2484" last-zoom="1" max-obj-count="388"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,0" last-zoom="1" max-obj-count="388"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -626,12 +626,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <textbox name="Heading" layer="0" font-size="9">
 	<position x="20" y="20"/>
-	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 2.6.0.3]]></comment>
+	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 3.0]]></comment>
 </textbox>
 
 <textbox name="copyright" layer="0" font-size="9">
 	<position x="20" y="60"/>
-	<comment><![CDATA[(c) 2013-2020 Septima and other contributors]]></comment>
+	<comment><![CDATA[(c) 2013-2021 Septima and other contributors]]></comment>
 </textbox>
 
 <table name="d_6100_brandhane" layer="0" collapse-mode="2" max-obj-count="4">
@@ -674,7 +674,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6100_brandhane_t" layer="0" collapse-mode="2" max-obj-count="20">
+<table name="t_6100_brandhane_t" layer="0" collapse-mode="2" max-obj-count="21">
 	<schema name="fkg"/>
 	<position x="4460" y="820"/>
 	<column name="versions_id" not-null="true">
@@ -712,6 +712,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="funktionsstatus_kode">
 		<type name="integer" length="1"/>
@@ -765,7 +768,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6102_redn_vej_t" layer="0" collapse-mode="2" max-obj-count="13">
+<table name="t_6102_redn_vej_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
 	<position x="4440" y="1220"/>
 	<column name="versions_id" not-null="true">
@@ -794,6 +797,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
@@ -2825,7 +2831,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5401_genbr_st_t" layer="0" collapse-mode="2" max-obj-count="12">
+<table name="t_5401_genbr_st_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
 	<position x="1140" y="1920"/>
 	<column name="versions_id" not-null="true">
@@ -2851,6 +2857,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
@@ -2898,7 +2907,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5508_husst_moel_t" layer="0" collapse-mode="2" max-obj-count="14">
+<table name="t_5508_husst_moel_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
 	<position x="1100" y="2860"/>
 	<column name="versions_id" not-null="true">
@@ -2934,6 +2943,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="postnr">
 		<type name="integer" length="1"/>
 	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
+	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
@@ -2951,7 +2963,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5200_aff_prod_udbr_t" layer="0" collapse-mode="2" max-obj-count="24">
+<table name="t_5200_aff_prod_udbr_t" layer="0" collapse-mode="2" max-obj-count="25">
 	<schema name="fkg"/>
 	<position x="1120" y="960"/>
 	<column name="versions_id" not-null="true">
@@ -2977,6 +2989,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="markblok">
 		<type name="character varying" length="25"/>
@@ -4016,7 +4031,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5703_afstem_sted_t" layer="0" collapse-mode="2" max-obj-count="16">
+<table name="t_5703_afstem_sted_t" layer="0" collapse-mode="2" max-obj-count="18">
 	<schema name="fkg"/>
 	<position x="2240" y="1380"/>
 	<column name="versions_id" not-null="true">
@@ -4054,6 +4069,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
@@ -4195,7 +4213,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5707_grunds_t" layer="0" collapse-mode="2" max-obj-count="21">
+<table name="t_5707_grunds_t" layer="0" collapse-mode="2" max-obj-count="22">
 	<schema name="fkg"/>
 	<position x="2240" y="2080"/>
 	<column name="versions_id" not-null="true">
@@ -4245,6 +4263,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
@@ -4403,7 +4424,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5714_laering_udd_inst_t" layer="0" collapse-mode="2" max-obj-count="14">
+<table name="t_5714_laering_udd_inst_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
 	<position x="2240" y="3180"/>
 	<column name="versions_id" not-null="true">
@@ -4436,6 +4457,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="postnr">
 		<type name="integer" length="1"/>
 	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
+	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
@@ -4447,7 +4471,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5715_botilbud_t" layer="0" collapse-mode="2" max-obj-count="12">
+<table name="t_5715_botilbud_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
 	<position x="2260" y="3320"/>
 	<column name="versions_id" not-null="true">
@@ -4474,6 +4498,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="postnr">
 		<type name="integer" length="1"/>
 	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
+	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
 	</column>
@@ -4485,7 +4512,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5716_servicetilbud_t" layer="0" collapse-mode="2" max-obj-count="12">
+<table name="t_5716_servicetilbud_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
 	<position x="2240" y="3520"/>
 	<column name="versions_id" not-null="true">
@@ -4517,6 +4544,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<constraint name="t_5716_servicetilbud_pk" type="pk-constr" factor="10" table="fkg.t_5716_servicetilbud_t">
 		<columns names="versions_id" ref-type="src-columns"/>
@@ -5222,7 +5252,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6107_forholds_t" layer="0" collapse-mode="2" max-obj-count="34">
+<table name="t_6107_forholds_t" layer="0" collapse-mode="2" max-obj-count="36">
 	<schema name="fkg"/>
 	<position x="4460" y="1920"/>
 	<column name="versions_id" not-null="true">
@@ -5254,6 +5284,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="adr_i_tekst">
 		<type name="character varying" length="128"/>
@@ -5329,7 +5362,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6108_moedepl_t" layer="0" collapse-mode="2" max-obj-count="12">
+<table name="t_6108_moedepl_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
 	<position x="4460" y="2360"/>
 	<column name="versions_id" not-null="true">
@@ -5350,6 +5383,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="postnr">
 		<type name="integer" length="1"/>
 	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
+	</column>
 	<column name="bemaerkning">
 		<type name="character varying" length="254"/>
 	</column>
@@ -5367,7 +5403,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6110_noegle_t" layer="0" collapse-mode="2" max-obj-count="13">
+<table name="t_6110_noegle_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
 	<position x="4460" y="2560"/>
 	<column name="versions_id" not-null="true">
@@ -5394,6 +5430,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="postnr">
 		<type name="integer" length="1"/>
 	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
+	</column>
 	<column name="bemaerkning">
 		<type name="character varying" length="254"/>
 	</column>
@@ -5408,7 +5447,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6111_fyrv_till_t" layer="0" collapse-mode="2" max-obj-count="14">
+<table name="t_6111_fyrv_till_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
 	<position x="4460" y="2760"/>
 	<column name="versions_id" not-null="true">
@@ -5431,6 +5470,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="tilladelse_type_kode" not-null="true">
 		<type name="integer" length="1"/>
@@ -5618,7 +5660,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6118_bran_redn_t" layer="0" collapse-mode="2" max-obj-count="13">
+<table name="t_6118_bran_redn_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
 	<position x="4460" y="4140"/>
 	<column name="versions_id" not-null="true">
@@ -5647,6 +5689,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
@@ -6417,7 +6462,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6119_evaku_centr_t" layer="0" collapse-mode="2" max-obj-count="18">
+<table name="t_6119_evaku_centr_t" layer="0" collapse-mode="2" max-obj-count="19">
 	<schema name="fkg"/>
 	<position x="4460" y="4360"/>
 	<column name="versions_id" not-null="true">
@@ -6440,6 +6485,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="funktionsstatus_kode">
 		<type name="integer" length="1"/>
@@ -6479,7 +6527,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6120_midl_overn_t" layer="0" collapse-mode="2" max-obj-count="16">
+<table name="t_6120_midl_overn_t" layer="0" collapse-mode="2" max-obj-count="18">
 	<schema name="fkg"/>
 	<position x="4440" y="4640"/>
 	<column name="versions_id" not-null="true">
@@ -6512,6 +6560,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="postnr">
 		<type name="integer" length="1"/>
 	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
+	</column>
 	<column name="gyldig_fra" not-null="true">
 		<type name="date" length="1"/>
 	</column>
@@ -6535,7 +6586,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_6121_stor_ud_arr_t" layer="0" collapse-mode="2" max-obj-count="25">
+<table name="t_6121_stor_ud_arr_t" layer="0" collapse-mode="2" max-obj-count="26">
 	<schema name="fkg"/>
 	<position x="4400" y="4980"/>
 	<column name="versions_id" not-null="true">
@@ -6588,6 +6639,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="postnr">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="adr_id">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="gyldig_fra" not-null="true">
 		<type name="date" length="1"/>

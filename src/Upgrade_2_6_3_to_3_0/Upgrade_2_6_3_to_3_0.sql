@@ -142,5 +142,25 @@ INSERT INTO fkg.d_5800_facilitet VALUES (1062, 'Badepunkt', 1, 'Badested tildelt
 UPDATE fkg.d_5800_facilitet SET begrebsdefinition = 'Primitiv overdækket overnatningsmulighed. En shelter kan være alt fra nogle stolper og en presenning, over klassiske sheltere, til simple hytter med overnatningspladser. Åbne i en eller flere sider.' WHERE facil_ty_k = 3012;
 UPDATE fkg.d_5802_rutetype SET begrebsdefinition = 'Afmærket eller beskrevet rute for kano- og kajak-sejlads.' WHERE rute_ty_k = 9;
 
+-- Tilføj kolonnen adr_id til temaer med en husnr kolonne (https://github.com/OpenFKG/fkg-postgresql/issues/59):
+ALTER TABLE fkg.t_5200_aff_prod_udbr_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_5401_genbr_st_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_5508_husst_moel_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_5703_afstem_sted_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_5707_grunds_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_5714_laering_udd_inst_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_5715_botilbud_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_5716_servicetilbud_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6100_brandhane_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6102_redn_vej_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6107_forholds_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6108_moedepl_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6110_noegle_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6111_fyrv_till_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6118_bran_redn_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6119_evaku_centr_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6120_midl_overn_t ADD COLUMN adr_id character varying(128) NULL;
+ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD COLUMN adr_id character varying(128) NULL;
+
 
 ROLLBACK TRANSACTION;
