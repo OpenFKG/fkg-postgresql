@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,0" last-zoom="1" max-obj-count="388"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="1476,5177" last-zoom="1" max-obj-count="392"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -2224,7 +2224,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_rutetype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="3020" y="5000"/>
+	<position x="2760" y="5340"/>
 	<column name="rute_ty_k" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -3160,7 +3160,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="33">
+<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="48">
 	<schema name="fkg"/>
 	<position x="2240" y="3760"/>
 	<column name="versions_id" not-null="true">
@@ -3170,25 +3170,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="1"/>
 	</column>
 	<column name="navn">
-		<type name="character varying" length="50"/>
+		<type name="character varying" length="254"/>
 	</column>
 	<column name="beskrivels">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="lang_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="uk_k_beskr">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="uk_l_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="d_k_beskr">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="d_l_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="ansvar_org">
 		<type name="character varying" length="254"/>
@@ -3203,10 +3203,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="saeson_st">
-		<type name="date" length="0"/>
+		<type name="character varying" length="25"/>
 	</column>
 	<column name="saeson_sl">
-		<type name="date" length="0"/>
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="saeson_bem">
+		<type name="character varying" length="254"/>
 	</column>
 	<column name="doegnaab_k">
 		<type name="integer" length="0"/>
@@ -3226,13 +3229,46 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="antal_pl">
 		<type name="integer" length="0"/>
 	</column>
+	<column name="folder_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="folde_link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="foto_link">
+		<type name="character varying" length="1024"/>
+	</column>
 	<column name="foto_link1">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="foto_link2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="filmlink">
+	<column name="foto_link3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="adr_id">
@@ -3250,20 +3286,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="t_5800_fac_pkt_pk" type="pk-constr" factor="10" table="fkg.t_5800_fac_pkt_t">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
-	<constraint name="t_5800_fac_pkt_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
-			<expression><![CDATA[date_part('year', saeson_st) = 1]]></expression>
-	</constraint>
-	<constraint name="t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
-			<expression><![CDATA[date_part('year', saeson_sl) = 1]]></expression>
-	</constraint>
 	<constraint name="t_5800_fac_pkt_antal_pl_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
 			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 </table>
 
-<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="45">
+<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="61">
 	<schema name="fkg"/>
-	<position x="2260" y="4880"/>
+	<position x="2240" y="5240"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3274,7 +3304,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="navn">
-		<type name="character varying" length="50"/>
+		<type name="character varying" length="254"/>
 	</column>
 	<column name="navndels">
 		<type name="character varying" length="128"/>
@@ -3292,19 +3322,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="lang_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="uk_k_beskr">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="uk_l_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="d_k_beskr">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="d_l_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="ansvar_org">
 		<type name="character varying" length="128"/>
@@ -3320,6 +3350,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="handicap_k">
 		<type name="integer" length="1"/>
+	</column>
+	<column name="saeson_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="saeson_st">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="saeson_sl">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="saeson_bem">
+		<type name="character varying" length="254"/>
 	</column>
 	<column name="ansva_v_k">
 		<type name="integer" length="0"/>
@@ -3357,13 +3399,40 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="folde_link">
 		<type name="character varying" length="1024"/>
 	</column>
+	<column name="foto_link">
+		<type name="character varying" length="1024"/>
+	</column>
 	<column name="foto_link1">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="foto_link2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="filmlink">
+	<column name="foto_link3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="gpx_link">
@@ -3380,6 +3449,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="t_5802_fac_li_pk" type="pk-constr" factor="10" table="fkg.t_5802_fac_li_t">
 		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="t_5802_fac_li_laengde_ck" type="ck-constr" table="fkg.t_5802_fac_li_t">
+			<expression><![CDATA[laengde between 0.1 and 500.99]]></expression>
 	</constraint>
 </table>
 
@@ -6278,9 +6350,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="33">
+<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="48">
 	<schema name="fkg"/>
-	<position x="2240" y="4280"/>
+	<position x="2240" y="4480"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6288,25 +6360,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="1"/>
 	</column>
 	<column name="navn">
-		<type name="character varying" length="50"/>
+		<type name="character varying" length="254"/>
 	</column>
 	<column name="beskrivels">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="lang_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="uk_k_beskr">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="uk_l_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="d_k_beskr">
 		<type name="character varying" length="254"/>
 	</column>
 	<column name="d_l_beskr">
-		<type name="character varying" length="1000"/>
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="ansvar_org">
 		<type name="character varying" length="254"/>
@@ -6321,10 +6393,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="saeson_st">
-		<type name="date" length="0"/>
+		<type name="character varying" length="25"/>
 	</column>
 	<column name="saeson_sl">
-		<type name="date" length="0"/>
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="saeson_bem">
+		<type name="character varying" length="254"/>
 	</column>
 	<column name="doegnaab_k">
 		<type name="integer" length="0"/>
@@ -6344,13 +6419,46 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="antal_pl">
 		<type name="integer" length="0"/>
 	</column>
+	<column name="folder_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="folde_link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="foto_link">
+		<type name="character varying" length="1024"/>
+	</column>
 	<column name="foto_link1">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="foto_link2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="filmlink">
+	<column name="foto_link3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="geofafoto3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="film_link3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="adr_id">
@@ -6367,12 +6475,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="t_5801_fac_fl_pk" type="pk-constr" table="fkg.t_5801_fac_fl_t">
 		<columns names="versions_id" ref-type="src-columns"/>
-	</constraint>
-	<constraint name="t_5801_fac_fl_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
-			<expression><![CDATA[date_part('year', saeson_st) = 1]]></expression>
-	</constraint>
-	<constraint name="t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
-			<expression><![CDATA[date_part('year', saeson_sl) = 1]]></expression>
 	</constraint>
 	<constraint name="t_5801_fac_fl_antal_pl_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
 			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
@@ -6728,7 +6830,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_svaerhed" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2840" y="5360"/>
+	<position x="2760" y="5740"/>
 	<column name="svaerhed_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6748,7 +6850,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_hierarki" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2940" y="5240"/>
+	<position x="2760" y="5600"/>
 	<column name="hierarki_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6768,7 +6870,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_rute_uty" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="3040" y="4880"/>
+	<position x="2760" y="5220"/>
 	<column name="rute_uty_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6788,7 +6890,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_kategori" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2780" y="5120"/>
+	<position x="2760" y="5460"/>
 	<column name="kategori_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6900,7 +7002,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_certifi" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2900" y="4680"/>
+	<position x="2760" y="5100"/>
 	<column name="certifi_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -7485,6 +7587,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5800_fac_pkt_d_basis_ja_nej_folder_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5800_fac_pkt_t">
+	<columns names="folder_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="t_5802_fac_li_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5802_fac_li_t">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -7561,6 +7669,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5802_certifi" table="fkg.t_5802_fac_li_t">
 	<columns names="certifi_k" ref-type="src-columns"/>
 	<columns names="certifi_k" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_d_basis_ja_nej_saeson_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5802_fac_li_t">
+	<columns names="saeson_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5900_jordfl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8730,6 +8844,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <constraint name="t_5801_fac_fl_d_basis_ja_nej_book_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
 	<columns names="book_k" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_ja_nej_folder_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
+	<columns names="folder_k" ref-type="src-columns"/>
 	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
@@ -10543,6 +10663,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_l_fotoforbindelse_t_d_basis_ja_nej" type="relfk" layer="0"
 	 src-table="fkg.t_7900_fotoforbindelse_t"
 	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_7900_fotoforbindelse_d_basis_ja_nej"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej5" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_folder_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej5" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_folder_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej3" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_ja_nej_saeson_fk"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

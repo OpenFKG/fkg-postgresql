@@ -1,6 +1,7 @@
 -- Upgrade script FKG datamodel 2_6_0_3 til 3_0_0_0
 
 -- Nye kolonner i generel (https://github.com/OpenFKG/fkg-postgresql/issues/57)
+ROLLBACK TRANSACTION;
 BEGIN TRANSACTION;
 ALTER TABLE fkg.generel
   ADD COLUMN noegle character varying(128) NULL,
@@ -162,5 +163,96 @@ ALTER TABLE fkg.t_6119_evaku_centr_t ADD COLUMN adr_id character varying(128) NU
 ALTER TABLE fkg.t_6120_midl_overn_t ADD COLUMN adr_id character varying(128) NULL;
 ALTER TABLE fkg.t_6121_stor_ud_arr_t ADD COLUMN adr_id character varying(128) NULL;
 
+-- Mange ændringer til 5800, 5801, 5802
+DROP VIEW IF EXISTS fkg.hist_t_5800_fac_pkt;
+DROP VIEW IF EXISTS fkg.t_5800_fac_pkt;
+DROP VIEW IF EXISTS fkg.hist_t_5801_fac_fl;
+DROP VIEW IF EXISTS fkg.t_5801_fac_fl;
+DROP VIEW IF EXISTS fkg.hist_t_5802_fac_li;
+DROP VIEW IF EXISTS fkg.t_5802_fac_li;
+ALTER TABLE fkg.t_5800_fac_pkt_t ALTER COLUMN navn TYPE CHARACTER varying(254);
+ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN navn TYPE CHARACTER varying(254);
+ALTER TABLE fkg.t_5802_fac_li_t ALTER COLUMN navn TYPE CHARACTER varying(254);
+ALTER TABLE fkg.t_5800_fac_pkt_t ALTER COLUMN lang_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN lang_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5802_fac_li_t ALTER COLUMN lang_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5800_fac_pkt_t ALTER COLUMN uk_l_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN uk_l_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5802_fac_li_t ALTER COLUMN uk_l_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5800_fac_pkt_t ALTER COLUMN d_l_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN d_l_beskr TYPE CHARACTER varying(3000);
+ALTER TABLE fkg.t_5802_fac_li_t ALTER COLUMN d_l_beskr TYPE CHARACTER varying(3000);
+
+ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck;
+ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT t_5800_fac_pkt_saeson_st_aar_skal_vaere_1_ck;
+ALTER TABLE fkg.t_5800_fac_pkt_t ALTER COLUMN saeson_st TYPE CHARACTER varying(25);
+ALTER TABLE fkg.t_5800_fac_pkt_t ALTER COLUMN saeson_sl TYPE CHARACTER varying(25);
+UPDATE fkg.t_5800_fac_pkt_t SET saeson_st = (substring(saeson_st FROM 9 FOR 2)::int)::TEXT || '/' || (substring(saeson_st FROM 6 FOR 2)::int)::TEXT;
+UPDATE fkg.t_5800_fac_pkt_t SET saeson_sl = (substring(saeson_sl FROM 9 FOR 2)::int)::TEXT || '/' || (substring(saeson_sl FROM 6 FOR 2)::int)::TEXT;
+
+ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck;
+ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT t_5801_fac_fl_saeson_st_aar_skal_vaere_1_ck;
+ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN saeson_st TYPE CHARACTER varying(25);
+ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN saeson_sl TYPE CHARACTER varying(25);
+UPDATE fkg.t_5801_fac_fl_t SET saeson_st = (substring(saeson_st FROM 9 FOR 2)::int)::TEXT || '/' || (substring(saeson_st FROM 6 FOR 2)::int)::TEXT;
+UPDATE fkg.t_5801_fac_fl_t SET saeson_sl = (substring(saeson_sl FROM 9 FOR 2)::int)::TEXT || '/' || (substring(saeson_sl FROM 6 FOR 2)::int)::TEXT;
+
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN saeson_bem CHARACTER varying(254);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN saeson_bem CHARACTER varying(254);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN saeson_bem CHARACTER varying(254);
+
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN folder_k integer;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_ja_nej_folder_fk FOREIGN KEY (folder_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN folder_k integer;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_ja_nej_folder_fk FOREIGN KEY (folder_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN folde_link CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN foto_link CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN foto_link3 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN geofafoto CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN geofafoto1 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN geofafoto2 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN geofafoto3 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t RENAME COLUMN filmlink TO film_link;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN film_link1 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN film_link2 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN film_link3 CHARACTER VARYING(1024);
+
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN folde_link CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN foto_link CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN foto_link3 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN geofafoto CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN geofafoto1 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN geofafoto2 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN geofafoto3 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t RENAME COLUMN filmlink TO film_link;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN film_link1 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN film_link2 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN film_link3 CHARACTER VARYING(1024);
+
+
+
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN saeson_k integer;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ja_nej_saeson_fk FOREIGN KEY (saeson_k)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN saeson_st CHARACTER VARYING(25);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN saeson_sl CHARACTER VARYING(25);
+
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN foto_link CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN foto_link3 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN geofafoto CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN geofafoto1 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN geofafoto2 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN geofafoto3 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t RENAME COLUMN filmlink TO film_link;
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN film_link1 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN film_link2 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN film_link3 CHARACTER VARYING(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_laengde_ck CHECK (laengde between 0.1 and 500.99);
 
 ROLLBACK TRANSACTION;
