@@ -195,19 +195,6 @@ CREATE TABLE fkg.d_basis_afstemningsomraade (
 );
 -- ddl-end --
 
--- object: fkg.d_basis_kloak | type: TABLE --
--- DROP TABLE IF EXISTS fkg.d_basis_kloak CASCADE;
-CREATE TABLE fkg.d_basis_kloak (
-	kloak_kode integer NOT NULL,
-	kloak character varying(45) NOT NULL,
-	aktiv integer NOT NULL DEFAULT 1,
-	begrebsdefinition character varying,
-	CONSTRAINT d_basis_kloak_pk PRIMARY KEY (kloak_kode)
-	 WITH (FILLFACTOR = 10)
-
-);
--- ddl-end --
-
 -- object: fkg.d_basis_postnr | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.d_basis_postnr CASCADE;
 CREATE TABLE fkg.d_basis_postnr (
@@ -1332,32 +1319,6 @@ CREATE TABLE fkg.d_5802_rutetype (
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_facilitet_pk PRIMARY KEY (rute_ty_k)
-	 WITH (FILLFACTOR = 10)
-
-);
--- ddl-end --
-
--- object: fkg.d_5901_gravestatus | type: TABLE --
--- DROP TABLE IF EXISTS fkg.d_5901_gravestatus CASCADE;
-CREATE TABLE fkg.d_5901_gravestatus (
-	gravstatus_kode integer NOT NULL,
-	gravstatus character varying(50) NOT NULL,
-	aktiv integer NOT NULL,
-	begrebsdefinition character varying,
-	CONSTRAINT d_5901_gravestatus_pk PRIMARY KEY (gravstatus_kode)
-	 WITH (FILLFACTOR = 10)
-
-);
--- ddl-end --
-
--- object: fkg.d_5901_raastof_type | type: TABLE --
--- DROP TABLE IF EXISTS fkg.d_5901_raastof_type CASCADE;
-CREATE TABLE fkg.d_5901_raastof_type (
-	raastof_type_kode integer NOT NULL,
-	raastof_type character varying(50) NOT NULL,
-	aktiv integer NOT NULL,
-	begrebsdefinition character varying,
-	CONSTRAINT d_5901_raastof_type_pk PRIMARY KEY (raastof_type_kode)
 	 WITH (FILLFACTOR = 10)
 
 );
