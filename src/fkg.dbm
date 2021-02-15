@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="1695,5226" last-zoom="1" max-obj-count="400"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,0" last-zoom="0.6" max-obj-count="399"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -16,7 +16,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_oprindelse" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2640" y="240"/>
+	<position x="0" y="400"/>
 	<column name="oprindkode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -36,7 +36,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_status" layer="0" collapse-mode="2" max-obj-count="3">
 	<schema name="fkg"/>
-	<position x="2660" y="140"/>
+	<position x="0" y="520"/>
 	<column name="statuskode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -53,7 +53,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_ansvarlig_myndighed" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2680" y="40"/>
+	<position x="0" y="720"/>
 	<column name="cvr_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -73,7 +73,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="generel" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
-	<position x="2280" y="40"/>
+	<position x="1140" y="60"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 		<comment><![CDATA[Unik versions-id databasenøgle]]></comment>
@@ -121,7 +121,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_ja_nej" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1900" y="380"/>
+	<position x="480" y="400"/>
 	<column name="ja_nej_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -141,7 +141,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_ejerstatus" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1900" y="520"/>
+	<position x="480" y="540"/>
 	<column name="ejerstatus_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -161,7 +161,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_vejnavn" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="fkg"/>
-	<position x="1500" y="240"/>
+	<position x="480" y="800"/>
 	<column name="vejkode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -187,7 +187,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_sag_status" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1520" y="380"/>
+	<position x="480" y="960"/>
 	<column name="sag_status_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -207,7 +207,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_dvfi_bedoemmelse" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1840" y="260"/>
+	<position x="480" y="1080"/>
 	<column name="dvfi_bedoemmelse_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -227,7 +227,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_trussel_vand" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1520" y="480"/>
+	<position x="920" y="400"/>
 	<column name="trussel_vand_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -247,7 +247,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_planstatus" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1520" y="580"/>
+	<position x="920" y="540"/>
 	<column name="planstatus_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -267,7 +267,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_afstemningsomraade" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1120" y="20"/>
+	<position x="920" y="820"/>
 	<column name="afstemningsomraade_nr" not-null="true">
 		<type name="character varying" length="128"/>
 	</column>
@@ -285,29 +285,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="d_basis_kloak" layer="0" collapse-mode="2" max-obj-count="4">
-	<schema name="fkg"/>
-	<position x="1120" y="100"/>
-	<column name="kloak_kode" not-null="true">
-		<type name="integer" length="1"/>
-	</column>
-	<column name="kloak" not-null="true">
-		<type name="character varying" length="45"/>
-	</column>
-	<column name="aktiv" not-null="true" default-value="1">
-		<type name="integer" length="1"/>
-	</column>
-	<column name="begrebsdefinition">
-		<type name="character varying" length="0"/>
-	</column>
-	<constraint name="d_basis_kloak_pk" type="pk-constr" factor="10" table="fkg.d_basis_kloak">
-		<columns names="kloak_kode" ref-type="src-columns"/>
-	</constraint>
-</table>
-
 <table name="d_basis_postnr" layer="0" collapse-mode="2" max-obj-count="3">
 	<schema name="fkg"/>
-	<position x="1120" y="180"/>
+	<position x="920" y="960"/>
 	<column name="postnr" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -324,7 +304,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_funktionsstatus" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1120" y="260"/>
+	<position x="920" y="1080"/>
 	<column name="funktionsstatus_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -344,7 +324,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_magasin" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1120" y="360"/>
+	<position x="1340" y="400"/>
 	<column name="magasin_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -364,7 +344,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_fors_omr_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1120" y="440"/>
+	<position x="1340" y="540"/>
 	<column name="fors_omr_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -384,7 +364,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_omraade" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="1120" y="540"/>
+	<position x="1340" y="680"/>
 	<column name="omraade_nr" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -407,7 +387,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5000_vandl_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="860"/>
+	<position x="520" y="1340"/>
 	<column name="vandl_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -427,7 +407,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5000_maalsaetning" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="960"/>
+	<position x="520" y="1460"/>
 	<column name="maalsaetning_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -447,7 +427,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5000_klasse" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="1060"/>
+	<position x="520" y="1580"/>
 	<column name="klasse_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -471,7 +451,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_temagruppe" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="620" y="180"/>
+	<position x="380" y="160"/>
 	<column name="temagruppe_id" not-null="true">
 		<type name="character varying" length="0"/>
 	</column>
@@ -494,7 +474,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_tabel" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="20" y="220"/>
+	<position x="0" y="140"/>
 	<column name="tema_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -526,7 +506,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_tilstand" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1520" y="20"/>
+	<position x="480" y="660"/>
 	<column name="tilstand_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -546,7 +526,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_hastighed" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1900" y="620"/>
+	<position x="920" y="680"/>
 	<column name="hastighed_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -566,7 +546,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_driftniv" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1880" y="140"/>
+	<position x="1340" y="960"/>
 	<column name="driftniv_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -586,7 +566,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_ukrudtsbek" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1860" y="20"/>
+	<position x="1340" y="1080"/>
 	<column name="ukrudtsbek_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -606,7 +586,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_antal" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1540" y="140"/>
+	<position x="1760" y="400"/>
 	<column name="antal_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -625,18 +605,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="Heading" layer="0" font-size="9">
-	<position x="20" y="20"/>
+	<position x="0" y="0"/>
 	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 3.0]]></comment>
 </textbox>
 
 <textbox name="copyright" layer="0" font-size="9">
-	<position x="20" y="60"/>
+	<position x="0" y="40"/>
 	<comment><![CDATA[(c) 2013-2021 Septima and other contributors]]></comment>
 </textbox>
 
 <table name="d_6100_brandhane" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="5000" y="940"/>
+	<position x="5000" y="1480"/>
 	<column name="brandhane_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -656,7 +636,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6100_placering" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="5000" y="820"/>
+	<position x="5000" y="1360"/>
 	<column name="placering_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -676,7 +656,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6100_brandhane_t" layer="0" collapse-mode="2" max-obj-count="21">
 	<schema name="fkg"/>
-	<position x="4460" y="820"/>
+	<position x="4540" y="1360"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -750,7 +730,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6102_redvej_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4980" y="1300"/>
+	<position x="5000" y="1900"/>
 	<column name="redvej_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -770,7 +750,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6102_redn_vej_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
-	<position x="4440" y="1220"/>
+	<position x="4540" y="1900"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -814,7 +794,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5001_maalest_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="580" y="1320"/>
+	<position x="520" y="1760"/>
 	<column name="maalest_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -834,7 +814,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5001_maalest_t" layer="0" oids="true" collapse-mode="2" max-obj-count="10">
 	<schema name="fkg"/>
-	<position x="20" y="1200"/>
+	<position x="20" y="1760"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -869,7 +849,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5002_spaerring" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="1360"/>
+	<position x="520" y="1960"/>
 	<column name="spaerring_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -889,7 +869,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5002_passage" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="1460"/>
+	<position x="520" y="2080"/>
 	<column name="passage_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -909,7 +889,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5002_faunasp_t" layer="0" oids="true" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="20" y="1360"/>
+	<position x="20" y="1960"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -956,7 +936,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5003_ledn_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="1600"/>
+	<position x="520" y="2220"/>
 	<column name="ledn_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -976,7 +956,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5003_klasse" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="1680"/>
+	<position x="520" y="2340"/>
 	<column name="klasse_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -996,7 +976,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5003_draenledn_t" layer="0" oids="true" collapse-mode="2" max-obj-count="12">
 	<schema name="fkg"/>
-	<position x="20" y="1580"/>
+	<position x="20" y="2220"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1043,7 +1023,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5004_omr_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="1800"/>
+	<position x="520" y="2460"/>
 	<column name="omr_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1063,7 +1043,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5004_draenomr_t" layer="0" oids="true" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="20" y="1780"/>
+	<position x="20" y="2460"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1098,7 +1078,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5005_maalsaetning" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="1920"/>
+	<position x="520" y="2660"/>
 	<column name="maalsaetning_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1118,7 +1098,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5005_soe_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="2020"/>
+	<position x="520" y="2780"/>
 	<column name="soe_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1138,7 +1118,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5005_habitat_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="2100"/>
+	<position x="520" y="2900"/>
 	<column name="habitat_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1158,7 +1138,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5005_soe_t" layer="0" oids="true" collapse-mode="2" max-obj-count="18">
 	<schema name="fkg"/>
-	<position x="20" y="1940"/>
+	<position x="20" y="2660"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1220,7 +1200,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5006_dybdekurv_t" layer="0" oids="true" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="0" y="2160"/>
+	<position x="20" y="3040"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1273,7 +1253,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5007_opl" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="2400"/>
+	<position x="520" y="3280"/>
 	<column name="opl_nr" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1293,7 +1273,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5007_opl_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="2480"/>
+	<position x="520" y="3400"/>
 	<column name="vandl_opl_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1313,7 +1293,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5007_vandl_opl_t" layer="0" oids="true" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="20" y="2420"/>
+	<position x="20" y="3280"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1345,7 +1325,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5008_opl" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="2600"/>
+	<position x="520" y="3540"/>
 	<column name="soe_opl_nr" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1365,7 +1345,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5008_soe_opl_t" layer="0" oids="true" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="20" y="2560"/>
+	<position x="20" y="3540"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1397,7 +1377,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5009_lag_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="2720"/>
+	<position x="520" y="3720"/>
 	<column name="lag_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1417,7 +1397,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5009_pumpelag_t" layer="0" oids="true" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="20" y="2700"/>
+	<position x="20" y="3720"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1446,7 +1426,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5010_element_type" layer="0" oids="true" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="540" y="2900"/>
+	<position x="520" y="3880"/>
 	<column name="element_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1466,7 +1446,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5010_vandl_elm_t" layer="0" oids="true" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
-	<position x="20" y="2840"/>
+	<position x="20" y="3880"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1521,13 +1501,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="licensing-link" layer="0" font-size="9">
-	<position x="20" y="100"/>
+	<position x="0" y="80"/>
 	<comment><![CDATA[For Licensing and other information see LICENSE.TXT or github.com/OpenFKG/fkg-postgresql]]></comment>
 </textbox>
 
 <table name="d_5105_kaer_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="520" y="3440"/>
+	<position x="520" y="4360"/>
 	<column name="kaer_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1547,7 +1527,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5105_rig_fattig_t" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="fkg"/>
-	<position x="20" y="3400"/>
+	<position x="20" y="4360"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1579,7 +1559,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5106_pleje_type" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="520" y="3620"/>
+	<position x="520" y="4520"/>
 	<column name="pleje_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1602,7 +1582,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5106_faciliteter" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="520" y="3740"/>
+	<position x="520" y="4680"/>
 	<column name="faciliteter_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1622,7 +1602,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5106_nat_pl_t" layer="0" collapse-mode="2" max-obj-count="27">
 	<schema name="fkg"/>
-	<position x="20" y="3540"/>
+	<position x="20" y="4520"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1718,7 +1698,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5108_groent_part_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="20" y="4160"/>
+	<position x="20" y="5160"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1759,7 +1739,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5300_genopd_ret_t" layer="0" collapse-mode="2" max-obj-count="10">
 	<schema name="fkg"/>
-	<position x="1120" y="1360"/>
+	<position x="880" y="1740"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1797,7 +1777,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5400_affalds_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1720" y="1740"/>
+	<position x="1340" y="1960"/>
 	<column name="affaldstype_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1817,7 +1797,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5400_affalds_dis_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="1120" y="1720"/>
+	<position x="880" y="1960"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -1864,7 +1844,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5200_affald" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1640" y="1040"/>
+	<position x="1360" y="1340"/>
 	<column name="affald_prod_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1884,7 +1864,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5401_gs_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1740" y="1960"/>
+	<position x="1340" y="2080"/>
 	<column name="gs_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1904,7 +1884,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5402_gc_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1720" y="2120"/>
+	<position x="1340" y="2480"/>
 	<column name="gc_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1924,7 +1904,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5506_anlaegtype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1640" y="2560"/>
+	<position x="1340" y="2860"/>
 	<column name="anlaeg_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1944,7 +1924,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5600_rute" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1700" y="3160"/>
+	<position x="1380" y="3500"/>
 	<column name="rute_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1964,7 +1944,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5601_hasti_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1680" y="3300"/>
+	<position x="1340" y="3700"/>
 	<column name="hasti_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -1984,7 +1964,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5602_p_tid" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1680" y="3500"/>
+	<position x="1340" y="3960"/>
 	<column name="p_tid_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2004,7 +1984,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5602_p_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1680" y="3400"/>
+	<position x="1340" y="3840"/>
 	<column name="p_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2024,7 +2004,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5604_begr_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1680" y="3760"/>
+	<position x="1340" y="4260"/>
 	<column name="begr_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2044,7 +2024,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5605_dekl_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1660" y="3980"/>
+	<position x="1340" y="4460"/>
 	<column name="dekl_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2064,7 +2044,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5606_inventar_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1620" y="4160"/>
+	<position x="1300" y="4700"/>
 	<column name="inventar_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2084,7 +2064,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5700_forening_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2680" y="860"/>
+	<position x="2200" y="1340"/>
 	<column name="forening_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2104,7 +2084,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5700_adr_beskyt" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2680" y="980"/>
+	<position x="2200" y="1460"/>
 	<column name="gf_adr_beskyt_kode" not-null="true">
 		<type name="character" length="1"/>
 	</column>
@@ -2124,7 +2104,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5705_udlejning" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2700" y="1800"/>
+	<position x="2280" y="2560"/>
 	<column name="udlejning_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2144,7 +2124,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5706_havn_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2700" y="1960"/>
+	<position x="2280" y="2780"/>
 	<column name="havn_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2164,7 +2144,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5707_grund_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2700" y="2120"/>
+	<position x="2280" y="3120"/>
 	<column name="grund_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2184,7 +2164,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5707_salg_status" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2700" y="2200"/>
+	<position x="2280" y="2980"/>
 	<column name="salg_status_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2204,7 +2184,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5800_facilitet" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2760" y="4100"/>
+	<position x="3220" y="1480"/>
 	<column name="facil_ty_k" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2224,7 +2204,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_rutetype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2760" y="5340"/>
+	<position x="3220" y="2980"/>
 	<column name="rute_ty_k" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2242,49 +2222,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="d_5901_gravestatus" layer="0" collapse-mode="2" max-obj-count="4">
-	<schema name="fkg"/>
-	<position x="3800" y="1260"/>
-	<column name="gravstatus_kode" not-null="true">
-		<type name="integer" length="1"/>
-	</column>
-	<column name="gravstatus" not-null="true">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="aktiv" not-null="true">
-		<type name="integer" length="1"/>
-	</column>
-	<column name="begrebsdefinition">
-		<type name="character varying" length="0"/>
-	</column>
-	<constraint name="d_5901_gravestatus_pk" type="pk-constr" factor="10" table="fkg.d_5901_gravestatus">
-		<columns names="gravstatus_kode" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<table name="d_5901_raastof_type" layer="0" collapse-mode="2" max-obj-count="4">
-	<schema name="fkg"/>
-	<position x="3800" y="1160"/>
-	<column name="raastof_type_kode" not-null="true">
-		<type name="integer" length="1"/>
-	</column>
-	<column name="raastof_type" not-null="true">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="aktiv" not-null="true">
-		<type name="integer" length="1"/>
-	</column>
-	<column name="begrebsdefinition">
-		<type name="character varying" length="0"/>
-	</column>
-	<constraint name="d_5901_raastof_type_pk" type="pk-constr" factor="10" table="fkg.d_5901_raastof_type">
-		<columns names="raastof_type_kode" ref-type="src-columns"/>
-	</constraint>
-</table>
-
 <table name="d_5902_vaeske_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="3820" y="1380"/>
+	<position x="4160" y="1760"/>
 	<column name="vaesketype_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2304,7 +2244,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6003_zone_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="3820" y="2500"/>
+	<position x="4100" y="2980"/>
 	<column name="zone_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2324,7 +2264,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6101_beskyt_rum" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4980" y="1100"/>
+	<position x="5000" y="1720"/>
 	<column name="beskyt_rum_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2344,7 +2284,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6104_risikotype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="5020" y="1600"/>
+	<position x="5020" y="2360"/>
 	<column name="risikotype_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2364,7 +2304,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6104_brandhaem" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="5020" y="1720"/>
+	<position x="5020" y="2480"/>
 	<column name="brandhaem_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2384,7 +2324,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6111_tilladelse" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4920" y="2800"/>
+	<position x="5020" y="3860"/>
 	<column name="tilladelse_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2404,7 +2344,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6112_depottype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4940" y="3000"/>
+	<position x="5060" y="4140"/>
 	<column name="depot_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2424,7 +2364,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6115_afbr_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4920" y="3480"/>
+	<position x="5000" y="4700"/>
 	<column name="afbr_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2444,7 +2384,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6116_strandtype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4920" y="3600"/>
+	<position x="5000" y="4940"/>
 	<column name="strand_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2464,7 +2404,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6116_esi_klasse" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4920" y="3700"/>
+	<position x="5000" y="4820"/>
 	<column name="esi_klasse_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2484,7 +2424,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6117_indsatstype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4920" y="3960"/>
+	<position x="5000" y="5080"/>
 	<column name="indsatstype_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2504,7 +2444,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_geologi" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6080" y="940"/>
+	<position x="6080" y="1360"/>
 	<column name="geologi_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2524,7 +2464,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_jordtype" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6080" y="1020"/>
+	<position x="6080" y="1500"/>
 	<column name="jordtype_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2544,7 +2484,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_terraen" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6080" y="1120"/>
+	<position x="6080" y="1640"/>
 	<column name="terraen_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2564,7 +2504,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6200_kompleksitet" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6080" y="1200"/>
+	<position x="6080" y="1760"/>
 	<column name="kompleksitet_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2584,7 +2524,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_skala" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6100" y="1580"/>
+	<position x="6080" y="2180"/>
 	<column name="skala_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2604,7 +2544,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_rumlig_afgraensning" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6100" y="1660"/>
+	<position x="6080" y="2300"/>
 	<column name="rumlig_afgraensning_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2624,7 +2564,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_kompleksitet" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6100" y="1740"/>
+	<position x="6080" y="2420"/>
 	<column name="kompleksitet_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2644,7 +2584,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_struktur" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6100" y="1820"/>
+	<position x="6080" y="2560"/>
 	<column name="struktur_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2664,7 +2604,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_visuel_uro" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6100" y="1900"/>
+	<position x="6080" y="2680"/>
 	<column name="visuel_uro_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2684,7 +2624,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6202_tidsdybde" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6100" y="1980"/>
+	<position x="6080" y="2800"/>
 	<column name="tidsdybde_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2704,7 +2644,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6203_karakterstyrke" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6080" y="2140"/>
+	<position x="6080" y="2960"/>
 	<column name="karakterstyrke_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2724,7 +2664,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6203_saarbarhed" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6080" y="2240"/>
+	<position x="6080" y="3100"/>
 	<column name="saarbarhed_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2744,7 +2684,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6800_vedlhold_f_type" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="6080" y="2460"/>
+	<position x="6080" y="3280"/>
 	<column name="vedlhold_f_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2767,7 +2707,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6801_vedlhold_l_type" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="6100" y="2820"/>
+	<position x="6080" y="3640"/>
 	<column name="vedlhold_l_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2790,7 +2730,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6802_groenvedligh_punkt" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="6120" y="3240"/>
+	<position x="6080" y="4020"/>
 	<column name="vedlhold_p_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2813,7 +2753,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6803_pg_distrikt" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="6120" y="3500"/>
+	<position x="6080" y="4360"/>
 	<column name="pg_distrikt_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2833,7 +2773,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5401_genbr_st_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="1140" y="1920"/>
+	<position x="880" y="2220"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -2877,7 +2817,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5402_genbr_con_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="1120" y="2120"/>
+	<position x="880" y="2480"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -2909,7 +2849,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5508_husst_moel_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
-	<position x="1100" y="2860"/>
+	<position x="880" y="3220"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -2965,7 +2905,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5200_aff_prod_udbr_t" layer="0" collapse-mode="2" max-obj-count="25">
 	<schema name="fkg"/>
-	<position x="1120" y="960"/>
+	<position x="880" y="1340"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3063,7 +3003,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5500_elfors_omr_t" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="fkg"/>
-	<position x="1120" y="2440"/>
+	<position x="880" y="2680"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3095,7 +3035,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5506_spildev_pl_pkt_t" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="1120" y="2560"/>
+	<position x="880" y="2860"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3118,7 +3058,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5507_fiberkabel_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="1120" y="2700"/>
+	<position x="880" y="3020"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3162,7 +3102,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="56">
 	<schema name="fkg"/>
-	<position x="2240" y="3820"/>
+	<position x="2700" y="1340"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3314,7 +3254,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="69">
 	<schema name="fkg"/>
-	<position x="2240" y="5240"/>
+	<position x="2700" y="2980"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3499,7 +3439,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5900_jordfl_t" layer="0" collapse-mode="2" max-obj-count="27">
 	<schema name="fkg"/>
-	<position x="3340" y="840"/>
+	<position x="3640" y="1340"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3603,7 +3543,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5902_jordv_anl_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
-	<position x="3340" y="1340"/>
+	<position x="3640" y="1760"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3662,7 +3602,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5104_art_invas_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="20" y="3160"/>
+	<position x="20" y="4160"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3694,7 +3634,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5107_art_invas_p_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="20" y="3940"/>
+	<position x="20" y="4960"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3726,7 +3666,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5508_stoej" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1640" y="2920"/>
+	<position x="1340" y="3220"/>
 	<column name="stoej_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -3746,7 +3686,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5600_vintervedl_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="1120" y="3140"/>
+	<position x="880" y="3500"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3778,7 +3718,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5601_hasti_daemp_t" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="1120" y="3300"/>
+	<position x="880" y="3700"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3801,7 +3741,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5602_p_zoner_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
-	<position x="1120" y="3400"/>
+	<position x="880" y="3840"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3869,7 +3809,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5603_hasti_zone_t" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="1120" y="3620"/>
+	<position x="880" y="4100"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3892,7 +3832,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5604_koer_begr_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="1120" y="3740"/>
+	<position x="880" y="4260"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3933,7 +3873,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5605_vejbyggel_t" layer="0" collapse-mode="2" max-obj-count="12">
 	<schema name="fkg"/>
-	<position x="1120" y="3940"/>
+	<position x="880" y="4460"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3977,7 +3917,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5606_vejinv_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="1120" y="4160"/>
+	<position x="880" y="4700"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4005,23 +3945,26 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="licensing-link_cp" layer="0" font-size="9">
-	<position x="20" y="820"/>
-	<comment><![CDATA[In this column Theme group 5.1 and 5.2]]></comment>
+	<position x="20" y="1280"/>
+	<comment><![CDATA[In this column Theme group 5.1 and 5.2
+Overfladevand, Natur]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp" layer="0" font-size="9">
-	<position x="1120" y="860"/>
-	<comment><![CDATA[In this column Theme group 5.3, 5.4, 5.5, 5.6, 5.7]]></comment>
+	<position x="900" y="1260"/>
+	<comment><![CDATA[In this column Theme group 5.3, 5.4, 5.5, 5.6, 5.7
+Miljø, Landbrug, Affald og genbrug, Forsyning, Vej og trafik]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp_cp" layer="0" font-size="9">
-	<position x="2240" y="800"/>
-	<comment><![CDATA[In this column Theme group 5.8, 5.9]]></comment>
+	<position x="1740" y="1260"/>
+	<comment><![CDATA[In this column Theme group 5.8
+Administration]]></comment>
 </textbox>
 
 <table name="t_5700_grundej_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
-	<position x="2240" y="860"/>
+	<position x="1720" y="1340"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4074,7 +4017,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5701_lok_omr_t" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2240" y="1080"/>
+	<position x="1720" y="1620"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4094,7 +4037,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5702_skorst_fej_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
-	<position x="2240" y="1180"/>
+	<position x="1720" y="1760"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4147,7 +4090,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5703_afstem_sted_t" layer="0" collapse-mode="2" max-obj-count="18">
 	<schema name="fkg"/>
-	<position x="2240" y="1380"/>
+	<position x="1720" y="2020"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4206,7 +4149,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5704_afstem_omr_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="2240" y="1600"/>
+	<position x="1720" y="2320"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4253,7 +4196,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5705_forp_are_t" layer="0" collapse-mode="2" max-obj-count="12">
 	<schema name="fkg"/>
-	<position x="2240" y="1780"/>
+	<position x="1720" y="2560"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4291,7 +4234,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5706_havn_are_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="2240" y="1940"/>
+	<position x="1720" y="2780"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4329,7 +4272,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5707_grunds_t" layer="0" collapse-mode="2" max-obj-count="22">
 	<schema name="fkg"/>
-	<position x="2240" y="2080"/>
+	<position x="1720" y="2980"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4409,7 +4352,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5710_born_skole_dis_t" layer="0" collapse-mode="2" max-obj-count="10">
 	<schema name="fkg"/>
-	<position x="2240" y="2400"/>
+	<position x="1720" y="3340"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4444,7 +4387,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5711_and_dis_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="2240" y="2600"/>
+	<position x="1720" y="3540"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4476,7 +4419,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5712_plej_aeldr_dis_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="2240" y="2740"/>
+	<position x="1720" y="3720"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4508,7 +4451,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5713_prog_stat_dis_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="2240" y="2900"/>
+	<position x="1720" y="3900"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4540,7 +4483,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5714_laering_udd_inst_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
-	<position x="2240" y="3180"/>
+	<position x="1720" y="4080"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4587,7 +4530,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5715_botilbud_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="2260" y="3320"/>
+	<position x="1720" y="4340"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4628,7 +4571,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5716_servicetilbud_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="2240" y="3520"/>
+	<position x="1720" y="4580"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4669,7 +4612,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5710_udd_distrikt_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2740" y="2420"/>
+	<position x="2280" y="3340"/>
 	<column name="udd_distrikt_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4689,7 +4632,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5711_an_distrikt_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2740" y="2620"/>
+	<position x="2280" y="3560"/>
 	<column name="an_distrikt_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4709,7 +4652,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5712_plej_distrikt_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2740" y="2760"/>
+	<position x="2280" y="3720"/>
 	<column name="plej_distrikt_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4729,7 +4672,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5713_prog_distrikt_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2740" y="2920"/>
+	<position x="2280" y="3900"/>
 	<column name="prog_distrikt_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4749,7 +4692,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5714_udd_institution_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2740" y="3220"/>
+	<position x="2280" y="4080"/>
 	<column name="udd_institution_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4769,7 +4712,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_trin" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1120" y="620"/>
+	<position x="1760" y="540"/>
 	<column name="trin_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4789,7 +4732,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5715_botilbud_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2720" y="3400"/>
+	<position x="2280" y="4340"/>
 	<column name="botilbud_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4809,7 +4752,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5716_servicetilbud_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2740" y="3620"/>
+	<position x="2260" y="4580"/>
 	<column name="service_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -4828,13 +4771,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="col_4_txt" layer="0" font-size="9">
-	<position x="3340" y="800"/>
-	<comment><![CDATA[In this column Theme group 5.10, 5.11]]></comment>
+	<position x="3640" y="1240"/>
+	<comment><![CDATA[In this column Theme group 5.10, 5.11
+Jord og råstof, Grundvand]]></comment>
 </textbox>
 
 <table name="t_6000_pot_t" layer="0" collapse-mode="2" max-obj-count="18">
 	<schema name="fkg"/>
-	<position x="3340" y="1600"/>
+	<position x="3640" y="2060"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4893,7 +4837,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6001_pot_m_t" layer="0" collapse-mode="2" max-obj-count="18">
 	<schema name="fkg"/>
-	<position x="3340" y="1840"/>
+	<position x="3640" y="2380"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -4952,7 +4896,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6002_indv_t" layer="0" collapse-mode="2" max-obj-count="16">
 	<schema name="fkg"/>
-	<position x="3340" y="2100"/>
+	<position x="3640" y="2680"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5008,7 +4952,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6003_besk_zone_t" layer="0" collapse-mode="2" max-obj-count="19">
 	<schema name="fkg"/>
-	<position x="3340" y="2360"/>
+	<position x="3640" y="2980"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5070,7 +5014,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6004_vandv_fs_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="3340" y="2620"/>
+	<position x="3640" y="3320"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5099,7 +5043,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6006_grundv_opl_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="3340" y="2780"/>
+	<position x="3640" y="3520"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5131,7 +5075,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6007_inds_omr_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="3340" y="2960"/>
+	<position x="3640" y="3740"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5160,7 +5104,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6008_maks_bor_t" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="3340" y="3200"/>
+	<position x="3640" y="3920"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5183,7 +5127,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6009_indv_ovflv_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="3340" y="3320"/>
+	<position x="3640" y="4060"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5215,7 +5159,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_vandv_nr" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1520" y="680"/>
+	<position x="1340" y="840"/>
 	<column name="vandv_nr" not-null="true">
 		<type name="character varying" length="25"/>
 	</column>
@@ -5234,13 +5178,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="col_4_txt_cp" layer="0" font-size="9">
-	<position x="4460" y="780"/>
-	<comment><![CDATA[In this column Theme group 5.12]]></comment>
+	<position x="4540" y="1260"/>
+	<comment><![CDATA[In this column Theme group 5.12
+Beredskab]]></comment>
 </textbox>
 
 <table name="t_6101_beskyt_rum_t" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="fkg"/>
-	<position x="4460" y="1080"/>
+	<position x="4540" y="1720"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5266,7 +5211,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6103_bered_omr_t" layer="0" collapse-mode="2" max-obj-count="9">
 	<schema name="fkg"/>
-	<position x="4460" y="1420"/>
+	<position x="4540" y="2160"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5301,7 +5246,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6104_risiko_virk_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="4460" y="1620"/>
+	<position x="4540" y="2360"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5336,7 +5281,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6105_sbygn_omr_t" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="fkg"/>
-	<position x="4460" y="1780"/>
+	<position x="4540" y="2620"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5368,7 +5313,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6107_forholds_t" layer="0" collapse-mode="2" max-obj-count="36">
 	<schema name="fkg"/>
-	<position x="4460" y="1920"/>
+	<position x="4540" y="2800"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5478,7 +5423,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6108_moedepl_t" layer="0" collapse-mode="2" max-obj-count="13">
 	<schema name="fkg"/>
-	<position x="4460" y="2360"/>
+	<position x="4540" y="3360"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5519,7 +5464,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6110_noegle_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
-	<position x="4460" y="2560"/>
+	<position x="4540" y="3600"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5563,7 +5508,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6111_fyrv_till_t" layer="0" collapse-mode="2" max-obj-count="15">
 	<schema name="fkg"/>
-	<position x="4460" y="2760"/>
+	<position x="4540" y="3860"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5613,7 +5558,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6112_midl_dep_t" layer="0" collapse-mode="2" max-obj-count="10">
 	<schema name="fkg"/>
-	<position x="4460" y="2960"/>
+	<position x="4540" y="4140"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5651,7 +5596,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6113_besk_nat_b_t" layer="0" collapse-mode="2" max-obj-count="3">
 	<schema name="fkg"/>
-	<position x="4460" y="3140"/>
+	<position x="4540" y="4380"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5668,7 +5613,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6115_afbr_omr_t" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="fkg"/>
-	<position x="4460" y="3460"/>
+	<position x="4540" y="4520"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5697,7 +5642,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6116_olie_ber_pl_t" layer="0" collapse-mode="2" max-obj-count="10">
 	<schema name="fkg"/>
-	<position x="4440" y="3600"/>
+	<position x="4540" y="4700"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5735,7 +5680,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6117_inds_pkt_t" layer="0" collapse-mode="2" max-obj-count="12">
 	<schema name="fkg"/>
-	<position x="4460" y="3940"/>
+	<position x="4540" y="5080"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5776,7 +5721,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6118_bran_redn_t" layer="0" collapse-mode="2" max-obj-count="14">
 	<schema name="fkg"/>
-	<position x="4460" y="4140"/>
+	<position x="4540" y="5320"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5820,7 +5765,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6118_brand_redarea_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4920" y="4180"/>
+	<position x="5000" y="5320"/>
 	<column name="redarea_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -5839,13 +5784,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="col_4_txt_cp_cp" layer="0" font-size="9">
-	<position x="5560" y="740"/>
-	<comment><![CDATA[In this column Theme group 5.13, 5.19]]></comment>
+	<position x="5560" y="1260"/>
+	<comment><![CDATA[In this column Theme group 5.13, 5.19. 5.20
+Planlægning, Park og Grønne områder, Fotos]]></comment>
 </textbox>
 
 <table name="t_6200_nat_geo_t" layer="0" collapse-mode="2" max-obj-count="21">
 	<schema name="fkg"/>
-	<position x="5560" y="980"/>
+	<position x="5560" y="1360"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5907,7 +5853,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6201_kult_geo_t" layer="0" collapse-mode="2" max-obj-count="12">
 	<schema name="fkg"/>
-	<position x="5560" y="1320"/>
+	<position x="5560" y="1940"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -5945,7 +5891,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6202_landk_omr_t" layer="0" collapse-mode="2" max-obj-count="36">
 	<schema name="fkg"/>
-	<position x="5560" y="1620"/>
+	<position x="5560" y="2180"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6049,7 +5995,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6203_landk_vur_t" layer="0" collapse-mode="2" max-obj-count="16">
 	<schema name="fkg"/>
-	<position x="5560" y="2120"/>
+	<position x="5560" y="2960"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6099,7 +6045,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6800_parl_fl_t" layer="0" collapse-mode="2" max-obj-count="22">
 	<schema name="fkg"/>
-	<position x="5560" y="2380"/>
+	<position x="5560" y="3280"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6185,7 +6131,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6801_parl_li_t" layer="0" collapse-mode="2" max-obj-count="22">
 	<schema name="fkg"/>
-	<position x="5560" y="2720"/>
+	<position x="5560" y="3640"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6271,7 +6217,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6802_parl_pkt_t" layer="0" collapse-mode="2" max-obj-count="19">
 	<schema name="fkg"/>
-	<position x="5560" y="3160"/>
+	<position x="5560" y="4020"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6339,7 +6285,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6803_parl_omr_t" layer="0" collapse-mode="2" max-obj-count="12">
 	<schema name="fkg"/>
-	<position x="5560" y="3440"/>
+	<position x="5560" y="4360"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6377,7 +6323,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_offentlig" layer="0" collapse-mode="2" max-obj-count="3">
 	<schema name="fkg"/>
-	<position x="2680" y="360"/>
+	<position x="0" y="620"/>
 	<column name="off_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -6394,7 +6340,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="56">
 	<schema name="fkg"/>
-	<position x="2240" y="4540"/>
+	<position x="2700" y="2180"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6546,7 +6492,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_belaegning" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="3000" y="40"/>
+	<position x="1760" y="680"/>
 	<column name="belaegning_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -6566,7 +6512,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_handicapegnet" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2980" y="180"/>
+	<position x="1760" y="820"/>
 	<column name="handicapegnet_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -6586,7 +6532,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_invasivart" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="fkg"/>
-	<position x="3000" y="340"/>
+	<position x="1760" y="940"/>
 	<column name="invasivart_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -6609,7 +6555,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_kotesystem" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2980" y="440"/>
+	<position x="1760" y="1080"/>
 	<column name="kotesystem_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -6629,7 +6575,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6119_evaku_centr_t" layer="0" collapse-mode="2" max-obj-count="19">
 	<schema name="fkg"/>
-	<position x="4460" y="4360"/>
+	<position x="4540" y="5580"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6694,7 +6640,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6120_midl_overn_t" layer="0" collapse-mode="2" max-obj-count="18">
 	<schema name="fkg"/>
-	<position x="4440" y="4640"/>
+	<position x="4540" y="5920"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6753,7 +6699,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_6121_stor_ud_arr_t" layer="0" collapse-mode="2" max-obj-count="26">
 	<schema name="fkg"/>
-	<position x="4400" y="4980"/>
+	<position x="4540" y="6220"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6833,7 +6779,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_6121_sua" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4940" y="5080"/>
+	<position x="5040" y="6220"/>
 	<column name="sua_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -6853,7 +6799,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_basis_ansva_v" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="1180" y="740"/>
+	<position x="2120" y="400"/>
 	<column name="ansva_v_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6873,7 +6819,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5800_saeson" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2840" y="3880"/>
+	<position x="3220" y="1340"/>
 	<column name="saeson_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6893,7 +6839,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_svaerhed" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2760" y="5740"/>
+	<position x="3220" y="3260"/>
 	<column name="svaerhed_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6913,7 +6859,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_hierarki" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2760" y="5600"/>
+	<position x="3220" y="3680"/>
 	<column name="hierarki_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6933,7 +6879,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_rute_uty" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2760" y="5220"/>
+	<position x="3220" y="3120"/>
 	<column name="rute_uty_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6953,7 +6899,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_kategori" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2760" y="5460"/>
+	<position x="3220" y="3400"/>
 	<column name="kategori_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -6973,7 +6919,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_5000_vandl_t" layer="0" collapse-mode="2" max-obj-count="27">
 	<schema name="fkg"/>
-	<position x="20" y="860"/>
+	<position x="20" y="1340"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -7065,7 +7011,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5802_certifi" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="2760" y="5100"/>
+	<position x="3220" y="3540"/>
 	<column name="certifi_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -7089,7 +7035,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="t_7900_fotoforbindelse_t" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="fkg"/>
-	<position x="40" y="580"/>
+	<position x="5560" y="4800"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -7119,7 +7065,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="t_7901_foto_t" layer="0" collapse-mode="2" max-obj-count="3">
 	<schema name="fkg"/>
 	<role name="postgres"/>
-	<position x="460" y="400"/>
+	<position x="5560" y="4640"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -7145,6 +7091,22 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		</idxelement>
 	<predicate><![CDATA[primaer_kode = 1]]></predicate>
 </index>
+
+<textbox name="licensing-link_cp_cp_cp_cp" layer="0" font-size="9">
+	<position x="2700" y="1240"/>
+	<comment><![CDATA[In this column Theme group 5.9
+Sport, fritid og friluftsliv]]></comment>
+</textbox>
+
+<textbox name="licensing-link_cp_cp1" layer="0" font-size="9">
+	<position x="0" y="340"/>
+	<comment><![CDATA[Kodelister, generel datamodel]]></comment>
+</textbox>
+
+<textbox name="licensing-link_cp_cp1_cp" layer="0" font-size="9">
+	<position x="480" y="340"/>
+	<comment><![CDATA[Kodelister, specifik datamodel]]></comment>
+</textbox>
 
 <constraint name="generel_d_basis_oprindelse_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_oprindelse" table="fkg.generel">
@@ -9564,6 +9526,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_book_fk"
 	 src-required="false" dst-required="false"/>
 
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej5" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_folder_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5800_fac_pkt_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5800_fac_pkt_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
 <relationship name="rel_t_5802_fac_li_t_generel" type="relfk" layer="0"
 	 src-table="fkg.t_5802_fac_li_t"
 	 dst-table="fkg.generel" reference-fk="t_5802_fac_li_generel_fk"
@@ -9627,6 +9604,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5802_fac_li_t_d_5802_certifi" type="relfk" layer="0"
 	 src-table="fkg.t_5802_fac_li_t"
 	 dst-table="fkg.d_5802_certifi" reference-fk="t_5802_fac_li_d_5802_certifi_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5800_saeson" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5800_saeson" reference-fk="t_5802_fac_li_d_5800_saeson_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5802_fac_li_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5802_fac_li_d_basis_postnr_fk"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5900_jordfl_t_generel" type="relfk" layer="0"
@@ -10604,6 +10596,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_book_fk"
 	 src-required="false" dst-required="false"/>
 
+<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej5" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_folder_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5801_fac_fl_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5801_fac_fl_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
 <relationship name="rel_t_6119_evaku_centr_t_generel" type="relfk" layer="0"
 	 src-table="fkg.t_6119_evaku_centr_t"
 	 dst-table="fkg.generel" reference-fk="t_6119_evaku_centr_generel_fk"
@@ -10749,69 +10756,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="fkg.d_5000_maalsaetning" reference-fk="t_5000_vandl_d_5000_maalsaetning_fk"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_l_fotoforbindelse_t_generel" type="relfk" layer="0"
+<relationship name="rel_t_7900_fotoforbindelse_t_generel" type="relfk" layer="0"
 	 src-table="fkg.t_7900_fotoforbindelse_t"
 	 dst-table="fkg.generel" reference-fk="t_7900_fotoforbindelse_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_7900_fotoforbindelse_t_d_basis_ja_nej" type="relfk" layer="0"
+	 src-table="fkg.t_7900_fotoforbindelse_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_7900_fotoforbindelse_d_basis_ja_nej"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_7901_foto_t_generel" type="relfk" layer="0"
 	 src-table="fkg.t_7901_foto_t"
 	 dst-table="fkg.generel" reference-fk="t_7901_generel_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_l_fotoforbindelse_t_d_basis_ja_nej" type="relfk" layer="0"
-	 src-table="fkg.t_7900_fotoforbindelse_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_7900_fotoforbindelse_d_basis_ja_nej"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5800_fac_pkt_t_d_basis_ja_nej5" type="relfk" layer="0"
-	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5800_fac_pkt_d_basis_ja_nej_folder_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5801_fac_fl_t_d_basis_ja_nej5" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5801_fac_fl_d_basis_ja_nej_folder_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej3" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_5800_saeson_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5800_fac_pkt_t_d_vejnavn_fk" type="relfk" layer="0"
-	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5800_fac_pkt_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5800_fac_pkt_t_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5800_fac_pkt_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5800_fac_pkt_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5801_fac_fl_t_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5801_fac_fl_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5801_fac_fl_t_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5801_fac_fl_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5801_fac_fl_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_vejnavn" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_vejnavn" reference-fk="t_5802_fac_li_d_vejnavn_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_basis_postnr" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_postnr" reference-fk="t_5802_fac_li_d_basis_postnr_fk"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_t_5802_fac_li_t_d_5800_saeson" type="relfk" layer="0"
-	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_5800_saeson" reference-fk="t_5802_fac_li_d_5800_saeson_fk"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

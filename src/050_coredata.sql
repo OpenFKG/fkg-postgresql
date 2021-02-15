@@ -36,7 +36,6 @@ DELETE FROM fkg.d_basis_dvfi_bedoemmelse;
 DELETE FROM fkg.d_basis_trussel_vand;
 DELETE FROM fkg.d_basis_planstatus;
 DELETE FROM fkg.d_basis_hastighed;
-DELETE FROM fkg.d_basis_kloak;
 DELETE FROM fkg.d_basis_postnr;
 DELETE FROM fkg.d_basis_funktionsstatus;
 DELETE FROM fkg.d_basis_magasin;
@@ -480,15 +479,6 @@ INSERT INTO fkg.d_basis_hastighed VALUES (99,'Ukendt',1,'Ukendt/mangler viden');
 INSERT INTO fkg.d_basis_hastighed VALUES (110,'110',1,'110 km i timen');
 INSERT INTO fkg.d_basis_hastighed VALUES (130,'130',1,'130 km i timen');
 -- SELECT * FROM d_basis_hastighed;
-
-INSERT INTO fkg.d_basis_kloak VALUES (1,'Fælleskloakeret',1,'Spildevand og regnvand er blandet sammen i samme rør/system.');
-INSERT INTO fkg.d_basis_kloak VALUES (2,'Seperatkloakeret',1,'Spildevand og regnvand bortledes i hvert sit rør/system.');
-INSERT INTO fkg.d_basis_kloak VALUES (3,'Spildevandskloakeret',1,'Kun spildevand bortledes i rør. Regnvand nedsives.');
-INSERT INTO fkg.d_basis_kloak VALUES (4,'Ukloakeret',1,'Ej kloakerings system i området.');
-INSERT INTO fkg.d_basis_kloak VALUES (5,'Anden',1,'Anden');
-INSERT INTO fkg.d_basis_kloak VALUES (7,'Separatkloakeret med nedsivning af tagvand',1,'Spildevand og regnvand fra veje bortledes i hvert sit rør/system. Tagvand nedsives.');
-INSERT INTO fkg.d_basis_kloak VALUES (9,'Ukendt',1,'Hvor der mangler viden om kloakeringstype');
--- SELECT * FROM d_basis_kloak;
 
 -- Old-version: postnr lookup table created by SQL: select 'INSERT INTO fkg.d_basis_postnr VALUES (' || CAST(postnr AS character varying) || ',''' || postbynavn || ''',1);' FROM adr_mbbl.postnr WHERE COALESCE (btrim(postnr),'')<>'';
 -- New-version (from 2014-08-07): select 'INSERT INTO fkg.d_basis_postnr VALUES (' || CAST(postcodeisdentifier AS character varying) || ',''' || districtname || ''',1);' FROM aws.postcode WHERE COALESCE (btrim(postcodeisdentifier),'')<>'';
