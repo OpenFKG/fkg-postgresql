@@ -8,8 +8,8 @@ Se diagram af [hele modellen](http://OpenFKG.github.io/fkg-postgresql/img/dataMo
 
 Features
 -------------
-Denne fysiske implementering af FKG-datamodellen udstiller en relationel FKG-datamodel som en ”flad” tabel struktur. Det betyder:
-* at konsistensen i data sikres gennem regler for værdier og sammenhænge (constraints). Dermed sikres at data altid overholder de forretningsregler, som er implementeret ihht. FKG-datamodellen
+Denne fysiske implementering af GeoFA-datamodellen udstiller en relationel GeoFA-datamodel som en ”flad” tabel struktur. Det betyder:
+* at konsistensen i data sikres gennem regler for værdier og sammenhænge (constraints). Dermed sikres at data altid overholder de forretningsregler, som er implementeret ihht. GeoFA-datamodellen
 * at databasen indeholder fuld databasehistorik, som i det daglige er skjult for den almindelige bruger
 * at tilgang til databasen foregår på traditionel GIS manér (et tema=en tabel) gennem views, der kan opdateres
 * at historiske data kan tilgås gennem særlige views, som udstiller historiske rækker
@@ -36,7 +36,7 @@ Brugeren skal have rettigheder til at:
 
 Licens
 -------------
-Hele dette projekt (dvs. databasemodel og scripts til dannelse af den nødvendige SQL, samt output fra disse) er frigivet under [GNU General Public License version 3](http://opensource.org/licenses/GPL-3.0). Det betyder, at du frit kan downloade og installere modellen, og at hvis du laver ændringer til modellen er også denne nye ændrede model GPL-licenseret. På den måde håber vi, at denne implementering af FKG-datamodellen vil møde bred opbakning og komme så mange som muligt til gode.
+Hele dette projekt (dvs. databasemodel og scripts til dannelse af den nødvendige SQL, samt output fra disse) er frigivet under [GNU General Public License version 3](http://opensource.org/licenses/GPL-3.0). Det betyder, at du frit kan downloade og installere modellen, og at hvis du laver ændringer til modellen er også denne nye ændrede model GPL-licenseret. På den måde håber vi, at denne implementering af GeoFA-datamodellen vil møde bred opbakning og komme så mange som muligt til gode.
 
 Ovennævnte betyder til gengæld *IKKE*, at de data, der senere fyldes i databasen, skal frigives. Data i databasen er - og vedbliver med at være - dine!
 
@@ -51,7 +51,7 @@ I efteråret 2017 blev der udviklet en midlertidig "branch" på Datamodellen, so
 
 Medio juli 2019 er FKG datamodellen opdateret til version 2_6_0_2. Ændringer omfatter de 3 friluftstemaer, samt understøttelse for lagring af eksterne billed-filer.
 
-Februar 2021 er FKG datamodellen opdateret til version 3_0. Denne indeholder en række mindre justeringer og tilføjelser. Foto og fotoforbindelse er flyttet, og der er en række større ændringer til de 3 friluftstemaer: Facilitet_punkt (5800), Facilitet_flade (5801) og Facilitet_linje (5802). Ændringer til version 3_0 er samlet under Github projektet [Version 3_0_0](https://github.com/OpenFKG/fkg-postgresql/projects/1)
+Februar 2021 er FKG datamodellen opdateret til GeoFA version 3_0. Denne indeholder en række mindre justeringer og tilføjelser. Foto og fotoforbindelse er flyttet, og der er en række større ændringer til de 3 friluftstemaer: Facilitet_punkt (5800), Facilitet_flade (5801) og Facilitet_linje (5802). Ændringer til version 3_0 er samlet under Github projektet [Version 3_0_0](https://github.com/OpenFKG/fkg-postgresql/projects/1)
 
 Bidrag
 ------------
@@ -81,7 +81,7 @@ Sommer 2019 er datamodellen opgraderet fra version 2_6_0_1 til version 2_6_0_2 m
 
 2021 er datamodellen opgraderet fra 2_6_0_2 til 2_6_3
 
-Februar 2021 er datamodellen opgraderet fra FKG version 2_6_3 til GeoFA version 3_0
+Februar 2021 er datamodellen opgraderet fra FKG version 2_6_3 til GeoFA version 3_0 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 
 For udviklere
