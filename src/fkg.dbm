@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="2105,4987" last-zoom="1" max-obj-count="399"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="1695,5226" last-zoom="1" max-obj-count="400"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -7746,10 +7746,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="certifi_k" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="t_5802_fac_li_d_basis_ja_nej_saeson_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5802_fac_li_t">
+<constraint name="t_5802_fac_li_d_5800_saeson_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_saeson" table="fkg.t_5802_fac_li_t">
 	<columns names="saeson_k" ref-type="src-columns"/>
-	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+	<columns names="saeson_k" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5802_fac_li_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -10776,7 +10776,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej3" type="relfk" layer="0"
 	 src-table="fkg.t_5802_fac_li_t"
-	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_ja_nej_saeson_fk"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_5800_saeson_fk"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_t_5800_fac_pkt_t_d_vejnavn_fk" type="relfk" layer="0"
@@ -10807,6 +10807,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5802_fac_li_t_d_basis_postnr" type="relfk" layer="0"
 	 src-table="fkg.t_5802_fac_li_t"
 	 dst-table="fkg.d_basis_postnr" reference-fk="t_5802_fac_li_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5800_saeson" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5800_saeson" reference-fk="t_5802_fac_li_d_5800_saeson_fk"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

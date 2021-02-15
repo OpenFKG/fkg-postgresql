@@ -4455,10 +4455,10 @@ REFERENCES fkg.d_5802_certifi (certifi_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
--- object: t_5802_fac_li_d_basis_ja_nej_saeson_fk | type: CONSTRAINT --
--- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_ja_nej_saeson_fk CASCADE;
-ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_ja_nej_saeson_fk FOREIGN KEY (saeson_k)
-REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+-- object: t_5802_fac_li_d_5800_saeson_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_5800_saeson_fk CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_5800_saeson_fk FOREIGN KEY (saeson_k)
+REFERENCES fkg.d_5800_saeson (saeson_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
