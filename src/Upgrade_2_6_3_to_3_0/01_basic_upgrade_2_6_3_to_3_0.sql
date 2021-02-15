@@ -1,8 +1,6 @@
 -- Upgrade script FKG datamodel 2_6_0_3 til 3_0_0_0
 
 -- Nye kolonner i generel (https://github.com/OpenFKG/fkg-postgresql/issues/57)
-ROLLBACK TRANSACTION;
-BEGIN TRANSACTION;
 ALTER TABLE fkg.generel
   ADD COLUMN noegle character varying(128) NULL,
   ADD COLUMN note character varying(254) NULL;
@@ -293,6 +291,3 @@ ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_vejnavn_fk FOREIG
 REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-ROLLBACK TRANSACTION;
