@@ -1,9 +1,9 @@
 FKG til PostgreSQL/PostGIS
 ==============
-Dette projekt er en fysisk implementering af den [fælleskommunale geodatamodel (FKG)](http://www.kl.dk/Fagomrader/Teknik-og-miljo/Digital-forvaltning/Projekter-under-den-falleskommunale-strategi/Geodata/)
+Dette projekt er en fysisk implementering af den [fælleskommunale geodatamodel (GeoDF)](https://www.geodanmark.dk/om-geodanmark/)
 i databasesystemet [PostgreSQL](http://www.postgresql.org/). Implementeringen benytter sig af [PostGIS](http://postgis.net/), som er en udvidelse, der tilføjer spatiel funktionalitet til PostgreSQL.
 
-![Udsnit af FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_cut_2_4.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
+![Udsnit af FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_cut_3_0.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
 Se diagram af [hele modellen](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_2_4.png "Se diagram af modellen i modelleringsværktøjet pgModeler")
 
 Features
