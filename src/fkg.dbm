@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="1476,5177" last-zoom="1" max-obj-count="392"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="2105,4987" last-zoom="1" max-obj-count="399"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -3160,9 +3160,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="48">
+<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="56">
 	<schema name="fkg"/>
-	<position x="2240" y="3760"/>
+	<position x="2240" y="3820"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3271,6 +3271,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="film_link3">
 		<type name="character varying" length="1024"/>
 	</column>
+	<column name="vejkode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer" length="0"/>
+	</column>
 	<column name="adr_id">
 		<type name="uuid" length="0"/>
 	</column>
@@ -3278,6 +3290,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="geometri" not-null="true">
@@ -3291,7 +3312,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="61">
+<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="69">
 	<schema name="fkg"/>
 	<position x="2240" y="5240"/>
 	<column name="versions_id" not-null="true">
@@ -3438,10 +3459,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="gpx_link">
 		<type name="character varying" length="1024"/>
 	</column>
+	<column name="vejkode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer" length="0"/>
+	</column>
 	<column name="adr_id">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="geometri" not-null="true">
@@ -6350,9 +6392,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="48">
+<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="56">
 	<schema name="fkg"/>
-	<position x="2240" y="4480"/>
+	<position x="2240" y="4540"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6461,6 +6503,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="film_link3">
 		<type name="character varying" length="1024"/>
 	</column>
+	<column name="vejkode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cvf_vejkode">
+		<type name="character" length="7"/>
+	</column>
+	<column name="husnr">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="postnr">
+		<type name="integer" length="0"/>
+	</column>
 	<column name="adr_id">
 		<type name="uuid" length="0"/>
 	</column>
@@ -6468,6 +6522,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="link">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link1">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link2">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="geometri" not-null="true">
@@ -7593,6 +7656,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5800_fac_pkt_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5800_fac_pkt_t">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5800_fac_pkt_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5800_fac_pkt_t">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="t_5802_fac_li_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5802_fac_li_t">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -7675,6 +7750,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5802_fac_li_t">
 	<columns names="saeson_k" ref-type="src-columns"/>
 	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5802_fac_li_t">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5802_fac_li_t">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5900_jordfl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8851,6 +8938,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_5801_fac_fl_t">
 	<columns names="folder_k" ref-type="src-columns"/>
 	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_vejnavn_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_vejnavn" table="fkg.t_5801_fac_fl_t">
+	<columns names="vejkode" ref-type="src-columns"/>
+	<columns names="vejkode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_basis_postnr_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5801_fac_fl_t">
+	<columns names="postnr" ref-type="src-columns"/>
+	<columns names="postnr" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6119_evaku_centr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -10678,6 +10777,36 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_t_5802_fac_li_t_d_basis_ja_nej3" type="relfk" layer="0"
 	 src-table="fkg.t_5802_fac_li_t"
 	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_5802_fac_li_d_basis_ja_nej_saeson_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_vejnavn_fk" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5800_fac_pkt_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5800_fac_pkt_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5801_fac_fl_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5801_fac_fl_d_basis_postnr_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_vejnavn" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_vejnavn" reference-fk="t_5802_fac_li_d_vejnavn_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_basis_postnr" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_basis_postnr" reference-fk="t_5802_fac_li_d_basis_postnr_fk"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

@@ -255,4 +255,44 @@ ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN film_link2 CHARACTER VARYING(1024);
 ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN film_link3 CHARACTER VARYING(1024);
 ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_laengde_ck CHECK (laengde between 0.1 and 500.99);
 
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN vejkode integer;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN cvf_vejkode CHARACTER (7);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN husnr CHARACTER varying(4);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN postnr integer;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN link1 CHARACTER varying(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN link2 CHARACTER varying(1024);
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN link3 CHARACTER varying(1024);
+
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN vejkode integer;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN cvf_vejkode CHARACTER (7);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN husnr CHARACTER varying(4);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN postnr integer;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN link1 CHARACTER varying(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN link2 CHARACTER varying(1024);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN link3 CHARACTER varying(1024);
+
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN vejkode integer;
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN cvf_vejkode CHARACTER (7);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN husnr CHARACTER varying(4);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN postnr integer;
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN link1 CHARACTER varying(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN link2 CHARACTER varying(1024);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN link3 CHARACTER varying(1024);
+
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_vejnavn_fk FOREIGN KEY (vejkode)
+REFERENCES fkg.d_vejnavn (vejkode) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_postnr_fk FOREIGN KEY (postnr)
+REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
 ROLLBACK TRANSACTION;
