@@ -104,5 +104,3 @@ Dette gøres enklest således:
 6. Dit installationsscript er nu at finde i folderen kaldet INSTALL
 
 En installationspakke genereres ved at tage scriptene i 010 - 050 og output fra 090 - 110 og samle dette i en SQL-fil.
-
-![FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/FKG-DM-screenshot.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
