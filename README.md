@@ -1,10 +1,10 @@
-FKG til PostgreSQL/PostGIS
-==============
-Dette projekt er en fysisk implementering af den [fælleskommunale geodatamodel (GeoDF)](https://www.geodanmark.dk/om-geodanmark/)
+GeoFA (tidligere FKG) til PostgreSQL/PostGIS
+============================================
+Dette projekt er en fysisk implementering af den [fælleskommunale geodatamodel (GeoFA)](https://www.geodanmark.dk/om-geodanmark/)
 i databasesystemet [PostgreSQL](http://www.postgresql.org/). Implementeringen benytter sig af [PostGIS](http://postgis.net/), som er en udvidelse, der tilføjer spatiel funktionalitet til PostgreSQL.
 
-![Udsnit af FKG model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_cut_3_0.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
-Se diagram af [hele modellen](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_2_4.png "Se diagram af modellen i modelleringsværktøjet pgModeler")
+![Udsnit af GeoFA model i pgModeler](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_cut_3_0.png "Udsnit af modellen i modelleringsværktøjet pgModeler")
+Se diagram af [hele modellen](http://OpenFKG.github.io/fkg-postgresql/img/dataModel_3_0.png "Se diagram af modellen i modelleringsværktøjet pgModeler")
 
 Features
 -------------
@@ -23,7 +23,7 @@ For udvikler-information (kompilering af modellen) se afsnittet "For udviklere" 
 
 Ønsker du bare at installere den "kompilerede version" af datamodellen (og ikke selv udvikle på den), så findes der færdige installationspakker på [Septimas hjemmeside](http://septima.dk/openfkgdownload). Installationspakkerne består af SQL scripts, som køres på din PostgreSQL-server, f.eks. ved hjælp af administrationsprogrammet pgAdmin.
 
-PostgreSQL skal være version 9.* og databasen skal have følgende karakteristika:
+PostgreSQL skal være minimum version 9.* og databasen skal have følgende karakteristika:
 * ENCODING = 'UTF8'
 * LC_COLLATE = 'Danish, Denmark'
 * LC_CTYPE = 'Danish, Denmark'
@@ -49,13 +49,15 @@ Primo juli 2015 blev der foretaget en opdatering fra version 2.4 til 2.5 økonom
 
 I efteråret 2017 blev der udviklet en midlertidig "branch" på Datamodellen, som primært omhandlede ændringer til de 3 frilufttemaer `FACILITET_PUNKT (5800)` `FACILITET_FLADE (5801)` og `FACILITET_LINJE (5802)`. Disse ændringer er efterfølgende merget i hovedmodellen i version 2_6_0_1.
 
-Medio juli 2019 er FKG datamodellen opdateret til version 2_6_0_2. Ændringer omfatter de 3 friluftstemaer, samt understøttelse for lagring af eksterne billed-filer. 
+Medio juli 2019 er FKG datamodellen opdateret til version 2_6_0_2. Ændringer omfatter de 3 friluftstemaer, samt understøttelse for lagring af eksterne billed-filer.
+
+Februar 2021 er FKG datamodellen opdateret til version 3_0. Denne indeholder en række mindre justeringer og tilføjelser. Foto og fotoforbindelse er flyttet, og der er en række større ændringer til de 3 friluftstemaer: Facilitet_punkt (5800), Facilitet_flade (5801) og Facilitet_linje (5802). Ændringer til version 3_0 er samlet under Github projektet [Version 3_0_0](https://github.com/OpenFKG/fkg-postgresql/projects/1)
 
 Bidrag
 ------------
 Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
 
-Fejl, mangler og ideer til forbedringer opsamles i projektets [issuetracker](../../issues). Vær venlig at beskrive dit issue grundigt, så udvikleren kan gå lige til sagen.
+Fejl, mangler og ideer til forbedringer opsamles i projektets [issuetracker](https://github.com/OpenFKG/fkg-postgresql/issues). Vær venlig at beskrive dit issue grundigt, så udvikleren kan gå lige til sagen.
 
 Er du teknisk minded kan du følge det klassiske GitHub work flow og lave en "[Fork](https://help.github.com/articles/fork-a-repo)" af projektet, lave dine ændringer i din egen fork og sende et "[Pull request](https://help.github.com/articles/using-pull-requests)" til dette projekt. Kerneudviklere vil få direkte commit-adgang til projektet.
 
@@ -77,12 +79,16 @@ Efterår 2017 er datamodellen opgraderet fra 2.5 til version 2_6_0_1 (i særskil
 
 Sommer 2019 er datamodellen opgraderet fra version 2_6_0_1 til version 2_6_0_2 med økonomisk støtte fra [KL](http://kl.dk).
 
+2021 er datamodellen opgraderet fra 2_6_0_2 til 2_6_3
+
+Februar 2021 er datamodellen opgraderet fra FKG version 2_6_3 til GeoFA version 3_0
+
 
 For udviklere
 -----------
-Basis for databasemodellen opsættes i databasemodelleringsværktøjet [pgModeler](http://www.pgmodeler.com.br/). Værktøjet er Open Source og under aktiv udvikling på [github.com/pgmodeler/pgmodeler](https://github.com/pgmodeler/pgmodeler). Sidste nye version til Mac OSX, Linux og Windows kan downloades [her](http://www.pgmodeler.com.br/).
+Basis for databasemodellen opsættes i databasemodelleringsværktøjet [pgModeler](http://www.pgmodeler.com.br/). Værktøjet er Open Source og under aktiv udvikling på [github.com/pgmodeler/pgmodeler](https://github.com/pgmodeler/pgmodeler). Sidste nye version til Mac OSX, Linux og Windows kan downloades [her](http://www.pgmodeler.com.br/). Du kan bidrage til projektet med en lille skærv ved at betale for et installationssæt.
 
-Derudover er der lavet en lang række SQL scripts, metatabeller, funktioner mv., som tilsammen gør det muligt at oprette en fuld FKG database med views, constraints, historik, relationer osv. 
+Derudover er der lavet en lang række SQL scripts, metatabeller, funktioner mv., som tilsammen gør det muligt at oprette en fuld GeoFA database med views, constraints, historik, relationer osv. 
 
 I et udviklingsmiljø anbefaler vi at man kører på en lokal og tom database, som man kan teste på -test ikke på en database, som kører produktion.
 
