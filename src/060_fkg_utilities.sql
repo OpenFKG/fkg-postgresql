@@ -190,6 +190,11 @@ UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'an
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5802_fac_li_d_basis_afmaerket_rute_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'afm_rute', value_field = 'ja_nej' WHERE constraint_name ='t_5802_fac_li_d_basis_afmaerket_rute_fk';
 
+-- 
+UPDATE fkg_utilities.view_mapping SET field_alias = 'saeson' WHERE constraint_name ='t_5802_fac_li_d_5800_saeson_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'folder' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ja_nej_folder_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'folder' WHERE constraint_name ='t_5801_fac_fl_d_basis_ja_nej_folder_fk';
+
 -- select * from fkg_utilities.view_mapping order by 1;
 
 -- ---- End of manipulation ----

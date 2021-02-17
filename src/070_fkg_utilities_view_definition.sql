@@ -81,7 +81,9 @@ BEGIN
   vd = vd || E'  g.statuskode,' || E'\n';
   vd = vd || E'  s.status,' || E'\n';
   vd = vd || E'  g.off_kode,' || E'\n';
-  vd = vd || E'  f.offentlig';
+  vd = vd || E'  f.offentlig,' || E'\n';
+  vd = vd || E'  g.noegle,' || E'\n';
+  vd = vd || E'  g.note';
 
   -- Loop through the columns in theme-table
   FOR _record IN select * FROM fkg_utilities.column_metadata WHERE table_name = base_table_name AND column_name <> 'versions_id' ORDER BY ordinal_position, ordinal

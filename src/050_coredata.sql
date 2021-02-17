@@ -36,7 +36,6 @@ DELETE FROM fkg.d_basis_dvfi_bedoemmelse;
 DELETE FROM fkg.d_basis_trussel_vand;
 DELETE FROM fkg.d_basis_planstatus;
 DELETE FROM fkg.d_basis_hastighed;
-DELETE FROM fkg.d_basis_kloak;
 DELETE FROM fkg.d_basis_postnr;
 DELETE FROM fkg.d_basis_funktionsstatus;
 DELETE FROM fkg.d_basis_magasin;
@@ -388,6 +387,12 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 28856075,'Ærø Kommune', 4
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189854,'Aabenraa Kommune', 580, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 29189420,'Aalborg Kommune', 851, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 55133018,'Aarhus Kommune', 751, 1);
+-- Nye myndigheder version 3.0 (Miljøstyrelsen genopstår):
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376, 'Miljøstyrelsen', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33157274, 'Naturstyrelsen', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33284114, 'Styrelsen for Dataforsyning og Effektivisering', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private', NULL, 1);
+
 -- SELECT * FROM d_basis_ansvarlig_myndighed;
 
 INSERT INTO fkg.d_basis_offentlig VALUES (1,'Synlig for alle',1);
@@ -474,15 +479,6 @@ INSERT INTO fkg.d_basis_hastighed VALUES (99,'Ukendt',1,'Ukendt/mangler viden');
 INSERT INTO fkg.d_basis_hastighed VALUES (110,'110',1,'110 km i timen');
 INSERT INTO fkg.d_basis_hastighed VALUES (130,'130',1,'130 km i timen');
 -- SELECT * FROM d_basis_hastighed;
-
-INSERT INTO fkg.d_basis_kloak VALUES (1,'Fælleskloakeret',1,'Spildevand og regnvand er blandet sammen i samme rør/system.');
-INSERT INTO fkg.d_basis_kloak VALUES (2,'Seperatkloakeret',1,'Spildevand og regnvand bortledes i hvert sit rør/system.');
-INSERT INTO fkg.d_basis_kloak VALUES (3,'Spildevandskloakeret',1,'Kun spildevand bortledes i rør. Regnvand nedsives.');
-INSERT INTO fkg.d_basis_kloak VALUES (4,'Ukloakeret',1,'Ej kloakerings system i området.');
-INSERT INTO fkg.d_basis_kloak VALUES (5,'Anden',1,'Anden');
-INSERT INTO fkg.d_basis_kloak VALUES (7,'Separatkloakeret med nedsivning af tagvand',1,'Spildevand og regnvand fra veje bortledes i hvert sit rør/system. Tagvand nedsives.');
-INSERT INTO fkg.d_basis_kloak VALUES (9,'Ukendt',1,'Hvor der mangler viden om kloakeringstype');
--- SELECT * FROM d_basis_kloak;
 
 -- Old-version: postnr lookup table created by SQL: select 'INSERT INTO fkg.d_basis_postnr VALUES (' || CAST(postnr AS character varying) || ',''' || postbynavn || ''',1);' FROM adr_mbbl.postnr WHERE COALESCE (btrim(postnr),'')<>'';
 -- New-version (from 2014-08-07): select 'INSERT INTO fkg.d_basis_postnr VALUES (' || CAST(postcodeisdentifier AS character varying) || ',''' || districtname || ''',1);' FROM aws.postcode WHERE COALESCE (btrim(postcodeisdentifier),'')<>'';
@@ -1624,7 +1620,8 @@ INSERT INTO fkg.d_basis_trin VALUES (9,'9. klasse',1,'9. klasse');
 INSERT INTO fkg.d_basis_trin VALUES (10,'10. klasse',1,'10. klasse');
 INSERT INTO fkg.d_basis_trin VALUES (11,'0. klasse',1,'0. klasse');
 INSERT INTO fkg.d_basis_trin VALUES (12,'Førskole',1,'Førskole');
-INSERT INTO fkg.d_basis_trin VALUES (98,'Andet',1,'Andre distrikter');
+INSERT INTO fkg.d_basis_trin VALUES (97,'Ej relevant',1,'Ikke relevant for dette objekt'); -- https://github.com/OpenFKG/fkg-postgresql/issues/62
+INSERT INTO fkg.d_basis_trin VALUES (98,'Andet',1,'Andet'); -- begrebsdefinition ændret: https://github.com/OpenFKG/fkg-postgresql/issues/62
 INSERT INTO fkg.d_basis_trin VALUES (99,'Ukendt',1,'Ukendt');
 -- SELECT * FROM d_basis_trin;
 
@@ -2385,6 +2382,14 @@ INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (26,'-',0,'-');
 INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (27,'-',0,'-');
 INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (28,'-',0,'-');
 INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (29,'-',0,'-');
+-- Nye værdier https://github.com/OpenFKG/fkg-postgresql/issues/62
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (30, 'Dagcenter', 1, 'Aktivitetsprægede tilbud med formål at øge og bevare brugernes muligheder for at klare sig selv, f.eks. ved at forebygge forringelse af den fysiske funktionsevne eller af social isolation.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (31, 'Fysioterapiklinik', 1, 'Klinik til genoptræning til afhjælpning af fysisk funktionsnedsættelse');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (32, 'Behandlingscenter', 1, 'Institution der tilbyder ambulant behandling af misbrugsproblemer (stof og/eller alkohol) el. andre psykiske og fysiske lidelser.   Kommunalbestyrelsen skal tilbyde behandling af stofmisbrugere jf. Servicelovens § 101 og alkoholbehandling jf. Sundhedslovens §141.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (33, 'Værested', 1, 'Sted hvor man kan komme, tilbringe tiden og møde andre især om opholdssted for fx børn og unge, hjemløse, psykisk syge el. narkomaner der kommer ind fra gaden og får rådgivning m.m. af frivillige');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (34, 'Sygeplejeklinik', 1, 'På sygeplejeklinikker tilbydes kommunale sygeplejeydelser. Sygeplejeydelser kan også tilbydes i borgerens eget hjem.');
+INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (35, 'Krisecenter', 1, 'Krisecentre tilbyder husly og støtte til kvinder og børn, der har været udsat for vold eller trusler om vold i hjemmet. Man har mulighed for at bo på krisecentret i en kortere eller længere periode.    Tilbud om ophold på krisecenter er jf. servicelovens § 109.');
+--
 INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (98,'Øvrige tilbud',1,'Andet');
 INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (99,'Ukendt',1,'Ukendt');
 -- SELECT * FROM d_5716_Servicetilbud_type;
@@ -2396,6 +2401,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (1031, 'Legeplads', 1, 'En legeplads er 
 INSERT INTO fkg.d_5800_facilitet VALUES (1041, 'Naturlegeplads', 1, 'Legeplads ude i naturen typisk bygget med naturens egne matrialer. Træstammer og sten m.v.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1051, 'Badestrand/-sted', 1, 'Område, der anvendes til badning. Særligt udpegede, servicerede ikke nødvendigvis certificerede. Fælles navn for hav- og søbade.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1061, 'Blå Flag strand', 1, 'Badeområde eller havne, der er tildelt Blå Flag.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1062, 'Badepunkt', 1, 'Badested tildelt Det nordiske kystflag.'); --https://github.com/OpenFKG/fkg-postgresql/issues/62
 INSERT INTO fkg.d_5800_facilitet VALUES (1072, 'Blå Flag facilitet', 1, 'Faciliteter til Blå Flag badestrande, f.eks. infostandere, redningsposter mm.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1082, 'Spejderhytte', 1, 'Bygning, hvor en eller flere spejdergrupper holder til.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1091, 'Friluftsbad/Svømmebad', 1, 'Område med et eller flere badebassinner, der kan være overdækket eller under åben himmel. Dækker også havnebad.');
@@ -2442,7 +2448,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (2191, 'Seværdighed - Fauna', 1, 'Sevæ
 INSERT INTO fkg.d_5800_facilitet VALUES (2201, 'Seværdighed – Flora', 1, 'Seværdighed indenfor planteriget');
 INSERT INTO fkg.d_5800_facilitet VALUES (2211, 'Seværdighed – Geologi', 1, 'Geologisk seværdighed ');
 INSERT INTO fkg.d_5800_facilitet VALUES (2223, 'Naturkanon', 1	, 'Statens udpegede steder. Naturkanon steder/områder. Indmeldes kun af staten/MST.');
-INSERT INTO fkg.d_5800_facilitet VALUES (3012, 'Shelter', 1, 'Primitiv overdækket overnatningsmulighed. En shelter kan være alt fra nogle stolper og en presenning, over klassiske sheltere, til simple hytter med overnatningspladser. Åbne i en eller flere sider eller helt lukkede.');
+INSERT INTO fkg.d_5800_facilitet VALUES (3012, 'Shelter', 1, 'Primitiv overdækket overnatningsmulighed. En shelter kan være alt fra nogle stolper og en presenning, over klassiske sheltere, til simple hytter med overnatningspladser. Åbne i en eller flere sider.'); -- https://github.com/OpenFKG/fkg-postgresql/issues/62
 INSERT INTO fkg.d_5800_facilitet VALUES (3022, 'Kano/kajak overnatningsplads', 1, 'Rasteplads til kano-/kajakfarer med mulighed for overnatning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3031, 'Teltplads', 1, 'Sted til at slå telt op for overnatning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3041, 'Campingplads', 1, 'Overnatningssted til campingvogne og telte.');
@@ -2536,7 +2542,7 @@ INSERT INTO fkg.d_5802_rutetype VALUES
 (6, 'Motionsrute',      1, 'Rute udpeget til motionsformål – typisk løb eller gang.'),
 (7, 'Undervandsrute',   1, 'Afmærket eller uafmærket rute under vand for snorkeldykkere/dykkere.'),
 (8, 'Riderute',	        1, 'Afmærket eller uafmærket rute til færdsel til hest.'),
-(9, 'Sejlrute',	        1, 'Afmærket eller uafmærket rute for kano- og kajak-sejlads.'),
+(9, 'Sejlrute',	        1, 'Afmærket eller beskrevet rute for kano- og kajak-sejlads.'),
 (10,'Gratis fiskeri',	0, 'Strækning med gratis fiskeri.'),
 (11,'Rekreativ sti',	0, 'Vandresti med fokus på det rekreative.'),
 (12,'Adgangsvej',	    0, 'Sti eller spor med fri adgang, der fører hen til facilitet.'),
