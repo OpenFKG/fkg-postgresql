@@ -53,6 +53,8 @@ Medio juli 2019 er FKG datamodellen opdateret til version 2_6_0_2. Ændringer om
 
 Februar 2021 er FKG datamodellen opdateret til GeoFA version 3_0. Denne indeholder en række mindre justeringer og tilføjelser. Foto og fotoforbindelse er flyttet, og der er en række større ændringer til de 3 friluftstemaer: Facilitet_punkt (5800), Facilitet_flade (5801) og Facilitet_linje (5802). Ændringer til version 3_0 er samlet under Github projektet [Version 3_0_0](https://github.com/OpenFKG/fkg-postgresql/projects/1)
 
+Marts 2021 er GeoFA datamodellen opdateret til verson 3_0_0. Mindre justeringer på de 3 friluftstemaer: Facilitet_punkt (5800), Facilitet_flade (5801) og Facilitet_linje (5802)
+
 Bidrag
 ------------
 Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
@@ -82,6 +84,8 @@ Sommer 2019 er datamodellen opgraderet fra version 2_6_0_1 til version 2_6_0_2 m
 2021 er datamodellen opgraderet fra 2_6_0_2 til 2_6_3
 
 Februar 2021 er datamodellen opgraderet fra FKG version 2_6_3 til GeoFA version 3_0 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
+
+Marts 2021 er datamodellen opgraderet fra GeoFA version 3_0 til 3_0_1 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 
 For udviklere
