@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,0" last-zoom="0.6" max-obj-count="399"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="2558,3063" last-zoom="1.1" max-obj-count="399"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -3199,16 +3199,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="geofafoto3">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link">
+	<column name="filmlink">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link1">
+	<column name="filmlink1">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link2">
+	<column name="filmlink2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link3">
+	<column name="filmlink3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="vejkode">
@@ -3384,16 +3384,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="geofafoto3">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link">
+	<column name="filmlink">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link1">
+	<column name="filmlink1">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link2">
+	<column name="filmlink2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link3">
+	<column name="filmlink3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="gpx_link">
@@ -6437,16 +6437,16 @@ Planlægning, Park og Grønne områder, Fotos]]></comment>
 	<column name="geofafoto3">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link">
+	<column name="filmlink">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link1">
+	<column name="filmlink1">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link2">
+	<column name="filmlink2">
 		<type name="character varying" length="1024"/>
 	</column>
-	<column name="film_link3">
+	<column name="filmlink3">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="vejkode">
