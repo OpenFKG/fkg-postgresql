@@ -17,6 +17,20 @@ ALTER TABLE fkg.t_5802_fac_li_t  RENAME COLUMN film_link1 TO filmlink1;
 ALTER TABLE fkg.t_5802_fac_li_t  RENAME COLUMN film_link2 TO filmlink2;
 ALTER TABLE fkg.t_5802_fac_li_t  RENAME COLUMN film_link3 TO filmlink3;
 
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN foldelink1 character varying(1024) NULL;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN foldelink2 character varying(1024) NULL;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN foldelink3 character varying(1024) NULL;
+
+ALTER TABLE fkg.t_5801_fac_fl_t  ADD COLUMN foldelink1 character varying(1024) NULL;
+ALTER TABLE fkg.t_5801_fac_fl_t  ADD COLUMN foldelink2 character varying(1024) NULL;
+ALTER TABLE fkg.t_5801_fac_fl_t  ADD COLUMN foldelink3 character varying(1024) NULL;
+
+ALTER TABLE fkg.t_5802_fac_li_t  ADD COLUMN foldelink1 character varying(1024) NULL;
+ALTER TABLE fkg.t_5802_fac_li_t  ADD COLUMN foldelink2 character varying(1024) NULL;
+ALTER TABLE fkg.t_5802_fac_li_t  ADD COLUMN foldelink3 character varying(1024) NULL;
+
+
+
 ROLLBACK TRANSACTION;
 
 
