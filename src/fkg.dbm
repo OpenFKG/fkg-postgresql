@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="2557,3317" last-zoom="1.1" max-obj-count="399"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="2557,2042" last-zoom="1.1" max-obj-count="399"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -3143,10 +3143,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="saeson_st">
-		<type name="character varying" length="25"/>
+		<type name="date" length="25"/>
 	</column>
 	<column name="saeson_sl">
-		<type name="character varying" length="25"/>
+		<type name="date" length="25"/>
 	</column>
 	<column name="saeson_bem">
 		<type name="character varying" length="254"/>
@@ -3258,6 +3258,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 	<constraint name="t_5800_fac_pkt_antal_pl_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
 			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
+			<expression><![CDATA[((date_part('year'::text, saeson_sl) = (1)::double precision))]]></expression>
+	</constraint>
+	<constraint name="t_5800_fac_pkt_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
+			<expression><![CDATA[((date_part('year'::text, saeson_st) = (1)::double precision))]]></expression>
 	</constraint>
 </table>
 
@@ -6399,10 +6405,10 @@ Planlægning, Park og Grønne områder, Fotos]]></comment>
 		<type name="integer" length="0"/>
 	</column>
 	<column name="saeson_st">
-		<type name="character varying" length="25"/>
+		<type name="date" length="25"/>
 	</column>
 	<column name="saeson_sl">
-		<type name="character varying" length="25"/>
+		<type name="date" length="25"/>
 	</column>
 	<column name="saeson_bem">
 		<type name="character varying" length="254"/>
@@ -6514,6 +6520,12 @@ Planlægning, Park og Grønne områder, Fotos]]></comment>
 	</constraint>
 	<constraint name="t_5801_fac_fl_antal_pl_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
 			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
+	</constraint>
+	<constraint name="t_5801_fac_fl_t_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
+			<expression><![CDATA[((date_part('year'::text, saeson_sl) = (1)::double precision))]]></expression>
+	</constraint>
+	<constraint name="t_5801_fac_fl_t_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
+			<expression><![CDATA[((date_part('year'::text, saeson_st) = (1)::double precision))]]></expression>
 	</constraint>
 </table>
 
