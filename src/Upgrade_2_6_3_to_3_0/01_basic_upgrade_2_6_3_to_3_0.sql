@@ -120,16 +120,16 @@ ALTER TABLE fkg.t_7900_fotoforbindelse_t DROP COLUMN note CASCADE;
 ALTER TABLE fkg.t_7901_foto_t DROP COLUMN note CASCADE;
 
 -- Nye rækker i ansvarlig (https://github.com/OpenFKG/fkg-postgresql/issues/57)
-INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376, 'Miljøstyrelsen', NULL, 1);
-INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33157274, 'Naturstyrelsen', NULL, 1);
-INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33284114, 'Styrelsen for Dataforsyning og Effektivisering', NULL, 1);
-INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private', NULL, 1);
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376, 'Miljøstyrelsen', NULL, 1) ON CONFLICT ON CONSTRAINT d_basis_ansvarlig_myndighed_pk DO NOTHING;
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33157274, 'Naturstyrelsen', NULL, 1) ON CONFLICT ON CONSTRAINT d_basis_ansvarlig_myndighed_pk DO NOTHING;
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33284114, 'Styrelsen for Dataforsyning og Effektivisering', NULL, 1) ON CONFLICT ON CONSTRAINT d_basis_ansvarlig_myndighed_pk DO NOTHING;
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private', NULL, 1) ON CONFLICT ON CONSTRAINT d_basis_ansvarlig_myndighed_pk DO NOTHING;
 
 -- Nyt fejlt i t_5508_husst_moel_t (https://github.com/OpenFKG/fkg-postgresql/issues/60)
 ALTER TABLE fkg.t_5508_husst_moel_t ADD COLUMN cvf_vejkode character varying(7) NULL;
 
 -- Ændring i lookup-tabeller (https://github.com/OpenFKG/fkg-postgresql/issues/62)
-INSERT INTO fkg.d_basis_trin VALUES (97,'Ej relevant',1,'Ikke relevant for dette objekt');
+INSERT INTO fkg.d_basis_trin VALUES (97,'Ej relevant',1,'Ikke relevant for dette objekt') ON CONFLICT ON CONSTRAINT d_basis_trin_pk DO NOTHING;
 UPDATE fkg.d_basis_trin SET begrebsdefinition = 'Andet' WHERE trin_kode = 98;
 INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (30, 'Dagcenter', 1, 'Aktivitetsprægede tilbud med formål at øge og bevare brugernes muligheder for at klare sig selv, f.eks. ved at forebygge forringelse af den fysiske funktionsevne eller af social isolation.');
 INSERT INTO fkg.d_5716_Servicetilbud_type VALUES (31, 'Fysioterapiklinik', 1, 'Klinik til genoptræning til afhjælpning af fysisk funktionsnedsættelse');
@@ -188,7 +188,8 @@ ALTER TABLE fkg.t_5800_fac_pkt_t ALTER COLUMN saeson_sl TYPE CHARACTER varying(2
 UPDATE fkg.t_5800_fac_pkt_t SET saeson_st = (substring(saeson_st FROM 9 FOR 2)::int)::TEXT || '/' || (substring(saeson_st FROM 6 FOR 2)::int)::TEXT;
 UPDATE fkg.t_5800_fac_pkt_t SET saeson_sl = (substring(saeson_sl FROM 9 FOR 2)::int)::TEXT || '/' || (substring(saeson_sl FROM 6 FOR 2)::int)::TEXT;
 
-ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck;
+ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_saeson_sl_aar_skal_vaere_1_ck;
+ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck;
 ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT t_5801_fac_fl_saeson_st_aar_skal_vaere_1_ck;
 ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN saeson_st TYPE CHARACTER varying(25);
 ALTER TABLE fkg.t_5801_fac_fl_t ALTER COLUMN saeson_sl TYPE CHARACTER varying(25);
