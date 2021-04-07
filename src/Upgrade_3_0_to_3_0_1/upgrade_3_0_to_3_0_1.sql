@@ -47,13 +47,13 @@ ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_t_saeson_st_aar_ska
 
 UPDATE fkg.t_5800_fac_pkt_t
 SET
-  saeson_st =  ('1901' || '-' || substring(saeson_st_old FROM 4 FOR 2) || '-' || substring(saeson_st_old FROM 1 FOR 2))::date,
-  saeson_sl =  ('1901' || '-' || substring(saeson_sl_old FROM 4 FOR 2) || '-' || substring(saeson_sl_old FROM 1 FOR 2))::date
+  saeson_st =  ('0001' || '-' || substring(saeson_st_old FROM position('/' IN saeson_st_old)+1) || '-' || substring(saeson_st_old FROM 1 FOR position('/' IN saeson_st_old)-1))::date,
+  saeson_sl =  ('0001' || '-' || substring(saeson_sl_old FROM position('/' IN saeson_sl_old)+1) || '-' || substring(saeson_sl_old FROM 1 FOR position('/' IN saeson_sl_old)-1))::date
 ;
 UPDATE fkg.t_5801_fac_fl_t
 SET
-  saeson_st =  ('1901' || '-' || substring(saeson_st_old FROM 4 FOR 2) || '-' || substring(saeson_st_old FROM 1 FOR 2))::date,
-  saeson_sl =  ('1901' || '-' || substring(saeson_sl_old FROM 4 FOR 2) || '-' || substring(saeson_sl_old FROM 1 FOR 2))::date
+  saeson_st =  ('0001' || '-' || substring(saeson_st_old FROM position('/' IN saeson_st_old)+1) || '-' || substring(saeson_st_old FROM 1 FOR position('/' IN saeson_st_old)-1))::date,
+  saeson_sl =  ('0001' || '-' || substring(saeson_sl_old FROM position('/' IN saeson_sl_old)+1) || '-' || substring(saeson_sl_old FROM 1 FOR position('/' IN saeson_sl_old)-1))::date
 ;
 
 ALTER TABLE fkg.t_5800_fac_pkt_t DROP COLUMN saeson_st_old cascade;
