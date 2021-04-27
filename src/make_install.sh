@@ -100,9 +100,6 @@ cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=110_create_indeces.sql  -o INSTALL/_tmp.sql
 cat INSTALL/_tmp.sql >> INSTALL/$INSTALL_FILE
 
-# Create the fotoforbindelse support table
-psql --quiet --tuples-only --pset linestyle=old-ascii --host=$HOST --port=$PORT --dbname=$DB --username=$USER --no-password --file=120_create_l_fotoforbindelse.sql  
-cat 120_create_l_fotoforbindelse.sql >> INSTALL/$INSTALL_FILE
 
 # remove tmp file
 rm INSTALL/_tmp.sql
