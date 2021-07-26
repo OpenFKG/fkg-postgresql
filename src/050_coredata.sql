@@ -2548,8 +2548,9 @@ INSERT INTO fkg.d_5802_rutetype VALUES
 (10,'Gratis fiskeri',	0, 'Strækning med gratis fiskeri.'),
 (11,'Rekreativ sti',	0, 'Vandresti med fokus på det rekreative.'),
 (12,'Adgangsvej',	    0, 'Sti eller spor med fri adgang, der fører hen til facilitet.'),
-(13,'Margueritruten',   1, 'Skiltet rute forbi seværdigheder og smuk natur. Tiltænkt til biler og motorcyklister. Store dele også velegnet for cyklister.'),
+(13,'Bilrute',          1, 'Skiltet rute forbi seværdigheder og smuk natur. Tiltænkt biler og motorcyklister. Kan også være velegnet for cyklister.'),
 (14,'Trec-bane',        1, 'Rideaktivitetsbane i naturen for heste og ryttere.'),
+(15,'Svømmerute',       1, 'Svømmerute.'),
 (98,'Andet',            1, 'Hvor andre facilitetsbetegnelser ikke er dækkende.'),
 (99,'Ukendt',           1, 'Mangler viden om rutetypen.');
 

@@ -13,5 +13,17 @@ WHERE
   facil_ty_k = 1291
 ;
 
+-- https://github.com/OpenFKG/fkg-postgresql/issues/83
+UPDATE
+  fkg.d_5802_rutetype
+SET
+  rute_ty = 'Bilrute',
+  begrebsdefinition = 'Skiltet rute forbi seværdigheder og smuk natur. Tiltænkt biler og motorcyklister. Kan også være velegnet for cyklister.'
+WHERE
+  rute_ty_k = 13
+;
+INSERT INTO fkg.d_5802_rutetype
+VALUES (15,'Svømmerute', 1, 'Svømmerute.')
+;
 
 ROLLBACK TRANSACTION;
