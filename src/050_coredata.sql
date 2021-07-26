@@ -2428,6 +2428,10 @@ INSERT INTO fkg.d_5800_facilitet VALUES (1272, 'Badevandsflag facilitet', 1, 'Fa
 INSERT INTO fkg.d_5800_facilitet VALUES (1281, 'Hesteophold', 1, 'Mindre indhegning m.v. til heste, som kan benyttes i forbindelse med midlertidigt ophold. Evt. en del af et høhotel.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1291, 'Holdeplads', 1, 'Holdeplads i tilknytning til rekreative områder/faciliteter og som ikke er registreret andre steder. Man kan angive om holdepladsen er egnet til f.eks. hestetrailer i beskrivelsesfeltet.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1302, 'Formidlingscenter', 1, 'Herunder trailcenter, gateway, port mv. Sted eller bygning som er udgangs- og knudepunkt for formidling af natur og aktiviteter samt oplevelser og ophold i det omkringliggende landskab. Indeholder relevante services og faciliteter eller skiltning/vejvisning dertil.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1311, 'Spang', 1, 'Simpel bro. Typisk bestående af udlagte stammer eller brædder.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1321, 'Stente', 1, 'Lille dobbelt stige med form som et omvendt V der fører over et hegn eller gærde omkring en mark med fx køer.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1331, 'Badebro', 1, 'Bro med adgang til badning.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1341, 'Bro', 1, 'Bro.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2012, 'Fugletårn/Udsigtstårn', 1, 'Platform, tårn eller skjul som giver mulighed for udsigt over et område eller særlige seværdigheder, fx udsyn til områdets fugle, dyreliv, landskab mv.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2022, 'Udsigtspunkt', 1, 'Punkt med en god udsigt. Ofte på toppen af en høj eller skrænt. Kan også være fra en bygning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2031, 'Fiskesø', 1, 'Put&take sø. Sted hvor man kan købe dagskort til at fiske efter udsatte fisk.');

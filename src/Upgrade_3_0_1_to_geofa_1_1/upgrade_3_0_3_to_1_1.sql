@@ -32,6 +32,12 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4391, 'Hundetræningsareal', 1, 'Areal 
 INSERT INTO fkg.d_5800_facilitet VALUES (2231, 'Naturnationalpark', 1  , 'Statens udpegede naturnationalparker.')
 ;
 
+INSERT INTO fkg.d_5800_facilitet VALUES
+  (1311, 'Spang', 1, 'Simpel bro. Typisk bestående af udlagte stammer eller brædder.'),
+  (1321, 'Stente', 1, 'Lille dobbelt stige med form som et omvendt V der fører over et hegn eller gærde omkring en mark med fx køer.'),
+  (1331, 'Badebro', 1, 'Bro med adgang til badning.'),
+  (1341, 'Bro', 1, 'Bro.')
+;
 
 
 
