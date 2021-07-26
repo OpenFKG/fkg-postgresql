@@ -1,4 +1,3 @@
-BEGIN TRANSACTION;
 -- https://github.com/OpenFKG/fkg-postgresql/issues/80
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 16287180, 'Forsvarsministeriets Ejendomsstyrelse', NULL, 1)
 ;
@@ -13,6 +12,13 @@ WHERE
   facil_ty_k = 1291
 ;
 
+-- https://github.com/OpenFKG/fkg-postgresql/issues/82
+INSERT INTO fkg.d_5800_facilitet VALUES
+  (1311, 'Spang', 1, 'Simpel bro. Typisk bestående af udlagte stammer eller brædder.'),
+  (1321, 'Stente', 1, 'Lille dobbelt stige med form som et omvendt V der fører over et hegn eller gærde omkring en mark med fx køer.'),
+  (1331, 'Badebro', 1, 'Bro med adgang til badning.'),
+  (1341, 'Bro', 1, 'Bro.')
+;
 -- https://github.com/OpenFKG/fkg-postgresql/issues/83
 UPDATE
   fkg.d_5802_rutetype
@@ -32,13 +38,3 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4391, 'Hundetræningsareal', 1, 'Areal 
 INSERT INTO fkg.d_5800_facilitet VALUES (2231, 'Naturnationalpark', 1  , 'Statens udpegede naturnationalparker.')
 ;
 
-INSERT INTO fkg.d_5800_facilitet VALUES
-  (1311, 'Spang', 1, 'Simpel bro. Typisk bestående af udlagte stammer eller brædder.'),
-  (1321, 'Stente', 1, 'Lille dobbelt stige med form som et omvendt V der fører over et hegn eller gærde omkring en mark med fx køer.'),
-  (1331, 'Badebro', 1, 'Bro med adgang til badning.'),
-  (1341, 'Bro', 1, 'Bro.')
-;
-
-
-
-ROLLBACK TRANSACTION;
