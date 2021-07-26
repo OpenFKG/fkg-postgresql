@@ -26,4 +26,13 @@ INSERT INTO fkg.d_5802_rutetype
 VALUES (15,'Svømmerute', 1, 'Svømmerute.')
 ;
 
+-- https://github.com/OpenFKG/fkg-postgresql/issues/85
+INSERT INTO fkg.d_5800_facilitet VALUES (4391, 'Hundetræningsareal', 1, 'Areal hvor man kan træne hunde.')
+;
+INSERT INTO fkg.d_5800_facilitet VALUES (2231, 'Naturnationalpark', 1  , 'Statens udpegede naturnationalparker.')
+;
+
+
+
+
 ROLLBACK TRANSACTION;

@@ -2450,6 +2450,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (2191, 'Seværdighed - Fauna', 1, 'Sevæ
 INSERT INTO fkg.d_5800_facilitet VALUES (2201, 'Seværdighed – Flora', 1, 'Seværdighed indenfor planteriget');
 INSERT INTO fkg.d_5800_facilitet VALUES (2211, 'Seværdighed – Geologi', 1, 'Geologisk seværdighed ');
 INSERT INTO fkg.d_5800_facilitet VALUES (2223, 'Naturkanon', 1	, 'Statens udpegede steder. Naturkanon steder/områder. Indmeldes kun af staten/MST.');
+INSERT INTO fkg.d_5800_facilitet VALUES (2231, 'Naturnationalpark', 1  , 'Statens udpegede naturnationalparker.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3012, 'Shelter', 1, 'Primitiv overdækket overnatningsmulighed. En shelter kan være alt fra nogle stolper og en presenning, over klassiske sheltere, til simple hytter med overnatningspladser. Åbne i en eller flere sider.'); -- https://github.com/OpenFKG/fkg-postgresql/issues/62
 INSERT INTO fkg.d_5800_facilitet VALUES (3022, 'Kano/kajak overnatningsplads', 1, 'Rasteplads til kano-/kajakfarer med mulighed for overnatning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3031, 'Teltplads', 1, 'Sted til at slå telt op for overnatning.');
@@ -2497,6 +2498,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4351, 'Skibakke', 1, 'Område med mulig
 INSERT INTO fkg.d_5800_facilitet VALUES (4361, 'Fodboldgolf', 1, 'Anlæg/bane til fodboldgolf.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4371, 'Bueskydning', 1, 'Bane til bueskydning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4381, 'Strandhåndboldbane', 1, 'Bane hvor man kan spille strandhåndbold.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4391, 'Hundetræningsareal', 1, 'Areal hvor man kan træne hunde.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5011, 'Forsamlingshus', 1, 'Et forsamlingshus er byens kulturhus og mødested.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5021, 'Museum', 1, 'Museum er en permanent institution med udstilling og formidling af f.eks. kunst, kulturhistorie eller naturhistorie.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5031, 'Teater', 1, 'Sted, hvor der opføres teater eller andre kulturelle opførelser. Herunder også amfiteater.');
