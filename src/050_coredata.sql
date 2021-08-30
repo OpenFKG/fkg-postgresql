@@ -392,6 +392,8 @@ INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 25798376, 'Miljøstyrelsen'
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33157274, 'Naturstyrelsen', NULL, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 33284114, 'Styrelsen for Dataforsyning og Effektivisering', NULL, 1);
 INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 99999999, 'Øvrige/private', NULL, 1);
+-- GeoFA version 1.0.1 Forsvarsministeriets Ejendomsstyrelse (cvr_kode: 16287180
+INSERT INTO fkg.d_basis_ansvarlig_myndighed VALUES ( 16287180, 'Forsvarsministeriets Ejendomsstyrelse', NULL, 1);
 
 -- SELECT * FROM d_basis_ansvarlig_myndighed;
 
@@ -2424,8 +2426,12 @@ INSERT INTO fkg.d_5800_facilitet VALUES (1252, 'Livredderpost', 1, 'Ubemandet re
 INSERT INTO fkg.d_5800_facilitet VALUES (1261, 'Badevandsflag',	1, 'Badeområde der er tildelt badevandsflag, der ikke er Blå Flag.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1272, 'Badevandsflag facilitet', 1, 'Faciliteter til strande med badevandsflag, der ikke er Blå Flag, f.eks. førstehjælpskasser, skilte på vandkvalitetsmålinger, nødtelefon.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1281, 'Hesteophold', 1, 'Mindre indhegning m.v. til heste, som kan benyttes i forbindelse med midlertidigt ophold. Evt. en del af et høhotel.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1291, 'Parkeringplads', 1, 'P-plads i tilknytning til rekreative områder/faciliteter og som ikke er registreret andre steder (vejregister). Man kan angive om parkeringspladsen er egnet til f.eks. hestetrailer i beskrivelsesfeltet.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1291, 'Holdeplads', 1, 'Holdeplads i tilknytning til rekreative områder/faciliteter og som ikke er registreret andre steder. Man kan angive om holdepladsen er egnet til f.eks. hestetrailer i beskrivelsesfeltet.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1302, 'Formidlingscenter', 1, 'Herunder trailcenter, gateway, port mv. Sted eller bygning som er udgangs- og knudepunkt for formidling af natur og aktiviteter samt oplevelser og ophold i det omkringliggende landskab. Indeholder relevante services og faciliteter eller skiltning/vejvisning dertil.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1311, 'Spang', 1, 'Simpel bro. Typisk bestående af udlagte stammer eller brædder.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1321, 'Stente', 1, 'Lille dobbelt stige med form som et omvendt V der fører over et hegn eller gærde omkring en mark med fx køer.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1331, 'Badebro', 1, 'Bro med adgang til badning.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1341, 'Bro', 1, 'Bro.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2012, 'Fugletårn/Udsigtstårn', 1, 'Platform, tårn eller skjul som giver mulighed for udsigt over et område eller særlige seværdigheder, fx udsyn til områdets fugle, dyreliv, landskab mv.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2022, 'Udsigtspunkt', 1, 'Punkt med en god udsigt. Ofte på toppen af en høj eller skrænt. Kan også være fra en bygning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2031, 'Fiskesø', 1, 'Put&take sø. Sted hvor man kan købe dagskort til at fiske efter udsatte fisk.');
@@ -2448,6 +2454,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (2191, 'Seværdighed - Fauna', 1, 'Sevæ
 INSERT INTO fkg.d_5800_facilitet VALUES (2201, 'Seværdighed – Flora', 1, 'Seværdighed indenfor planteriget');
 INSERT INTO fkg.d_5800_facilitet VALUES (2211, 'Seværdighed – Geologi', 1, 'Geologisk seværdighed ');
 INSERT INTO fkg.d_5800_facilitet VALUES (2223, 'Naturkanon', 1	, 'Statens udpegede steder. Naturkanon steder/områder. Indmeldes kun af staten/MST.');
+INSERT INTO fkg.d_5800_facilitet VALUES (2231, 'Naturnationalpark', 1  , 'Statens udpegede naturnationalparker.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3012, 'Shelter', 1, 'Primitiv overdækket overnatningsmulighed. En shelter kan være alt fra nogle stolper og en presenning, over klassiske sheltere, til simple hytter med overnatningspladser. Åbne i en eller flere sider.'); -- https://github.com/OpenFKG/fkg-postgresql/issues/62
 INSERT INTO fkg.d_5800_facilitet VALUES (3022, 'Kano/kajak overnatningsplads', 1, 'Rasteplads til kano-/kajakfarer med mulighed for overnatning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (3031, 'Teltplads', 1, 'Sted til at slå telt op for overnatning.');
@@ -2495,6 +2502,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4351, 'Skibakke', 1, 'Område med mulig
 INSERT INTO fkg.d_5800_facilitet VALUES (4361, 'Fodboldgolf', 1, 'Anlæg/bane til fodboldgolf.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4371, 'Bueskydning', 1, 'Bane til bueskydning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4381, 'Strandhåndboldbane', 1, 'Bane hvor man kan spille strandhåndbold.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4391, 'Hundetræningsareal', 1, 'Areal hvor man kan træne hunde.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5011, 'Forsamlingshus', 1, 'Et forsamlingshus er byens kulturhus og mødested.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5021, 'Museum', 1, 'Museum er en permanent institution med udstilling og formidling af f.eks. kunst, kulturhistorie eller naturhistorie.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5031, 'Teater', 1, 'Sted, hvor der opføres teater eller andre kulturelle opførelser. Herunder også amfiteater.');
@@ -2546,8 +2554,9 @@ INSERT INTO fkg.d_5802_rutetype VALUES
 (10,'Gratis fiskeri',	0, 'Strækning med gratis fiskeri.'),
 (11,'Rekreativ sti',	0, 'Vandresti med fokus på det rekreative.'),
 (12,'Adgangsvej',	    0, 'Sti eller spor med fri adgang, der fører hen til facilitet.'),
-(13,'Margueritruten',   1, 'Skiltet rute forbi seværdigheder og smuk natur. Tiltænkt til biler og motorcyklister. Store dele også velegnet for cyklister.'),
+(13,'Bilrute',          1, 'Skiltet rute forbi seværdigheder og smuk natur. Tiltænkt biler og motorcyklister. Kan også være velegnet for cyklister.'),
 (14,'Trec-bane',        1, 'Rideaktivitetsbane i naturen for heste og ryttere.'),
+(15,'Svømmerute',       1, 'Svømmerute.'),
 (98,'Andet',            1, 'Hvor andre facilitetsbetegnelser ikke er dækkende.'),
 (99,'Ukendt',           1, 'Mangler viden om rutetypen.');
 
