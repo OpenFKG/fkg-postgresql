@@ -1857,6 +1857,7 @@ CREATE TABLE fkg.t_5800_fac_pkt_t (
 	betaling_k integer,
 	book_k integer,
 	antal_pl integer,
+	kvalitet_k integer NOT NULL,
 	folder_k integer,
 	folde_link character varying(1024),
 	foldelink1 character varying(1024),
@@ -1930,6 +1931,7 @@ CREATE TABLE fkg.t_5802_fac_li_t (
 	kategori_k integer,
 	certifi_k integer,
 	hierarki_k integer,
+	kvalitet_k integer NOT NULL,
 	folder_k integer,
 	folde_link character varying(1024),
 	foldelink1 character varying(1024),
@@ -3382,6 +3384,7 @@ CREATE TABLE fkg.t_5801_fac_fl_t (
 	betaling_k integer,
 	book_k integer,
 	antal_pl integer,
+	kvalitet_k integer NOT NULL,
 	folder_k integer,
 	folde_link character varying(1024),
 	foldelink1 character varying(1024),
@@ -3727,6 +3730,20 @@ CREATE UNIQUE INDEX primaer_kode_unique_idx ON fkg.t_7900_fotoforbindelse_t
 	  primaer_kode
 	)
 	WHERE (primaer_kode = 1);
+-- ddl-end --
+
+-- object: fkg.d_5800_kvalitet | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5800_kvalitet CASCADE;
+CREATE TABLE fkg.d_5800_kvalitet (
+	kvalitet_k integer NOT NULL,
+	kvalitet character varying(35) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5800_kvalitet_pk PRIMARY KEY (kvalitet_k)
+
+);
+-- ddl-end --
+ALTER TABLE fkg.d_5800_kvalitet OWNER TO postgres;
 -- ddl-end --
 
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
@@ -4338,6 +4355,13 @@ REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
+-- object: t_5800_fac_pkt_d_5800_kvalitet_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5800_fac_pkt_t DROP CONSTRAINT IF EXISTS t_5800_fac_pkt_d_5800_kvalitet_fk CASCADE;
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD CONSTRAINT t_5800_fac_pkt_d_5800_kvalitet_fk FOREIGN KEY (kvalitet_k)
+REFERENCES fkg.d_5800_kvalitet (kvalitet_k) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
 -- object: t_5802_fac_li_generel_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_generel_fk CASCADE;
 ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_generel_fk FOREIGN KEY (versions_id)
@@ -4447,6 +4471,13 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_d_basis_postnr_fk CASCADE;
 ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5802_fac_li_t_d_5800_kvalitet | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5802_fac_li_t DROP CONSTRAINT IF EXISTS t_5802_fac_li_t_d_5800_kvalitet CASCADE;
+ALTER TABLE fkg.t_5802_fac_li_t ADD CONSTRAINT t_5802_fac_li_t_d_5800_kvalitet FOREIGN KEY (kvalitet_k)
+REFERENCES fkg.d_5800_kvalitet (kvalitet_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
@@ -5833,6 +5864,13 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_basis_postnr_fk CASCADE;
 ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_basis_postnr_fk FOREIGN KEY (postnr)
 REFERENCES fkg.d_basis_postnr (postnr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5801_fac_fl_d_5800_kvalitet | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5801_fac_fl_t DROP CONSTRAINT IF EXISTS t_5801_fac_fl_d_5800_kvalitet CASCADE;
+ALTER TABLE fkg.t_5801_fac_fl_t ADD CONSTRAINT t_5801_fac_fl_d_5800_kvalitet FOREIGN KEY (kvalitet_k)
+REFERENCES fkg.d_5800_kvalitet (kvalitet_k) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

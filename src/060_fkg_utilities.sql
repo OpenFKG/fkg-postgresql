@@ -124,6 +124,9 @@ UPDATE fkg_utilities.view_mapping SET field_alias = 'handicap', value_field = 'h
 
 --select * from fkg_utilities.view_mapping where constraint_name like 't_5800_fac_pkt%'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'saeson', value_field = 'saeson' WHERE constraint_name ='t_5800_fac_pkt_d_5800_saeson_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'kvalitet', value_field = 'kvalitet' WHERE constraint_name ='t_5800_fac_pkt_d_5800_kvalitet_fk';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'kvalitet', value_field = 'kvalitet' WHERE constraint_name ='t_5801_fac_fl_d_5800_kvalitet';
+UPDATE fkg_utilities.view_mapping SET field_alias = 'kvalitet', value_field = 'kvalitet' WHERE constraint_name ='t_5802_fac_li_t_d_5800_kvalitet';
 
 --select * from fkg_utilities.view_mapping where constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk'
 UPDATE fkg_utilities.view_mapping SET field_alias = 'ansva_v', value_field = 'ansva_v' WHERE constraint_name ='t_5800_fac_pkt_d_basis_ansvar_v_fk';
