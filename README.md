@@ -57,6 +57,8 @@ Marts 2021 er GeoFA datamodellen opdateret til verson 3_0_1. Mindre justeringer 
 
 Juli 2021 er GeoFA datamodellen opdateret til GeoFA version 1_1. Primært facilitetstyper ændret og tilføjet i lookup-tabel `d_5800_facilitet` og rutetyper tilføjet i `d_5802_rutetype`
 
+August 2021 er GeoFA datamodellen opdateret til GeoFA version 1_2. De 3 factilitetstemaer indeholder nu en reference til kvalitetsmarkering.
+
 Bidrag
 ------------
 Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
@@ -91,6 +93,7 @@ Marts 2021 er datamodellen opgraderet fra GeoFA version 3_0 til 3_0_1 med økono
 
 Juli 2021 er datamodellen opgraderet fra GeoFA version 3_0 til 1_1 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
+August 2021 er GeoFA datamodellen opdateret fra GeoFA version 1_1 til 1_2 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 For udviklere
 -----------
