@@ -104,6 +104,7 @@ DELETE FROM fkg.d_5714_udd_institution_type;
 DELETE FROM fkg.d_5715_botilbud_type;
 DELETE FROM fkg.d_5716_Servicetilbud_type;
 DELETE FROM fkg.d_5800_facilitet;
+DELETE FROM fkg.d_5800_kvalitet;
 DELETE FROM fkg.d_5802_rutetype;
 -- New lookuptable in 2.5 (udgået i 2.5.x)
 -- DELETE FROM fkg.d_5802_fremkommelighed;
@@ -2540,6 +2541,17 @@ INSERT INTO fkg.d_5800_saeson VALUES
 (7, 'Ej relevant',      1, 'Angivelse af sæson er ikke relevant-'),
 (8, 'Andet',            1, 'Andet'),
 (9, 'Ukendt',           1, 'Mangler viden om fremkommeligheden');
+
+INSERT INTO fkg.d_5800_saeson VALUES
+(1, 'Helårsåbent',      1, 'Faciliteten er åbent hele året'),
+(2, 'Sæsonåbent',       1, 'Faciliteten er åbent kun i sæsonen. Sæson/åbningstider kan/bør noteres i andre felter'),
+(7, 'Ej relevant',      1, 'Angivelse af sæson er ikke relevant-'),
+(8, 'Andet',            1, 'Andet'),
+(9, 'Ukendt',           1, 'Mangler viden om fremkommeligheden');
+
+INSERT INTO fkg.d_5800_kvalitet VALUES
+(1, 'TurismQ2021',      1, 'Data om faciliteten er kvalitetssikret i 2021'),
+(9, 'Ukendt',           1, 'Mangler viden om kvalitetssikring af facilitetens data');
 
 INSERT INTO fkg.d_5802_rutetype VALUES
 (1, 'Skirute',          1, 'Skiløberute på afmærkede og uafmærkede ruter i naturen.'),

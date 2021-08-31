@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="2557,2042" last-zoom="1.1" max-obj-count="399"
+<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="1670,3119" last-zoom="1.1" max-obj-count="403"
 	 default-owner="postgres">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
 </database>
@@ -2224,7 +2224,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="d_5902_vaeske_type" layer="0" collapse-mode="2" max-obj-count="4">
 	<schema name="fkg"/>
-	<position x="4160" y="1760"/>
+	<position x="4220" y="1760"/>
 	<column name="vaesketype_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -3100,7 +3100,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="60">
+<table name="t_5800_fac_pkt_t" layer="0" collapse-mode="2" max-obj-count="61">
 	<schema name="fkg"/>
 	<position x="2700" y="1340"/>
 	<column name="versions_id" not-null="true">
@@ -3167,6 +3167,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="antal_pl">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="kvalitet_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="folder_k">
@@ -3267,7 +3270,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="73">
+<table name="t_5802_fac_li_t" layer="0" collapse-mode="2" max-obj-count="74">
 	<schema name="fkg"/>
 	<position x="2700" y="2980"/>
 	<column name="versions_id" not-null="true">
@@ -3367,6 +3370,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="integer" length="0"/>
 	</column>
 	<column name="hierarki_k">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="kvalitet_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="folder_k">
@@ -6362,7 +6368,7 @@ Planlægning, Park og Grønne områder, Fotos]]></comment>
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="60">
+<table name="t_5801_fac_fl_t" layer="0" collapse-mode="2" max-obj-count="61">
 	<schema name="fkg"/>
 	<position x="2700" y="2180"/>
 	<column name="versions_id" not-null="true">
@@ -6429,6 +6435,9 @@ Planlægning, Park og Grønne områder, Fotos]]></comment>
 		<type name="integer" length="0"/>
 	</column>
 	<column name="antal_pl">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="kvalitet_k" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="folder_k">
@@ -7147,6 +7156,27 @@ Sport, fritid og friluftsliv]]></comment>
 	<comment><![CDATA[Kodelister, specifik datamodel]]></comment>
 </textbox>
 
+<table name="d_5800_kvalitet" layer="0" collapse-mode="2" max-obj-count="4">
+	<schema name="fkg"/>
+	<role name="postgres"/>
+	<position x="3220" y="1640"/>
+	<column name="kvalitet_k" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="kvalitet" not-null="true">
+		<type name="character varying" length="35"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_5800_kvalitet_pk" type="pk-constr" table="fkg.d_5800_kvalitet">
+		<columns names="kvalitet_k" ref-type="src-columns"/>
+	</constraint>
+</table>
+
 <constraint name="generel_d_basis_oprindelse_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_oprindelse" table="fkg.generel">
 	<columns names="oprindkode" ref-type="src-columns"/>
@@ -7669,6 +7699,12 @@ Sport, fritid og friluftsliv]]></comment>
 	<columns names="postnr" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5800_fac_pkt_d_5800_kvalitet_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_kvalitet" table="fkg.t_5800_fac_pkt_t">
+	<columns names="kvalitet_k" ref-type="src-columns"/>
+	<columns names="kvalitet_k" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="t_5802_fac_li_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5802_fac_li_t">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -7763,6 +7799,12 @@ Sport, fritid og friluftsliv]]></comment>
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5802_fac_li_t">
 	<columns names="postnr" ref-type="src-columns"/>
 	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5802_fac_li_t_d_5800_kvalitet" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_kvalitet" table="fkg.t_5802_fac_li_t">
+	<columns names="kvalitet_k" ref-type="src-columns"/>
+	<columns names="kvalitet_k" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_5900_jordfl_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -8951,6 +8993,12 @@ Sport, fritid og friluftsliv]]></comment>
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_postnr" table="fkg.t_5801_fac_fl_t">
 	<columns names="postnr" ref-type="src-columns"/>
 	<columns names="postnr" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5801_fac_fl_d_5800_kvalitet" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5800_kvalitet" table="fkg.t_5801_fac_fl_t">
+	<columns names="kvalitet_k" ref-type="src-columns"/>
+	<columns names="kvalitet_k" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="t_6119_evaku_centr_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
@@ -10808,6 +10856,21 @@ Sport, fritid og friluftsliv]]></comment>
 <relationship name="rel_t_7901_foto_t_generel" type="relfk" layer="0"
 	 src-table="fkg.t_7901_foto_t"
 	 dst-table="fkg.generel" reference-fk="t_7901_generel_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5800_fac_pkt_t_d_5800_kvalitet" type="relfk" layer="0"
+	 src-table="fkg.t_5800_fac_pkt_t"
+	 dst-table="fkg.d_5800_kvalitet" reference-fk="t_5800_fac_pkt_d_5800_kvalitet_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5801_fac_fl_t_d_5800_kvalitet" type="relfk" layer="0"
+	 src-table="fkg.t_5801_fac_fl_t"
+	 dst-table="fkg.d_5800_kvalitet" reference-fk="t_5801_fac_fl_d_5800_kvalitet"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5802_fac_li_t_d_5800_kvalitet" type="relfk" layer="0"
+	 src-table="fkg.t_5802_fac_li_t"
+	 dst-table="fkg.d_5800_kvalitet" reference-fk="t_5802_fac_li_t_d_5800_kvalitet"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
