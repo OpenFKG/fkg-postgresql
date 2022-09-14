@@ -2542,13 +2542,6 @@ INSERT INTO fkg.d_5800_saeson VALUES
 (8, 'Andet',            1, 'Andet'),
 (9, 'Ukendt',           1, 'Mangler viden om fremkommeligheden');
 
-INSERT INTO fkg.d_5800_saeson VALUES
-(1, 'Helårsåbent',      1, 'Faciliteten er åbent hele året'),
-(2, 'Sæsonåbent',       1, 'Faciliteten er åbent kun i sæsonen. Sæson/åbningstider kan/bør noteres i andre felter'),
-(7, 'Ej relevant',      1, 'Angivelse af sæson er ikke relevant-'),
-(8, 'Andet',            1, 'Andet'),
-(9, 'Ukendt',           1, 'Mangler viden om fremkommeligheden');
-
 INSERT INTO fkg.d_5800_kvalitet VALUES
 (1, 'TurismQ2021',      1, 'Data om faciliteten er kvalitetssikret i 2021'),
 (9, 'Ukendt',           1, 'Mangler viden om kvalitetssikring af facilitetens data');

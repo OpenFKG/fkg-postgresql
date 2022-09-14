@@ -1,18 +1,30 @@
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.9.2-alpha1
--- PostgreSQL version: 11.0
+-- pgModeler version: 1.0.0-alpha1
+-- PostgreSQL version: 15.0
 -- Project Site: pgmodeler.io
 -- Model Author: ---
 
-
--- Database creation must be done outside a multicommand file.
+-- Database creation must be performed outside a multi lined SQL file. 
 -- These commands were put in this file only as a convenience.
--- -- object: data | type: DATABASE --
--- -- DROP DATABASE IF EXISTS data;
--- CREATE DATABASE data
--- 	ENCODING = 'UTF8';
--- -- ddl-end --
 -- 
+-- object: data | type: DATABASE --
+-- DROP DATABASE IF EXISTS data;
+
+-- Prepended SQL commands --
+/*
+-- ddl-end --
+
+CREATE DATABASE data
+	ENCODING = 'UTF8';
+-- ddl-end --
+
+-- Appended SQL commands --
+*/
+CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+-- ddl-end --
+
 
 -- object: fkg | type: SCHEMA --
 -- DROP SCHEMA IF EXISTS fkg CASCADE;
@@ -31,7 +43,6 @@ CREATE TABLE fkg.d_basis_oprindelse (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_oprindelse_pk PRIMARY KEY (oprindkode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -43,7 +54,6 @@ CREATE TABLE fkg.d_basis_status (
 	aktiv integer NOT NULL DEFAULT 1,
 	CONSTRAINT d_basis_status_pk PRIMARY KEY (statuskode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -56,7 +66,6 @@ CREATE TABLE fkg.d_basis_ansvarlig_myndighed (
 	aktiv integer NOT NULL DEFAULT 1,
 	CONSTRAINT d_basis_ansvarlig_myndighed_pk PRIMARY KEY (cvr_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -77,16 +86,15 @@ CREATE TABLE fkg.generel (
 	note character varying(254),
 	CONSTRAINT generel_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
-COMMENT ON COLUMN fkg.generel.versions_id IS 'Unik versions-id databasenøgle';
+COMMENT ON COLUMN fkg.generel.versions_id IS E'Unik versions-id databasenøgle';
 -- ddl-end --
-COMMENT ON COLUMN fkg.generel.objekt_id IS 'Entydig databasenøgle over tid';
+COMMENT ON COLUMN fkg.generel.objekt_id IS E'Entydig databasenøgle over tid';
 -- ddl-end --
-COMMENT ON COLUMN fkg.generel.systid_fra IS 'Start systemtid';
+COMMENT ON COLUMN fkg.generel.systid_fra IS E'Start systemtid';
 -- ddl-end --
-COMMENT ON COLUMN fkg.generel.systid_til IS 'Slut systemtid';
+COMMENT ON COLUMN fkg.generel.systid_til IS E'Slut systemtid';
 -- ddl-end --
 
 -- object: fkg.d_basis_ja_nej | type: TABLE --
@@ -98,7 +106,6 @@ CREATE TABLE fkg.d_basis_ja_nej (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_ja_nej_pk PRIMARY KEY (ja_nej_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -111,7 +118,6 @@ CREATE TABLE fkg.d_basis_ejerstatus (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_ejerstatus_pk PRIMARY KEY (ejerstatus_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -126,7 +132,6 @@ CREATE TABLE fkg.d_vejnavn (
 	kommunekode integer,
 	CONSTRAINT d_vejnavn_pk PRIMARY KEY (vejkode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -139,7 +144,6 @@ CREATE TABLE fkg.d_basis_sag_status (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_sag_status_pk PRIMARY KEY (sag_status_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -152,7 +156,6 @@ CREATE TABLE fkg.d_basis_dvfi_bedoemmelse (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_dvfi_bedoemmelse_pk PRIMARY KEY (dvfi_bedoemmelse_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -165,7 +168,6 @@ CREATE TABLE fkg.d_basis_trussel_vand (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_trussel_vand_pk PRIMARY KEY (trussel_vand_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -178,7 +180,6 @@ CREATE TABLE fkg.d_basis_planstatus (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_planstatus_pk PRIMARY KEY (planstatus_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -191,7 +192,6 @@ CREATE TABLE fkg.d_basis_afstemningsomraade (
 	aktiv integer NOT NULL,
 	CONSTRAINT d_basis_afstemningsomraade_pk PRIMARY KEY (afstemningsomraade_nr)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -203,7 +203,6 @@ CREATE TABLE fkg.d_basis_postnr (
 	aktiv integer NOT NULL DEFAULT 1,
 	CONSTRAINT d_basis_postnr_pk PRIMARY KEY (postnr)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -216,7 +215,6 @@ CREATE TABLE fkg.d_basis_funktionsstatus (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_funktionsstatus_pk PRIMARY KEY (funktionsstatus_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -229,7 +227,6 @@ CREATE TABLE fkg.d_basis_magasin (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_magasin_pk PRIMARY KEY (magasin_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -242,7 +239,6 @@ CREATE TABLE fkg.d_basis_fors_omr_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_fors_omr_type_pk PRIMARY KEY (fors_omr_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -256,7 +252,6 @@ CREATE TABLE fkg.d_basis_omraade (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_omraade_pk PRIMARY KEY (omraade_nr)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -269,7 +264,6 @@ CREATE TABLE fkg.d_5000_vandl_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5000_vandl_type_pk PRIMARY KEY (vandl_type_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -282,7 +276,6 @@ CREATE TABLE fkg.d_5000_maalsaetning (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5000_maalsaetning_pk PRIMARY KEY (maalsaetning_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -295,16 +288,15 @@ CREATE TABLE fkg.d_5000_klasse (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5000_klasse_pk PRIMARY KEY (klasse_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
--- object: postgis | type: EXTENSION --
--- DROP EXTENSION IF EXISTS postgis CASCADE;
-CREATE EXTENSION postgis
-      WITH SCHEMA public;
--- ddl-end --
-
+-- -- object: postgis | type: EXTENSION --
+-- -- DROP EXTENSION IF EXISTS postgis CASCADE;
+-- CREATE EXTENSION postgis
+-- WITH SCHEMA public;
+-- -- ddl-end --
+-- 
 -- object: fkg.d_temagruppe | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.d_temagruppe CASCADE;
 CREATE TABLE fkg.d_temagruppe (
@@ -316,7 +308,6 @@ CREATE TABLE fkg.d_temagruppe (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT temagruppe_vaerdiomraade_min_uc UNIQUE (vaerdiomraade_min)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -335,7 +326,6 @@ CREATE TABLE fkg.d_tabel (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT d_tabel_temanavn_uc UNIQUE (tema_navn)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -348,7 +338,6 @@ CREATE TABLE fkg.d_basis_tilstand (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_tilstand_pk PRIMARY KEY (tilstand_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -361,7 +350,6 @@ CREATE TABLE fkg.d_basis_hastighed (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_hastighed_pk PRIMARY KEY (hastighed_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -374,7 +362,6 @@ CREATE TABLE fkg.d_basis_driftniv (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_driftniv_pk PRIMARY KEY (driftniv_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -387,7 +374,6 @@ CREATE TABLE fkg.d_basis_ukrudtsbek (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_ukrudtsbek_pk PRIMARY KEY (ukrudtsbek_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -400,7 +386,6 @@ CREATE TABLE fkg.d_basis_antal (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_antal_pk PRIMARY KEY (antal_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -413,7 +398,6 @@ CREATE TABLE fkg.d_6100_brandhane (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6100_brandhane_pk PRIMARY KEY (brandhane_type_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -426,7 +410,6 @@ CREATE TABLE fkg.d_6100_placering (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6100_placering_pk PRIMARY KEY (placering_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -457,7 +440,6 @@ CREATE TABLE fkg.t_6100_brandhane_t (
 	CONSTRAINT brandhane_id_ydelse_ck CHECK (ydelse BETWEEN 1 AND 9999),
 	CONSTRAINT brandhane_id_senest_maalte_ydelse_ck CHECK (senest_maalte_ydelse BETWEEN 1 AND 9999),
 	CONSTRAINT senest_maalte_ydelse_senest_tilsyn_ck CHECK (senest_tilsyn BETWEEN '2006-12-31' AND '2999-12-31')
-
 );
 -- ddl-end --
 
@@ -470,7 +452,6 @@ CREATE TABLE fkg.d_6102_redvej_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6102_redvej_type_pk PRIMARY KEY (redvej_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -491,7 +472,6 @@ CREATE TABLE fkg.t_6102_redn_vej_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6102_redningsvej_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -504,9 +484,7 @@ CREATE TABLE fkg.d_5001_maalest_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5001_maalest_type_pk PRIMARY KEY (maalest_type_kode)
 	 WITH (FILLFACTOR = 10)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5001_maalest_t | type: TABLE --
@@ -523,9 +501,7 @@ CREATE TABLE fkg.t_5001_maalest_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5001_maalest_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5002_spaerring | type: TABLE --
@@ -537,9 +513,7 @@ CREATE TABLE fkg.d_5002_spaerring (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5002_spaerring_pk PRIMARY KEY (spaerring_type_kode)
 	 WITH (FILLFACTOR = 10)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5002_passage | type: TABLE --
@@ -551,9 +525,7 @@ CREATE TABLE fkg.d_5002_passage (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5002_passage_pk PRIMARY KEY (passage_kode)
 	 WITH (FILLFACTOR = 10)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5002_faunasp_t | type: TABLE --
@@ -574,9 +546,7 @@ CREATE TABLE fkg.t_5002_faunasp_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5002_faunasp_saneret_aar_ck CHECK (saneret_aar >= 1800 AND saneret_aar <= 2999),
 	CONSTRAINT t_5002_faunasp_prioritet_ck CHECK (prioritet >= 1 AND prioritet <= 9)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5003_ledn_type | type: TABLE --
@@ -588,9 +558,7 @@ CREATE TABLE fkg.d_5003_ledn_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5003_ledn_type_pk PRIMARY KEY (ledn_type_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5003_klasse | type: TABLE --
@@ -602,9 +570,7 @@ CREATE TABLE fkg.d_5003_klasse (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5003_klasse_pk PRIMARY KEY (klasse_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5003_draenledn_t | type: TABLE --
@@ -625,9 +591,7 @@ CREATE TABLE fkg.t_5003_draenledn_t (
 	CONSTRAINT t_5003_draenledn_anlaeg_aar_ck CHECK (anlaeg_aar >= 1800 AND anlaeg_aar <= 2999),
 	CONSTRAINT t_5003_draenledn_dybde_ck CHECK (dybde >= 0.1 AND dybde <= 99.9),
 	CONSTRAINT t_5003_draenledn_dimension_ck CHECK (dimension >= 1 AND dimension <= 99)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5004_omr_type | type: TABLE --
@@ -639,9 +603,7 @@ CREATE TABLE fkg.d_5004_omr_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5004_omr_type_pk PRIMARY KEY (omr_type_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5004_draenomr_t | type: TABLE --
@@ -658,9 +620,7 @@ CREATE TABLE fkg.t_5004_draenomr_t (
 	CONSTRAINT t_5004_draenomr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5004_draenomr_anlaeg_aar_ck CHECK (anlaeg_aar >= 1700 AND anlaeg_aar <= 2999)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5005_maalsaetning | type: TABLE --
@@ -672,9 +632,7 @@ CREATE TABLE fkg.d_5005_maalsaetning (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5005_maalsaetning_pk PRIMARY KEY (maalsaetning_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5005_soe_type | type: TABLE --
@@ -686,9 +644,7 @@ CREATE TABLE fkg.d_5005_soe_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5005_soe_type_pk PRIMARY KEY (soe_type_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5005_habitat_type | type: TABLE --
@@ -700,9 +656,7 @@ CREATE TABLE fkg.d_5005_habitat_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5005_habitat_type_pk PRIMARY KEY (habitat_type_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5005_soe_t | type: TABLE --
@@ -728,9 +682,7 @@ CREATE TABLE fkg.t_5005_soe_t (
 	CONSTRAINT t_5005_soe_opholdstid_ck CHECK (opholdstid >= 0.1 AND opholdstid <= 99.9),
 	CONSTRAINT t_5005_soe_volumen_ck CHECK (volumen >= 0.1 AND volumen <= 999.9),
 	CONSTRAINT t_5005_soe_fot_id_ck CHECK (fot_id >= 0 AND fot_id <= 2147483648)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5006_dybdekurv_t | type: TABLE --
@@ -753,9 +705,7 @@ CREATE TABLE fkg.t_5006_dybdekurv_t (
 	CONSTRAINT t_5006_dybdekurv_lower_ck CHECK (lower >= 0.0 AND lower <= 999.9),
 	CONSTRAINT t_5006_dybdekurv_upper_ck CHECK (upper >= 0.0 AND upper <= 999.9),
 	CONSTRAINT t_5006_dybdekurv_maalt_aar_ck CHECK (maalt_aar >= 1900 AND maalt_aar <= 2999)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5007_opl | type: TABLE --
@@ -767,9 +717,7 @@ CREATE TABLE fkg.d_5007_opl (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5007_opl_pk PRIMARY KEY (opl_nr)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5007_opl_type | type: TABLE --
@@ -781,9 +729,7 @@ CREATE TABLE fkg.d_5007_opl_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5007_opl_type_pk PRIMARY KEY (vandl_opl_type_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5007_vandl_opl_t | type: TABLE --
@@ -799,9 +745,7 @@ CREATE TABLE fkg.t_5007_vandl_opl_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5007_vandl_opl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5008_opl | type: TABLE --
@@ -813,9 +757,7 @@ CREATE TABLE fkg.d_5008_opl (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5008_opl_pk PRIMARY KEY (soe_opl_nr)
 	 WITH (FILLFACTOR = 10)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5008_soe_opl_t | type: TABLE --
@@ -831,9 +773,7 @@ CREATE TABLE fkg.t_5008_soe_opl_t (
 	CONSTRAINT t_5008_soe_opl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5008_soe_opl_soe_opl_nr_ck CHECK (soe_opl_nr >= 1 AND soe_opl_nr <= 9999)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5009_lag_type | type: TABLE --
@@ -845,9 +785,7 @@ CREATE TABLE fkg.d_5009_lag_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5009_lag_type_pk PRIMARY KEY (lag_type_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5009_pumpelag_t | type: TABLE --
@@ -862,9 +800,7 @@ CREATE TABLE fkg.t_5009_pumpelag_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5009_pumpelag_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5010_element_type | type: TABLE --
@@ -876,9 +812,7 @@ CREATE TABLE fkg.d_5010_element_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5010_element_type_pk PRIMARY KEY (element_kode)
 	 WITH (FILLFACTOR = 100)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.t_5010_vandl_elm_t | type: TABLE --
@@ -902,9 +836,7 @@ CREATE TABLE fkg.t_5010_vandl_elm_t (
 	CONSTRAINT t_5010_vandl_elm_vstation_ck CHECK (vstation >= 0.0 AND vstation <= 200000),
 	CONSTRAINT t_5010_vandl_elm_anlagt_aar_ck CHECK (anlagt_aar >= 1800 AND anlagt_aar <= 2999),
 	CONSTRAINT t_5010_vandl_elm_saneret_aar_ck CHECK (anlagt_aar >= 1800 AND anlagt_aar <= 2999)
-
-)
-WITH ( OIDS = TRUE );
+);
 -- ddl-end --
 
 -- object: fkg.d_5105_kaer_type | type: TABLE --
@@ -916,7 +848,6 @@ CREATE TABLE fkg.d_5105_kaer_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5105_kaer_type_pk PRIMARY KEY (kaer_type_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -933,7 +864,6 @@ CREATE TABLE fkg.t_5105_rig_fattig_t (
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5105_rig_fattig_stedid_ck CHECK (stedid BETWEEN 100000 AND 999999),
 	CONSTRAINT t_5105_rig_fattig_natura_2000_ck CHECK (natura_2000 BETWEEN 1 AND 9999)
-
 );
 -- ddl-end --
 
@@ -947,7 +877,6 @@ CREATE TABLE fkg.d_5106_pleje_type (
 	pleje_type_label character varying(10),
 	CONSTRAINT pleje_type_kode_pk PRIMARY KEY (pleje_type_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -960,7 +889,6 @@ CREATE TABLE fkg.d_5106_faciliteter (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5106_faciliteter_pk PRIMARY KEY (faciliteter_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -999,7 +927,6 @@ CREATE TABLE fkg.t_5106_nat_pl_t (
 	CONSTRAINT t_5106_nat_pl_mobil_ck CHECK (mobil BETWEEN 10000000 AND 99999999),
 	CONSTRAINT t_5106_nat_pl_ajour_ck CHECK (ajour BETWEEN '2006-12-31' AND '2999-12-31'
 )
-
 );
 -- ddl-end --
 
@@ -1019,7 +946,6 @@ CREATE TABLE fkg.t_5108_groent_part_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5108_groent_part_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -1038,7 +964,6 @@ CREATE TABLE fkg.t_5300_genopd_ret_t (
 	CONSTRAINT versions_id_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5300_genopd_ret_genoptaget_ck CHECK (genoptaget BETWEEN 1999 AND 2999)
-
 );
 -- ddl-end --
 
@@ -1051,7 +976,6 @@ CREATE TABLE fkg.d_5400_affalds_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5400_affalds_type_pk PRIMARY KEY (affaldstype_kode)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -1073,7 +997,6 @@ CREATE TABLE fkg.t_5400_affalds_dis_t (
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5400_affalds_dis_affalddistrikt_nr_ck CHECK (affalddistrikt_nr BETWEEN 1 AND 99999),
 	CONSTRAINT t_5400_affalds_dis_renovatoer_cvr_ck CHECK (renovatoer_cvr BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -1086,7 +1009,6 @@ CREATE TABLE fkg.d_5200_affald (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5200_affald_pk PRIMARY KEY (affald_prod_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1099,7 +1021,6 @@ CREATE TABLE fkg.d_5401_gs_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5401_gs_type_pk PRIMARY KEY (gs_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1112,7 +1033,6 @@ CREATE TABLE fkg.d_5402_gc_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5402_gc_type_pk PRIMARY KEY (gc_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1125,7 +1045,6 @@ CREATE TABLE fkg.d_5506_anlaegtype (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5506_anlaegtype_pk PRIMARY KEY (anlaeg_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1138,7 +1057,6 @@ CREATE TABLE fkg.d_5600_rute (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5600_rute_pk PRIMARY KEY (rute_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1151,7 +1069,6 @@ CREATE TABLE fkg.d_5601_hasti_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5601_hasti_type_pk PRIMARY KEY (hasti_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1164,7 +1081,6 @@ CREATE TABLE fkg.d_5602_p_tid (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5602_p_tid_pk PRIMARY KEY (p_tid_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1177,7 +1093,6 @@ CREATE TABLE fkg.d_5602_p_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5602_p_type_pk PRIMARY KEY (p_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1190,7 +1105,6 @@ CREATE TABLE fkg.d_5604_begr_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5604_begr_type_pk PRIMARY KEY (begr_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1203,7 +1117,6 @@ CREATE TABLE fkg.d_5605_dekl_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5605_dekl_type_pk PRIMARY KEY (dekl_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1216,7 +1129,6 @@ CREATE TABLE fkg.d_5606_inventar_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5606_inventar_type_pk PRIMARY KEY (inventar_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1229,7 +1141,6 @@ CREATE TABLE fkg.d_5700_forening_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5700_forening_type_pk PRIMARY KEY (forening_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1242,7 +1153,6 @@ CREATE TABLE fkg.d_5700_adr_beskyt (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5700_adr_beskyt_pk PRIMARY KEY (gf_adr_beskyt_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1255,7 +1165,6 @@ CREATE TABLE fkg.d_5705_udlejning (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5705_udlejning_pk PRIMARY KEY (udlejning_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1268,7 +1177,6 @@ CREATE TABLE fkg.d_5706_havn_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5706_havn_type_pk PRIMARY KEY (havn_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1281,7 +1189,6 @@ CREATE TABLE fkg.d_5707_grund_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5707_grund_type_pk PRIMARY KEY (grund_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1294,7 +1201,6 @@ CREATE TABLE fkg.d_5707_salg_status (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5707_salg_status_pk PRIMARY KEY (salg_status_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1307,7 +1213,6 @@ CREATE TABLE fkg.d_5800_facilitet (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5800_facilitet_pk PRIMARY KEY (facil_ty_k)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1320,7 +1225,6 @@ CREATE TABLE fkg.d_5802_rutetype (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_facilitet_pk PRIMARY KEY (rute_ty_k)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1333,7 +1237,6 @@ CREATE TABLE fkg.d_5902_vaeske_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5902_vaeske_type_pk PRIMARY KEY (vaesketype_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1346,7 +1249,6 @@ CREATE TABLE fkg.d_6003_zone_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6003_zone_type_pk PRIMARY KEY (zone_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1359,7 +1261,6 @@ CREATE TABLE fkg.d_6101_beskyt_rum (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6101_beskyt_rum_pk PRIMARY KEY (beskyt_rum_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1372,7 +1273,6 @@ CREATE TABLE fkg.d_6104_risikotype (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6104_risikotype_pk PRIMARY KEY (risikotype_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1385,7 +1285,6 @@ CREATE TABLE fkg.d_6104_brandhaem (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6104_brandhaem_pk PRIMARY KEY (brandhaem_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1398,7 +1297,6 @@ CREATE TABLE fkg.d_6111_tilladelse (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6111_tilladelse_pk PRIMARY KEY (tilladelse_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1411,7 +1309,6 @@ CREATE TABLE fkg.d_6112_depottype (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6112_depottype_pk PRIMARY KEY (depot_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1424,7 +1321,6 @@ CREATE TABLE fkg.d_6115_afbr_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6115_afbr_type_pk PRIMARY KEY (afbr_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1437,7 +1333,6 @@ CREATE TABLE fkg.d_6116_strandtype (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6116_strandtype_pk PRIMARY KEY (strand_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1450,7 +1345,6 @@ CREATE TABLE fkg.d_6116_esi_klasse (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6116_esi_klasse_pk PRIMARY KEY (esi_klasse_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1463,7 +1357,6 @@ CREATE TABLE fkg.d_6117_indsatstype (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6117_indsatstype_pk PRIMARY KEY (indsatstype_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1476,7 +1369,6 @@ CREATE TABLE fkg.d_6200_geologi (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6200_geologi_pk PRIMARY KEY (geologi_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1489,7 +1381,6 @@ CREATE TABLE fkg.d_6200_jordtype (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6200_jordtype_pk PRIMARY KEY (jordtype_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1502,7 +1393,6 @@ CREATE TABLE fkg.d_6200_terraen (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6200_terraen_pk PRIMARY KEY (terraen_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1515,7 +1405,6 @@ CREATE TABLE fkg.d_6200_kompleksitet (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6200_kompleksitet_pk PRIMARY KEY (kompleksitet_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1528,7 +1417,6 @@ CREATE TABLE fkg.d_6202_skala (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6202_skala_pk PRIMARY KEY (skala_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1541,7 +1429,6 @@ CREATE TABLE fkg.d_6202_rumlig_afgraensning (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6202_rumlig_afgraensning_pk PRIMARY KEY (rumlig_afgraensning_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1554,7 +1441,6 @@ CREATE TABLE fkg.d_6202_kompleksitet (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6202_kompleksitet_pk PRIMARY KEY (kompleksitet_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1567,7 +1453,6 @@ CREATE TABLE fkg.d_6202_struktur (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6202_struktur_pk PRIMARY KEY (struktur_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1580,7 +1465,6 @@ CREATE TABLE fkg.d_6202_visuel_uro (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6202_visuel_uro_pk PRIMARY KEY (visuel_uro_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1593,7 +1477,6 @@ CREATE TABLE fkg.d_6202_tidsdybde (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6202_tidsdybde_pk PRIMARY KEY (tidsdybde_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1606,7 +1489,6 @@ CREATE TABLE fkg.d_6203_karakterstyrke (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6203_karakterstyrke_pk PRIMARY KEY (karakterstyrke_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1619,7 +1501,6 @@ CREATE TABLE fkg.d_6203_saarbarhed (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6203_saarbarhed_pk PRIMARY KEY (saarbarhed_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1633,7 +1514,6 @@ CREATE TABLE fkg.d_6800_vedlhold_f_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6800_vedlhold_f_type_pk PRIMARY KEY (vedlhold_f_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1647,7 +1527,6 @@ CREATE TABLE fkg.d_6801_vedlhold_l_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6801_vedlhold_l_type_pk PRIMARY KEY (vedlhold_l_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1661,7 +1540,6 @@ CREATE TABLE fkg.d_6802_groenvedligh_punkt (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6802_groenvedligh_punkt_pk PRIMARY KEY (vedlhold_p_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1674,7 +1552,6 @@ CREATE TABLE fkg.d_6803_pg_distrikt (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6803_pg_distrikt_pk PRIMARY KEY (pg_distrikt_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1695,7 +1572,6 @@ CREATE TABLE fkg.t_5401_genbr_st_t (
 	CONSTRAINT t_5401_genbr_st_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT p_nr_ck CHECK (p_nr BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -1712,7 +1588,6 @@ CREATE TABLE fkg.t_5402_genbr_con_t (
 	CONSTRAINT t_5402_genbr_con_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5402_genbr_con_t_dato_ck CHECK (t_dato BETWEEN '1900-01-01' AND '2999-12-31')
-
 );
 -- ddl-end --
 
@@ -1737,7 +1612,6 @@ CREATE TABLE fkg.t_5508_husst_moel_t (
 	CONSTRAINT t_5508_husst_moel_hoejde_ck CHECK (hoejde BETWEEN 0.1 AND 49.9),
 	CONSTRAINT t_5508_husst_moel_kapacitet_ck CHECK (kapacitet BETWEEN 0.1 AND 6.0),
 	CONSTRAINT t_5508_husst_moel_konsekvenszone_ck CHECK (konsekvenszone BETWEEN 0.1 AND 999.9)
-
 );
 -- ddl-end --
 
@@ -1776,7 +1650,6 @@ CREATE TABLE fkg.t_5200_aff_prod_udbr_t (
 	CONSTRAINT t_5200_aff_prod_udbr_kvaelstof_total_ck CHECK (kvaelstof_total BETWEEN 0.01 AND 9999.99),
 	CONSTRAINT t_5200_aff_prod_udbr_kvaelstof_udnyttelse_ck CHECK (kvaelstof_udnyttelse BETWEEN 0.01 AND 9999.99),
 	CONSTRAINT t_5200_aff_prod_udbr_kalium_total_ck CHECK (kalium_total BETWEEN 0.01 AND 9999.99)
-
 );
 -- ddl-end --
 
@@ -1793,7 +1666,6 @@ CREATE TABLE fkg.t_5500_elfors_omr_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5500_elfors_omr_net_s_nr_ck CHECK (net_s_nr BETWEEN 0 AND 99999999),
 	CONSTRAINT t_5500_elfors_omr_fs_cvr_ck CHECK (fs_cvr BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -1807,7 +1679,6 @@ CREATE TABLE fkg.t_5506_spildev_pl_pkt_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5506_spildev_pl_pkt_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -1828,7 +1699,6 @@ CREATE TABLE fkg.t_5507_fiberkabel_t (
 	CONSTRAINT t_5507_fiberkabel_dybde_ck CHECK (dybde BETWEEN 0.1 AND 9.9),
 	CONSTRAINT t_5507_fiberkabel_aar_i_jord_ck CHECK (aar_i_jord BETWEEN 1900 AND 2999),
 	CONSTRAINT t_5507_fiberkabel_antal_kabler_ck CHECK (antal_kabler BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -1891,7 +1761,6 @@ CREATE TABLE fkg.t_5800_fac_pkt_t (
 	CONSTRAINT t_5800_fac_pkt_antal_pl_ck CHECK (antal_pl BETWEEN 0 AND 9999),
 	CONSTRAINT t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck CHECK (((date_part('year'::text, saeson_sl) = (1)::double precision))),
 	CONSTRAINT t_5800_fac_pkt_saeson_st_aar_skal_vaere_1_ck CHECK (((date_part('year'::text, saeson_st) = (1)::double precision)))
-
 );
 -- ddl-end --
 
@@ -1963,7 +1832,6 @@ CREATE TABLE fkg.t_5802_fac_li_t (
 	CONSTRAINT t_5802_fac_li_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5802_fac_li_laengde_ck CHECK (laengde between 0.1 and 500.99)
-
 );
 -- ddl-end --
 
@@ -2004,7 +1872,6 @@ CREATE TABLE fkg.t_5900_jordfl_t (
 	CONSTRAINT t_5900_jordfl_jordmaengde_anmeldt_ck CHECK (jordmaengde_anmeldt BETWEEN 1.0 AND 9999.9),
 	CONSTRAINT t_5900_jordfl_afs_cvr_kode_ck CHECK (afs_cvr_kode BETWEEN 10000000 AND 99999999),
 	CONSTRAINT t_5900_jordfl_modt_cvr_kode_ck CHECK (modt_cvr_kode BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -2030,7 +1897,6 @@ CREATE TABLE fkg.t_5902_jordv_anl_t (
 	CONSTRAINT t_5902_jordv_anl_strenge_laengde_samlede_ck CHECK (strenge_laengde_samlede BETWEEN 1 AND 9999),
 	CONSTRAINT t_5902_jordv_anl_tilladelses_dato_ck CHECK (tilladelses_dato BETWEEN '2006-12-31' AND '2999-12-31'),
 	CONSTRAINT t_5902_jordv_anl_faerdigmeldingsdato_ck CHECK (faerdigmeldingsdato BETWEEN '2006-12-31' AND '2999-12-31')
-
 );
 -- ddl-end --
 
@@ -2047,7 +1913,6 @@ CREATE TABLE fkg.t_5104_art_invas_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5104_art_invas_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2064,7 +1929,6 @@ CREATE TABLE fkg.t_5107_art_invas_p_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5107_art_invas_p_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2077,7 +1941,6 @@ CREATE TABLE fkg.d_5508_stoej (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5508_stoej_pk PRIMARY KEY (stoej_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2094,7 +1957,6 @@ CREATE TABLE fkg.t_5600_vintervedl_t (
 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5600_vintervedl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2108,7 +1970,6 @@ CREATE TABLE fkg.t_5601_hasti_daemp_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5601_hasti_daemp_pk_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2137,7 +1998,6 @@ CREATE TABLE fkg.t_5602_p_zoner_t (
 	CONSTRAINT t_5602_p_zoner_p_pladser_elbil_ck CHECK (p_pladser_elbil BETWEEN 0 AND 9999),
 	CONSTRAINT t_5602_p_zoner_p_pladser_mc_ck CHECK (p_pladser_mc BETWEEN 0 AND 9999),
 	CONSTRAINT t_5602_p_zoner_p_pladser_cykel_ck CHECK (p_pladser_cykel BETWEEN 0 AND 9999)
-
 );
 -- ddl-end --
 
@@ -2151,7 +2011,6 @@ CREATE TABLE fkg.t_5603_hasti_zone_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5603_hasti_zone_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2171,7 +2030,6 @@ CREATE TABLE fkg.t_5604_koer_begr_t (
 	CONSTRAINT t_5604_koer_begr_vaegtbegr_akselt_ck CHECK (vaegtbegr_akselt BETWEEN 1 AND 999),
 	CONSTRAINT t_5604_koer_begr_vaegtbegr_totalv_ck CHECK (vaegtbegr_totalv BETWEEN 1 AND 999),
 	CONSTRAINT t_5604_koer_begr_fot_id_ck CHECK (fot_id BETWEEN 0000000000 AND 2147483648)
-
 );
 -- ddl-end --
 
@@ -2192,7 +2050,6 @@ CREATE TABLE fkg.t_5605_vejbyggel_t (
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_5605_vejbyggel_bredde_ck CHECK (bredde BETWEEN 0.01 AND 999.99),
 	CONSTRAINT t_5605_vejbyggel_forskydning_ck CHECK (forskydning BETWEEN -999.99 AND 999.99)
-
 );
 -- ddl-end --
 
@@ -2208,7 +2065,6 @@ CREATE TABLE fkg.t_5606_vejinv_t (
 	geometri geometry(MULTIPOINT, 25832),
 	CONSTRAINT t_5606_vejinv_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2232,7 +2088,6 @@ CREATE TABLE fkg.t_5700_grundej_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5700_grundej_gf_tlf_ck CHECK (gf_tlf BETWEEN 11111111 AND 99999999),
 	CONSTRAINT t_5700_grundej_forening_cvr_ck CHECK (forening_cvr BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -2245,7 +2100,6 @@ CREATE TABLE fkg.t_5701_lok_omr_t (
 	geometri geometry(MULTIPOLYGON, 25832),
 	CONSTRAINT t_5701_lok_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2269,7 +2123,6 @@ CREATE TABLE fkg.t_5702_skorst_fej_t (
 	CONSTRAINT t_5702_skorst_fej_skorstenf_distrikt_nr_ck CHECK (skorstenf_distrikt_nr BETWEEN 1 AND 99999),
 	CONSTRAINT t_5702_skorst_fej_sf_tlf_ck CHECK (sf_tlf BETWEEN 11111111 AND 99999999),
 	CONSTRAINT t_5702_skorst_fej_skorstensfejer_cvr_ck CHECK (skorstensfejer_cvr BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -2295,7 +2148,6 @@ CREATE TABLE fkg.t_5703_afstem_sted_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5703_afstem_sted_opstillingskreds_nr_ck CHECK (opstillingskreds_nr BETWEEN 1 AND 92),
 	CONSTRAINT t_5703_afstem_sted_storkreds_nr_ck CHECK (storkreds_nr BETWEEN 1 AND 10)
-
 );
 -- ddl-end --
 
@@ -2317,7 +2169,6 @@ CREATE TABLE fkg.t_5704_afstem_omr_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5704_afstem_omr_opstillingskreds_nr_ck CHECK (opstillingskreds_nr BETWEEN 1 AND 92),
 	CONSTRAINT opstillingskreds_nr_storkreds_nr CHECK (storkreds_nr BETWEEN 1 AND 10)
-
 );
 -- ddl-end --
 
@@ -2336,7 +2187,6 @@ CREATE TABLE fkg.t_5705_forp_are_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5705_forp_are_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2355,7 +2205,6 @@ CREATE TABLE fkg.t_5706_havn_are_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5706_havn_are_havn_nr_ck CHECK (havn_nr BETWEEN 1 AND 99999),
 	CONSTRAINT t_5706_havn_are_cvr_havn_ck CHECK (cvr_havn BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -2388,7 +2237,6 @@ CREATE TABLE fkg.t_5707_grunds_t (
 	CONSTRAINT t_5707_grunds_grundareal_ck CHECK (grundareal BETWEEN 1 AND 999999),
 	CONSTRAINT t_5707_grunds_bygningareal_ck CHECK (bygningareal BETWEEN 1 AND 99999),
 	CONSTRAINT t_5707_grunds_budfrist_slut_ck CHECK (budfrist_slut BETWEEN '2006-12-31T23:59:00.000+01:00' AND '2999-12-31T23:59:00.000+01:00')
-
 );
 -- ddl-end --
 
@@ -2406,7 +2254,6 @@ CREATE TABLE fkg.t_5710_born_skole_dis_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5710_born_skole_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2423,7 +2270,6 @@ CREATE TABLE fkg.t_5711_and_dis_t (
 	CONSTRAINT t_5711_and_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5711_and_dis_an_distrikt_nr_ck CHECK (an_distrikt_nr BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -2440,7 +2286,6 @@ CREATE TABLE fkg.t_5712_plej_aeldr_dis_t (
 	CONSTRAINT t_5712_plej_aeldr_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5712_plej_aeldr_dis_plej_distrikt_nr_ck CHECK (plej_distrikt_nr BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -2457,7 +2302,6 @@ CREATE TABLE fkg.t_5713_prog_stat_dis_t (
 	CONSTRAINT t_5713_prog_stat_dis_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_5713_prog_stat_dis_prog_distrikt_nr_ck CHECK (prog_distrikt_nr BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -2479,7 +2323,6 @@ CREATE TABLE fkg.t_5714_laering_udd_inst_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5714_laering_udd_inst_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2499,7 +2342,6 @@ CREATE TABLE fkg.t_5715_botilbud_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5715_botilbud_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2519,7 +2361,6 @@ CREATE TABLE fkg.t_5716_servicetilbud_t (
 	adr_id character varying(128),
 	CONSTRAINT t_5716_servicetilbud_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2532,7 +2373,6 @@ CREATE TABLE fkg.d_5710_udd_distrikt_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5710_udd_distrikt_type_pk PRIMARY KEY (udd_distrikt_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2545,7 +2385,6 @@ CREATE TABLE fkg.d_5711_an_distrikt_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5711_an_distrikt_type_pk PRIMARY KEY (an_distrikt_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2558,7 +2397,6 @@ CREATE TABLE fkg.d_5712_plej_distrikt_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5712_plej_distrikt_type_pk PRIMARY KEY (plej_distrikt_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2571,7 +2409,6 @@ CREATE TABLE fkg.d_5713_prog_distrikt_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5713_prog_distrikt_type_pk PRIMARY KEY (prog_distrikt_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2584,7 +2421,6 @@ CREATE TABLE fkg.d_5714_udd_institution_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5714_udd_institution_type_pk PRIMARY KEY (udd_institution_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2597,7 +2433,6 @@ CREATE TABLE fkg.d_basis_trin (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_trin_pk PRIMARY KEY (trin_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2610,7 +2445,6 @@ CREATE TABLE fkg.d_5715_botilbud_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5715_botilbud_type_pk PRIMARY KEY (botilbud_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2623,7 +2457,6 @@ CREATE TABLE fkg.d_5716_servicetilbud_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_5716_servicetilbud_type_pk PRIMARY KEY (service_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2649,7 +2482,6 @@ CREATE TABLE fkg.t_6000_pot_t (
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6000_pot_kote_ck CHECK (kote BETWEEN -999.99 AND 999.99),
 	CONSTRAINT t_6000_pot_aekvidistance_ck CHECK (aekvidistance BETWEEN 0.1 AND 999.9)
-
 );
 -- ddl-end --
 
@@ -2675,7 +2507,6 @@ CREATE TABLE fkg.t_6001_pot_m_t (
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6001_pot_m_dybde_ck CHECK (dybde BETWEEN 1 AND 999.99),
 	CONSTRAINT t_6001_pot_m_aekvidistance_ck CHECK (aekvidistance BETWEEN 0.1 AND 999.9)
-
 );
 -- ddl-end --
 
@@ -2700,7 +2531,6 @@ CREATE TABLE fkg.t_6002_indv_t (
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6002_indv_indv_maengde_aar_ck CHECK (indv_maengde_aar BETWEEN 0.1 AND 99999.9),
 	CONSTRAINT t_6002_indv_dato_beregn_ck CHECK (dato_beregn BETWEEN '2006-12-31' AND '2999-12-31')
-
 );
 -- ddl-end --
 
@@ -2727,7 +2557,6 @@ CREATE TABLE fkg.t_6003_besk_zone_t (
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6003_besk_zone_tilladelse_ck CHECK (tilladelse BETWEEN 1 AND 999999),
 	CONSTRAINT t_6003_besk_zone_beskyt_zone_ck CHECK (beskyt_zone BETWEEN 1 AND 9999)
-
 );
 -- ddl-end --
 
@@ -2743,7 +2572,6 @@ CREATE TABLE fkg.t_6004_vandv_fs_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6004_vandv_fs_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2760,7 +2588,6 @@ CREATE TABLE fkg.t_6006_grundv_opl_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6006_grundv_opl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2776,7 +2603,6 @@ CREATE TABLE fkg.t_6007_inds_omr_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6007_inds_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2790,7 +2616,6 @@ CREATE TABLE fkg.t_6008_maks_bor_t (
 	CONSTRAINT t_6008_maks_bor_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6008_maks_bor_boredybde_ck CHECK (boredybde BETWEEN 1 AND 99)
-
 );
 -- ddl-end --
 
@@ -2807,7 +2632,6 @@ CREATE TABLE fkg.t_6009_indv_ovflv_t (
 	CONSTRAINT t_6009_indv_ovflv_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 100),
 	CONSTRAINT t_6009_indv_ovflv_indv_kapacitet_ck CHECK (indv_kapacitet BETWEEN 0.01 AND 99999.99)
-
 );
 -- ddl-end --
 
@@ -2820,7 +2644,6 @@ CREATE TABLE fkg.d_basis_vandv_nr (
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_vandv_nr_pk PRIMARY KEY (vandv_nr)
 	 WITH (FILLFACTOR = 100)
-
 );
 -- ddl-end --
 
@@ -2835,7 +2658,6 @@ CREATE TABLE fkg.t_6101_beskyt_rum_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6101_beskyt_rum_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2853,7 +2675,6 @@ CREATE TABLE fkg.t_6103_bered_omr_t (
 	CONSTRAINT t_6103_bered_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6103_bered_omr_bereds_distrikt_nr_ck CHECK (bereds_distrikt_nr BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -2871,7 +2692,6 @@ CREATE TABLE fkg.t_6104_risiko_virk_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6104_risiko_virk_cvr_risi_virk_ck CHECK (cvr_risi_virk BETWEEN 10000000 AND 99999999),
 	CONSTRAINT t_6104_risiko_virk_kontakt_tlf_ck CHECK (kontakt_tlf BETWEEN 11111111 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -2888,7 +2708,6 @@ CREATE TABLE fkg.t_6105_sbygn_omr_t (
 	CONSTRAINT t_6105_sbygn_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6105_sbygn_omr_saer_distrikt_nr_ck CHECK (saer_distrikt_nr BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -2931,7 +2750,6 @@ CREATE TABLE fkg.t_6107_forholds_t (
 	CONSTRAINT t_6107_forholds_tlf_arbejde_ck CHECK (tlf_arbejde BETWEEN 10000000 AND 99999999),
 	CONSTRAINT t_6107_forholds_tlf_dag_ck CHECK (tlf_dag BETWEEN 10000000 AND 99999999),
 	CONSTRAINT t_6107_forholds_tlf_nat_ck CHECK (tlf_nat BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -2951,7 +2769,6 @@ CREATE TABLE fkg.t_6108_moedepl_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6108_moedepl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2972,7 +2789,6 @@ CREATE TABLE fkg.t_6110_noegle_t (
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_6110_noegle_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -2995,7 +2811,6 @@ CREATE TABLE fkg.t_6111_fyrv_till_t (
 	CONSTRAINT t_6111_fyrv_till_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6111_fyrv_till_fyr_firma_cvr_ck CHECK (fyr_firma_cvr BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -3014,7 +2829,6 @@ CREATE TABLE fkg.t_6112_midl_dep_t (
 	CONSTRAINT t_6112_midl_dep_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6112_midl_dep_cvr_ck CHECK (virksomhed_cvr BETWEEN 11111111 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -3026,7 +2840,6 @@ CREATE TABLE fkg.t_6113_besk_nat_b_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6113_besk_nat_b_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3042,7 +2855,6 @@ CREATE TABLE fkg.t_6115_afbr_omr_t (
 	CONSTRAINT t_6115_afbr_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6115_afbr_omr_afbr_nr_ck CHECK (afbr_nr BETWEEN 1 AND 99999)
-
 );
 -- ddl-end --
 
@@ -3061,7 +2873,6 @@ CREATE TABLE fkg.t_6116_olie_ber_pl_t (
 	CONSTRAINT t_6116_olie_ber_pl_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6116_olie_ber_pl_prioritet_ck CHECK (prioritet BETWEEN 1 AND 9)
-
 );
 -- ddl-end --
 
@@ -3081,7 +2892,6 @@ CREATE TABLE fkg.t_6117_inds_pkt_t (
 	CONSTRAINT t_6117_inds_pkt_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6117_inds_pkt_vej_afstand_ck CHECK (vej_afstand BETWEEN 1 AND 9999)
-
 );
 -- ddl-end --
 
@@ -3102,7 +2912,6 @@ CREATE TABLE fkg.t_6118_bran_redn_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6118_bran_redn_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3115,7 +2924,6 @@ CREATE TABLE fkg.d_6118_brand_redarea_type (
 	begrebsdefinition character varying,
 	CONSTRAINT d_6118_brand_redarea_type_pk PRIMARY KEY (redarea_type_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3142,7 +2950,6 @@ CREATE TABLE fkg.t_6200_nat_geo_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6200_nat_geo_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3161,7 +2968,6 @@ CREATE TABLE fkg.t_6201_kult_geo_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6201_kult_geo_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3202,7 +3008,6 @@ CREATE TABLE fkg.t_6202_landk_omr_t (
 	 WITH (FILLFACTOR = 10),
 	CONSTRAINT t_6202_landk_omr_dato_besigtig_ck CHECK (dato_besigtig BETWEEN '2006-12-31' AND '2999-12-31'),
 	CONSTRAINT t_6202_landk_omr_rev_dato_ck CHECK (rev_dato BETWEEN '2006-12-31' AND '2999-12-31')
-
 );
 -- ddl-end --
 
@@ -3225,7 +3030,6 @@ CREATE TABLE fkg.t_6203_landk_vur_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6203_landk_vur_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3260,7 +3064,6 @@ CREATE TABLE fkg.t_6800_parl_fl_t (
 	CONSTRAINT t_6800_parl_fl_klip_hoejde_ck CHECK (klip_hoejde BETWEEN 0.01 AND 9.99),
 	CONSTRAINT t_6800_parl_fl_klip_sider_ck CHECK (klip_sider BETWEEN 0 AND 2),
 	CONSTRAINT t_6800_parl_fl_klip_flade_ck CHECK (klip_flade BETWEEN 0.01 AND 99999.99)
-
 );
 -- ddl-end --
 
@@ -3295,7 +3098,6 @@ CREATE TABLE fkg.t_6801_parl_li_t (
 	CONSTRAINT t_6801_parl_li_klip_hoejde_ck CHECK (klip_hoejde BETWEEN 0.01 AND 9.99),
 	CONSTRAINT t_6801_parl_li_klip_sider_ck CHECK (klip_sider BETWEEN 0 AND 2),
 	CONSTRAINT t_6801_parl_li_klip_bredde_ck CHECK (klip_bredde BETWEEN 0.01 AND 9.99)
-
 );
 -- ddl-end --
 
@@ -3324,7 +3126,6 @@ CREATE TABLE fkg.t_6802_parl_pkt_t (
 	CONSTRAINT t_6802_parl_pkt_etabl_pleje_udloeb_ck CHECK (etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31'),
 	CONSTRAINT t_6802_parl_pkt_udskiftningsaar_ck CHECK (udskiftningsaar BETWEEN '2007-01-01' AND '2999-12-31'),
 	CONSTRAINT t_6802_parl_pkt_klip_flade_ck CHECK (klip_flade BETWEEN 0.01 AND 99999.99)
-
 );
 -- ddl-end --
 
@@ -3343,7 +3144,6 @@ CREATE TABLE fkg.t_6803_parl_omr_t (
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_6803_parl_omr_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3355,7 +3155,6 @@ CREATE TABLE fkg.d_basis_offentlig (
 	aktiv integer NOT NULL,
 	CONSTRAINT d_basis_offentlig_pk PRIMARY KEY (off_kode)
 	 WITH (FILLFACTOR = 10)
-
 );
 -- ddl-end --
 
@@ -3417,7 +3216,6 @@ CREATE TABLE fkg.t_5801_fac_fl_t (
 	CONSTRAINT t_5801_fac_fl_antal_pl_ck CHECK (antal_pl BETWEEN 0 AND 9999),
 	CONSTRAINT t_5801_fac_fl_t_saeson_sl_aar_skal_vaere_1_ck CHECK (((date_part('year'::text, saeson_sl) = (1)::double precision))),
 	CONSTRAINT t_5801_fac_fl_t_saeson_st_aar_skal_vaere_1_ck CHECK (((date_part('year'::text, saeson_st) = (1)::double precision)))
-
 );
 -- ddl-end --
 
@@ -3429,7 +3227,6 @@ CREATE TABLE fkg.d_basis_belaegning (
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_belaegning_pk PRIMARY KEY (belaegning_kode)
-
 );
 -- ddl-end --
 
@@ -3441,7 +3238,6 @@ CREATE TABLE fkg.d_basis_handicapegnet (
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_handicapegnet_pk PRIMARY KEY (handicapegnet_kode)
-
 );
 -- ddl-end --
 
@@ -3454,7 +3250,6 @@ CREATE TABLE fkg.d_basis_invasivart (
 	ia_rige character varying(25) NOT NULL,
 	aktiv integer NOT NULL,
 	CONSTRAINT d_basis_invasivart_pk PRIMARY KEY (invasivart_kode)
-
 );
 -- ddl-end --
 
@@ -3466,7 +3261,6 @@ CREATE TABLE fkg.d_basis_kotesystem (
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_kotesystem_pk PRIMARY KEY (kotesystem_kode)
-
 );
 -- ddl-end --
 
@@ -3493,7 +3287,6 @@ CREATE TABLE fkg.t_6119_evaku_centr_t (
 	CONSTRAINT t_6119_evaku_centr_evakucenter_ref_ck CHECK (evakucenter_ref BETWEEN 1 AND 99999),
 	CONSTRAINT t_6119_evaku_centr_sovepladser_ck CHECK (sovepladser BETWEEN 1 AND 5000),
 	CONSTRAINT t_6119_evaku_centr_spisepladser_ck CHECK (spisepladser BETWEEN 1 AND 5000)
-
 );
 -- ddl-end --
 
@@ -3518,7 +3311,6 @@ CREATE TABLE fkg.t_6120_midl_overn_t (
 	CONSTRAINT t_6120_midl_overn_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_6120_midl_overn_t_antal_personer_ck CHECK (antal_personer BETWEEN 10 AND 1000),
 	CONSTRAINT t_6120_midl_overn_t_mid_ov_tlfnr_ck CHECK (mid_ov_tlfnr BETWEEN 10000000 AND 99999999)
-
 );
 -- ddl-end --
 
@@ -3550,7 +3342,6 @@ CREATE TABLE fkg.t_6121_stor_ud_arr_t (
 	CONSTRAINT t_6121_stor_ud_arr_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_6121_stor_ud_arr_t_sua_tlfnr_ck CHECK (sua_tlfnr BETWEEN 10000000 AND 99999999),
 	CONSTRAINT t_6121_stor_ud_arr_t_antal_personer_ck CHECK (antal_personer BETWEEN 0 AND 999999)
-
 );
 -- ddl-end --
 
@@ -3562,7 +3353,6 @@ CREATE TABLE fkg.d_6121_sua (
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_6121_sua_pk PRIMARY KEY (sua_kode)
-
 );
 -- ddl-end --
 
@@ -3574,7 +3364,6 @@ CREATE TABLE fkg.d_basis_ansva_v (
 	aktiv integer NOT NULL DEFAULT 1,
 	begrebsdefinition character varying,
 	CONSTRAINT d_basis_ansv_v_pk PRIMARY KEY (ansva_v_k)
-
 );
 -- ddl-end --
 
@@ -3586,7 +3375,6 @@ CREATE TABLE fkg.d_5800_saeson (
 	aktiv integer NOT NULL DEFAULT 1,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5800_saeson_pk PRIMARY KEY (saeson_k)
-
 );
 -- ddl-end --
 
@@ -3598,7 +3386,6 @@ CREATE TABLE fkg.d_5802_svaerhed (
 	aktiv integer NOT NULL DEFAULT 1,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_svaerhed_pk PRIMARY KEY (svaerhed_k)
-
 );
 -- ddl-end --
 
@@ -3610,7 +3397,6 @@ CREATE TABLE fkg.d_5802_hierarki (
 	aktiv integer NOT NULL DEFAULT 1,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_hierarki_pk PRIMARY KEY (hierarki_k)
-
 );
 -- ddl-end --
 
@@ -3622,7 +3408,6 @@ CREATE TABLE fkg.d_5802_rute_uty (
 	aktiv integer NOT NULL DEFAULT 1,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_rute_uty_pk PRIMARY KEY (rute_uty_k)
-
 );
 -- ddl-end --
 
@@ -3634,7 +3419,6 @@ CREATE TABLE fkg.d_5802_kategori (
 	aktiv integer NOT NULL DEFAULT 1,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_kategori_pk PRIMARY KEY (kategori_k)
-
 );
 -- ddl-end --
 
@@ -3671,7 +3455,6 @@ CREATE TABLE fkg.t_5000_vandl_t (
 	CONSTRAINT t_5000_vandl_vandloebs_bredde_ck CHECK (vandloebs_bredde >= 0.1 AND vandloebs_bredde <=99.9),
 	CONSTRAINT t_5000_vandl_vandfoeringsforhold_ck CHECK (vandfoeringsforhold >= 9 AND vandfoeringsforhold <= 45),
 	CONSTRAINT t_5000_vandl_fot_id_ck CHECK (fot_id >=0 AND fot_id <= 2147483648)
-
 );
 -- ddl-end --
 
@@ -3683,16 +3466,15 @@ CREATE TABLE fkg.d_5802_certifi (
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5802_certifi_pk PRIMARY KEY (certifi_k)
-
 );
 -- ddl-end --
 
--- object: "uuid-ossp" | type: EXTENSION --
--- DROP EXTENSION IF EXISTS "uuid-ossp" CASCADE;
-CREATE EXTENSION "uuid-ossp"
-      WITH SCHEMA public;
--- ddl-end --
-
+-- -- object: "uuid-ossp" | type: EXTENSION --
+-- -- DROP EXTENSION IF EXISTS "uuid-ossp" CASCADE;
+-- CREATE EXTENSION "uuid-ossp"
+-- WITH SCHEMA public;
+-- -- ddl-end --
+-- 
 -- object: fkg.t_7900_fotoforbindelse_t | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.t_7900_fotoforbindelse_t CASCADE;
 CREATE TABLE fkg.t_7900_fotoforbindelse_t (
@@ -3704,7 +3486,6 @@ CREATE TABLE fkg.t_7900_fotoforbindelse_t (
 	primaer_kode integer NOT NULL,
 	CONSTRAINT t_7900_fotoforbindelse_pk PRIMARY KEY (versions_id),
 	CONSTRAINT primaer_kode_ck CHECK (primaer_kode IN (0,1))
-
 );
 -- ddl-end --
 
@@ -3715,21 +3496,18 @@ CREATE TABLE fkg.t_7901_foto_t (
 	geometri geometry(POINT, 25832),
 	copyright character varying(124),
 	CONSTRAINT t_7901_foto_pk PRIMARY KEY (versions_id)
-
 );
--- ddl-end --
-ALTER TABLE fkg.t_7901_foto_t OWNER TO postgres;
 -- ddl-end --
 
 -- object: primaer_kode_unique_idx | type: INDEX --
 -- DROP INDEX IF EXISTS fkg.primaer_kode_unique_idx CASCADE;
 CREATE UNIQUE INDEX primaer_kode_unique_idx ON fkg.t_7900_fotoforbindelse_t
-	USING btree
-	(
-	  foto_objek,
-	  primaer_kode
-	)
-	WHERE (primaer_kode = 1);
+USING btree
+(
+	foto_objek,
+	primaer_kode
+)
+WHERE (primaer_kode = 1);
 -- ddl-end --
 
 -- object: fkg.d_5800_kvalitet | type: TABLE --
@@ -3740,10 +3518,7 @@ CREATE TABLE fkg.d_5800_kvalitet (
 	aktiv integer NOT NULL,
 	begrebsdefinition character varying,
 	CONSTRAINT d_5800_kvalitet_pk PRIMARY KEY (kvalitet_k)
-
 );
--- ddl-end --
-ALTER TABLE fkg.d_5800_kvalitet OWNER TO postgres;
 -- ddl-end --
 
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
