@@ -188,7 +188,7 @@ BEGIN
   td = td || E'    FOR EACH ROW' || E'\n';
   td = td || E'    EXECUTE PROCEDURE ' || trigger_function_name || ';' || E'\n';
 
-  -- Trigger function for make multi-geometry (in stead of single)
+  -- Trigger function for make multi-geometry (in stead of single), but only if table has a feometri column
   td = td || E'\n';
 
   td = td || E'CREATE OR REPLACE FUNCTION fkg.make_multi()' || E'\n';
@@ -206,9 +206,16 @@ BEGIN
   td = td || E'\n';
   td = td || E'DROP TRIGGER IF EXISTS make_multi_trg ON ' || schema_name || '.' || base_table_name || ';' || E'\n';
   td = td || E'\n';
-  td = td || E'CREATE TRIGGER make_multi_trg BEFORE INSERT OR UPDATE' || E'\n';
-  td = td || E'   ON ' || schema_name || '.' || base_table_name || ' FOR EACH ROW' || E'\n';
-  td = td || E'   EXECUTE PROCEDURE fkg.make_multi();' || E'\n';
+ 
+  td = td || E'DO $$ BEGIN' || E'\n';
+  td = td || E'  IF EXISTS (SELECT 1 FROM information_schema."columns" WHERE ' || E'\n';
+  td = td || E'  table_schema = ''' || schema_name || '''' || E'\n';
+  td = td || E'  AND table_name = ''' || base_table_name || ''''  || E'\n';
+  td = td || E'  AND column_name = ''geometri'') THEN' || E'\n';
+  td = td || E'    DROP TRIGGER IF EXISTS make_multi_trg ON ' || schema_name || '.' || base_table_name || ';' || E'\n';
+  td = td || E'    CREATE TRIGGER make_multi_trg BEFORE INSERT OR UPDATE ON ' || schema_name || '.' || base_table_name || ' FOR EACH ROW EXECUTE PROCEDURE fkg.make_multi();' || E'\n';
+  td = td || E'  END IF;' || E'\n';
+  td = td || E'END$$';
 
   -- Do the trigger definition
   execute td;
