@@ -3499,17 +3499,6 @@ CREATE TABLE fkg.t_7901_foto_t (
 );
 -- ddl-end --
 
--- object: primaer_kode_unique_idx | type: INDEX --
--- DROP INDEX IF EXISTS fkg.primaer_kode_unique_idx CASCADE;
-CREATE UNIQUE INDEX primaer_kode_unique_idx ON fkg.t_7900_fotoforbindelse_t
-USING btree
-(
-	foto_objek,
-	primaer_kode
-)
-WHERE (primaer_kode = 1);
--- ddl-end --
-
 -- object: fkg.d_5800_kvalitet | type: TABLE --
 -- DROP TABLE IF EXISTS fkg.d_5800_kvalitet CASCADE;
 CREATE TABLE fkg.d_5800_kvalitet (
