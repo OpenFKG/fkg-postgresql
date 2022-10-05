@@ -59,6 +59,8 @@ Juli 2021 er GeoFA datamodellen opdateret til GeoFA version 1_1. Primært facili
 
 August 2021 er GeoFA datamodellen opdateret til GeoFA version 1_2. De 3 factilitetstemaer indeholder nu en reference til kvalitetsmarkering, som er defineret i lookup-tabel `d_5800_kvalitet`.
 
+September 2022 er GeoFA datamodellen opdateret til GeoFA version 1_3. Mindre fejlrettelser. Justering af facilitetstyper for de 3 friluftstemaer. Tilføjelse af særlige GeoFA udvidelser (Auto-udfyldelse af gpx-link og geofafoto 1-3)
+
 Bidrag
 ------------
 Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
@@ -94,6 +96,8 @@ Marts 2021 er datamodellen opgraderet fra GeoFA version 3_0 til 3_0_1 med økono
 Juli 2021 er datamodellen opgraderet fra GeoFA version 3_0 til 1_1 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 August 2021 er GeoFA datamodellen opdateret fra GeoFA version 1_1 til 1_2 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
+
+September 2022 er GeoFA datamodellen opdateret fra GeoFA version 1_2 til 1_3 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 For udviklere
 -----------
