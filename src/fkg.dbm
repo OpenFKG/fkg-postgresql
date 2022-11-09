@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="403"
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="1153,4385" last-zoom="0.85" max-obj-count="412"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -11,17 +11,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 layer-rect-colors="#c8419a"
 	 show-layer-names="false" show-layer-rects="false">
 <database name="data" encoding="UTF8" is-template="false" allow-conns="true">
-	<appended-sql> <![CDATA[*/
+	<appended-sql><![CDATA[*/
 CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
-]]> </appended-sql>
-	<prepended-sql> <![CDATA[/*]]> </prepended-sql>
+]]></appended-sql>
+	<prepended-sql><![CDATA[/*]]></prepended-sql>
 </database>
 
 <schema name="public" layers="0" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
 <schema name="fkg" layers="0" fill-color="#e1e1e1">
+</schema>
+
+<schema name="fkg_cp" layers="0" fill-color="#e1e1e1">
 </schema>
 
 <table name="d_basis_oprindelse" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
@@ -86,19 +89,19 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	<position x="1140" y="60"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
-		<comment> <![CDATA[Unik versions-id databasenøgle]]> </comment>
+		<comment><![CDATA[Unik versions-id databasenøgle]]></comment>
 	</column>
 	<column name="objekt_id" not-null="true">
 		<type name="uuid" length="1"/>
-		<comment> <![CDATA[Entydig databasenøgle over tid]]> </comment>
+		<comment><![CDATA[Entydig databasenøgle over tid]]></comment>
 	</column>
 	<column name="systid_fra" not-null="true">
 		<type name="timestamptz" length="1"/>
-		<comment> <![CDATA[Start systemtid]]> </comment>
+		<comment><![CDATA[Start systemtid]]></comment>
 	</column>
 	<column name="systid_til">
 		<type name="timestamptz" length="1"/>
-		<comment> <![CDATA[Slut systemtid]]> </comment>
+		<comment><![CDATA[Slut systemtid]]></comment>
 	</column>
 	<column name="oprettet" not-null="true">
 		<type name="timestamptz" length="1"/>
@@ -504,7 +507,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="tema_kode" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="geo_ck" type="ck-constr" table="fkg.d_tabel">
-			<expression> <![CDATA[geo IN ('P', 'L', 'F')]]> </expression>
+			<expression><![CDATA[geo IN ('P', 'L', 'F')]]></expression>
 	</constraint>
 	<constraint name="d_tabel_udvekslingsnavn_uc" type="uq-constr" factor="10" table="fkg.d_tabel">
 		<columns names="udvekslingsnavn" ref-type="src-columns"/>
@@ -616,12 +619,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 <textbox name="Heading" layers="0" z-value="0" font-size="9">
 	<position x="0" y="0"/>
-	<comment> <![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 3.0]]> </comment>
+	<comment><![CDATA[FKG datamodel - PostGreSQL / PostGIS - version 3.0]]></comment>
 </textbox>
 
 <textbox name="copyright" layers="0" z-value="0" font-size="9">
 	<position x="0" y="40"/>
-	<comment> <![CDATA[(c) 2013-2022 Septima and other contributors]]> </comment>
+	<comment><![CDATA[(c) 2013-2022 Septima and other contributors]]></comment>
 </textbox>
 
 <table name="d_6100_brandhane" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
@@ -725,16 +728,16 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6100_brandhane_brandhane_id_ck" type="ck-constr" table="fkg.t_6100_brandhane_t">
-			<expression> <![CDATA[brandhane_id BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[brandhane_id BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 	<constraint name="brandhane_id_ydelse_ck" type="ck-constr" table="fkg.t_6100_brandhane_t">
-			<expression> <![CDATA[ydelse BETWEEN 1 AND 9999]]> </expression>
+			<expression><![CDATA[ydelse BETWEEN 1 AND 9999]]></expression>
 	</constraint>
 	<constraint name="brandhane_id_senest_maalte_ydelse_ck" type="ck-constr" table="fkg.t_6100_brandhane_t">
-			<expression> <![CDATA[senest_maalte_ydelse BETWEEN 1 AND 9999]]> </expression>
+			<expression><![CDATA[senest_maalte_ydelse BETWEEN 1 AND 9999]]></expression>
 	</constraint>
 	<constraint name="senest_maalte_ydelse_senest_tilsyn_ck" type="ck-constr" table="fkg.t_6100_brandhane_t">
-			<expression> <![CDATA[senest_tilsyn BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[senest_tilsyn BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 </table>
 
@@ -937,10 +940,10 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5002_faunasp_saneret_aar_ck" type="ck-constr" table="fkg.t_5002_faunasp_t">
-			<expression> <![CDATA[saneret_aar >= 1800 AND saneret_aar <= 2999]]> </expression>
+			<expression><![CDATA[saneret_aar >= 1800 AND saneret_aar <= 2999]]></expression>
 	</constraint>
 	<constraint name="t_5002_faunasp_prioritet_ck" type="ck-constr" table="fkg.t_5002_faunasp_t">
-			<expression> <![CDATA[prioritet >= 1 AND prioritet <= 9]]> </expression>
+			<expression><![CDATA[prioritet >= 1 AND prioritet <= 9]]></expression>
 	</constraint>
 </table>
 
@@ -1021,13 +1024,13 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5003_draenledn_anlaeg_aar_ck" type="ck-constr" table="fkg.t_5003_draenledn_t">
-			<expression> <![CDATA[anlaeg_aar >= 1800 AND anlaeg_aar <= 2999]]> </expression>
+			<expression><![CDATA[anlaeg_aar >= 1800 AND anlaeg_aar <= 2999]]></expression>
 	</constraint>
 	<constraint name="t_5003_draenledn_dybde_ck" type="ck-constr" table="fkg.t_5003_draenledn_t">
-			<expression> <![CDATA[dybde >= 0.1 AND dybde <= 99.9]]> </expression>
+			<expression><![CDATA[dybde >= 0.1 AND dybde <= 99.9]]></expression>
 	</constraint>
 	<constraint name="t_5003_draenledn_dimension_ck" type="ck-constr" table="fkg.t_5003_draenledn_t">
-			<expression> <![CDATA[dimension >= 1 AND dimension <= 99]]> </expression>
+			<expression><![CDATA[dimension >= 1 AND dimension <= 99]]></expression>
 	</constraint>
 </table>
 
@@ -1082,7 +1085,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5004_draenomr_anlaeg_aar_ck" type="ck-constr" table="fkg.t_5004_draenomr_t">
-			<expression> <![CDATA[anlaeg_aar >= 1700 AND anlaeg_aar <= 2999]]> </expression>
+			<expression><![CDATA[anlaeg_aar >= 1700 AND anlaeg_aar <= 2999]]></expression>
 	</constraint>
 </table>
 
@@ -1198,13 +1201,13 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5005_soe_opholdstid_ck" type="ck-constr" table="fkg.t_5005_soe_t">
-			<expression> <![CDATA[opholdstid >= 0.1 AND opholdstid <= 99.9]]> </expression>
+			<expression><![CDATA[opholdstid >= 0.1 AND opholdstid <= 99.9]]></expression>
 	</constraint>
 	<constraint name="t_5005_soe_volumen_ck" type="ck-constr" table="fkg.t_5005_soe_t">
-			<expression> <![CDATA[volumen >= 0.1 AND volumen <= 999.9]]> </expression>
+			<expression><![CDATA[volumen >= 0.1 AND volumen <= 999.9]]></expression>
 	</constraint>
 	<constraint name="t_5005_soe_fot_id_ck" type="ck-constr" table="fkg.t_5005_soe_t">
-			<expression> <![CDATA[fot_id >= 0 AND fot_id <= 2147483648]]> </expression>
+			<expression><![CDATA[fot_id >= 0 AND fot_id <= 2147483648]]></expression>
 	</constraint>
 </table>
 
@@ -1248,16 +1251,16 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5006_dybdekurv_dybde_ck" type="ck-constr" table="fkg.t_5006_dybdekurv_t">
-			<expression> <![CDATA[dybde >= 0.0 AND dybde <= 999.9]]> </expression>
+			<expression><![CDATA[dybde >= 0.0 AND dybde <= 999.9]]></expression>
 	</constraint>
 	<constraint name="t_5006_dybdekurv_lower_ck" type="ck-constr" table="fkg.t_5006_dybdekurv_t">
-			<expression> <![CDATA[lower >= 0.0 AND lower <= 999.9]]> </expression>
+			<expression><![CDATA[lower >= 0.0 AND lower <= 999.9]]></expression>
 	</constraint>
 	<constraint name="t_5006_dybdekurv_upper_ck" type="ck-constr" table="fkg.t_5006_dybdekurv_t">
-			<expression> <![CDATA[upper >= 0.0 AND upper <= 999.9]]> </expression>
+			<expression><![CDATA[upper >= 0.0 AND upper <= 999.9]]></expression>
 	</constraint>
 	<constraint name="t_5006_dybdekurv_maalt_aar_ck" type="ck-constr" table="fkg.t_5006_dybdekurv_t">
-			<expression> <![CDATA[maalt_aar >= 1900 AND maalt_aar <= 2999]]> </expression>
+			<expression><![CDATA[maalt_aar >= 1900 AND maalt_aar <= 2999]]></expression>
 	</constraint>
 </table>
 
@@ -1381,7 +1384,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5008_soe_opl_soe_opl_nr_ck" type="ck-constr" table="fkg.t_5008_soe_opl_t">
-			<expression> <![CDATA[soe_opl_nr >= 1 AND soe_opl_nr <= 9999]]> </expression>
+			<expression><![CDATA[soe_opl_nr >= 1 AND soe_opl_nr <= 9999]]></expression>
 	</constraint>
 </table>
 
@@ -1500,19 +1503,19 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5010_vandl_elm_vstation_ck" type="ck-constr" table="fkg.t_5010_vandl_elm_t">
-			<expression> <![CDATA[vstation >= 0.0 AND vstation <= 200000]]> </expression>
+			<expression><![CDATA[vstation >= 0.0 AND vstation <= 200000]]></expression>
 	</constraint>
 	<constraint name="t_5010_vandl_elm_anlagt_aar_ck" type="ck-constr" table="fkg.t_5010_vandl_elm_t">
-			<expression> <![CDATA[anlagt_aar >= 1800 AND anlagt_aar <= 2999]]> </expression>
+			<expression><![CDATA[anlagt_aar >= 1800 AND anlagt_aar <= 2999]]></expression>
 	</constraint>
 	<constraint name="t_5010_vandl_elm_saneret_aar_ck" type="ck-constr" table="fkg.t_5010_vandl_elm_t">
-			<expression> <![CDATA[anlagt_aar >= 1800 AND anlagt_aar <= 2999]]> </expression>
+			<expression><![CDATA[anlagt_aar >= 1800 AND anlagt_aar <= 2999]]></expression>
 	</constraint>
 </table>
 
 <textbox name="licensing-link" layers="0" z-value="0" font-size="9">
 	<position x="0" y="80"/>
-	<comment> <![CDATA[For Licensing and other information see LICENSE.TXT or github.com/OpenFKG/fkg-postgresql]]> </comment>
+	<comment><![CDATA[For Licensing and other information see LICENSE.TXT or github.com/OpenFKG/fkg-postgresql]]></comment>
 </textbox>
 
 <table name="d_5105_kaer_type" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
@@ -1560,10 +1563,10 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5105_rig_fattig_stedid_ck" type="ck-constr" table="fkg.t_5105_rig_fattig_t">
-			<expression> <![CDATA[stedid BETWEEN 100000 AND 999999]]> </expression>
+			<expression><![CDATA[stedid BETWEEN 100000 AND 999999]]></expression>
 	</constraint>
 	<constraint name="t_5105_rig_fattig_natura_2000_ck" type="ck-constr" table="fkg.t_5105_rig_fattig_t">
-			<expression> <![CDATA[natura_2000 BETWEEN 1 AND 9999]]> </expression>
+			<expression><![CDATA[natura_2000 BETWEEN 1 AND 9999]]></expression>
 	</constraint>
 </table>
 
@@ -1686,23 +1689,23 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5106_nat_pl_omr_nr_ck" type="ck-constr" table="fkg.t_5106_nat_pl_t">
-			<expression> <![CDATA[omr_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[omr_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 	<constraint name="t_5106_nat_pl_antal_moder_ck" type="ck-constr" table="fkg.t_5106_nat_pl_t">
-			<expression> <![CDATA[antal_moder BETWEEN 0 AND 999]]> </expression>
+			<expression><![CDATA[antal_moder BETWEEN 0 AND 999]]></expression>
 	</constraint>
 	<constraint name="t_5106_nat_pl_chr_ck" type="ck-constr" table="fkg.t_5106_nat_pl_t">
-			<expression> <![CDATA[chr BETWEEN 0 AND 9999999]]> </expression>
+			<expression><![CDATA[chr BETWEEN 0 AND 9999999]]></expression>
 	</constraint>
 	<constraint name="t_5106_nat_pl_telefon_ck" type="ck-constr" table="fkg.t_5106_nat_pl_t">
-			<expression> <![CDATA[telefon BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[telefon BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5106_nat_pl_mobil_ck" type="ck-constr" table="fkg.t_5106_nat_pl_t">
-			<expression> <![CDATA[mobil BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[mobil BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5106_nat_pl_ajour_ck" type="ck-constr" table="fkg.t_5106_nat_pl_t">
-			<expression> <![CDATA[ajour BETWEEN '2006-12-31' AND '2999-12-31'
-]]> </expression>
+			<expression><![CDATA[ajour BETWEEN '2006-12-31' AND '2999-12-31'
+]]></expression>
 	</constraint>
 </table>
 
@@ -1781,7 +1784,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5300_genopd_ret_genoptaget_ck" type="ck-constr" table="fkg.t_5300_genopd_ret_t">
-			<expression> <![CDATA[genoptaget BETWEEN 1999 AND 2999]]> </expression>
+			<expression><![CDATA[genoptaget BETWEEN 1999 AND 2999]]></expression>
 	</constraint>
 </table>
 
@@ -1845,10 +1848,10 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5400_affalds_dis_affalddistrikt_nr_ck" type="ck-constr" table="fkg.t_5400_affalds_dis_t">
-			<expression> <![CDATA[affalddistrikt_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[affalddistrikt_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 	<constraint name="t_5400_affalds_dis_renovatoer_cvr_ck" type="ck-constr" table="fkg.t_5400_affalds_dis_t">
-			<expression> <![CDATA[renovatoer_cvr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[renovatoer_cvr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -2054,7 +2057,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 <table name="d_5606_inventar_type" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="fkg"/>
-	<position x="1300" y="4700"/>
+	<position x="1320" y="4660"/>
 	<column name="inventar_type_kode" not-null="true">
 		<type name="integer" length="1"/>
 	</column>
@@ -2821,7 +2824,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="p_nr_ck" type="ck-constr" table="fkg.t_5401_genbr_st_t">
-			<expression> <![CDATA[p_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[p_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -2853,7 +2856,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5402_genbr_con_t_dato_ck" type="ck-constr" table="fkg.t_5402_genbr_con_t">
-			<expression> <![CDATA[t_dato BETWEEN '1900-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[t_dato BETWEEN '1900-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 </table>
 
@@ -2903,13 +2906,13 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5508_husst_moel_hoejde_ck" type="ck-constr" table="fkg.t_5508_husst_moel_t">
-			<expression> <![CDATA[hoejde BETWEEN 0.1 AND 49.9]]> </expression>
+			<expression><![CDATA[hoejde BETWEEN 0.1 AND 49.9]]></expression>
 	</constraint>
 	<constraint name="t_5508_husst_moel_kapacitet_ck" type="ck-constr" table="fkg.t_5508_husst_moel_t">
-			<expression> <![CDATA[kapacitet BETWEEN 0.1 AND 6.0]]> </expression>
+			<expression><![CDATA[kapacitet BETWEEN 0.1 AND 6.0]]></expression>
 	</constraint>
 	<constraint name="t_5508_husst_moel_konsekvenszone_ck" type="ck-constr" table="fkg.t_5508_husst_moel_t">
-			<expression> <![CDATA[konsekvenszone BETWEEN 0.1 AND 999.9]]> </expression>
+			<expression><![CDATA[konsekvenszone BETWEEN 0.1 AND 999.9]]></expression>
 	</constraint>
 </table>
 
@@ -2983,31 +2986,31 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_ejd_nr_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[ejd_nr BETWEEN 1000000000 AND 9999999999]]> </expression>
+			<expression><![CDATA[ejd_nr BETWEEN 1000000000 AND 9999999999]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_dosering_toerstof_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[dosering_toerstof BETWEEN 0.01 AND 9999.99]]> </expression>
+			<expression><![CDATA[dosering_toerstof BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_dosering_vaadvaegt_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[dosering_vaadvaegt BETWEEN 0.01 AND 9999.99]]> </expression>
+			<expression><![CDATA[dosering_vaadvaegt BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_phosphor_indhold_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[fosfor_total  BETWEEN 0.01 AND 9999.99]]> </expression>
+			<expression><![CDATA[fosfor_total  BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_udbringning_aar_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[udbringning_aar BETWEEN 1900 AND 2999]]> </expression>
+			<expression><![CDATA[udbringning_aar BETWEEN 1900 AND 2999]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_fosfor_udnyttelse_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[fosfor_udnyttelse BETWEEN 0.01 AND 100.0]]> </expression>
+			<expression><![CDATA[fosfor_udnyttelse BETWEEN 0.01 AND 100.0]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_kvaelstof_total_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[kvaelstof_total BETWEEN 0.01 AND 9999.99]]> </expression>
+			<expression><![CDATA[kvaelstof_total BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_kvaelstof_udnyttelse_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[kvaelstof_udnyttelse BETWEEN 0.01 AND 9999.99]]> </expression>
+			<expression><![CDATA[kvaelstof_udnyttelse BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 	<constraint name="t_5200_aff_prod_udbr_kalium_total_ck" type="ck-constr" table="fkg.t_5200_aff_prod_udbr_t">
-			<expression> <![CDATA[kalium_total BETWEEN 0.01 AND 9999.99]]> </expression>
+			<expression><![CDATA[kalium_total BETWEEN 0.01 AND 9999.99]]></expression>
 	</constraint>
 </table>
 
@@ -3036,10 +3039,10 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5500_elfors_omr_net_s_nr_ck" type="ck-constr" table="fkg.t_5500_elfors_omr_t">
-			<expression> <![CDATA[net_s_nr BETWEEN 0 AND 99999999]]> </expression>
+			<expression><![CDATA[net_s_nr BETWEEN 0 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5500_elfors_omr_fs_cvr_ck" type="ck-constr" table="fkg.t_5500_elfors_omr_t">
-			<expression> <![CDATA[fs_cvr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[fs_cvr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -3097,16 +3100,16 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5507_fiberkabel_fs_cvr_ck" type="ck-constr" table="fkg.t_5507_fiberkabel_t">
-			<expression> <![CDATA[fs_cvr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[fs_cvr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5507_fiberkabel_dybde_ck" type="ck-constr" table="fkg.t_5507_fiberkabel_t">
-			<expression> <![CDATA[dybde BETWEEN 0.1 AND 9.9]]> </expression>
+			<expression><![CDATA[dybde BETWEEN 0.1 AND 9.9]]></expression>
 	</constraint>
 	<constraint name="t_5507_fiberkabel_aar_i_jord_ck" type="ck-constr" table="fkg.t_5507_fiberkabel_t">
-			<expression> <![CDATA[aar_i_jord BETWEEN 1900 AND 2999]]> </expression>
+			<expression><![CDATA[aar_i_jord BETWEEN 1900 AND 2999]]></expression>
 	</constraint>
 	<constraint name="t_5507_fiberkabel_antal_kabler_ck" type="ck-constr" table="fkg.t_5507_fiberkabel_t">
-			<expression> <![CDATA[antal_kabler BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[antal_kabler BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -3270,13 +3273,13 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5800_fac_pkt_antal_pl_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
-			<expression> <![CDATA[antal_pl BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5800_fac_pkt_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
-			<expression> <![CDATA[((date_part('year'::text, saeson_sl) = (1)::double precision))]]> </expression>
+			<expression><![CDATA[((date_part('year'::text, saeson_sl) = (1)::double precision))]]></expression>
 	</constraint>
 	<constraint name="t_5800_fac_pkt_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5800_fac_pkt_t">
-			<expression> <![CDATA[((date_part('year'::text, saeson_st) = (1)::double precision))]]> </expression>
+			<expression><![CDATA[((date_part('year'::text, saeson_st) = (1)::double precision))]]></expression>
 	</constraint>
 </table>
 
@@ -3473,7 +3476,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5802_fac_li_laengde_ck" type="ck-constr" table="fkg.t_5802_fac_li_t">
-			<expression> <![CDATA[laengde between 0.1 and 500.99]]> </expression>
+			<expression><![CDATA[laengde between 0.1 and 500.99]]></expression>
 	</constraint>
 </table>
 
@@ -3553,31 +3556,31 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5900_jordfl_afs_kommunekode_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[afs_kommunekode BETWEEN 100 AND 999]]> </expression>
+			<expression><![CDATA[afs_kommunekode BETWEEN 100 AND 999]]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_modt_kommunekode_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[modt_kommunekode BETWEEN 100 AND 999]]> </expression>
+			<expression><![CDATA[modt_kommunekode BETWEEN 100 AND 999]]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_jordflyt_dato_start_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[jordflyt_dato_start BETWEEN '2006-12-13' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[jordflyt_dato_start BETWEEN '2006-12-13' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_jordflyt_dato_slut_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[jordflyt_dato_slut BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[jordflyt_dato_slut BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_tillad_dato_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[tillad_dato BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[tillad_dato BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_jordmaengde_faktisk_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[jordmaengde_faktisk BETWEEN 1.0 AND 9999.9]]> </expression>
+			<expression><![CDATA[jordmaengde_faktisk BETWEEN 1.0 AND 9999.9]]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_jordmaengde_anmeldt_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[jordmaengde_anmeldt BETWEEN 1.0 AND 9999.9]]> </expression>
+			<expression><![CDATA[jordmaengde_anmeldt BETWEEN 1.0 AND 9999.9]]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_afs_cvr_kode_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[afs_cvr_kode BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[afs_cvr_kode BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5900_jordfl_modt_cvr_kode_ck" type="ck-constr" table="fkg.t_5900_jordfl_t">
-			<expression> <![CDATA[modt_cvr_kode BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[modt_cvr_kode BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -3627,16 +3630,16 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5902_jordv_anl_strenge_antal_ck" type="ck-constr" table="fkg.t_5902_jordv_anl_t">
-			<expression> <![CDATA[strenge_antal BETWEEN 1 AND 999]]> </expression>
+			<expression><![CDATA[strenge_antal BETWEEN 1 AND 999]]></expression>
 	</constraint>
 	<constraint name="t_5902_jordv_anl_strenge_laengde_samlede_ck" type="ck-constr" table="fkg.t_5902_jordv_anl_t">
-			<expression> <![CDATA[strenge_laengde_samlede BETWEEN 1 AND 9999]]> </expression>
+			<expression><![CDATA[strenge_laengde_samlede BETWEEN 1 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5902_jordv_anl_tilladelses_dato_ck" type="ck-constr" table="fkg.t_5902_jordv_anl_t">
-			<expression> <![CDATA[tilladelses_dato BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[tilladelses_dato BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_5902_jordv_anl_faerdigmeldingsdato_ck" type="ck-constr" table="fkg.t_5902_jordv_anl_t">
-			<expression> <![CDATA[faerdigmeldingsdato BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[faerdigmeldingsdato BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 </table>
 
@@ -3825,25 +3828,25 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pladser_personbil_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression> <![CDATA[p_pladser_personbil BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[p_pladser_personbil BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pris_time_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression> <![CDATA[p_pris_time BETWEEN 0.01 AND 999.99]]> </expression>
+			<expression><![CDATA[p_pris_time BETWEEN 0.01 AND 999.99]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pladser_handicap_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression> <![CDATA[p_pladser_handicap BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[p_pladser_handicap BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pladser_lastbil_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression> <![CDATA[p_pladser_lastbil BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[p_pladser_lastbil BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pladser_elbil_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression> <![CDATA[p_pladser_elbil BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[p_pladser_elbil BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pladser_mc_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression> <![CDATA[p_pladser_mc BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[p_pladser_mc BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5602_p_zoner_p_pladser_cykel_ck" type="ck-constr" table="fkg.t_5602_p_zoner_t">
-			<expression> <![CDATA[p_pladser_cykel BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[p_pladser_cykel BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 </table>
 
@@ -3901,13 +3904,13 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5604_koer_begr_vaegtbegr_akselt_ck" type="ck-constr" table="fkg.t_5604_koer_begr_t">
-			<expression> <![CDATA[vaegtbegr_akselt BETWEEN 1 AND 999]]> </expression>
+			<expression><![CDATA[vaegtbegr_akselt BETWEEN 1 AND 999]]></expression>
 	</constraint>
 	<constraint name="t_5604_koer_begr_vaegtbegr_totalv_ck" type="ck-constr" table="fkg.t_5604_koer_begr_t">
-			<expression> <![CDATA[vaegtbegr_totalv BETWEEN 1 AND 999]]> </expression>
+			<expression><![CDATA[vaegtbegr_totalv BETWEEN 1 AND 999]]></expression>
 	</constraint>
 	<constraint name="t_5604_koer_begr_fot_id_ck" type="ck-constr" table="fkg.t_5604_koer_begr_t">
-			<expression> <![CDATA[fot_id BETWEEN 0000000000 AND 2147483648]]> </expression>
+			<expression><![CDATA[fot_id BETWEEN 0000000000 AND 2147483648]]></expression>
 	</constraint>
 </table>
 
@@ -3948,16 +3951,16 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5605_vejbyggel_bredde_ck" type="ck-constr" table="fkg.t_5605_vejbyggel_t">
-			<expression> <![CDATA[bredde BETWEEN 0.01 AND 999.99]]> </expression>
+			<expression><![CDATA[bredde BETWEEN 0.01 AND 999.99]]></expression>
 	</constraint>
 	<constraint name="t_5605_vejbyggel_forskydning_ck" type="ck-constr" table="fkg.t_5605_vejbyggel_t">
-			<expression> <![CDATA[forskydning BETWEEN -999.99 AND 999.99]]> </expression>
+			<expression><![CDATA[forskydning BETWEEN -999.99 AND 999.99]]></expression>
 	</constraint>
 </table>
 
 <table name="t_5606_vejinv_t" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="fkg"/>
-	<position x="880" y="4700"/>
+	<position x="860" y="4880"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3986,20 +3989,20 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 <textbox name="licensing-link_cp" layers="0" z-value="0" font-size="9">
 	<position x="20" y="1280"/>
-	<comment> <![CDATA[In this column Theme group 5.1 and 5.2
-Overfladevand, Natur]]> </comment>
+	<comment><![CDATA[In this column Theme group 5.1 and 5.2
+Overfladevand, Natur]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp" layers="0" z-value="0" font-size="9">
 	<position x="900" y="1260"/>
-	<comment> <![CDATA[In this column Theme group 5.3, 5.4, 5.5, 5.6, 5.7
-Miljø, Landbrug, Affald og genbrug, Forsyning, Vej og trafik]]> </comment>
+	<comment><![CDATA[In this column Theme group 5.3, 5.4, 5.5, 5.6, 5.7
+Miljø, Landbrug, Affald og genbrug, Forsyning, Vej og trafik]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp_cp" layers="0" z-value="0" font-size="9">
 	<position x="1740" y="1260"/>
-	<comment> <![CDATA[In this column Theme group 5.8
-Administration]]> </comment>
+	<comment><![CDATA[In this column Theme group 5.8
+Administration]]></comment>
 </textbox>
 
 <table name="t_5700_grundej_t" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
@@ -4048,10 +4051,10 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5700_grundej_gf_tlf_ck" type="ck-constr" table="fkg.t_5700_grundej_t">
-			<expression> <![CDATA[gf_tlf BETWEEN 11111111 AND 99999999]]> </expression>
+			<expression><![CDATA[gf_tlf BETWEEN 11111111 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5700_grundej_forening_cvr_ck" type="ck-constr" table="fkg.t_5700_grundej_t">
-			<expression> <![CDATA[forening_cvr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[forening_cvr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -4118,13 +4121,13 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5702_skorst_fej_skorstenf_distrikt_nr_ck" type="ck-constr" table="fkg.t_5702_skorst_fej_t">
-			<expression> <![CDATA[skorstenf_distrikt_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[skorstenf_distrikt_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 	<constraint name="t_5702_skorst_fej_sf_tlf_ck" type="ck-constr" table="fkg.t_5702_skorst_fej_t">
-			<expression> <![CDATA[sf_tlf BETWEEN 11111111 AND 99999999]]> </expression>
+			<expression><![CDATA[sf_tlf BETWEEN 11111111 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5702_skorst_fej_skorstensfejer_cvr_ck" type="ck-constr" table="fkg.t_5702_skorst_fej_t">
-			<expression> <![CDATA[skorstensfejer_cvr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[skorstensfejer_cvr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -4180,10 +4183,10 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5703_afstem_sted_opstillingskreds_nr_ck" type="ck-constr" table="fkg.t_5703_afstem_sted_t">
-			<expression> <![CDATA[opstillingskreds_nr BETWEEN 1 AND 92]]> </expression>
+			<expression><![CDATA[opstillingskreds_nr BETWEEN 1 AND 92]]></expression>
 	</constraint>
 	<constraint name="t_5703_afstem_sted_storkreds_nr_ck" type="ck-constr" table="fkg.t_5703_afstem_sted_t">
-			<expression> <![CDATA[storkreds_nr BETWEEN 1 AND 10]]> </expression>
+			<expression><![CDATA[storkreds_nr BETWEEN 1 AND 10]]></expression>
 	</constraint>
 </table>
 
@@ -4227,10 +4230,10 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5704_afstem_omr_opstillingskreds_nr_ck" type="ck-constr" table="fkg.t_5704_afstem_omr_t">
-			<expression> <![CDATA[opstillingskreds_nr BETWEEN 1 AND 92]]> </expression>
+			<expression><![CDATA[opstillingskreds_nr BETWEEN 1 AND 92]]></expression>
 	</constraint>
 	<constraint name="opstillingskreds_nr_storkreds_nr" type="ck-constr" table="fkg.t_5704_afstem_omr_t">
-			<expression> <![CDATA[storkreds_nr BETWEEN 1 AND 10]]> </expression>
+			<expression><![CDATA[storkreds_nr BETWEEN 1 AND 10]]></expression>
 	</constraint>
 </table>
 
@@ -4303,10 +4306,10 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5706_havn_are_havn_nr_ck" type="ck-constr" table="fkg.t_5706_havn_are_t">
-			<expression> <![CDATA[havn_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[havn_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 	<constraint name="t_5706_havn_are_cvr_havn_ck" type="ck-constr" table="fkg.t_5706_havn_are_t">
-			<expression> <![CDATA[cvr_havn BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[cvr_havn BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -4374,19 +4377,19 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5707_grunds_pris_ck" type="ck-constr" table="fkg.t_5707_grunds_t">
-			<expression> <![CDATA[pris BETWEEN 1 AND 99999999]]> </expression>
+			<expression><![CDATA[pris BETWEEN 1 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5707_grunds_mindste_pris_ck" type="ck-constr" table="fkg.t_5707_grunds_t">
-			<expression> <![CDATA[mindste_pris BETWEEN 1 AND 99999999]]> </expression>
+			<expression><![CDATA[mindste_pris BETWEEN 1 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_5707_grunds_grundareal_ck" type="ck-constr" table="fkg.t_5707_grunds_t">
-			<expression> <![CDATA[grundareal BETWEEN 1 AND 999999]]> </expression>
+			<expression><![CDATA[grundareal BETWEEN 1 AND 999999]]></expression>
 	</constraint>
 	<constraint name="t_5707_grunds_bygningareal_ck" type="ck-constr" table="fkg.t_5707_grunds_t">
-			<expression> <![CDATA[bygningareal BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[bygningareal BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 	<constraint name="t_5707_grunds_budfrist_slut_ck" type="ck-constr" table="fkg.t_5707_grunds_t">
-			<expression> <![CDATA[budfrist_slut BETWEEN '2006-12-31T23:59:00.000+01:00' AND '2999-12-31T23:59:00.000+01:00']]> </expression>
+			<expression><![CDATA[budfrist_slut BETWEEN '2006-12-31T23:59:00.000+01:00' AND '2999-12-31T23:59:00.000+01:00']]></expression>
 	</constraint>
 </table>
 
@@ -4453,7 +4456,7 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5711_and_dis_an_distrikt_nr_ck" type="ck-constr" table="fkg.t_5711_and_dis_t">
-			<expression> <![CDATA[an_distrikt_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[an_distrikt_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -4485,7 +4488,7 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5712_plej_aeldr_dis_plej_distrikt_nr_ck" type="ck-constr" table="fkg.t_5712_plej_aeldr_dis_t">
-			<expression> <![CDATA[plej_distrikt_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[plej_distrikt_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -4517,7 +4520,7 @@ Administration]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5713_prog_stat_dis_prog_distrikt_nr_ck" type="ck-constr" table="fkg.t_5713_prog_stat_dis_t">
-			<expression> <![CDATA[prog_distrikt_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[prog_distrikt_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -4812,8 +4815,8 @@ Administration]]> </comment>
 
 <textbox name="col_4_txt" layers="0" z-value="0" font-size="9">
 	<position x="3640" y="1240"/>
-	<comment> <![CDATA[In this column Theme group 5.10, 5.11
-Jord og råstof, Grundvand]]> </comment>
+	<comment><![CDATA[In this column Theme group 5.10, 5.11
+Jord og råstof, Grundvand]]></comment>
 </textbox>
 
 <table name="t_6000_pot_t" layers="0" collapse-mode="2" max-obj-count="18" z-value="0">
@@ -4868,10 +4871,10 @@ Jord og råstof, Grundvand]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6000_pot_kote_ck" type="ck-constr" table="fkg.t_6000_pot_t">
-			<expression> <![CDATA[kote BETWEEN -999.99 AND 999.99]]> </expression>
+			<expression><![CDATA[kote BETWEEN -999.99 AND 999.99]]></expression>
 	</constraint>
 	<constraint name="t_6000_pot_aekvidistance_ck" type="ck-constr" table="fkg.t_6000_pot_t">
-			<expression> <![CDATA[aekvidistance BETWEEN 0.1 AND 999.9]]> </expression>
+			<expression><![CDATA[aekvidistance BETWEEN 0.1 AND 999.9]]></expression>
 	</constraint>
 </table>
 
@@ -4927,10 +4930,10 @@ Jord og råstof, Grundvand]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6001_pot_m_dybde_ck" type="ck-constr" table="fkg.t_6001_pot_m_t">
-			<expression> <![CDATA[dybde BETWEEN 1 AND 999.99]]> </expression>
+			<expression><![CDATA[dybde BETWEEN 1 AND 999.99]]></expression>
 	</constraint>
 	<constraint name="t_6001_pot_m_aekvidistance_ck" type="ck-constr" table="fkg.t_6001_pot_m_t">
-			<expression> <![CDATA[aekvidistance BETWEEN 0.1 AND 999.9]]> </expression>
+			<expression><![CDATA[aekvidistance BETWEEN 0.1 AND 999.9]]></expression>
 	</constraint>
 </table>
 
@@ -4983,10 +4986,10 @@ Jord og råstof, Grundvand]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6002_indv_indv_maengde_aar_ck" type="ck-constr" table="fkg.t_6002_indv_t">
-			<expression> <![CDATA[indv_maengde_aar BETWEEN 0.1 AND 99999.9]]> </expression>
+			<expression><![CDATA[indv_maengde_aar BETWEEN 0.1 AND 99999.9]]></expression>
 	</constraint>
 	<constraint name="t_6002_indv_dato_beregn_ck" type="ck-constr" table="fkg.t_6002_indv_t">
-			<expression> <![CDATA[dato_beregn BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[dato_beregn BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 </table>
 
@@ -5045,10 +5048,10 @@ Jord og råstof, Grundvand]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6003_besk_zone_tilladelse_ck" type="ck-constr" table="fkg.t_6003_besk_zone_t">
-			<expression> <![CDATA[tilladelse BETWEEN 1 AND 999999]]> </expression>
+			<expression><![CDATA[tilladelse BETWEEN 1 AND 999999]]></expression>
 	</constraint>
 	<constraint name="t_6003_besk_zone_beskyt_zone_ck" type="ck-constr" table="fkg.t_6003_besk_zone_t">
-			<expression> <![CDATA[beskyt_zone BETWEEN 1 AND 9999]]> </expression>
+			<expression><![CDATA[beskyt_zone BETWEEN 1 AND 9999]]></expression>
 	</constraint>
 </table>
 
@@ -5161,7 +5164,7 @@ Jord og råstof, Grundvand]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6008_maks_bor_boredybde_ck" type="ck-constr" table="fkg.t_6008_maks_bor_t">
-			<expression> <![CDATA[boredybde BETWEEN 1 AND 99]]> </expression>
+			<expression><![CDATA[boredybde BETWEEN 1 AND 99]]></expression>
 	</constraint>
 </table>
 
@@ -5193,7 +5196,7 @@ Jord og råstof, Grundvand]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6009_indv_ovflv_indv_kapacitet_ck" type="ck-constr" table="fkg.t_6009_indv_ovflv_t">
-			<expression> <![CDATA[indv_kapacitet BETWEEN 0.01 AND 99999.99]]> </expression>
+			<expression><![CDATA[indv_kapacitet BETWEEN 0.01 AND 99999.99]]></expression>
 	</constraint>
 </table>
 
@@ -5219,8 +5222,8 @@ Jord og råstof, Grundvand]]> </comment>
 
 <textbox name="col_4_txt_cp" layers="0" z-value="0" font-size="9">
 	<position x="4540" y="1260"/>
-	<comment> <![CDATA[In this column Theme group 5.12
-Beredskab]]> </comment>
+	<comment><![CDATA[In this column Theme group 5.12
+Beredskab]]></comment>
 </textbox>
 
 <table name="t_6101_beskyt_rum_t" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
@@ -5280,7 +5283,7 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6103_bered_omr_bereds_distrikt_nr_ck" type="ck-constr" table="fkg.t_6103_bered_omr_t">
-			<expression> <![CDATA[bereds_distrikt_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[bereds_distrikt_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -5312,10 +5315,10 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6104_risiko_virk_cvr_risi_virk_ck" type="ck-constr" table="fkg.t_6104_risiko_virk_t">
-			<expression> <![CDATA[cvr_risi_virk BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[cvr_risi_virk BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_6104_risiko_virk_kontakt_tlf_ck" type="ck-constr" table="fkg.t_6104_risiko_virk_t">
-			<expression> <![CDATA[kontakt_tlf BETWEEN 11111111 AND 99999999]]> </expression>
+			<expression><![CDATA[kontakt_tlf BETWEEN 11111111 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -5347,7 +5350,7 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6105_sbygn_omr_saer_distrikt_nr_ck" type="ck-constr" table="fkg.t_6105_sbygn_omr_t">
-			<expression> <![CDATA[saer_distrikt_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[saer_distrikt_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -5448,16 +5451,16 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6107_forholds_cvr_firma_ck" type="ck-constr" table="fkg.t_6107_forholds_t">
-			<expression> <![CDATA[cvr_firma BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[cvr_firma BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_6107_forholds_tlf_arbejde_ck" type="ck-constr" table="fkg.t_6107_forholds_t">
-			<expression> <![CDATA[tlf_arbejde BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[tlf_arbejde BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_6107_forholds_tlf_dag_ck" type="ck-constr" table="fkg.t_6107_forholds_t">
-			<expression> <![CDATA[tlf_dag BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[tlf_dag BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_6107_forholds_tlf_nat_ck" type="ck-constr" table="fkg.t_6107_forholds_t">
-			<expression> <![CDATA[tlf_nat BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[tlf_nat BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -5592,7 +5595,7 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6111_fyrv_till_fyr_firma_cvr_ck" type="ck-constr" table="fkg.t_6111_fyrv_till_t">
-			<expression> <![CDATA[fyr_firma_cvr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[fyr_firma_cvr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -5630,7 +5633,7 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6112_midl_dep_cvr_ck" type="ck-constr" table="fkg.t_6112_midl_dep_t">
-			<expression> <![CDATA[virksomhed_cvr BETWEEN 11111111 AND 99999999]]> </expression>
+			<expression><![CDATA[virksomhed_cvr BETWEEN 11111111 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -5676,7 +5679,7 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6115_afbr_omr_afbr_nr_ck" type="ck-constr" table="fkg.t_6115_afbr_omr_t">
-			<expression> <![CDATA[afbr_nr BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[afbr_nr BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 </table>
 
@@ -5714,7 +5717,7 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6116_olie_ber_pl_prioritet_ck" type="ck-constr" table="fkg.t_6116_olie_ber_pl_t">
-			<expression> <![CDATA[prioritet BETWEEN 1 AND 9]]> </expression>
+			<expression><![CDATA[prioritet BETWEEN 1 AND 9]]></expression>
 	</constraint>
 </table>
 
@@ -5755,7 +5758,7 @@ Beredskab]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6117_inds_pkt_vej_afstand_ck" type="ck-constr" table="fkg.t_6117_inds_pkt_t">
-			<expression> <![CDATA[vej_afstand BETWEEN 1 AND 9999]]> </expression>
+			<expression><![CDATA[vej_afstand BETWEEN 1 AND 9999]]></expression>
 	</constraint>
 </table>
 
@@ -5825,8 +5828,8 @@ Beredskab]]> </comment>
 
 <textbox name="col_4_txt_cp_cp" layers="0" z-value="0" font-size="9">
 	<position x="5560" y="1260"/>
-	<comment> <![CDATA[In this column Theme group 5.13, 5.19. 5.20
-Planlægning, Park og Grønne områder, Fotos]]> </comment>
+	<comment><![CDATA[In this column Theme group 5.13, 5.19. 5.20
+Planlægning, Park og Grønne områder, Fotos]]></comment>
 </textbox>
 
 <table name="t_6200_nat_geo_t" layers="0" collapse-mode="2" max-obj-count="21" z-value="0">
@@ -6026,10 +6029,10 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6202_landk_omr_dato_besigtig_ck" type="ck-constr" table="fkg.t_6202_landk_omr_t">
-			<expression> <![CDATA[dato_besigtig BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[dato_besigtig BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6202_landk_omr_rev_dato_ck" type="ck-constr" table="fkg.t_6202_landk_omr_t">
-			<expression> <![CDATA[rev_dato BETWEEN '2006-12-31' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[rev_dato BETWEEN '2006-12-31' AND '2999-12-31']]></expression>
 	</constraint>
 </table>
 
@@ -6147,25 +6150,25 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6800_parl_fl_anlaegsaar_ck" type="ck-constr" table="fkg.t_6800_parl_fl_t">
-			<expression> <![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_etabl_pleje_udloeb_ck" type="ck-constr" table="fkg.t_6800_parl_fl_t">
-			<expression> <![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_udskiftningaar_ck" type="ck-constr" table="fkg.t_6800_parl_fl_t">
-			<expression> <![CDATA[udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_udtyndaar_ck" type="ck-constr" table="fkg.t_6800_parl_fl_t">
-			<expression> <![CDATA[udtyndaar BETWEEN '2007-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[udtyndaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_klip_hoejde_ck" type="ck-constr" table="fkg.t_6800_parl_fl_t">
-			<expression> <![CDATA[klip_hoejde BETWEEN 0.01 AND 9.99]]> </expression>
+			<expression><![CDATA[klip_hoejde BETWEEN 0.01 AND 9.99]]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_klip_sider_ck" type="ck-constr" table="fkg.t_6800_parl_fl_t">
-			<expression> <![CDATA[klip_sider BETWEEN 0 AND 2]]> </expression>
+			<expression><![CDATA[klip_sider BETWEEN 0 AND 2]]></expression>
 	</constraint>
 	<constraint name="t_6800_parl_fl_klip_flade_ck" type="ck-constr" table="fkg.t_6800_parl_fl_t">
-			<expression> <![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]> </expression>
+			<expression><![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]></expression>
 	</constraint>
 </table>
 
@@ -6233,25 +6236,25 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6801_parl_li_anlaegsaar_ck" type="ck-constr" table="fkg.t_6801_parl_li_t">
-			<expression> <![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_etabl_pleje_udloeb_ck" type="ck-constr" table="fkg.t_6801_parl_li_t">
-			<expression> <![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_udskiftningaar_ck" type="ck-constr" table="fkg.t_6801_parl_li_t">
-			<expression> <![CDATA[udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[udskiftningaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_klip_flade_ck" type="ck-constr" table="fkg.t_6801_parl_li_t">
-			<expression> <![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]> </expression>
+			<expression><![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_klip_hoejde_ck" type="ck-constr" table="fkg.t_6801_parl_li_t">
-			<expression> <![CDATA[klip_hoejde BETWEEN 0.01 AND 9.99]]> </expression>
+			<expression><![CDATA[klip_hoejde BETWEEN 0.01 AND 9.99]]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_klip_sider_ck" type="ck-constr" table="fkg.t_6801_parl_li_t">
-			<expression> <![CDATA[klip_sider BETWEEN 0 AND 2]]> </expression>
+			<expression><![CDATA[klip_sider BETWEEN 0 AND 2]]></expression>
 	</constraint>
 	<constraint name="t_6801_parl_li_klip_bredde_ck" type="ck-constr" table="fkg.t_6801_parl_li_t">
-			<expression> <![CDATA[klip_bredde BETWEEN 0.01 AND 9.99]]> </expression>
+			<expression><![CDATA[klip_bredde BETWEEN 0.01 AND 9.99]]></expression>
 	</constraint>
 </table>
 
@@ -6310,16 +6313,16 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_anlaegsaar_ck" type="ck-constr" table="fkg.t_6802_parl_pkt_t">
-			<expression> <![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[anlaegsaar BETWEEN '1600-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_etabl_pleje_udloeb_ck" type="ck-constr" table="fkg.t_6802_parl_pkt_t">
-			<expression> <![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[etabl_pleje_udloeb BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_udskiftningsaar_ck" type="ck-constr" table="fkg.t_6802_parl_pkt_t">
-			<expression> <![CDATA[udskiftningsaar BETWEEN '2007-01-01' AND '2999-12-31']]> </expression>
+			<expression><![CDATA[udskiftningsaar BETWEEN '2007-01-01' AND '2999-12-31']]></expression>
 	</constraint>
 	<constraint name="t_6802_parl_pkt_klip_flade_ck" type="ck-constr" table="fkg.t_6802_parl_pkt_t">
-			<expression> <![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]> </expression>
+			<expression><![CDATA[klip_flade BETWEEN 0.01 AND 99999.99]]></expression>
 	</constraint>
 </table>
 
@@ -6538,13 +6541,13 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5801_fac_fl_antal_pl_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
-			<expression> <![CDATA[antal_pl BETWEEN 0 AND 9999]]> </expression>
+			<expression><![CDATA[antal_pl BETWEEN 0 AND 9999]]></expression>
 	</constraint>
 	<constraint name="t_5801_fac_fl_t_saeson_sl_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
-			<expression> <![CDATA[((date_part('year'::text, saeson_sl) = (1)::double precision))]]> </expression>
+			<expression><![CDATA[((date_part('year'::text, saeson_sl) = (1)::double precision))]]></expression>
 	</constraint>
 	<constraint name="t_5801_fac_fl_t_saeson_st_aar_skal_vaere_1_ck" type="ck-constr" table="fkg.t_5801_fac_fl_t">
-			<expression> <![CDATA[((date_part('year'::text, saeson_st) = (1)::double precision))]]> </expression>
+			<expression><![CDATA[((date_part('year'::text, saeson_st) = (1)::double precision))]]></expression>
 	</constraint>
 </table>
 
@@ -6686,13 +6689,13 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6119_evaku_centr_evakucenter_ref_ck" type="ck-constr" table="fkg.t_6119_evaku_centr_t">
-			<expression> <![CDATA[evakucenter_ref BETWEEN 1 AND 99999]]> </expression>
+			<expression><![CDATA[evakucenter_ref BETWEEN 1 AND 99999]]></expression>
 	</constraint>
 	<constraint name="t_6119_evaku_centr_sovepladser_ck" type="ck-constr" table="fkg.t_6119_evaku_centr_t">
-			<expression> <![CDATA[sovepladser BETWEEN 1 AND 5000]]> </expression>
+			<expression><![CDATA[sovepladser BETWEEN 1 AND 5000]]></expression>
 	</constraint>
 	<constraint name="t_6119_evaku_centr_spisepladser_ck" type="ck-constr" table="fkg.t_6119_evaku_centr_t">
-			<expression> <![CDATA[spisepladser BETWEEN 1 AND 5000]]> </expression>
+			<expression><![CDATA[spisepladser BETWEEN 1 AND 5000]]></expression>
 	</constraint>
 </table>
 
@@ -6748,10 +6751,10 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6120_midl_overn_t_antal_personer_ck" type="ck-constr" table="fkg.t_6120_midl_overn_t">
-			<expression> <![CDATA[antal_personer BETWEEN 10 AND 1000]]> </expression>
+			<expression><![CDATA[antal_personer BETWEEN 10 AND 1000]]></expression>
 	</constraint>
 	<constraint name="t_6120_midl_overn_t_mid_ov_tlfnr_ck" type="ck-constr" table="fkg.t_6120_midl_overn_t">
-			<expression> <![CDATA[mid_ov_tlfnr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[mid_ov_tlfnr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 </table>
 
@@ -6828,10 +6831,10 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_6121_stor_ud_arr_t_sua_tlfnr_ck" type="ck-constr" table="fkg.t_6121_stor_ud_arr_t">
-			<expression> <![CDATA[sua_tlfnr BETWEEN 10000000 AND 99999999]]> </expression>
+			<expression><![CDATA[sua_tlfnr BETWEEN 10000000 AND 99999999]]></expression>
 	</constraint>
 	<constraint name="t_6121_stor_ud_arr_t_antal_personer_ck" type="ck-constr" table="fkg.t_6121_stor_ud_arr_t">
-			<expression> <![CDATA[antal_personer BETWEEN 0 AND 999999]]> </expression>
+			<expression><![CDATA[antal_personer BETWEEN 0 AND 999999]]></expression>
 	</constraint>
 </table>
 
@@ -7051,19 +7054,19 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="t_5000_vandl_station_fra_ck" type="ck-constr" table="fkg.t_5000_vandl_t">
-			<expression> <![CDATA[station_fra >= 0.0 AND station_fra <= 200000.0]]> </expression>
+			<expression><![CDATA[station_fra >= 0.0 AND station_fra <= 200000.0]]></expression>
 	</constraint>
 	<constraint name="t_5000_vandl_station_til_ck" type="ck-constr" table="fkg.t_5000_vandl_t">
-			<expression> <![CDATA[station_til >= 0.0 AND station_til <= 200000.0]]> </expression>
+			<expression><![CDATA[station_til >= 0.0 AND station_til <= 200000.0]]></expression>
 	</constraint>
 	<constraint name="t_5000_vandl_vandloebs_bredde_ck" type="ck-constr" table="fkg.t_5000_vandl_t">
-			<expression> <![CDATA[vandloebs_bredde >= 0.1 AND vandloebs_bredde <=99.9]]> </expression>
+			<expression><![CDATA[vandloebs_bredde >= 0.1 AND vandloebs_bredde <=99.9]]></expression>
 	</constraint>
 	<constraint name="t_5000_vandl_vandfoeringsforhold_ck" type="ck-constr" table="fkg.t_5000_vandl_t">
-			<expression> <![CDATA[vandfoeringsforhold >= 9 AND vandfoeringsforhold <= 45]]> </expression>
+			<expression><![CDATA[vandfoeringsforhold >= 9 AND vandfoeringsforhold <= 45]]></expression>
 	</constraint>
 	<constraint name="t_5000_vandl_fot_id_ck" type="ck-constr" table="fkg.t_5000_vandl_t">
-			<expression> <![CDATA[fot_id >=0 AND fot_id <= 2147483648]]> </expression>
+			<expression><![CDATA[fot_id >=0 AND fot_id <= 2147483648]]></expression>
 	</constraint>
 </table>
 
@@ -7116,7 +7119,7 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="primaer_kode_ck" type="ck-constr" table="fkg.t_7900_fotoforbindelse_t">
-			<expression> <![CDATA[primaer_kode IN (0,1)]]> </expression>
+			<expression><![CDATA[primaer_kode IN (0,1)]]></expression>
 	</constraint>
 </table>
 
@@ -7146,23 +7149,23 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 		<idxelement use-sorting="false">
 			<column name="primaer_kode"/>
 		</idxelement>
-	<predicate> <![CDATA[primaer_kode = 1]]> </predicate>
+	<predicate><![CDATA[primaer_kode = 1]]></predicate>
 </index>
 
 <textbox name="licensing-link_cp_cp_cp_cp" layers="0" z-value="0" font-size="9">
 	<position x="2700" y="1240"/>
-	<comment> <![CDATA[In this column Theme group 5.9
-Sport, fritid og friluftsliv]]> </comment>
+	<comment><![CDATA[In this column Theme group 5.9
+Sport, fritid og friluftsliv]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp1" layers="0" z-value="0" font-size="9">
 	<position x="0" y="340"/>
-	<comment> <![CDATA[Kodelister, generel datamodel]]> </comment>
+	<comment><![CDATA[Kodelister, generel datamodel]]></comment>
 </textbox>
 
 <textbox name="licensing-link_cp_cp1_cp" layers="0" z-value="0" font-size="9">
 	<position x="480" y="340"/>
-	<comment> <![CDATA[Kodelister, specifik datamodel]]> </comment>
+	<comment><![CDATA[Kodelister, specifik datamodel]]></comment>
 </textbox>
 
 <table name="d_5800_kvalitet" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
@@ -7182,6 +7185,316 @@ Sport, fritid og friluftsliv]]> </comment>
 	</column>
 	<constraint name="d_5800_kvalitet_pk" type="pk-constr" table="fkg.d_5800_kvalitet">
 		<columns names="kvalitet_k" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_oprindelse_cp" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg_cp"/>
+	<position x="0" y="400"/>
+	<column name="oprindkode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="oprindelse" not-null="true">
+		<type name="character varying" length="35"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_basis_oprindelse_pk" type="pk-constr" factor="10" table="fkg_cp.d_basis_oprindelse_cp">
+		<columns names="oprindkode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_status_cp" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="fkg_cp"/>
+	<position x="0" y="520"/>
+	<column name="statuskode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer" length="1"/>
+	</column>
+	<constraint name="d_basis_status_pk" type="pk-constr" factor="10" table="fkg_cp.d_basis_status_cp">
+		<columns names="statuskode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_ansvarlig_myndighed_cp" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg_cp"/>
+	<position x="0" y="720"/>
+	<column name="cvr_kode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="cvr_navn" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="kommunekode">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer" length="1"/>
+	</column>
+	<constraint name="d_basis_ansvarlig_myndighed_pk" type="pk-constr" factor="10" table="fkg_cp.d_basis_ansvarlig_myndighed_cp">
+		<columns names="cvr_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="generel_cp" layers="0" collapse-mode="2" max-obj-count="14" z-value="0">
+	<schema name="fkg_cp"/>
+	<position x="1140" y="60"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid" length="1"/>
+		<comment><![CDATA[Unik versions-id databasenøgle]]></comment>
+	</column>
+	<column name="objekt_id" not-null="true">
+		<type name="uuid" length="1"/>
+		<comment><![CDATA[Entydig databasenøgle over tid]]></comment>
+	</column>
+	<column name="systid_fra" not-null="true">
+		<type name="timestamptz" length="1"/>
+		<comment><![CDATA[Start systemtid]]></comment>
+	</column>
+	<column name="systid_til">
+		<type name="timestamptz" length="1"/>
+		<comment><![CDATA[Slut systemtid]]></comment>
+	</column>
+	<column name="oprettet" not-null="true">
+		<type name="timestamptz" length="1"/>
+	</column>
+	<column name="cvr_kode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="bruger_id" not-null="true">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="oprindkode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="statuskode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="off_kode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="noegle">
+		<type name="character varying" length="128"/>
+	</column>
+	<column name="note">
+		<type name="character varying" length="254"/>
+	</column>
+	<constraint name="generel_pk" type="pk-constr" factor="10" table="fkg_cp.generel_cp">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_tilstand_cp" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg_cp"/>
+	<position x="480" y="660"/>
+	<column name="tilstand_kode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="tilstand" not-null="true">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="aktiv" not-null="true" default-value="1">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_basis_tilstand_pk" type="pk-constr" factor="10" table="fkg_cp.d_basis_tilstand_cp">
+		<columns names="tilstand_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5607_ladepunkter_t" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+	<schema name="fkg"/>
+	<position x="820" y="5240"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid" length="1"/>
+	</column>
+	<column name="ladefacilitet_type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="internationalt_id">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="ejer_ladefacilitet">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="operatoer_ladefacilitet">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="udbyder_ladefacilitet">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="antal_ladepunkter">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="stiktype">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="effekt_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tilgaengelighed_type_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="anvendelsesgrad_kwh">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="driftstart_fra">
+		<type name="date" length="0"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5607_lade_pkt_pk" type="pk-constr" table="fkg.t_5607_ladepunkter_t">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_basis_offentlig_cp" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="fkg_cp"/>
+	<position x="0" y="620"/>
+	<column name="off_kode" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<column name="offentlig" not-null="true">
+		<type name="character varying" length="60"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="1"/>
+	</column>
+	<constraint name="d_basis_offentlig_pk" type="pk-constr" factor="10" table="fkg_cp.d_basis_offentlig_cp">
+		<columns names="off_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5607_ladefacilitet_type" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg"/>
+	<role name="postgres"/>
+	<position x="1640" y="5240"/>
+	<column name="ladefacilitet _type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ladefacilitet _type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_5607_ladefacilitet_type_pk" type="pk-constr" table="fkg.d_5607_ladefacilitet_type">
+		<columns names="ladefacilitet _type_kode" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[ladefacilitet _type_kode•ladefacilitet _type•aktiv•begrebsdefinition⸣
+1•Elladestander til bil•1•En elladestander, der kan bruges til at oplade en elbil eller hybridbil.⸣
+2•Elladestander til cykel•1•En elladestander, der kan bruges til at oplade en elcykel.⸣
+3•Elladestander til kørestol•1•En elladestander, der kan bruges til at oplade en elektrisk kørestol.]]>
+	</initial-data>
+</table>
+
+<table name="d_5607_effekt_kode" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg"/>
+	<role name="postgres"/>
+	<position x="1600" y="5480"/>
+	<column name="effekt_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="stroemtype" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_5707_effekt_kode_pk" type="pk-constr" table="fkg.d_5607_effekt_kode">
+		<columns names="effekt_kode" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[effekt_kode•stroemtype•aktiv•begrebsdefinition⸣
+1•Normallader•1•3-22 kW⸣
+2•Hurtiglader•1•50-100 kW⸣
+3•Lynlader•1•> 150 kW]]>
+	</initial-data>
+</table>
+
+<table name="d_5607_tilgaengelighed_type_kode" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg"/>
+	<role name="postgres"/>
+	<position x="1560" y="5720"/>
+	<column name="tilgaengelighed_type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tilgaengelighed" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_5607_tilgaengelighed_type_kode_pk" type="pk-constr" table="fkg.d_5607_tilgaengelighed_type_kode">
+		<columns names="tilgaengelighed_type_kode" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[tilgaengelighed_type_kode•tilgaengelighed•aktiv•begrebsdefinition⸣
+1•Offentligt tilgængelig•1•En ladefacilitet eller en tankstation til forsyning med et alternativt drivmiddel, som giver ikkediskriminerende adgang for brugere. Ikkediskriminerende adgang kan omfatte forskellige vilkår for godkendelse, anvendelse og betaling.⸣
+2•Privat ladestander•1•En ladefacilitet eller en tankstation, som ejes af privatejer eller virksomhed og som giver en eksklusiv ret til ejer samt evt. ansatte i virksomhed.⸣
+3•Kommunal bilflåde•1•En ladefacilitet eller en tankstation, som ejes af kommune og som giver en eksklusiv ret til den kommunale bilflåde.⸣
+4•Statslig bilflåde•1•En ladefacilitet eller en tankstation, som ejes af statslig myndighed og som giver en eksklusiv ret til den statslige bilflåde.]]>
+	</initial-data>
+</table>
+
+<table name="t_5608_plan_ladefaciliteter_t" layers="0" collapse-mode="2" max-obj-count="12" z-value="0">
+	<schema name="fkg"/>
+	<role name="postgres"/>
+	<position x="780" y="5740"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="ladefacilitet_type_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="antal_planlagte_ladefaciliteter" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ejer_ladefacilitet">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="operatoer_ladefacilitet">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="udbyder_ladefacilitet">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="stiktype">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="effekt_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tilgaengelighed_type_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" length="0" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5608_plan_ladefaciliteter_pk" type="pk-constr" table="fkg.t_5608_plan_ladefaciliteter_t">
+		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -9201,6 +9514,54 @@ Sport, fritid og friluftsliv]]> </comment>
 	<columns names="versions_id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5607_lade_pkt_generel_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5607_ladepunkter_t">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5607_lade_pkt_d_5607_ladefacilitet_type_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_ladefacilitet_type" table="fkg.t_5607_ladepunkter_t">
+	<columns names="ladefacilitet_type_kode" ref-type="src-columns"/>
+	<columns names="ladefacilitet _type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5607_lade_pkt_d_5607_effekt_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_effekt_kode" table="fkg.t_5607_ladepunkter_t">
+	<columns names="effekt_kode" ref-type="src-columns"/>
+	<columns names="effekt_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5607_lade_pkt_d_5607_tilgaengelighed_type_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_tilgaengelighed_type_kode" table="fkg.t_5607_ladepunkter_t">
+	<columns names="tilgaengelighed_type_kode" ref-type="src-columns"/>
+	<columns names="tilgaengelighed_type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_ladefaciliteter_generel_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_ladefaciliteter_d_5607_ladefacilitet_type_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_ladefacilitet_type" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="ladefacilitet_type_kode" ref-type="src-columns"/>
+	<columns names="ladefacilitet _type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_faciliteter_d_5607_effekt_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_effekt_kode" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="effekt_kode" ref-type="src-columns"/>
+	<columns names="effekt_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_ladefaciliteter_d_5607_tilgaengelighed_type_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_tilgaengelighed_type_kode" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="tilgaengelighed_type_kode" ref-type="src-columns"/>
+	<columns names="tilgaengelighed_type_kode" ref-type="dst-columns"/>
+</constraint>
+
 <relationship name="rel_generel_d_basis_oprindelse" type="relfk" layers="0"
 	 src-table="fkg.generel"
 	 dst-table="fkg.d_basis_oprindelse" reference-fk="generel_d_basis_oprindelse_fk"
@@ -10880,5 +11241,53 @@ Sport, fritid og friluftsliv]]> </comment>
 	 src-table="fkg.t_7901_foto_t"
 	 dst-table="fkg.generel" reference-fk="t_7901_generel_fk"
 	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5607_lade_pkt_t_d_5607_ladefacilitet_type" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.d_5607_ladefacilitet_type" reference-fk="t_5607_lade_pkt_d_5607_ladefacilitet_type_fk"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_t_5607_lade_pkt_t_generel" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.generel" reference-fk="t_5607_lade_pkt_generel_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5607_lade_pkt_t_d_5607_effekt_kode" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.d_5607_effekt_kode" reference-fk="t_5607_lade_pkt_d_5607_effekt_kode_fk"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_t_5607_lade_pkt_t_d_5607_tilgaengelighed_type_kode" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.d_5607_tilgaengelighed_type_kode" reference-fk="t_5607_lade_pkt_d_5607_tilgaengelighed_type_kode_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5608_plan_ladefaciliteter_t_generel" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.generel" reference-fk="t_5608_plan_ladefaciliteter_generel_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5608_plan_ladefaciliteter_t_d_5607_ladefacilitet_type" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.d_5607_ladefacilitet_type" reference-fk="t_5608_plan_ladefaciliteter_d_5607_ladefacilitet_type_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5608_plan_ladefaciliteter_t_d_5607_effekt_kode" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.d_5607_effekt_kode" reference-fk="t_5608_plan_faciliteter_d_5607_effekt_kode_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5608_plan_ladefaciliteter_t_d_5607_tilgaengelighed_type_k" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.d_5607_tilgaengelighed_type_kode" reference-fk="t_5608_plan_ladefaciliteter_d_5607_tilgaengelighed_type_kode_fk"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>
