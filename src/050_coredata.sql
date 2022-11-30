@@ -2447,6 +2447,8 @@ INSERT INTO fkg.d_5800_facilitet VALUES (1321, 'Stente', 1, 'Lille dobbelt stige
 INSERT INTO fkg.d_5800_facilitet VALUES (1331, 'Badebro', 1, 'Bro med adgang til badning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1341, 'Bro', 1, 'Bro.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1351, 'Parkeringsplads', 1, 'En parkeringsplads/et område er et officielt sted beregnet til at henstille køretøjer på, når de ikke bruges.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1361, 'Fodhviler', 1, '');
+INSERT INTO fkg.d_5800_facilitet VALUES (1371, 'Bænk', 1, '');
 INSERT INTO fkg.d_5800_facilitet VALUES (2012, 'Fugletårn/Udsigtstårn', 1, 'Platform, tårn eller skjul som giver mulighed for udsigt over et område eller særlige seværdigheder, fx udsyn til områdets fugle, dyreliv, landskab mv.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2022, 'Udsigtspunkt', 1, 'Punkt med en god udsigt. Ofte på toppen af en høj eller skrænt. Kan også være fra en bygning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2031, 'Fiskesø', 1, 'Put&take sø. Sted hvor man kan købe dagskort til at fiske efter udsatte fisk.');
@@ -2518,6 +2520,8 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4361, 'Fodboldgolf', 1, 'Anlæg/bane ti
 INSERT INTO fkg.d_5800_facilitet VALUES (4371, 'Bueskydning', 1, 'Bane til bueskydning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4381, 'Strandhåndboldbane', 1, 'Bane hvor man kan spille strandhåndbold.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4391, 'Hundetræningsareal', 1, 'Areal hvor man kan træne hunde.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4401, 'Overbæringssted', 1, 'Sted hvor der kan overbæres kanoer mv.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4411, 'Fiskeplatform', 1, 'Bro el.lign. hvorfra fiskeri er velegent');
 INSERT INTO fkg.d_5800_facilitet VALUES (5011, 'Forsamlingshus', 1, 'Et forsamlingshus er byens kulturhus og mødested.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5021, 'Museum', 1, 'Museum er en permanent institution med udstilling og formidling af f.eks. kunst, kulturhistorie eller naturhistorie.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5031, 'Teater', 1, 'Sted, hvor der opføres teater eller andre kulturelle opførelser. Herunder også amfiteater.');

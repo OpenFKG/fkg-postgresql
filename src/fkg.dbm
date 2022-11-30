@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="2582,3113" last-zoom="1" max-obj-count="412"
+<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="2582,3500" last-zoom="1" max-obj-count="412"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -3301,6 +3301,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	<column name="navn">
 		<type name="character varying" length="254"/>
 	</column>
+	<column name="navn_uk">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="navn_d">
+		<type name="character varying" length="255"/>
+	</column>
 	<column name="navndels">
 		<type name="character varying" length="128"/>
 	</column>
@@ -3474,12 +3480,6 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
-	</column>
-	<column name="navn_uk">
-		<type name="character varying" length="255"/>
-	</column>
-	<column name="navn_d">
-		<type name="character varying" length="255"/>
 	</column>
 	<constraint name="t_5802_fac_li_pk" type="pk-constr" factor="10" table="fkg.t_5802_fac_li_t">
 		<columns names="versions_id" ref-type="src-columns"/>

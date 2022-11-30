@@ -145,5 +145,17 @@ INSERT INTO fkg.d_5607_tilgaengelighed_type (tilgaengelighed_type_kode, tilgaeng
 INSERT INTO fkg.d_5607_tilgaengelighed_type (tilgaengelighed_type_kode, tilgaengelighed_type, aktiv, begrebsdefinition) VALUES (3, E'Kommunal bilflåde', 1, E'En ladefacilitet eller en tankstation, som ejes af kommune og som giver en eksklusiv ret til den kommunale bilflåde.');
 INSERT INTO fkg.d_5607_tilgaengelighed_type (tilgaengelighed_type_kode, tilgaengelighed_type, aktiv, begrebsdefinition) VALUES (4, E'Statslig bilflåde', 1, E'En ladefacilitet eller en tankstation, som ejes af statslig myndighed og som giver en eksklusiv ret til den statslige bilflåde.');
 
+-- Issue: https://github.com/OpenFKG/fkg-postgresql/issues/100
+-- Nye felter på friluftstemaer
+ALTER TABLE fkg.t_5800_fac_pkt_t ADD COLUMN navn_uk CHARACTER varying(255), ADD COLUMN navn_d CHARACTER varying(255);
+ALTER TABLE fkg.t_5801_fac_fl_t ADD COLUMN navn_uk CHARACTER varying(255), ADD COLUMN navn_d CHARACTER varying(255);
+ALTER TABLE fkg.t_5802_fac_li_t ADD COLUMN navn_uk CHARACTER varying(255), ADD COLUMN navn_d CHARACTER varying(255);
+
+-- Issue: https://github.com/OpenFKG/fkg-postgresql/issues/103
+-- Nye facilitetstyper
+INSERT INTO fkg.d_5800_facilitet VALUES (4401, 'Overbæringssted', 1, 'Sted hvor der kan overbæres kanoer mv.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4411, 'Fiskeplatform', 1, 'Bro el.lign. hvorfra fiskeri er velegent');
+INSERT INTO fkg.d_5800_facilitet VALUES (1361, 'Fodhviler', 1, '');
+INSERT INTO fkg.d_5800_facilitet VALUES (1371, 'Bænk', 1, '');
 
 ROLLBACK;
