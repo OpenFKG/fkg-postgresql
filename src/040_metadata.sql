@@ -3510,6 +3510,76 @@ CREATE TABLE fkg.d_5800_kvalitet (
 );
 -- ddl-end --
 
+-- object: fkg.t_5607_ladepunkter_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_5607_ladepunkter_t CASCADE;
+CREATE TABLE fkg.t_5607_ladepunkter_t (
+	versions_id uuid NOT NULL,
+	ladefacilitet_type_kode integer NOT NULL,
+	effekt_type_kode integer,
+	tilgaengelighed_type_kode integer,
+	internationalt_id character varying(20),
+	ejer_ladefacilitet character varying(50),
+	operatoer_ladefacilitet character varying(50),
+	udbyder_ladefacilitet character varying(50),
+	antal_ladepunkter integer,
+	stiktype character varying(30),
+	anvendelsesgrad_kwh integer,
+	driftstart_fra date,
+	geometri geometry(MULTIPOINT, 25832),
+	CONSTRAINT t_5607_ladepunkter_pk PRIMARY KEY (versions_id)
+);
+-- ddl-end --
+
+-- object: fkg.t_5608_plan_ladefaciliteter_t | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.t_5608_plan_ladefaciliteter_t CASCADE;
+CREATE TABLE fkg.t_5608_plan_ladefaciliteter_t (
+	versions_id uuid NOT NULL,
+	ladefacilitet_type_kode integer NOT NULL,
+	effekt_type_kode integer,
+	tilgaengelighed_type_kode integer,
+	antal_planlagte_ladefaciliteter integer,
+	ejer_ladefacilitet character varying,
+	operatoer_ladefacilitet character varying,
+	udbyder_ladefacilitet character varying,
+	stiktype character varying,
+	geometri geometry(MULTIPOLYGON, 25832),
+	CONSTRAINT t_5608_plan_ladefaciliteter_pk PRIMARY KEY (versions_id)
+);
+-- ddl-end --
+
+-- object: fkg.d_5607_ladefacilitet_type | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5607_ladefacilitet_type CASCADE;
+CREATE TABLE fkg.d_5607_ladefacilitet_type (
+	ladefacilitet_type_kode integer NOT NULL,
+	ladefacilitet_type character varying(30) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5607_ladefacilitet_type_pk PRIMARY KEY (ladefacilitet_type_kode)
+);
+-- ddl-end --
+
+-- object: fkg.d_5607_effekt_type | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5607_effekt_type CASCADE;
+CREATE TABLE fkg.d_5607_effekt_type (
+	effekt_type_kode integer NOT NULL,
+	effekt_type character varying(30) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5607_effekt_type_pk PRIMARY KEY (effekt_type_kode)
+);
+-- ddl-end --
+
+-- object: fkg.d_5607_tilgaengelighed_type | type: TABLE --
+-- DROP TABLE IF EXISTS fkg.d_5607_tilgaengelighed_type CASCADE;
+CREATE TABLE fkg.d_5607_tilgaengelighed_type (
+	tilgaengelighed_type_kode integer NOT NULL,
+	tilgaengelighed_type character varying(30) NOT NULL,
+	aktiv integer NOT NULL,
+	begrebsdefinition character varying,
+	CONSTRAINT d_5607_tilgaengelighed_type_pk PRIMARY KEY (tilgaengelighed_type_kode)
+);
+-- ddl-end --
+
 -- object: generel_d_basis_oprindelse_fk | type: CONSTRAINT --
 -- ALTER TABLE fkg.generel DROP CONSTRAINT IF EXISTS generel_d_basis_oprindelse_fk CASCADE;
 ALTER TABLE fkg.generel ADD CONSTRAINT generel_d_basis_oprindelse_fk FOREIGN KEY (oprindkode)
@@ -5859,6 +5929,62 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_7901_foto_t DROP CONSTRAINT IF EXISTS t_7901_generel_fk CASCADE;
 ALTER TABLE fkg.t_7901_foto_t ADD CONSTRAINT t_7901_generel_fk FOREIGN KEY (versions_id)
 REFERENCES fkg.generel (versions_id) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5607_ladepunkter_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5607_ladepunkter_t DROP CONSTRAINT IF EXISTS t_5607_ladepunkter_generel_fk CASCADE;
+ALTER TABLE fkg.t_5607_ladepunkter_t ADD CONSTRAINT t_5607_ladepunkter_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH SIMPLE
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5607_lade_pkt_d_5607_ladefacilitet_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5607_ladepunkter_t DROP CONSTRAINT IF EXISTS t_5607_lade_pkt_d_5607_ladefacilitet_type_fk CASCADE;
+ALTER TABLE fkg.t_5607_ladepunkter_t ADD CONSTRAINT t_5607_lade_pkt_d_5607_ladefacilitet_type_fk FOREIGN KEY (ladefacilitet_type_kode)
+REFERENCES fkg.d_5607_ladefacilitet_type (ladefacilitet_type_kode) MATCH SIMPLE
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5607_lade_pkt_d_5607_effekt_kode_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5607_ladepunkter_t DROP CONSTRAINT IF EXISTS t_5607_lade_pkt_d_5607_effekt_kode_fk CASCADE;
+ALTER TABLE fkg.t_5607_ladepunkter_t ADD CONSTRAINT t_5607_lade_pkt_d_5607_effekt_kode_fk FOREIGN KEY (effekt_type_kode)
+REFERENCES fkg.d_5607_effekt_type (effekt_type_kode) MATCH SIMPLE
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5607_lade_pkt_d_5607_tilgaengelighed_type_kode_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5607_ladepunkter_t DROP CONSTRAINT IF EXISTS t_5607_lade_pkt_d_5607_tilgaengelighed_type_kode_fk CASCADE;
+ALTER TABLE fkg.t_5607_ladepunkter_t ADD CONSTRAINT t_5607_lade_pkt_d_5607_tilgaengelighed_type_kode_fk FOREIGN KEY (tilgaengelighed_type_kode)
+REFERENCES fkg.d_5607_tilgaengelighed_type (tilgaengelighed_type_kode) MATCH SIMPLE
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5608_plan_ladefaciliteter_generel_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t DROP CONSTRAINT IF EXISTS t_5608_plan_ladefaciliteter_generel_fk CASCADE;
+ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t ADD CONSTRAINT t_5608_plan_ladefaciliteter_generel_fk FOREIGN KEY (versions_id)
+REFERENCES fkg.generel (versions_id) MATCH SIMPLE
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5608_plan_ladefaciliteter_d_5607_ladefacilitet_type_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t DROP CONSTRAINT IF EXISTS t_5608_plan_ladefaciliteter_d_5607_ladefacilitet_type_fk CASCADE;
+ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t ADD CONSTRAINT t_5608_plan_ladefaciliteter_d_5607_ladefacilitet_type_fk FOREIGN KEY (ladefacilitet_type_kode)
+REFERENCES fkg.d_5607_ladefacilitet_type (ladefacilitet_type_kode) MATCH SIMPLE
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5608_plan_faciliteter_d_5607_effekt_kode_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t DROP CONSTRAINT IF EXISTS t_5608_plan_faciliteter_d_5607_effekt_kode_fk CASCADE;
+ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t ADD CONSTRAINT t_5608_plan_faciliteter_d_5607_effekt_kode_fk FOREIGN KEY (effekt_type_kode)
+REFERENCES fkg.d_5607_effekt_type (effekt_type_kode) MATCH SIMPLE
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_5608_plan_ladefaciliteter_d_5607_tilgaengelighed_type_kode_fk | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t DROP CONSTRAINT IF EXISTS t_5608_plan_ladefaciliteter_d_5607_tilgaengelighed_type_kode_fk CASCADE;
+ALTER TABLE fkg.t_5608_plan_ladefaciliteter_t ADD CONSTRAINT t_5608_plan_ladefaciliteter_d_5607_tilgaengelighed_type_kode_fk FOREIGN KEY (tilgaengelighed_type_kode)
+REFERENCES fkg.d_5607_tilgaengelighed_type (tilgaengelighed_type_kode) MATCH SIMPLE
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

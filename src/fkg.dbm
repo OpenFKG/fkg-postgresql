@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="403"
+<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="2582,3113" last-zoom="1" max-obj-count="412"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -3110,7 +3110,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</constraint>
 </table>
 
-<table name="t_5800_fac_pkt_t" layers="0" collapse-mode="2" max-obj-count="61" z-value="0">
+<table name="t_5800_fac_pkt_t" layers="0" collapse-mode="2" max-obj-count="63" z-value="0">
 	<schema name="fkg"/>
 	<position x="2700" y="1340"/>
 	<column name="versions_id" not-null="true">
@@ -3121,6 +3121,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</column>
 	<column name="navn">
 		<type name="character varying" length="254"/>
+	</column>
+	<column name="navn_uk">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="navn_d">
+		<type name="character varying" length="255"/>
 	</column>
 	<column name="beskrivels">
 		<type name="character varying" length="254"/>
@@ -3280,7 +3286,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</constraint>
 </table>
 
-<table name="t_5802_fac_li_t" layers="0" collapse-mode="2" max-obj-count="74" z-value="0">
+<table name="t_5802_fac_li_t" layers="0" collapse-mode="2" max-obj-count="76" z-value="0">
 	<schema name="fkg"/>
 	<position x="2700" y="2980"/>
 	<column name="versions_id" not-null="true">
@@ -3468,6 +3474,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
+	</column>
+	<column name="navn_uk">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="navn_d">
+		<type name="character varying" length="255"/>
 	</column>
 	<constraint name="t_5802_fac_li_pk" type="pk-constr" factor="10" table="fkg.t_5802_fac_li_t">
 		<columns names="versions_id" ref-type="src-columns"/>
@@ -3957,7 +3969,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 <table name="t_5606_vejinv_t" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="fkg"/>
-	<position x="880" y="4700"/>
+	<position x="880" y="4740"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6378,9 +6390,9 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl_t" layers="0" collapse-mode="2" max-obj-count="61" z-value="0">
+<table name="t_5801_fac_fl_t" layers="0" collapse-mode="2" max-obj-count="63" z-value="0">
 	<schema name="fkg"/>
-	<position x="2700" y="2180"/>
+	<position x="2700" y="2380"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6389,6 +6401,12 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</column>
 	<column name="navn">
 		<type name="character varying" length="254"/>
+	</column>
+	<column name="navn_uk">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="navn_d">
+		<type name="character varying" length="255"/>
 	</column>
 	<column name="beskrivels">
 		<type name="character varying" length="254"/>
@@ -7137,18 +7155,6 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</constraint>
 </table>
 
-<index name="primaer_kode_unique_idx" table="fkg.t_7900_fotoforbindelse_t"
-	 concurrent="false" unique="true" fast-update="false" buffering="false"
-	 index-type="btree" factor="0">
-		<idxelement use-sorting="false">
-			<column name="foto_objek"/>
-		</idxelement>
-		<idxelement use-sorting="false">
-			<column name="primaer_kode"/>
-		</idxelement>
-	<predicate> <![CDATA[primaer_kode = 1]]> </predicate>
-</index>
-
 <textbox name="licensing-link_cp_cp_cp_cp" layers="0" z-value="0" font-size="9">
 	<position x="2700" y="1240"/>
 	<comment> <![CDATA[In this column Theme group 5.9
@@ -7182,6 +7188,151 @@ Sport, fritid og friluftsliv]]> </comment>
 	</column>
 	<constraint name="d_5800_kvalitet_pk" type="pk-constr" table="fkg.d_5800_kvalitet">
 		<columns names="kvalitet_k" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5607_ladepunkter_t" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+	<schema name="fkg"/>
+	<position x="660" y="4980"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="ladefacilitet_type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="effekt_type_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tilgaengelighed_type_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="internationalt_id">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="ejer_ladefacilitet">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="operatoer_ladefacilitet">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="udbyder_ladefacilitet">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="antal_ladepunkter">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="stiktype">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="anvendelsesgrad_kwh">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="driftstart_fra">
+		<type name="date" length="0"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" length="0" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5607_ladepunkter_pk" type="pk-constr" table="fkg.t_5607_ladepunkter_t">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_5608_plan_ladefaciliteter_t" layers="0" collapse-mode="2" max-obj-count="12" z-value="0">
+	<schema name="fkg"/>
+	<position x="660" y="5340"/>
+	<column name="versions_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="ladefacilitet_type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="effekt_type_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tilgaengelighed_type_kode">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="antal_planlagte_ladefaciliteter">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ejer_ladefacilitet">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="operatoer_ladefacilitet">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="udbyder_ladefacilitet">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="stiktype">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="geometri">
+		<type name="geometry" length="0" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
+	</column>
+	<constraint name="t_5608_plan_ladefaciliteter_pk" type="pk-constr" table="fkg.t_5608_plan_ladefaciliteter_t">
+		<columns names="versions_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5607_ladefacilitet_type" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg"/>
+	<position x="1340" y="4980"/>
+	<column name="ladefacilitet_type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ladefacilitet_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_5607_ladefacilitet_type_pk" type="pk-constr" table="fkg.d_5607_ladefacilitet_type">
+		<columns names="ladefacilitet_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5607_effekt_type" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg"/>
+	<position x="1360" y="5220"/>
+	<column name="effekt_type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="effekt_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_5607_effekt_type_pk" type="pk-constr" table="fkg.d_5607_effekt_type">
+		<columns names="effekt_type_kode" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="d_5607_tilgaengelighed_type" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="fkg"/>
+	<position x="1320" y="5460"/>
+	<column name="tilgaengelighed_type_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tilgaengelighed_type" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="aktiv" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="begrebsdefinition">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="d_5607_tilgaengelighed_type_pk" type="pk-constr" table="fkg.d_5607_tilgaengelighed_type">
+		<columns names="tilgaengelighed_type_kode" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -9201,6 +9352,54 @@ Sport, fritid og friluftsliv]]> </comment>
 	<columns names="versions_id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_5607_ladepunkter_generel_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5607_ladepunkter_t">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5607_lade_pkt_d_5607_ladefacilitet_type_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_ladefacilitet_type" table="fkg.t_5607_ladepunkter_t">
+	<columns names="ladefacilitet_type_kode" ref-type="src-columns"/>
+	<columns names="ladefacilitet_type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5607_lade_pkt_d_5607_effekt_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_effekt_type" table="fkg.t_5607_ladepunkter_t">
+	<columns names="effekt_type_kode" ref-type="src-columns"/>
+	<columns names="effekt_type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5607_lade_pkt_d_5607_tilgaengelighed_type_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_tilgaengelighed_type" table="fkg.t_5607_ladepunkter_t">
+	<columns names="tilgaengelighed_type_kode" ref-type="src-columns"/>
+	<columns names="tilgaengelighed_type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_ladefaciliteter_generel_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="versions_id" ref-type="src-columns"/>
+	<columns names="versions_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_ladefaciliteter_d_5607_ladefacilitet_type_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_ladefacilitet_type" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="ladefacilitet_type_kode" ref-type="src-columns"/>
+	<columns names="ladefacilitet_type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_faciliteter_d_5607_effekt_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_effekt_type" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="effekt_type_kode" ref-type="src-columns"/>
+	<columns names="effekt_type_kode" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="t_5608_plan_ladefaciliteter_d_5607_tilgaengelighed_type_kode_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_5607_tilgaengelighed_type" table="fkg.t_5608_plan_ladefaciliteter_t">
+	<columns names="tilgaengelighed_type_kode" ref-type="src-columns"/>
+	<columns names="tilgaengelighed_type_kode" ref-type="dst-columns"/>
+</constraint>
+
 <relationship name="rel_generel_d_basis_oprindelse" type="relfk" layers="0"
 	 src-table="fkg.generel"
 	 dst-table="fkg.d_basis_oprindelse" reference-fk="generel_d_basis_oprindelse_fk"
@@ -10880,5 +11079,45 @@ Sport, fritid og friluftsliv]]> </comment>
 	 src-table="fkg.t_7901_foto_t"
 	 dst-table="fkg.generel" reference-fk="t_7901_generel_fk"
 	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5607_ladepunkter_t_generel" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.generel" reference-fk="t_5607_ladepunkter_generel_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5607_ladepunkter_t_cp_generel" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.generel" reference-fk="t_5608_plan_ladefaciliteter_generel_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5607_ladepunkter_t_d_5607_ladefacilitet_type" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.d_5607_ladefacilitet_type" reference-fk="t_5607_lade_pkt_d_5607_ladefacilitet_type_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5607_ladepunkter_t_d_5607_effekt_kode" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.d_5607_effekt_type" reference-fk="t_5607_lade_pkt_d_5607_effekt_kode_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5607_ladepunkter_t_d_5607_tilgaengelighed_type_kode" type="relfk" layers="0"
+	 src-table="fkg.t_5607_ladepunkter_t"
+	 dst-table="fkg.d_5607_tilgaengelighed_type" reference-fk="t_5607_lade_pkt_d_5607_tilgaengelighed_type_kode_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5608_plan_ladefaciliteter_t_d_5607_ladefacilitet_type" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.d_5607_ladefacilitet_type" reference-fk="t_5608_plan_ladefaciliteter_d_5607_ladefacilitet_type_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_t_5608_plan_ladefaciliteter_t_d_5607_effekt_kode" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.d_5607_effekt_type" reference-fk="t_5608_plan_faciliteter_d_5607_effekt_kode_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_5608_plan_ladefaciliteter_t_d_5607_tilgaengelighed_type_k" type="relfk" layers="0"
+	 src-table="fkg.t_5608_plan_ladefaciliteter_t"
+	 dst-table="fkg.d_5607_tilgaengelighed_type" reference-fk="t_5608_plan_ladefaciliteter_d_5607_tilgaengelighed_type_kode_fk"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>
