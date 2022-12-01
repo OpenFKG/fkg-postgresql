@@ -19,7 +19,7 @@ END;
 $$ language plpgsql
 ;
 
-DROP TRIGGER check_primaer_kode ON fkg.t_7900_fotoforbindelse;
+DROP TRIGGER IF EXISTS check_primaer_kode ON fkg.t_7900_fotoforbindelse;
 CREATE TRIGGER check_primaer_kode 
   INSTEAD OF INSERT OR UPDATE ON fkg.t_7900_fotoforbindelse
   FOR EACH ROW
