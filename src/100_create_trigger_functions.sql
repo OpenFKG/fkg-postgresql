@@ -21,8 +21,8 @@
 -- One liner that generates triggers for every present table
 SELECT fkg_utilities.get_trigger_function_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel);
 
--- For 5800, 5801 and 5802
+-- For 5800, 5801 and 5802, 5607, 5608
 /*
 SELECT fkg_utilities.get_trigger_function_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN 
-(SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel WHERE tema_kode IN (5800, 5801, 5802));
+(SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel WHERE tema_kode IN (5800, 5801, 5802, 5607, 5608));
 */

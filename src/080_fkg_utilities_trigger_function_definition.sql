@@ -215,7 +215,8 @@ BEGIN
   td = td || E'    DROP TRIGGER IF EXISTS make_multi_trg ON ' || schema_name || '.' || base_table_name || ';' || E'\n';
   td = td || E'    CREATE TRIGGER make_multi_trg BEFORE INSERT OR UPDATE ON ' || schema_name || '.' || base_table_name || ' FOR EACH ROW EXECUTE PROCEDURE fkg.make_multi();' || E'\n';
   td = td || E'  END IF;' || E'\n';
-  td = td || E'END$$';
+  td = td || E'END$$' || E'\n';
+  td = td || E';';
 
   -- Do the trigger definition
   execute td;
