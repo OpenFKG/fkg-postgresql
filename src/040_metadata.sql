@@ -30,6 +30,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 -- DROP SCHEMA IF EXISTS fkg CASCADE;
 CREATE SCHEMA fkg;
 -- ddl-end --
+COMMENT ON SCHEMA fkg IS E'GeoFA DB version 1.4. https://github.com/OpenFKG/fkg-postgresql/milestone/2';
+-- ddl-end --
 
 SET search_path TO pg_catalog,public,fkg;
 -- ddl-end --
@@ -3531,7 +3533,7 @@ CREATE TABLE fkg.t_5607_ladepunkter_t (
 	stiktype character varying(30),
 	anvendelsesgrad_kwh integer,
 	driftstart_fra date,
-	geometri geometry(MULTIPOINT, 25832),
+	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5607_ladepunkter_pk PRIMARY KEY (versions_id)
 );
 -- ddl-end --
@@ -3548,7 +3550,7 @@ CREATE TABLE fkg.t_5608_plan_ladefaciliteter_t (
 	operatoer_ladefacilitet character varying,
 	udbyder_ladefacilitet character varying,
 	stiktype character varying,
-	geometri geometry(MULTIPOLYGON, 25832),
+	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5608_plan_ladefaciliteter_pk PRIMARY KEY (versions_id)
 );
 -- ddl-end --

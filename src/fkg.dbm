@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="2582,3500" last-zoom="1" max-obj-count="412"
+<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="252,4428" last-zoom="1" max-obj-count="412"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -22,6 +22,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 </schema>
 
 <schema name="fkg" layers="0" fill-color="#e1e1e1">
+	<comment> <![CDATA[GeoFA DB version 1.4. https://github.com/OpenFKG/fkg-postgresql/milestone/2]]> </comment>
 </schema>
 
 <table name="d_basis_oprindelse" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
@@ -7230,7 +7231,7 @@ Sport, fritid og friluftsliv]]> </comment>
 	<column name="driftstart_fra">
 		<type name="date" length="0"/>
 	</column>
-	<column name="geometri">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="0" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5607_ladepunkter_pk" type="pk-constr" table="fkg.t_5607_ladepunkter_t">
@@ -7268,7 +7269,7 @@ Sport, fritid og friluftsliv]]> </comment>
 	<column name="stiktype">
 		<type name="character varying" length="0"/>
 	</column>
-	<column name="geometri">
+	<column name="geometri" not-null="true">
 		<type name="geometry" length="0" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
 	</column>
 	<constraint name="t_5608_plan_ladefaciliteter_pk" type="pk-constr" table="fkg.t_5608_plan_ladefaciliteter_t">
