@@ -88,14 +88,15 @@ DELETE FROM fkg.d_5602_p_type;
 DELETE FROM fkg.d_5604_begr_type;
 DELETE FROM fkg.d_5605_dekl_type;
 DELETE FROM fkg.d_5606_inventar_type;
+DELETE FROM fkg.d_5607_effekt_type;
+DELETE FROM fkg.d_5607_ladefacilitet_type;
+DELETE FROM fkg.d_5607_tilgaengelighed_type;
 DELETE FROM fkg.d_5700_forening_type;
 DELETE FROM fkg.d_5700_adr_beskyt;
 DELETE FROM fkg.d_5705_udlejning;
 DELETE FROM fkg.d_5706_havn_type;
 DELETE FROM fkg.d_5707_grund_type;
 DELETE FROM fkg.d_5707_salg_status;
--- DELETE FROM fkg.d_5708_institution_type; Udgået ver. 2.4
--- DELETE FROM fkg.d_5709_distrikt_type; Udgået ver. 2.4
 DELETE FROM fkg.d_5710_udd_distrikt_type;
 DELETE FROM fkg.d_5711_an_distrikt_type;
 DELETE FROM fkg.d_5712_plej_distrikt_type;
@@ -202,6 +203,8 @@ INSERT INTO fkg.d_tabel VALUES (5603,'Hastighedszone','F','t_5603_hasti_zone','5
 INSERT INTO fkg.d_tabel VALUES (5604,'Kørselsregulering','L','t_5604_koer_begr','5.7');
 INSERT INTO fkg.d_tabel VALUES (5605,'Vejbyggelinje','F','t_5605_vejbyggel','5.7');
 INSERT INTO fkg.d_tabel VALUES (5606,'Vejinventar','P','t_5606_vejinv','5.7');
+INSERT INTO fkg.d_tabel VALUES (5607,'Ladepunkt','P','t_5607_ladepunkter','5.7');
+INSERT INTO fkg.d_tabel VALUES (5608,'Planlagte ladefaciliteter','P','t_5608_plan_ladefaciliteter','5.7');
 INSERT INTO fkg.d_tabel VALUES (5700,'Grundejerforeninger/ Vejlav','F','t_5700_grundej','5.8');
 INSERT INTO fkg.d_tabel VALUES (5701,'Lokalrådsområde','F','t_5701_lok_omr','5.8');
 INSERT INTO fkg.d_tabel VALUES (5702,'Skorstensfejerdistrikt','F','t_5702_skorst_fej','5.8');
@@ -2103,6 +2106,18 @@ INSERT INTO fkg.d_5606_inventar_type VALUES (98,'Andet',1,'Andet');
 INSERT INTO fkg.d_5606_inventar_type VALUES (99,'Ukendt',1,'Manglende viden');
 -- SELECT * FROM d_5606_inventar_type;
 
+INSERT INTO fkg.d_5607_ladefacilitet_type VALUES (1, E'Elladestander til bil', 1, E'En elladestander, der kan bruges til at oplade en elbil eller hybridbil.');
+INSERT INTO fkg.d_5607_ladefacilitet_type VALUES (2, E'Elladestander til cykel', 1, E'En elladestander, der kan bruges til at oplade en elcykel.');
+INSERT INTO fkg.d_5607_ladefacilitet_type VALUES (3, E'Elladestander til kørestol', 1, E'En elladestander, der kan bruges til at oplade en elektrisk kørestol.');
+
+INSERT INTO fkg.d_5607_effekt_type VALUES (1, E'Normallader', 1, E'3-22 kW');
+INSERT INTO fkg.d_5607_effekt_type VALUES (2, E'Hurtiglader', 1, E'50-100 kW');
+INSERT INTO fkg.d_5607_effekt_type VALUES (3, E'Lynlader', 1, E'> 150 kW');
+
+INSERT INTO fkg.d_5607_tilgaengelighed_type VALUES (1, E'Offentligt tilgængelig', 1, E'En ladefacilitet eller en tankstation til forsyning med et alternativt drivmiddel, som giver ikkediskriminerende adgang for brugere. Ikkediskriminerende adgang kan omfatte forskellige vilkår for godkendelse, anvendelse og betaling.');
+INSERT INTO fkg.d_5607_tilgaengelighed_type VALUES (2, E'Privat ladestander', 1, E'En ladefacilitet eller en tankstation, som ejes af privatejer eller virksomhed og som giver en eksklusiv ret til ejer samt evt. ansatte i virksomhed.');
+INSERT INTO fkg.d_5607_tilgaengelighed_type VALUES (3, E'Kommunal bilflåde', 1, E'En ladefacilitet eller en tankstation, som ejes af kommune og som giver en eksklusiv ret til den kommunale bilflåde.');
+INSERT INTO fkg.d_5607_tilgaengelighed_type VALUES (4, E'Statslig bilflåde', 1, E'En ladefacilitet eller en tankstation, som ejes af statslig myndighed og som giver en eksklusiv ret til den statslige bilflåde.');
 
 INSERT INTO fkg.d_5700_forening_type VALUES (1,'Andelsboligforening',1,'En forening, der er stiftet med det formål at erhverve, eje og drive den ejendom, som foreningens medlemmer bor i.');
 INSERT INTO fkg.d_5700_forening_type VALUES (2,'Borgerforening',1,'Forening af borger/beboer indenfor et område. Dækker ofte mindre bysamfund/landsbyer.');
@@ -2113,8 +2128,6 @@ INSERT INTO fkg.d_5700_forening_type VALUES (6,'Haveforening',1,'Kolonihaver m.m
 INSERT INTO fkg.d_5700_forening_type VALUES (7,'Almennyttige boligforeninger',1,'almennyttige boliger, sociale boliger, lejeboliger opført som offentlig støttet boligbyggeri af et godkendt almennyttigt boligselskab; siden 1996 anvendes betegnelsen almene boliger.');
 INSERT INTO fkg.d_5700_forening_type VALUES (8,'Andet',1,'Ingen af de andre passer entydigt på objektet.');
 INSERT INTO fkg.d_5700_forening_type VALUES (9,'Uoplyst',1,'Mangler viden for at kunne udfylde feltet.');
--- SELECT * FROM d_5606_inventar_type;
-
 
 INSERT INTO fkg.d_5700_adr_beskyt VALUES ('0','Ingen adressebeskyttelse',1,'Ingen adressebeskyttelse');
 INSERT INTO fkg.d_5700_adr_beskyt VALUES ('A','Ejers navn og ejendomsoplysninger overføres til vejvisere',1,'Ejers navn og ejendomsoplysninger overføres til vejvisere');
@@ -2434,6 +2447,8 @@ INSERT INTO fkg.d_5800_facilitet VALUES (1321, 'Stente', 1, 'Lille dobbelt stige
 INSERT INTO fkg.d_5800_facilitet VALUES (1331, 'Badebro', 1, 'Bro med adgang til badning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1341, 'Bro', 1, 'Bro.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1351, 'Parkeringsplads', 1, 'En parkeringsplads/et område er et officielt sted beregnet til at henstille køretøjer på, når de ikke bruges.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1361, 'Fodhviler', 1, '');
+INSERT INTO fkg.d_5800_facilitet VALUES (1371, 'Bænk', 1, '');
 INSERT INTO fkg.d_5800_facilitet VALUES (2012, 'Fugletårn/Udsigtstårn', 1, 'Platform, tårn eller skjul som giver mulighed for udsigt over et område eller særlige seværdigheder, fx udsyn til områdets fugle, dyreliv, landskab mv.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2022, 'Udsigtspunkt', 1, 'Punkt med en god udsigt. Ofte på toppen af en høj eller skrænt. Kan også være fra en bygning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (2031, 'Fiskesø', 1, 'Put&take sø. Sted hvor man kan købe dagskort til at fiske efter udsatte fisk.');
@@ -2505,6 +2520,8 @@ INSERT INTO fkg.d_5800_facilitet VALUES (4361, 'Fodboldgolf', 1, 'Anlæg/bane ti
 INSERT INTO fkg.d_5800_facilitet VALUES (4371, 'Bueskydning', 1, 'Bane til bueskydning.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4381, 'Strandhåndboldbane', 1, 'Bane hvor man kan spille strandhåndbold.');
 INSERT INTO fkg.d_5800_facilitet VALUES (4391, 'Hundetræningsareal', 1, 'Areal hvor man kan træne hunde.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4401, 'Overbæringssted', 1, 'Sted hvor der kan overbæres kanoer mv.');
+INSERT INTO fkg.d_5800_facilitet VALUES (4411, 'Fiskeplatform', 1, 'Bro el.lign. hvorfra fiskeri er velegent');
 INSERT INTO fkg.d_5800_facilitet VALUES (5011, 'Forsamlingshus', 1, 'Et forsamlingshus er byens kulturhus og mødested.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5021, 'Museum', 1, 'Museum er en permanent institution med udstilling og formidling af f.eks. kunst, kulturhistorie eller naturhistorie.');
 INSERT INTO fkg.d_5800_facilitet VALUES (5031, 'Teater', 1, 'Sted, hvor der opføres teater eller andre kulturelle opførelser. Herunder også amfiteater.');
