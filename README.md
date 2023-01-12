@@ -63,6 +63,9 @@ September 2022 er GeoFA datamodellen opdateret til GeoFA version 1_3. Mindre fej
 
 November 2022 er GeoFA datamodellem opdateret til Version 1_4. 2 nye temaer er tilføjet: `t_5607_ladepunkter` og `t_5608_plan_ladefaciliteter` med tilhørende lookuptabeller til definition af type, effekt og tilgængelighed. De 3 friluftstemaer (`5800`, `5801` og `5802`) er blevet tilføjet 2 kolonner: `navn_uk` og `navn_d`, som er navn på faciliteten på engelsk hhv. tysk. Endvidere er der tilføjet 4 nye facilitetstyper.
 
+Januar 2023 er GeoFA datamodellem opdateret til Version 1_5. Tema: `t_5608_plan_ladefaciliteter` er slettet. Tema `t_5607_ladepunkter` er omdøbt til `t_5607_ladefacilitet`. Der er tilføjet en række felter til `t_5607_ladefacilitet`. Postnummertabellen er opdateret med de seneste opdateringer fra DAGI.
+
+
 Bidrag
 ------------
 Der er adskillige måder, hvorpå du kan bidrage til at gøre dette projekt endnu bedre for alles bedste.
@@ -103,6 +106,7 @@ September 2022 er GeoFA datamodellen opdateret fra GeoFA version 1_2 til 1_3 med
 
 November 2022 er GeoFA datamodellen opdateret fra GeoFA version 1_3 til 1_4 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
+Januar 2023 er GeoFA datamodellen opdateret fra GeoFA version 1_4 til 1_5 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 For udviklere
 -----------
