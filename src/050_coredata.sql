@@ -203,7 +203,7 @@ INSERT INTO fkg.d_tabel VALUES (5603,'Hastighedszone','F','t_5603_hasti_zone','5
 INSERT INTO fkg.d_tabel VALUES (5604,'Kørselsregulering','L','t_5604_koer_begr','5.7');
 INSERT INTO fkg.d_tabel VALUES (5605,'Vejbyggelinje','F','t_5605_vejbyggel','5.7');
 INSERT INTO fkg.d_tabel VALUES (5606,'Vejinventar','P','t_5606_vejinv','5.7');
-INSERT INTO fkg.d_tabel VALUES (5607,'Ladepunkt','P','t_5607_ladepunkter','5.7');
+INSERT INTO fkg.d_tabel VALUES (5607,'Ladefacilitet','P','t_5607_ladefacilitet','5.7');
 INSERT INTO fkg.d_tabel VALUES (5608,'Planlagte ladefaciliteter','P','t_5608_plan_ladefaciliteter','5.7');
 INSERT INTO fkg.d_tabel VALUES (5700,'Grundejerforeninger/ Vejlav','F','t_5700_grundej','5.8');
 INSERT INTO fkg.d_tabel VALUES (5701,'Lokalrådsområde','F','t_5701_lok_omr','5.8');
@@ -1003,7 +1003,7 @@ INSERT INTO fkg.d_basis_postnr VALUES (2820,'Gentofte',1);
 INSERT INTO fkg.d_basis_postnr VALUES (2870,'Dyssegård',1);
 INSERT INTO fkg.d_basis_postnr VALUES (2930,'Klampenborg',1);
 INSERT INTO fkg.d_basis_postnr VALUES (2920,'Charlottenlund',1);
-INSERT INTO fkg.d_basis_postnr VALUES (2800,'Kgs. Lyngby',1);
+INSERT INTO fkg.d_basis_postnr VALUES (2800,'Kongens Lyngby',1);
 INSERT INTO fkg.d_basis_postnr VALUES (2880,'Bagsværd',1);
 INSERT INTO fkg.d_basis_postnr VALUES (2640,'Hedehusene',1);
 INSERT INTO fkg.d_basis_postnr VALUES (4000,'Roskilde',1);
@@ -1564,6 +1564,22 @@ INSERT INTO fkg.d_basis_postnr VALUES (9400,'Nørresundby',1);
 INSERT INTO fkg.d_basis_postnr VALUES (9200,'Aalborg SV',1);
 INSERT INTO fkg.d_basis_postnr VALUES (9800,'Hjørring',1);
 INSERT INTO fkg.d_basis_postnr VALUES (9850,'Hirtshals',1);
+-- Nye indsat v. 1.5:
+INSERT INTO fkg.d_basis_postnr VALUES (1162,'København K',1);
+INSERT INTO fkg.d_basis_postnr VALUES (4244,'Agersø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (4245,'Omø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (4305,'Orø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (4942,'Askø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (4945,'Femø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (5601,'Lyø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (5602,'Avernakø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (5603,'Bjørnø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (5943,'Strynø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (5965,'Birkholm',1);
+INSERT INTO fkg.d_basis_postnr VALUES (6210,'Barsø',1);
+INSERT INTO fkg.d_basis_postnr VALUES (8789,'Endelave',1);
+INSERT INTO fkg.d_basis_postnr VALUES (8799,'Tunø',1);
+
 -- SELECT * FROM d_basis_postnr;
 
 INSERT INTO fkg.d_basis_funktionsstatus VALUES (1,'Planlagt',1,'Planlagt etableret');
