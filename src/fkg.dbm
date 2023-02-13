@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="0,924" last-zoom="1" max-obj-count="409"
+<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="1952,1302" last-zoom="1" max-obj-count="409"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -22,7 +22,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 </schema>
 
 <schema name="fkg" layers="0" fill-color="#e1e1e1">
-	<comment> <![CDATA[GeoFA DB version 1.5. https://github.com/OpenFKG/fkg-postgresql/milestone/3]]> </comment>
+	<comment> <![CDATA[GeoFA DB version 1.6. https://github.com/OpenFKG/fkg-postgresql/milestone/4]]> </comment>
 </schema>
 
 <table name="d_basis_oprindelse" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
@@ -617,7 +617,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 <textbox name="Heading" layers="0" z-value="0" font-size="9">
 	<position x="0" y="0"/>
-	<comment> <![CDATA[GeoFA datamodel - PostGreSQL / PostGIS - version 1.5]]> </comment>
+	<comment> <![CDATA[GeoFA datamodel - PostGreSQL / PostGIS - version 1.6]]> </comment>
 </textbox>
 
 <textbox name="copyright" layers="0" z-value="0" font-size="9">
@@ -3111,7 +3111,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</constraint>
 </table>
 
-<table name="t_5800_fac_pkt_t" layers="0" collapse-mode="2" max-obj-count="63" z-value="0">
+<table name="t_5800_fac_pkt_t" layers="0" collapse-mode="2" max-obj-count="64" z-value="0">
 	<schema name="fkg"/>
 	<position x="2700" y="1340"/>
 	<column name="versions_id" not-null="true">
@@ -3270,6 +3270,9 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	<column name="link3">
 		<type name="character varying" length="1024"/>
 	</column>
+	<column name="tilgaeng_beskriv">
+		<type name="character varying" length="3000"/>
+	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
@@ -3287,7 +3290,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</constraint>
 </table>
 
-<table name="t_5802_fac_li_t" layers="0" collapse-mode="2" max-obj-count="76" z-value="0">
+<table name="t_5802_fac_li_t" layers="0" collapse-mode="2" max-obj-count="78" z-value="0">
 	<schema name="fkg"/>
 	<position x="2700" y="2980"/>
 	<column name="versions_id" not-null="true">
@@ -3478,6 +3481,9 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</column>
 	<column name="link3">
 		<type name="character varying" length="1024"/>
+	</column>
+	<column name="tilgaeng_beskriv">
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
@@ -6391,7 +6397,7 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl_t" layers="0" collapse-mode="2" max-obj-count="63" z-value="0">
+<table name="t_5801_fac_fl_t" layers="0" collapse-mode="2" max-obj-count="64" z-value="0">
 	<schema name="fkg"/>
 	<position x="2700" y="2380"/>
 	<column name="versions_id" not-null="true">
@@ -6549,6 +6555,9 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</column>
 	<column name="link3">
 		<type name="character varying" length="1024"/>
+	</column>
+	<column name="tilgaeng_beskriv">
+		<type name="character varying" length="3000"/>
 	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
@@ -7192,7 +7201,7 @@ Sport, fritid og friluftsliv]]> </comment>
 	</constraint>
 </table>
 
-<table name="t_5607_ladefacilitet_t" layers="0" collapse-mode="2" max-obj-count="33" z-value="0">
+<table name="t_5607_ladefacilitet_t" layers="0" collapse-mode="2" max-obj-count="34" z-value="0">
 	<schema name="fkg"/>
 	<position x="720" y="5040"/>
 	<column name="versions_id" not-null="true">
@@ -7256,6 +7265,9 @@ Sport, fritid og friluftsliv]]> </comment>
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="link3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link4">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="adr_id">
