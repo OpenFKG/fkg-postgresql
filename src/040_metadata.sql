@@ -30,7 +30,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 -- DROP SCHEMA IF EXISTS fkg CASCADE;
 CREATE SCHEMA fkg;
 -- ddl-end --
-COMMENT ON SCHEMA fkg IS E'GeoFA DB version 1.5. https://github.com/OpenFKG/fkg-postgresql/milestone/3';
+COMMENT ON SCHEMA fkg IS E'GeoFA DB version 1.6. https://github.com/OpenFKG/fkg-postgresql/milestone/4';
 -- ddl-end --
 
 SET search_path TO pg_catalog,public,fkg;
@@ -1759,6 +1759,8 @@ CREATE TABLE fkg.t_5800_fac_pkt_t (
 	link1 character varying(1024),
 	link2 character varying(1024),
 	link3 character varying(1024),
+	tilgaeng_beskriv character varying(3000),
+	tilgaeng_opl jsonb,
 	geometri geometry(MULTIPOINT, 25832) NOT NULL,
 	CONSTRAINT t_5800_fac_pkt_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
@@ -1834,6 +1836,8 @@ CREATE TABLE fkg.t_5802_fac_li_t (
 	link1 character varying(1024),
 	link2 character varying(1024),
 	link3 character varying(1024),
+	tilgaeng_beskriv character varying(3000),
+	tilgaeng_opl jsonb,
 	geometri geometry(MULTILINESTRING, 25832) NOT NULL,
 	CONSTRAINT t_5802_fac_li_pk PRIMARY KEY (versions_id)
 	 WITH (FILLFACTOR = 10),
@@ -3219,6 +3223,8 @@ CREATE TABLE fkg.t_5801_fac_fl_t (
 	link1 character varying(1024),
 	link2 character varying(1024),
 	link3 character varying(1024),
+	tilgaeng_beskriv character varying(3000),
+	tilgaeng_opl jsonb,
 	geometri geometry(MULTIPOLYGON, 25832) NOT NULL,
 	CONSTRAINT t_5801_fac_fl_pk PRIMARY KEY (versions_id),
 	CONSTRAINT t_5801_fac_fl_antal_pl_ck CHECK (antal_pl BETWEEN 0 AND 9999),
@@ -3492,8 +3498,10 @@ CREATE TABLE fkg.t_7900_fotoforbindelse_t (
 	foto_lokat uuid NOT NULL,
 	foto_navn character varying(128),
 	primaer_kode integer NOT NULL,
+	tilgaeng_kode integer NOT NULL,
 	CONSTRAINT t_7900_fotoforbindelse_pk PRIMARY KEY (versions_id),
-	CONSTRAINT primaer_kode_ck CHECK (primaer_kode IN (0,1))
+	CONSTRAINT primaer_kode_ck CHECK (primaer_kode IN (0,1)),
+	CONSTRAINT tilgaeng_kode_ck CHECK (primaer_kode IN (0,1))
 );
 -- ddl-end --
 
@@ -3503,6 +3511,8 @@ CREATE TABLE fkg.t_7901_foto_t (
 	versions_id uuid NOT NULL,
 	geometri geometry(POINT, 25832),
 	copyright character varying(124),
+	billedtekst character varying(3000),
+	alt_tekst character varying(255),
 	CONSTRAINT t_7901_foto_pk PRIMARY KEY (versions_id)
 );
 -- ddl-end --
@@ -3542,6 +3552,7 @@ CREATE TABLE fkg.t_5607_ladefacilitet_t (
 	link1 character varying(1024),
 	link2 character varying(1024),
 	link3 character varying(1024),
+	link4 character varying(1024),
 	adr_id uuid,
 	ansvar_org character varying(254),
 	kontak_ved character varying(254),
@@ -5928,6 +5939,13 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE fkg.t_7900_fotoforbindelse_t DROP CONSTRAINT IF EXISTS t_7900_fotoforbindelse_d_basis_ja_nej CASCADE;
 ALTER TABLE fkg.t_7900_fotoforbindelse_t ADD CONSTRAINT t_7900_fotoforbindelse_d_basis_ja_nej FOREIGN KEY (primaer_kode)
 REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: t_7900_fotoforbindelse_d_basis_ja_nej_tilg | type: CONSTRAINT --
+-- ALTER TABLE fkg.t_7900_fotoforbindelse_t DROP CONSTRAINT IF EXISTS t_7900_fotoforbindelse_d_basis_ja_nej_tilg CASCADE;
+ALTER TABLE fkg.t_7900_fotoforbindelse_t ADD CONSTRAINT t_7900_fotoforbindelse_d_basis_ja_nej_tilg FOREIGN KEY (tilgaeng_kode)
+REFERENCES fkg.d_basis_ja_nej (ja_nej_kode) MATCH SIMPLE
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

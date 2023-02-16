@@ -26,3 +26,9 @@ SELECT fkg_utilities.get_trigger_function_definition(CAST(tablename AS character
 SELECT fkg_utilities.get_trigger_function_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN 
 (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel WHERE tema_kode IN (5800, 5801, 5802, 5607, 5608));
 */
+
+--The following gets only for 5607, 7900, 7901, 5800, 5801, 5802
+/*
+SELECT fkg_utilities.get_trigger_function_definition(CAST(tablename AS character varying)) FROM pg_tables  WHERE schemaname='fkg' AND tablename IN 
+(SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel WHERE tema_kode IN (5607, 7900, 7901, 5800, 5801, 5802));
+*/

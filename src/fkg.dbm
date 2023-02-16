@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="0,924" last-zoom="1" max-obj-count="409"
+<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="1649,1674" last-zoom="1" max-obj-count="410"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -22,7 +22,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 </schema>
 
 <schema name="fkg" layers="0" fill-color="#e1e1e1">
-	<comment> <![CDATA[GeoFA DB version 1.5. https://github.com/OpenFKG/fkg-postgresql/milestone/3]]> </comment>
+	<comment> <![CDATA[GeoFA DB version 1.6. https://github.com/OpenFKG/fkg-postgresql/milestone/4]]> </comment>
 </schema>
 
 <table name="d_basis_oprindelse" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
@@ -617,7 +617,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 <textbox name="Heading" layers="0" z-value="0" font-size="9">
 	<position x="0" y="0"/>
-	<comment> <![CDATA[GeoFA datamodel - PostGreSQL / PostGIS - version 1.5]]> </comment>
+	<comment> <![CDATA[GeoFA datamodel - PostGreSQL / PostGIS - version 1.6]]> </comment>
 </textbox>
 
 <textbox name="copyright" layers="0" z-value="0" font-size="9">
@@ -3111,7 +3111,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</constraint>
 </table>
 
-<table name="t_5800_fac_pkt_t" layers="0" collapse-mode="2" max-obj-count="63" z-value="0">
+<table name="t_5800_fac_pkt_t" layers="0" collapse-mode="2" max-obj-count="66" z-value="0">
 	<schema name="fkg"/>
 	<position x="2700" y="1340"/>
 	<column name="versions_id" not-null="true">
@@ -3270,6 +3270,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	<column name="link3">
 		<type name="character varying" length="1024"/>
 	</column>
+	<column name="tilgaeng_beskriv">
+		<type name="character varying" length="3000"/>
+	</column>
+	<column name="tilgaeng_opl">
+		<type name="jsonb" length="0"/>
+	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOINT" variation="0" srid="25832"/>
 	</column>
@@ -3287,9 +3293,9 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</constraint>
 </table>
 
-<table name="t_5802_fac_li_t" layers="0" collapse-mode="2" max-obj-count="76" z-value="0">
+<table name="t_5802_fac_li_t" layers="0" collapse-mode="2" max-obj-count="79" z-value="0">
 	<schema name="fkg"/>
-	<position x="2700" y="2980"/>
+	<position x="2700" y="3460"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -3478,6 +3484,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 	</column>
 	<column name="link3">
 		<type name="character varying" length="1024"/>
+	</column>
+	<column name="tilgaeng_beskriv">
+		<type name="character varying" length="3000"/>
+	</column>
+	<column name="tilgaeng_opl">
+		<type name="jsonb" length="0"/>
 	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTILINESTRING" variation="0" srid="25832"/>
@@ -6391,9 +6403,9 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</constraint>
 </table>
 
-<table name="t_5801_fac_fl_t" layers="0" collapse-mode="2" max-obj-count="63" z-value="0">
+<table name="t_5801_fac_fl_t" layers="0" collapse-mode="2" max-obj-count="66" z-value="0">
 	<schema name="fkg"/>
-	<position x="2700" y="2380"/>
+	<position x="2700" y="2400"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="1"/>
 	</column>
@@ -6549,6 +6561,12 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</column>
 	<column name="link3">
 		<type name="character varying" length="1024"/>
+	</column>
+	<column name="tilgaeng_beskriv">
+		<type name="character varying" length="3000"/>
+	</column>
+	<column name="tilgaeng_opl">
+		<type name="jsonb" length="0"/>
 	</column>
 	<column name="geometri" not-null="true">
 		<type name="geometry" length="1" spatial-type="MULTIPOLYGON" variation="0" srid="25832"/>
@@ -7110,9 +7128,9 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	<schema name="public"/>
 </extension>
 
-<table name="t_7900_fotoforbindelse_t" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+<table name="t_7900_fotoforbindelse_t" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="fkg"/>
-	<position x="5560" y="4800"/>
+	<position x="5600" y="4960"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -7131,17 +7149,23 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	<column name="primaer_kode" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
+	<column name="tilgaeng_kode" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
 	<constraint name="t_7900_fotoforbindelse_pk" type="pk-constr" table="fkg.t_7900_fotoforbindelse_t">
 		<columns names="versions_id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="primaer_kode_ck" type="ck-constr" table="fkg.t_7900_fotoforbindelse_t">
 			<expression> <![CDATA[primaer_kode IN (0,1)]]> </expression>
 	</constraint>
+	<constraint name="tilgaeng_kode_ck" type="ck-constr" table="fkg.t_7900_fotoforbindelse_t">
+			<expression> <![CDATA[primaer_kode IN (0,1)]]> </expression>
+	</constraint>
 </table>
 
-<table name="t_7901_foto_t" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="t_7901_foto_t" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="fkg"/>
-	<position x="5560" y="4640"/>
+	<position x="5880" y="4760"/>
 	<column name="versions_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
@@ -7150,6 +7174,12 @@ Planlægning, Park og Grønne områder, Fotos]]> </comment>
 	</column>
 	<column name="copyright">
 		<type name="character varying" length="124"/>
+	</column>
+	<column name="billedtekst">
+		<type name="character varying" length="3000"/>
+	</column>
+	<column name="alt_tekst">
+		<type name="character varying" length="255"/>
 	</column>
 	<constraint name="t_7901_foto_pk" type="pk-constr" table="fkg.t_7901_foto_t">
 		<columns names="versions_id" ref-type="src-columns"/>
@@ -7192,7 +7222,7 @@ Sport, fritid og friluftsliv]]> </comment>
 	</constraint>
 </table>
 
-<table name="t_5607_ladefacilitet_t" layers="0" collapse-mode="2" max-obj-count="33" z-value="0">
+<table name="t_5607_ladefacilitet_t" layers="0" collapse-mode="2" max-obj-count="34" z-value="0">
 	<schema name="fkg"/>
 	<position x="720" y="5040"/>
 	<column name="versions_id" not-null="true">
@@ -7256,6 +7286,9 @@ Sport, fritid og friluftsliv]]> </comment>
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="link3">
+		<type name="character varying" length="1024"/>
+	</column>
+	<column name="link4">
 		<type name="character varying" length="1024"/>
 	</column>
 	<column name="adr_id">
@@ -9354,6 +9387,12 @@ Sport, fritid og friluftsliv]]> </comment>
 	<columns names="ja_nej_kode" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="t_7900_fotoforbindelse_d_basis_ja_nej_tilg" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.d_basis_ja_nej" table="fkg.t_7900_fotoforbindelse_t">
+	<columns names="tilgaeng_kode" ref-type="src-columns"/>
+	<columns names="ja_nej_kode" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="t_7901_generel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fkg.generel" table="fkg.t_7901_foto_t">
 	<columns names="versions_id" ref-type="src-columns"/>
@@ -11094,5 +11133,10 @@ Sport, fritid og friluftsliv]]> </comment>
 	 src-table="fkg.t_5607_ladefacilitet_t"
 	 dst-table="fkg.d_basis_planstatus" reference-fk="t_5607_ladefacilitet_d_planstatus_fk"
 	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_t_7900_fotoforbindelse_t_d_basis_ja_nej1" type="relfk" layers="0"
+	 src-table="fkg.t_7900_fotoforbindelse_t"
+	 dst-table="fkg.d_basis_ja_nej" reference-fk="t_7900_fotoforbindelse_d_basis_ja_nej_tilg"
+	 src-required="false" dst-required="true"/>
 
 </dbmodel>
