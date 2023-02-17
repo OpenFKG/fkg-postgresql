@@ -67,6 +67,8 @@ Januar 2023 er GeoFA datamodellem opdateret til Version 1_5. Tema: `t_5608_plan_
 
 Februar 2023 er GeoFA datamodellem opdateret til Version 1_6. Primært for at understøtte tilgængelighedsoplysninger på friluftstemaer og foto.
 
+Februar 2023 er GeoFA datamodellem opdateret til Version 1_6_1. Inaktivering af facilitetstype 1172 (Ladestation til el-cykler.).
+
 
 Bidrag
 ------------
@@ -111,6 +113,8 @@ November 2022 er GeoFA datamodellen opdateret fra GeoFA version 1_3 til 1_4 med 
 Januar 2023 er GeoFA datamodellen opdateret fra GeoFA version 1_4 til 1_5 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 Februar 2023 er GeoFA datamodellen opdateret fra GeoFA version 1_5 til 1_6 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
+
+Februar 2023 er GeoFA datamodellen opdateret fra GeoFA version 1_6 til 1_6_1 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 For udviklere
 -----------
