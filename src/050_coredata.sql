@@ -2444,7 +2444,7 @@ INSERT INTO fkg.d_5800_facilitet VALUES (1132, 'Tørvejrsrum/Madpakkehus', 1, 'H
 INSERT INTO fkg.d_5800_facilitet VALUES (1142, 'Virtuelt oplevelsespunkt', 1, 'Virtuelle oplevelsespunkter/Hotspots, som kan tilgås fx via apps eller lignende.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1152, 'Info-tavle', 1, 'Opstillet skilt, planche eller tavle med information om et område og dets muligheder.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1162, 'Cykelparkering', 1, 'Opstillet cykelstativ eller anden fast opstilling, der gør det muligt at parkere sin cykel.');
-INSERT INTO fkg.d_5800_facilitet VALUES (1172, 'Ladestation', 1, 'Ladestation til el-cykler.');
+INSERT INTO fkg.d_5800_facilitet VALUES (1172, 'Ladestation', 0, 'Ladestation til el-cykler.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1182, 'Turistinformation', 1, 'Kontor/lokaler, der har til formål at informere turister om lokalområdet.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1191, 'Hundeskov/Hundepark/fritløbsareal', 1, 'Særligt udpeget og eventuelt indhegnet område for hundeluftning, hvor hunde må løbe frit, under forudsætning af ”fuld kontrol af hunden”. Kommunale og private områder.');
 INSERT INTO fkg.d_5800_facilitet VALUES (1201, 'Borde-bænke/Picnic', 1, 'Plads med borde, siddepladser, evt. hængekøjer og andre ting til roligt ophold.');
