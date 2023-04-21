@@ -69,6 +69,8 @@ Februar 2023 er GeoFA datamodellem opdateret til Version 1_6. Primært for at un
 
 Februar 2023 er GeoFA datamodellem opdateret til Version 1_6_1. Inaktivering af facilitetstype 1172 (Ladestation til el-cykler.).
 
+April 2023 er GeoFA datamodellem opdateret til Version 1_7. Sletning af facilitetstype 1172 (Ladestation til el-cykler.). Tilføjelse af felt `sagsnr` til `t_5607_ladefacilitet`
+
 
 Bidrag
 ------------
@@ -115,6 +117,8 @@ Januar 2023 er GeoFA datamodellen opdateret fra GeoFA version 1_4 til 1_5 med ø
 Februar 2023 er GeoFA datamodellen opdateret fra GeoFA version 1_5 til 1_6 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 Februar 2023 er GeoFA datamodellen opdateret fra GeoFA version 1_6 til 1_6_1 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
+
+April 2023 er GeoFA datamodellen opdateret fra GeoFA version 1.6.1 til 1.7 med økonomisk støtte fra [GeoDanmark](https://www.geodanmark.dk/)
 
 For udviklere
 -----------

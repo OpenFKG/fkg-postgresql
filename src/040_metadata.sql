@@ -3548,6 +3548,7 @@ CREATE TABLE fkg.t_5607_ladefacilitet_t (
 	foto_link1 character varying(1024),
 	foto_link2 character varying(1024),
 	foto_link3 character varying(1024),
+	sagsnr character varying(128),
 	link character varying(1024),
 	link1 character varying(1024),
 	link2 character varying(1024),

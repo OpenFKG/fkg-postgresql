@@ -40,3 +40,12 @@ SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), '
 SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), 'H') FROM pg_tables WHERE schemaname='fkg' AND tablename IN 
 (SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel WHERE tema_kode IN (5607, 7900, 7901, 5800, 5801, 5802));
 */
+
+--The following gets only for 5607
+/*
+SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), 'B') FROM pg_tables WHERE schemaname='fkg' AND tablename IN 
+(SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel WHERE tema_kode IN (5607));
+
+SELECT fkg_utilities.get_view_definition(CAST(tablename AS character varying), 'H') FROM pg_tables WHERE schemaname='fkg' AND tablename IN 
+(SELECT udvekslingsnavn || '_t' FROM fkg.d_tabel WHERE tema_kode IN (5607));
+*/

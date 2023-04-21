@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="1649,1674" last-zoom="1" max-obj-count="410"
+<dbmodel pgmodeler-ver="1.0.0-alpha1" use-changelog="false" last-position="139,4650" last-zoom="1" max-obj-count="410"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -7222,7 +7222,7 @@ Sport, fritid og friluftsliv]]> </comment>
 	</constraint>
 </table>
 
-<table name="t_5607_ladefacilitet_t" layers="0" collapse-mode="2" max-obj-count="34" z-value="0">
+<table name="t_5607_ladefacilitet_t" layers="0" collapse-mode="2" max-obj-count="36" z-value="0">
 	<schema name="fkg"/>
 	<position x="720" y="5040"/>
 	<column name="versions_id" not-null="true">
@@ -7275,6 +7275,9 @@ Sport, fritid og friluftsliv]]> </comment>
 	</column>
 	<column name="foto_link3">
 		<type name="character varying" length="1024"/>
+	</column>
+	<column name="sagsnr">
+		<type name="character varying" length="128"/>
 	</column>
 	<column name="link">
 		<type name="character varying" length="1024"/>
